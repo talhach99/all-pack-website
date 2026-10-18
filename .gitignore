@@ -1,0 +1,13 @@
+node_modules
+
+# Dependencies and generated files
+node_modules/
+.next/
+.open-next/
+.wrangler/
+.dev.vars*
+.env.local
+.env.production.local
+
+# Generated TypeScript cache
+*.tsbuildinfo
