@@ -1,0 +1,5 @@
+import type {Metadata} from 'next';
+import { PageIntro } from '@/components/PageIntro';
+import { ProductCatalog } from '@/components/ProductCatalog';
+export const metadata:Metadata={title:'Products & Packaging Catalog',description:'Browse ALL PACK packaging concepts by material, industry and category. Request one combined quotation.'};
+export default async function ProductsPage({searchParams}:{searchParams:Promise<{category?:string}>}){const query=await searchParams;return <main><PageIntro eyebrow="EXPLORE OUR CATALOG" title={<>Every kind of package. <span className="gradient-text">One place to start.</span></>} description="Filter packaging concepts by material, use or category. Add products to an inquiry basket to request a combined quotation."/><section className="site-container section-pad"><div className="mb-8 rounded-2xl border border-[#C3D5ED] bg-[#F3F7FE] p-4 text-sm text-[#334f83]">Concept catalog: product availability, sizes, materials, print options and minimum quantities must be confirmed with ALL PACK.</div><ProductCatalog initialCategory={query.category||''}/></section></main>}

@@ -1,0 +1,15 @@
+import Link from 'next/link';
+import { ArrowUpRight, Mail, MapPin, Phone, MessageCircle } from 'lucide-react';
+import { Logo } from './Logo';
+import { NewsletterInterest } from './NewsletterInterest';
+import { COMPANY, phoneLink, whatsappLink, QUOTE_MESSAGE } from '@/lib/company';
+import { categories } from '@/lib/products';
+export function Footer(){const wa=whatsappLink(QUOTE_MESSAGE);const call=phoneLink();return <footer className="border-t border-line bg-soft/55 pt-20">
+ <div className="site-container grid gap-12 pb-16 md:grid-cols-2 lg:grid-cols-[1.65fr_1fr_1fr_1.35fr]">
+  <div><Logo/><p className="mt-6 max-w-xs text-sm leading-7 text-muted">Thoughtful packaging and print for businesses that care about every detail. Based in Lahore, Pakistan.</p><p className="mt-6 text-xs text-muted">Website catalogue is illustrative. Product specifications, lead times and availability are confirmed with our team.</p><NewsletterInterest/></div>
+  <div><h3 className="mb-5 font-semibold">Quick links</h3><div className="flex flex-col gap-3 text-sm text-muted">{[['About us','/about'],['Products','/products'],['Packaging studio','/studio'],['Gallery','/gallery'],['Packaging tips','/journal'],['FAQs','/faq'],['Contact','/contact'],['Privacy','/privacy']].map(([n,url])=><Link key={url} href={url} className="hover:text-skybrand">{n}</Link>)}</div></div>
+  <div><h3 className="mb-5 font-semibold">Explore products</h3><div className="flex flex-col gap-3 text-sm text-muted">{categories.slice(0,6).map(c=><Link key={c} href={`/products?category=${encodeURIComponent(c)}`} className="hover:text-skybrand">{c}</Link>)}</div></div>
+  <div><h3 className="mb-5 font-semibold">Get in touch</h3><a href={`mailto:${COMPANY.email}`} className="mb-4 flex items-start gap-3 text-sm text-muted hover:text-skybrand"><Mail className="mt-0.5 shrink-0" size={16}/>{COMPANY.email}</a><div className="mb-5 flex items-start gap-3 text-sm leading-7 text-muted"><MapPin className="mt-1 shrink-0" size={17}/>{COMPANY.address}</div>{call&&<a href={call} className="mb-4 flex items-center gap-3 text-sm font-semibold text-skybrand hover:underline"><Phone size={16}/>{COMPANY.phone}</a>}<div className="flex flex-wrap gap-2">{call&&<a href={call} className="btn-outline !min-h-10 !px-4"><Phone size={16}/> Call Now</a>}{wa&&<a target="_blank" rel="noopener noreferrer" href={wa} className="btn-primary !min-h-10 !px-4"><MessageCircle size={16}/> WhatsApp</a>}</div><div className="mt-5 flex gap-4 text-xs text-muted">{([['Instagram',COMPANY.instagram],['Facebook',COMPANY.facebook],['LinkedIn',COMPANY.linkedin]] as const).filter(([,link])=>link).map(([name,link])=><a key={name} href={link} target="_blank" rel="noopener noreferrer" className="hover:text-skybrand">{name}</a>)}</div></div>
+ </div>
+ <div className="border-t border-line"><div className="site-container flex flex-col justify-between gap-4 pb-24 pt-6 text-xs text-muted sm:flex-row"><p>© {new Date().getFullYear()} ALL PACK. The Packaging Experts.</p><p>Designed for clarity, built for the next big idea.</p></div></div>
+ </footer>}

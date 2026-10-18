@@ -1,0 +1,8 @@
+import type {Metadata} from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { ArrowLeft, ArrowRight, Clock } from 'lucide-react';
+import { articles,getArticle } from '@/data/articles';
+export function generateStaticParams(){return articles.map(a=>({slug:a.slug}))}
+export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{const {slug}=await params;const a=getArticle(slug);return a?{title:a.title,description:a.excerpt}:{};}
+export default async function ArticlePage({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const a=getArticle(slug);if(!a)notFound();return <main><header className="hero-gradient py-16 sm:py-24"><div className="site-container max-w-5xl"><Link href="/journal" className="mb-10 inline-flex items-center gap-2 text-sm font-semibold text-skybrand"><ArrowLeft size={16}/> All insights</Link><p className="eyebrow">{a.category}</p><h1 className="section-title max-w-4xl">{a.title}</h1><p className="lead mt-6 max-w-2xl">{a.excerpt}</p><span className="mt-7 inline-flex items-center gap-2 text-sm text-muted"><Clock size={17}/>{a.readMinutes} min read</span></div></header><article className="site-container max-w-4xl py-16 sm:py-24"><div className="article-prose">{a.sections.map(s=><section key={s.heading}><h2>{s.heading}</h2>{s.body.map((p,i)=><p key={i}>{p}</p>)}</section>)}</div><div className="mt-12 rounded-3xl bg-soft p-9"><h2 className="mb-3 text-2xl font-bold">Need help choosing packaging?</h2><p className="mb-5 text-muted">Tell us what you are making and we will help you begin the conversation.</p><Link href="/quote" className="btn-primary">Request a quote <ArrowRight size={17}/></Link></div></article></main>}

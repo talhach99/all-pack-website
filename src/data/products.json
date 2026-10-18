@@ -1,0 +1,652 @@
+[
+  {
+    "slug": "corrugated-shipping-boxes",
+    "name": "Corrugated Shipping Boxes",
+    "category": "Shipping & E-Commerce",
+    "description": "Dependable single-wall and double-wall boxes for transit and storage.",
+    "fullDescription": "Dependable single-wall and double-wall boxes for transit and storage. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Corrugated board",
+      "Kraft board"
+    ],
+    "sizes": [
+      "Standard or made-to-measure",
+      "Single-wall or double-wall"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "E-commerce",
+      "Logistics",
+      "Industrial"
+    ],
+    "hue": "#BAD5EE",
+    "model": "shipping",
+    "featured": true
+  },
+  {
+    "slug": "ecommerce-mailer-boxes",
+    "name": "E-commerce Mailer Boxes",
+    "category": "Shipping & E-Commerce",
+    "description": "Smart self-locking mailers for a memorable unboxing experience.",
+    "fullDescription": "Smart self-locking mailers for a memorable unboxing experience. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Corrugated board",
+      "Kraft board"
+    ],
+    "sizes": [
+      "Custom length × width × height",
+      "Regular or tuck-in closure"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "E-commerce",
+      "Retail",
+      "Gifting"
+    ],
+    "hue": "#CED7F9",
+    "model": "mailer",
+    "featured": true
+  },
+  {
+    "slug": "rigid-gift-boxes",
+    "name": "Rigid & Magnetic Gift Boxes",
+    "category": "Premium & Retail",
+    "description": "Structured luxury boxes for gifts, accessories, and premium launches.",
+    "fullDescription": "Structured luxury boxes for gifts, accessories, and premium launches. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Rigid board",
+      "Art paper"
+    ],
+    "sizes": [
+      "Made-to-measure",
+      "Two-piece or magnetic closure"
+    ],
+    "customization": [
+      "Custom logo",
+      "Foil stamping",
+      "Soft-touch lamination",
+      "Magnetic closure"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Gifting",
+      "Beauty",
+      "Fashion"
+    ],
+    "hue": "#C7D0F8",
+    "model": "gift",
+    "featured": true
+  },
+  {
+    "slug": "folding-cartons",
+    "name": "Folding Cartons",
+    "category": "Premium & Retail",
+    "description": "Shelf-ready cartons for cosmetics, personal care, medicine and retail.",
+    "fullDescription": "Shelf-ready cartons for cosmetics, personal care, medicine and retail. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Duplex board",
+      "SBS paperboard"
+    ],
+    "sizes": [
+      "Custom dielines",
+      "Tuck-end styles"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Beauty",
+      "Retail",
+      "Pharmaceutical"
+    ],
+    "hue": "#DBE8F6",
+    "model": "carton",
+    "featured": false
+  },
+  {
+    "slug": "custom-printed-boxes",
+    "name": "Custom Printed Boxes",
+    "category": "Premium & Retail",
+    "description": "Bespoke shapes and print effects that bring your brand to life.",
+    "fullDescription": "Bespoke shapes and print effects that bring your brand to life. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Art card",
+      "Corrugated board",
+      "Rigid board"
+    ],
+    "sizes": [
+      "Made-to-measure",
+      "Custom structural design"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Retail",
+      "Gifting",
+      "E-commerce"
+    ],
+    "hue": "#D5D9FE",
+    "model": "printed",
+    "featured": true
+  },
+  {
+    "slug": "pizza-boxes",
+    "name": "Pizza Boxes",
+    "category": "Food & Beverage",
+    "description": "Sturdy folding pizza cartons designed for hot food takeaway.",
+    "fullDescription": "Sturdy folding pizza cartons designed for hot food takeaway. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Food-grade board (subject to specification)",
+      "Corrugated board"
+    ],
+    "sizes": [
+      "Small to family-size on request",
+      "Custom dimensions"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Restaurants",
+      "Takeaway"
+    ],
+    "hue": "#F2D1B6",
+    "model": "pizza",
+    "featured": true
+  },
+  {
+    "slug": "burger-boxes",
+    "name": "Burger & Fast Food Boxes",
+    "category": "Food & Beverage",
+    "description": "Compact takeaway packs for burgers, fries and fast food.",
+    "fullDescription": "Compact takeaway packs for burgers, fries and fast food. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Food-grade paperboard (subject to specification)",
+      "Kraft board"
+    ],
+    "sizes": [
+      "Single-serve sizes",
+      "Custom dielines"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Restaurants",
+      "Takeaway"
+    ],
+    "hue": "#F9E0B4",
+    "model": "burger",
+    "featured": false
+  },
+  {
+    "slug": "cake-boxes",
+    "name": "Cake & Bakery Boxes",
+    "category": "Food & Beverage",
+    "description": "Presentation boxes for cakes, pastry assortments and bakery treats.",
+    "fullDescription": "Presentation boxes for cakes, pastry assortments and bakery treats. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Cardboard",
+      "Food-grade paperboard (subject to specification)"
+    ],
+    "sizes": [
+      "Custom cake dimensions",
+      "Window option on request"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Bakeries",
+      "Gifting"
+    ],
+    "hue": "#F6D9E7",
+    "model": "cake",
+    "featured": false
+  },
+  {
+    "slug": "takeaway-containers",
+    "name": "Takeaway Food Containers",
+    "category": "Food & Beverage",
+    "description": "Practical packaging for meals, snacks and food delivery.",
+    "fullDescription": "Practical packaging for meals, snacks and food delivery. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Kraft paperboard",
+      "Barrier-lined board (subject to approval)"
+    ],
+    "sizes": [
+      "Single and multi-compartment designs",
+      "Custom capacity"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Restaurants",
+      "Takeaway"
+    ],
+    "hue": "#EBD2A6",
+    "model": "takeaway",
+    "featured": false
+  },
+  {
+    "slug": "paper-cups-sleeves",
+    "name": "Paper Cups & Sleeves",
+    "category": "Food & Beverage",
+    "description": "Branded drink presentation for cafés and events.",
+    "fullDescription": "Branded drink presentation for cafés and events. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Cupstock (subject to specification)",
+      "Kraft paper"
+    ],
+    "sizes": [
+      "Capacity to be confirmed",
+      "Custom sleeve fit"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Cafés",
+      "Events"
+    ],
+    "hue": "#D8E9F7",
+    "model": "cup",
+    "featured": false
+  },
+  {
+    "slug": "kraft-shopping-bags",
+    "name": "Kraft & Shopping Bags",
+    "category": "Bags & Flexible",
+    "description": "Paper carrier bags with optional handles and brand printing.",
+    "fullDescription": "Paper carrier bags with optional handles and brand printing. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Kraft paper",
+      "Art paper"
+    ],
+    "sizes": [
+      "Small, medium or large on request",
+      "Flat or gusseted"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Fashion",
+      "Retail",
+      "Gifting"
+    ],
+    "hue": "#ECD9B7",
+    "model": "bag",
+    "featured": true
+  },
+  {
+    "slug": "poly-mailers",
+    "name": "Poly Mailers & Courier Bags",
+    "category": "Bags & Flexible",
+    "description": "Lightweight shipping bags for apparel and soft goods.",
+    "fullDescription": "Lightweight shipping bags for apparel and soft goods. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Polyethylene film"
+    ],
+    "sizes": [
+      "Custom sizes",
+      "Sealable options"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Fashion",
+      "E-commerce",
+      "Logistics"
+    ],
+    "hue": "#D8E3FB",
+    "model": "mailerbag",
+    "featured": false
+  },
+  {
+    "slug": "standup-pouches",
+    "name": "Stand-up & Zipper Pouches",
+    "category": "Bags & Flexible",
+    "description": "Flexible packaging for retail goods, dry foods and refills.",
+    "fullDescription": "Flexible packaging for retail goods, dry foods and refills. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Laminated film (specify barrier needs)",
+      "Kraft laminate"
+    ],
+    "sizes": [
+      "Custom capacities",
+      "Zip or heat-seal options"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Food brands",
+      "Retail"
+    ],
+    "hue": "#F1DDCB",
+    "model": "pouch",
+    "featured": false
+  },
+  {
+    "slug": "protective-wrap",
+    "name": "Bubble Wrap, Stretch Film & Void Fill",
+    "category": "Protection & Supplies",
+    "description": "Protective packaging consumables for safer shipment.",
+    "fullDescription": "Protective packaging consumables for safer shipment. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Polyethylene bubble film",
+      "Stretch film",
+      "Paper void fill"
+    ],
+    "sizes": [
+      "Roll and sheet formats",
+      "Custom requirements"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Logistics",
+      "E-commerce",
+      "Industrial"
+    ],
+    "hue": "#CFDAED",
+    "model": "roll",
+    "featured": false
+  },
+  {
+    "slug": "packaging-tape",
+    "name": "Plain & Branded Packaging Tape",
+    "category": "Protection & Supplies",
+    "description": "Sealing tape for dispatch with optional branded design.",
+    "fullDescription": "Sealing tape for dispatch with optional branded design. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "BOPP film",
+      "Adhesive"
+    ],
+    "sizes": [
+      "Width and length on request",
+      "Plain or printed"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Logistics",
+      "E-commerce"
+    ],
+    "hue": "#DFD8F4",
+    "model": "tape",
+    "featured": false
+  },
+  {
+    "slug": "labels-stickers",
+    "name": "Labels & Stickers",
+    "category": "Labels & Print",
+    "description": "Product labels, seals and promotional sticker formats.",
+    "fullDescription": "Product labels, seals and promotional sticker formats. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Paper sticker stock",
+      "Synthetic label stock"
+    ],
+    "sizes": [
+      "Sheets or rolls",
+      "Custom shapes"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Beauty",
+      "Retail",
+      "Food brands"
+    ],
+    "hue": "#E6CDF6",
+    "model": "label",
+    "featured": false
+  },
+  {
+    "slug": "tissue-wrapping",
+    "name": "Tissue Paper & Wrapping",
+    "category": "Labels & Print",
+    "description": "Soft protective wrapping and custom gift presentation.",
+    "fullDescription": "Soft protective wrapping and custom gift presentation. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Tissue paper",
+      "Wrapping paper"
+    ],
+    "sizes": [
+      "Sheet sizes",
+      "Custom prints"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Fashion",
+      "Gifting",
+      "Retail"
+    ],
+    "hue": "#F1D8E2",
+    "model": "tissue",
+    "featured": false
+  },
+  {
+    "slug": "bottles-jars",
+    "name": "Bottles & Jars",
+    "category": "Premium & Retail",
+    "description": "Container sourcing concepts for cosmetics and specialty products.",
+    "fullDescription": "Container sourcing concepts for cosmetics and specialty products. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Glass",
+      "PET plastic"
+    ],
+    "sizes": [
+      "Capacity and neck finish on request",
+      "Sample-led specifications"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Beauty",
+      "Food brands",
+      "Retail"
+    ],
+    "hue": "#DCEAE9",
+    "model": "bottle",
+    "featured": false
+  },
+  {
+    "slug": "fruit-produce-boxes",
+    "name": "Fruit & Produce Boxes",
+    "category": "Specialty Packaging",
+    "description": "Vented corrugated cartons for fruit, vegetables and produce.",
+    "fullDescription": "Vented corrugated cartons for fruit, vegetables and produce. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Corrugated board",
+      "Kraft board"
+    ],
+    "sizes": [
+      "Produce-specific dimensions",
+      "Ventilation options"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Agriculture",
+      "Logistics"
+    ],
+    "hue": "#DFE7B5",
+    "model": "produce",
+    "featured": false
+  },
+  {
+    "slug": "jewellery-boxes",
+    "name": "Jewellery Presentation Boxes",
+    "category": "Specialty Packaging",
+    "description": "Small-format premium boxes for jewellery and accessories.",
+    "fullDescription": "Small-format premium boxes for jewellery and accessories. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Rigid board",
+      "Art paper"
+    ],
+    "sizes": [
+      "Ring, pendant or set sizes",
+      "Custom inserts"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Jewellery",
+      "Gifting"
+    ],
+    "hue": "#D6D2ED",
+    "model": "jewellery",
+    "featured": false
+  },
+  {
+    "slug": "shoe-boxes",
+    "name": "Shoe & Apparel Boxes",
+    "category": "Specialty Packaging",
+    "description": "Stackable branded cartons for footwear and fashion products.",
+    "fullDescription": "Stackable branded cartons for footwear and fashion products. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Duplex board",
+      "Corrugated board"
+    ],
+    "sizes": [
+      "Custom footwear dimensions",
+      "Lid or tuck styles"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Fashion",
+      "Retail"
+    ],
+    "hue": "#D3DFEB",
+    "model": "shoe",
+    "featured": false
+  },
+  {
+    "slug": "cargo-storage-boxes",
+    "name": "Cargo & Storage Boxes",
+    "category": "Specialty Packaging",
+    "description": "Heavy-duty cartons for inventory, moving and warehousing.",
+    "fullDescription": "Heavy-duty cartons for inventory, moving and warehousing. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "materials": [
+      "Double-wall corrugated board",
+      "Kraft board"
+    ],
+    "sizes": [
+      "Made-to-measure",
+      "Reinforcement on request"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Confirm with our team",
+    "uses": [
+      "Industrial",
+      "Logistics"
+    ],
+    "hue": "#D7DDE7",
+    "model": "cargo",
+    "featured": false
+  }
+]
