@@ -4,7 +4,7 @@
     "name": "Corrugated Shipping Boxes",
     "category": "Shipping & E-Commerce",
     "description": "Dependable single-wall and double-wall boxes for transit and storage.",
-    "fullDescription": "Dependable single-wall and double-wall boxes for transit and storage. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Dependable single-wall and double-wall boxes for transit and storage. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Corrugated board",
       "Kraft board"
@@ -19,7 +19,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "E-commerce",
       "Logistics",
@@ -34,7 +34,7 @@
     "name": "E-commerce Mailer Boxes",
     "category": "Shipping & E-Commerce",
     "description": "Smart self-locking mailers for a memorable unboxing experience.",
-    "fullDescription": "Smart self-locking mailers for a memorable unboxing experience. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Smart self-locking mailers for a memorable unboxing experience. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Corrugated board",
       "Kraft board"
@@ -49,7 +49,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "E-commerce",
       "Retail",
@@ -64,7 +64,7 @@
     "name": "Rigid & Magnetic Gift Boxes",
     "category": "Premium & Retail",
     "description": "Structured luxury boxes for gifts, accessories, and premium launches.",
-    "fullDescription": "Structured luxury boxes for gifts, accessories, and premium launches. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Structured luxury boxes for gifts, accessories, and premium launches. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Rigid board",
       "Art paper"
@@ -79,7 +79,7 @@
       "Soft-touch lamination",
       "Magnetic closure"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Gifting",
       "Beauty",
@@ -94,7 +94,7 @@
     "name": "Folding Cartons",
     "category": "Premium & Retail",
     "description": "Shelf-ready cartons for cosmetics, personal care, medicine and retail.",
-    "fullDescription": "Shelf-ready cartons for cosmetics, personal care, medicine and retail. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Shelf-ready cartons for cosmetics, personal care, medicine and retail. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Duplex board",
       "SBS paperboard"
@@ -109,7 +109,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Beauty",
       "Retail",
@@ -124,7 +124,7 @@
     "name": "Custom Printed Boxes",
     "category": "Premium & Retail",
     "description": "Bespoke shapes and print effects that bring your brand to life.",
-    "fullDescription": "Bespoke shapes and print effects that bring your brand to life. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Bespoke shapes and print effects that bring your brand to life. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Art card",
       "Corrugated board",
@@ -140,7 +140,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Retail",
       "Gifting",
@@ -155,7 +155,7 @@
     "name": "Pizza Boxes",
     "category": "Food & Beverage",
     "description": "Sturdy folding pizza cartons designed for hot food takeaway.",
-    "fullDescription": "Sturdy folding pizza cartons designed for hot food takeaway. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Sturdy folding pizza cartons designed for hot food takeaway. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Food-grade board (subject to specification)",
       "Corrugated board"
@@ -170,7 +170,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Restaurants",
       "Takeaway"
@@ -184,7 +184,7 @@
     "name": "Burger & Fast Food Boxes",
     "category": "Food & Beverage",
     "description": "Compact takeaway packs for burgers, fries and fast food.",
-    "fullDescription": "Compact takeaway packs for burgers, fries and fast food. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Compact takeaway packs for burgers, fries and fast food. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Food-grade paperboard (subject to specification)",
       "Kraft board"
@@ -199,7 +199,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Restaurants",
       "Takeaway"
@@ -213,7 +213,7 @@
     "name": "Cake & Bakery Boxes",
     "category": "Food & Beverage",
     "description": "Presentation boxes for cakes, pastry assortments and bakery treats.",
-    "fullDescription": "Presentation boxes for cakes, pastry assortments and bakery treats. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Presentation boxes for cakes, pastry assortments and bakery treats. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Cardboard",
       "Food-grade paperboard (subject to specification)"
@@ -228,7 +228,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Bakeries",
       "Gifting"
@@ -242,7 +242,7 @@
     "name": "Takeaway Food Containers",
     "category": "Food & Beverage",
     "description": "Practical packaging for meals, snacks and food delivery.",
-    "fullDescription": "Practical packaging for meals, snacks and food delivery. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Practical packaging for meals, snacks and food delivery. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Kraft paperboard",
       "Barrier-lined board (subject to approval)"
@@ -257,7 +257,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Restaurants",
       "Takeaway"
@@ -271,7 +271,7 @@
     "name": "Paper Cups & Sleeves",
     "category": "Food & Beverage",
     "description": "Branded drink presentation for cafés and events.",
-    "fullDescription": "Branded drink presentation for cafés and events. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Branded drink presentation for cafés and events. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Cupstock (subject to specification)",
       "Kraft paper"
@@ -286,7 +286,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Cafés",
       "Events"
@@ -300,7 +300,7 @@
     "name": "Kraft & Shopping Bags",
     "category": "Bags & Flexible",
     "description": "Paper carrier bags with optional handles and brand printing.",
-    "fullDescription": "Paper carrier bags with optional handles and brand printing. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Paper carrier bags with optional handles and brand printing. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Kraft paper",
       "Art paper"
@@ -315,7 +315,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Fashion",
       "Retail",
@@ -330,7 +330,7 @@
     "name": "Poly Mailers & Courier Bags",
     "category": "Bags & Flexible",
     "description": "Lightweight shipping bags for apparel and soft goods.",
-    "fullDescription": "Lightweight shipping bags for apparel and soft goods. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Lightweight shipping bags for apparel and soft goods. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Polyethylene film"
     ],
@@ -344,7 +344,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Fashion",
       "E-commerce",
@@ -359,7 +359,7 @@
     "name": "Stand-up & Zipper Pouches",
     "category": "Bags & Flexible",
     "description": "Flexible packaging for retail goods, dry foods and refills.",
-    "fullDescription": "Flexible packaging for retail goods, dry foods and refills. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Flexible packaging for retail goods, dry foods and refills. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Laminated film (specify barrier needs)",
       "Kraft laminate"
@@ -374,7 +374,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Food brands",
       "Retail"
@@ -388,7 +388,7 @@
     "name": "Bubble Wrap, Stretch Film & Void Fill",
     "category": "Protection & Supplies",
     "description": "Protective packaging consumables for safer shipment.",
-    "fullDescription": "Protective packaging consumables for safer shipment. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Protective packaging consumables for safer shipment. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Polyethylene bubble film",
       "Stretch film",
@@ -404,7 +404,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Logistics",
       "E-commerce",
@@ -419,7 +419,7 @@
     "name": "Plain & Branded Packaging Tape",
     "category": "Protection & Supplies",
     "description": "Sealing tape for dispatch with optional branded design.",
-    "fullDescription": "Sealing tape for dispatch with optional branded design. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Sealing tape for dispatch with optional branded design. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "BOPP film",
       "Adhesive"
@@ -434,7 +434,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Logistics",
       "E-commerce"
@@ -448,7 +448,7 @@
     "name": "Labels & Stickers",
     "category": "Labels & Print",
     "description": "Product labels, seals and promotional sticker formats.",
-    "fullDescription": "Product labels, seals and promotional sticker formats. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Product labels, seals and promotional sticker formats. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Paper sticker stock",
       "Synthetic label stock"
@@ -463,7 +463,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Beauty",
       "Retail",
@@ -478,7 +478,7 @@
     "name": "Tissue Paper & Wrapping",
     "category": "Labels & Print",
     "description": "Soft protective wrapping and custom gift presentation.",
-    "fullDescription": "Soft protective wrapping and custom gift presentation. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Soft protective wrapping and custom gift presentation. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Tissue paper",
       "Wrapping paper"
@@ -493,7 +493,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Fashion",
       "Gifting",
@@ -508,7 +508,7 @@
     "name": "Bottles & Jars",
     "category": "Premium & Retail",
     "description": "Container sourcing concepts for cosmetics and specialty products.",
-    "fullDescription": "Container sourcing concepts for cosmetics and specialty products. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Container sourcing concepts for cosmetics and specialty products. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Glass",
       "PET plastic"
@@ -523,7 +523,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Beauty",
       "Food brands",
@@ -538,7 +538,7 @@
     "name": "Fruit & Produce Boxes",
     "category": "Specialty Packaging",
     "description": "Vented corrugated cartons for fruit, vegetables and produce.",
-    "fullDescription": "Vented corrugated cartons for fruit, vegetables and produce. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Vented corrugated cartons for fruit, vegetables and produce. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Corrugated board",
       "Kraft board"
@@ -553,7 +553,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Agriculture",
       "Logistics"
@@ -567,7 +567,7 @@
     "name": "Jewellery Presentation Boxes",
     "category": "Specialty Packaging",
     "description": "Small-format premium boxes for jewellery and accessories.",
-    "fullDescription": "Small-format premium boxes for jewellery and accessories. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Small-format premium boxes for jewellery and accessories. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Rigid board",
       "Art paper"
@@ -582,7 +582,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Jewellery",
       "Gifting"
@@ -596,7 +596,7 @@
     "name": "Shoe & Apparel Boxes",
     "category": "Specialty Packaging",
     "description": "Stackable branded cartons for footwear and fashion products.",
-    "fullDescription": "Stackable branded cartons for footwear and fashion products. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Stackable branded cartons for footwear and fashion products. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Duplex board",
       "Corrugated board"
@@ -611,7 +611,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Fashion",
       "Retail"
@@ -625,7 +625,7 @@
     "name": "Cargo & Storage Boxes",
     "category": "Specialty Packaging",
     "description": "Heavy-duty cartons for inventory, moving and warehousing.",
-    "fullDescription": "Heavy-duty cartons for inventory, moving and warehousing. Specify your dimensions, order volume, artwork, and preferred finishing, and the ALL PACK team can confirm manufacturability, lead time, and a tailored quotation.",
+    "fullDescription": "Heavy-duty cartons for inventory, moving and warehousing. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Double-wall corrugated board",
       "Kraft board"
@@ -640,7 +640,7 @@
       "Custom dimensions",
       "Finish on request"
     ],
-    "moq": "Confirm with our team",
+    "moq": "Quoted per project",
     "uses": [
       "Industrial",
       "Logistics"
