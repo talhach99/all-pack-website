@@ -1,31 +1,140 @@
-"use client";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { ArrowUpRight, ChevronDown, Menu, Moon, ShoppingBag, Sun, Phone, X } from "lucide-react";
-import { categories, products } from "@/lib/products";
-import { useInquiry, useThemeMode } from "./Providers";
-import { Logo } from "./Logo";
-import { COMPANY, phoneLink } from "@/lib/company";
-const nav=[{text:"About",href:"/about"},{text:"Studio",href:"/studio"},{text:"Gallery",href:"/gallery"},{text:"Insights",href:"/journal"},{text:"Contact",href:"/contact"}];
-export function Header(){
- const path=usePathname(); const [scrolled,setScrolled]=useState(false); const [menu,setMenu]=useState(false); const {dark,toggle}=useThemeMode(); const inquiry=useInquiry(); const call=phoneLink();
- useEffect(()=>{const f=()=>setScrolled(window.scrollY>22); f();window.addEventListener('scroll',f,{passive:true});return ()=>window.removeEventListener('scroll',f);},[]);
- useEffect(()=>setMenu(false),[path]);
- return <header className={`sticky top-0 z-50 border-b border-line/60 bg-paper/95 backdrop-blur-xl transition-all duration-300 ${scrolled?'shadow-soft':''}`}>
-  <div className={`site-container flex items-center justify-between gap-4 transition-all duration-300 ${scrolled?'h-[70px]':'h-[86px]'}`}>
-    <Logo />
-    <nav aria-label="Primary" className="hidden items-center gap-6 lg:flex">
-      <div className="group relative"><Link href="/products" className={`flex items-center gap-1.5 text-sm font-semibold transition-colors hover:text-skybrand ${path.startsWith('/products')?'text-skybrand':''}`}>Packaging <ChevronDown size={14}/></Link>
-      <div className="invisible absolute left-1/2 top-full w-[690px] -translate-x-1/2 translate-y-4 rounded-[1.5rem] border border-line bg-paper p-7 opacity-0 shadow-card transition-all group-hover:visible group-hover:translate-y-2 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-2 group-focus-within:opacity-100">
-       <div className="mb-4 flex items-center justify-between"><p className="text-xs font-bold uppercase tracking-[.18em] text-muted">Explore by collection</p><Link href="/products" className="flex items-center gap-1 text-xs font-semibold text-skybrand">View all {products.length} products <ArrowUpRight size={13}/></Link></div>
-       <div className="grid grid-cols-2 gap-2">{categories.map(cat=><Link key={cat} href={`/products?category=${encodeURIComponent(cat)}`} className="rounded-xl px-3 py-3 text-sm font-medium text-ink transition-colors hover:bg-soft hover:text-skybrand">{cat} <span className="float-right text-xs text-muted">{products.filter(p=>p.category===cat).length.toString().padStart(2,'0')}</span></Link>)}</div>
-       <div className="mt-4 rounded-xl bg-soft p-4 text-xs text-muted">Need something different? <Link href="/studio" className="font-semibold text-skybrand">Build your own packaging concept →</Link></div>
-      </div></div>
-      {nav.map(x=><Link href={x.href} key={x.href} className={`text-sm font-semibold transition-colors hover:text-skybrand ${path===x.href?'text-skybrand':''}`}>{x.text}</Link>)}
-    </nav>
-    <div className="flex items-center gap-1 sm:gap-2"><button type="button" onClick={toggle} className="rounded-full p-2.5 hover:bg-soft" aria-label={dark?'Switch to light mode':'Switch to dark mode'}>{dark?<Sun size={19}/>:<Moon size={19}/>}</button><button onClick={inquiry.open} className="relative rounded-full p-2.5 hover:bg-soft" aria-label={`Open inquiry basket, ${inquiry.items.length} items`}><ShoppingBag size={20}/>{inquiry.items.length>0&&<span className="absolute right-0 top-0 grid h-4 min-w-4 place-items-center rounded-full bg-[#303C85] px-0.5 text-[10px] text-white">{inquiry.items.length}</span>}</button>{call&&<a href={call} aria-label={`Call ALL PACK at ${COMPANY.phone}`} className="inline-flex min-h-10 items-center justify-center gap-2 rounded-full px-2 text-sm font-bold text-skybrand hover:bg-soft sm:px-3 xl:border xl:border-line xl:bg-paper xl:px-4"><Phone size={18}/><span className="hidden xl:inline">Call Now</span></a>}<Link href="/quote" className="btn-primary !hidden !min-h-10 !px-5 xl:!inline-flex">Get a quote <ArrowUpRight size={15}/></Link><button className="rounded-full p-2.5 lg:hidden" onClick={()=>setMenu(v=>!v)} aria-label={menu?'Close navigation':'Open navigation'} aria-expanded={menu}>{menu?<X size={23}/>:<Menu size={23}/>}</button></div>
-  </div>
-  {menu&&<nav aria-label="Mobile navigation" className="max-h-[75vh] overflow-y-auto border-t border-line bg-paper px-5 py-5 lg:hidden"><div className="site-container !px-0 flex flex-col gap-2"><Link href="/products" className="rounded-xl px-4 py-3 font-semibold hover:bg-soft">All packaging products</Link>{nav.map(n=><Link href={n.href} key={n.href} className="rounded-xl px-4 py-3 font-semibold hover:bg-soft">{n.text}</Link>)}{call&&<a href={call} className="btn-outline"><Phone size={17}/> Call Now — {COMPANY.phone}</a>}<Link href="/quote" className="btn-primary mt-2">Get a free quote <ArrowUpRight size={16}/></Link></div></nav>}
- </header>
+'use client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowRight, ArrowUpRight, ChevronDown, Menu, Phone, ShoppingBag, X } from 'lucide-react';
+import { categories, categoryCover, categorySlug, products } from '@/lib/products';
+import { COMPANY, phoneLink, whatsappLink } from '@/lib/company';
+import { useInquiry } from './Providers';
+import { Logo } from './Logo';
+
+const nav = [
+  { text: 'Studio', href: '/studio' },
+  { text: 'Gallery', href: '/gallery' },
+  { text: 'About', href: '/about' },
+  { text: 'Insights', href: '/insights' },
+  { text: 'Contact', href: '/contact' },
+];
+
+export function Header() {
+  const path = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+  const [menu, setMenu] = useState(false);
+  const [mega, setMega] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const inquiry = useInquiry();
+  const call = phoneLink();
+
+  useEffect(() => {
+    const f = () => setScrolled(window.scrollY > 12);
+    f(); window.addEventListener('scroll', f, { passive: true });
+    return () => window.removeEventListener('scroll', f);
+  }, []);
+  useEffect(() => { setMenu(false); setMega(false); }, [path]);
+  useEffect(() => {
+    document.documentElement.style.overflow = menu ? 'hidden' : '';
+    return () => { document.documentElement.style.overflow = ''; };
+  }, [menu]);
+
+  const openMega = () => { clearTimeout(closeTimer.current); setMega(true); };
+  const closeMega = () => { closeTimer.current = setTimeout(() => setMega(false), 120); };
+  const active = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+
+  return (
+    <>
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-white">Skip to content</a>
+      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled || menu ? 'border-b border-line/70 bg-white/80 backdrop-blur-xl backdrop-saturate-150' : 'border-b border-transparent'}`}>
+        <div className={`container-x flex items-center justify-between gap-6 transition-all duration-500 ${scrolled ? 'h-16' : 'h-20'}`}>
+          <Logo />
+          <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
+            <div className="relative" onMouseEnter={openMega} onMouseLeave={closeMega}>
+              <Link
+                href="/products" aria-expanded={mega} onFocus={openMega}
+                className={`flex items-center gap-1 rounded-full px-4 py-2 text-[14.5px] font-medium transition-colors hover:bg-soft ${active('/products') ? 'text-brand' : 'text-ink/80 hover:text-ink'}`}
+              >
+                Products <ChevronDown size={14} className={`transition-transform ${mega ? 'rotate-180' : ''}`} />
+              </Link>
+            </div>
+            {nav.map(x => (
+              <Link key={x.href} href={x.href} className={`rounded-full px-4 py-2 text-[14.5px] font-medium transition-colors hover:bg-soft ${active(x.href) ? 'text-brand' : 'text-ink/80 hover:text-ink'}`}>{x.text}</Link>
+            ))}
+          </nav>
+          <div className="flex items-center gap-1.5">
+            {call && <a href={call} className="hidden items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-ink/80 hover:bg-soft hover:text-ink xl:inline-flex"><Phone size={16} /> {COMPANY.phone}</a>}
+            <button type="button" onClick={inquiry.open} className="relative grid h-11 w-11 place-items-center rounded-full hover:bg-soft" aria-label={`Open quote list (${inquiry.items.length} items)`}>
+              <ShoppingBag size={20} />
+              {inquiry.items.length > 0 && <span className="absolute right-1 top-1 grid h-[18px] min-w-[18px] place-items-center rounded-full bg-brand px-1 text-[10px] font-bold text-white">{inquiry.items.length}</span>}
+            </button>
+            <Link href="/quote" className="btn-dark btn-sm hidden sm:inline-flex">Get a quote <ArrowUpRight size={15} /></Link>
+            <button className="grid h-11 w-11 place-items-center rounded-full hover:bg-soft lg:hidden" onClick={() => setMenu(v => !v)} aria-label={menu ? 'Close menu' : 'Open menu'} aria-expanded={menu}>
+              {menu ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
+        </div>
+
+        <AnimatePresence>
+          {mega && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: .2 }}
+              onMouseEnter={openMega} onMouseLeave={closeMega}
+              className="absolute inset-x-0 top-full hidden border-b border-line bg-white/95 shadow-lift backdrop-blur-xl lg:block"
+            >
+              <div className="container-x grid grid-cols-[1fr_300px] gap-10 py-8">
+                <div className="grid grid-cols-4 gap-3">
+                  {categories.map(cat => (
+                    <Link key={cat} href={`/products?category=${categorySlug(cat)}`} className="group rounded-2xl p-2 transition-colors hover:bg-soft">
+                      <div className="tile mb-3 aspect-[4/3] overflow-hidden rounded-xl">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={`/renders/${categoryCover[cat]}.webp`} alt="" loading="lazy" className="h-full w-full object-contain p-2 transition-transform duration-500 group-hover:scale-105" />
+                      </div>
+                      <p className="px-1 text-sm font-semibold">{cat}</p>
+                      <p className="px-1 text-xs text-muted">{products.filter(p => p.category === cat).length} products</p>
+                    </Link>
+                  ))}
+                  <Link href="/products" className="group flex flex-col justify-between rounded-2xl bg-ink p-5 text-white">
+                    <p className="text-sm text-white/60">Everything we make</p>
+                    <p className="font-display text-2xl font-semibold leading-tight">View all {products.length} products <ArrowRight className="mt-2 transition-transform group-hover:translate-x-1" size={20} /></p>
+                  </Link>
+                </div>
+                <div className="flex flex-col justify-between rounded-3xl bg-mist p-6">
+                  <div>
+                    <p className="kicker">3D Studio</p>
+                    <p className="mt-3 font-display text-2xl font-semibold leading-tight tracking-tight">Design your box in 3D, then send it to us.</p>
+                  </div>
+                  <Link href="/studio" className="btn-brand btn-sm mt-6 self-start">Open the studio <ArrowRight size={15} /></Link>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+
+      <AnimatePresence>
+        {menu && (
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 top-16 z-40 overflow-y-auto bg-white lg:hidden" data-lenis-prevent
+          >
+            <nav aria-label="Mobile" className="container-x flex min-h-full flex-col py-6">
+              {[{ text: 'Products', href: '/products' }, ...nav, { text: 'FAQ', href: '/faq' }].map((n, i) => (
+                <motion.div key={n.href} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .03 * i }}>
+                  <Link href={n.href} className="flex items-center justify-between border-b border-line py-4 font-display text-3xl font-semibold tracking-tight">
+                    {n.text} <ArrowUpRight size={22} className="text-muted" />
+                  </Link>
+                </motion.div>
+              ))}
+              <div className="mt-auto grid gap-3 pt-8">
+                <Link href="/quote" className="btn-dark">Get a free quote <ArrowRight size={16} /></Link>
+                <div className="grid grid-cols-2 gap-3">
+                  {call && <a href={call} className="btn-light"><Phone size={16} /> Call</a>}
+                  <a href={whatsappLink() || '#'} target="_blank" rel="noopener noreferrer" className="btn-light">WhatsApp</a>
+                </div>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
 }
