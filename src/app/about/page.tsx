@@ -1,14 +1,71 @@
-import type {Metadata} from 'next';
+/* eslint-disable @next/next/no-img-element */
+import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowUpRight, Compass, Layers3, PenTool, Ruler, ShieldCheck, Truck } from 'lucide-react';
-import { PageIntro } from '@/components/PageIntro';
+import { ArrowRight, Eye, Handshake, Ruler, ShieldCheck } from 'lucide-react';
+import { PageHero } from '@/components/PageHero';
 import { Reveal } from '@/components/Reveal';
-import { ProductArt } from '@/components/ProductArt';
-import { COMPANY } from '@/lib/company';
-export const metadata:Metadata={title:'About Us',description:'Learn about ALL PACK, The Packaging Experts, based in Royal Park, Lahore.'};
-export default function AboutPage(){const process=[{n:'01',title:'Discuss the product',text:'Start with its size, function, expected handling and your brand direction.',icon:Compass},{n:'02',title:'Plan the construction',text:'Agree on a material, closure, structure and print approach.',icon:Ruler},{n:'03',title:'Review the design',text:'Provide artwork and review proofs or samples where appropriate.',icon:PenTool},{n:'04',title:'Confirm production',text:'Move ahead once the final specifications, costs and timing are approved.',icon:Truck}];return <main><PageIntro eyebrow="ABOUT ALL PACK" title={<>Packaging with <span className="gradient-text">purpose and presence.</span></>} description="ALL PACK is a printing and packaging business in Royal Park, Lahore. Our aim for this website is simple: help you explore possibilities, explain your requirements and start the right conversation."/>
- <section className="site-container section-pad grid items-center gap-12 lg:grid-cols-2"><Reveal><p className="eyebrow">OUR APPROACH</p><h2 className="section-title mb-6">Your product is unique. Your packaging should reflect that.</h2><p className="lead mb-5">Packaging has two jobs: keep a product safe and help people understand the brand behind it. An effective design balances form, material, print and practicality.</p><p className="lead">Whether you have an established specification or a rough starting point, share your brief and we can discuss which options are suitable for you.</p><Link href="/contact" className="btn-primary mt-8">Start a conversation <ArrowUpRight size={17}/></Link></Reveal><Reveal><ProductArt model="printed" hue="#CDDFF4" name="Custom branding packaging" className="aspect-[1.1] overflow-hidden rounded-[2.1rem]"/></Reveal></section>
- <section className="bg-soft section-pad"><div className="site-container"><div className="mb-10 max-w-3xl"><p className="eyebrow">A THOUGHTFUL PROCESS</p><h2 className="section-title">From idea to production-ready brief.</h2><p className="lead mt-5">This is a suggested workflow for custom packaging enquiries. The exact steps depend on the project.</p></div><div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">{process.map(v=><Reveal key={v.n} className="surface-card p-7"><p className="mb-7 text-3xl font-black text-[#A8BCE5]">{v.n}</p><v.icon className="mb-5 text-skybrand" size={28}/><h3 className="mb-3 text-xl font-bold">{v.title}</h3><p className="text-sm leading-7 text-muted">{v.text}</p></Reveal>)}</div></div></section>
- <section className="site-container section-pad"><div className="grid items-start gap-14 lg:grid-cols-2"><div><p className="eyebrow">QUALITY BY DESIGN</p><h2 className="section-title mb-7">Details worth asking about.</h2><p className="lead">Ask us about the specification that matters to your order, from the board grade to print protection and packaging compatibility.</p></div><div className="space-y-5">{[{icon:Layers3,title:'Material selection',desc:'Discuss the board, film or paper suited to the application.'},{icon:ShieldCheck,title:'Fit for purpose',desc:'Confirm durability, closure, print and handling requirements.'},{icon:PenTool,title:'Brand presentation',desc:'Review artwork placement, legibility, colour and finish.'}].map(v=><div key={v.title} className="flex gap-5 rounded-2xl border border-line p-6"><div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-soft text-skybrand"><v.icon size={21}/></div><div><h3 className="mb-2 font-bold">{v.title}</h3><p className="text-sm leading-7 text-muted">{v.desc}</p></div></div>)}</div></div></section>
- <section className="site-container pb-24"><div className="rounded-[2rem] border border-line bg-soft p-8 sm:p-12"><p className="eyebrow">VISIT & GET IN TOUCH</p><h2 className="mb-4 text-2xl font-bold">ALL PACK · Lahore</h2><p className="mb-5 text-sm leading-7 text-muted">{COMPANY.address}</p><p className="mb-5 text-sm text-muted">For business history, machinery photos, team portraits, certifications and verified milestones, add company-approved details and images before the public launch.</p><a className="font-semibold text-skybrand underline underline-offset-4" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a></div></section>
- </main>}
+import { COMPANY, mapsLink } from '@/lib/company';
+import { categories, products } from '@/lib/products';
+
+export const metadata: Metadata = { title: 'About Us', description: 'ALL PACK is a packaging and printing company in Lahore helping brands turn plain containers into part of the product.', alternates: { canonical: '/about' } };
+
+const principles = [
+  { icon: Ruler, t: 'Fit first', d: 'A box that fits properly protects better, ships cheaper and looks more expensive. We size around your product.' },
+  { icon: Eye, t: 'Design that sells', d: 'Print, colour and finish chosen to make your brand recognisable on a shelf, in a feed and on a doorstep.' },
+  { icon: ShieldCheck, t: 'Built to protect', d: 'The right board grade and construction for how your product is stored, stacked and shipped.' },
+  { icon: Handshake, t: 'Straight answers', d: 'Clear specifications, honest pricing and a real person on the phone when you need one.' },
+];
+
+export default function AboutPage() {
+  return (
+    <main>
+      <PageHero kicker="About ALL PACK" title={<>The packaging experts, <span className="accent">from Lahore.</span></>} description="We design and produce custom packaging and print for businesses that know presentation matters, from first-time founders to established brands." />
+      <section className="container-x">
+        <Reveal><div className="tile overflow-hidden rounded-5xl border border-line"><img src="/renders/hero.webp" alt="ALL PACK packaging range" className="mx-auto w-full max-w-5xl" /></div></Reveal>
+        <div className="mt-px grid gap-px overflow-hidden rounded-4xl border border-line bg-line sm:grid-cols-3">
+          {[[`${products.length}`, 'Packaging formats'], [`${categories.length}`, 'Product collections'], ['1', 'Partner for all of it']].map(([n, l]) => (
+            <div key={l} className="bg-white p-8"><p className="font-display text-5xl font-semibold tracking-tight">{n}</p><p className="mt-2 text-muted">{l}</p></div>
+          ))}
+        </div>
+      </section>
+      <section className="section">
+        <div className="container-x grid gap-12 lg:grid-cols-2 lg:gap-20">
+          <Reveal>
+            <p className="kicker mb-5">Our story</p>
+            <h2 className="h-section">Packaging is part of the <span className="accent">product.</span></h2>
+          </Reveal>
+          <Reveal delay={.1} className="space-y-5 text-lg leading-relaxed text-muted">
+            <p>Every package does two jobs: it keeps a product safe and it tells people who made it. Get both right and a plain box becomes a reason to buy, to share, and to buy again.</p>
+            <p>That is what ALL PACK is about. We work with you on structure, material, print and finish, explain the options in plain language, and produce packaging that looks as good in your customer&apos;s hands as it does on screen.</p>
+            <p>Whether you need a few hundred mailers for a launch or regular runs of cartons, cups and labels, we keep the process simple: a clear brief, a clear quote, and packaging you are proud to send.</p>
+          </Reveal>
+        </div>
+      </section>
+      <section className="section bg-white">
+        <div className="container-x">
+          <Reveal className="mb-14 max-w-2xl"><p className="kicker mb-5">What we believe</p><h2 className="h-section">Four principles behind <span className="accent">every box.</span></h2></Reveal>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {principles.map((x, i) => (
+              <Reveal key={x.t} delay={i * .05} className="rounded-4xl border border-line bg-paper p-7">
+                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-ink text-white"><x.icon size={21} /></span>
+                <h3 className="mt-8 font-display text-2xl font-semibold tracking-tight">{x.t}</h3>
+                <p className="mt-3 leading-relaxed text-muted">{x.d}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="section">
+        <div className="container-x grid items-center gap-10 rounded-5xl bg-ink p-8 text-white sm:p-14 lg:grid-cols-2">
+          <div>
+            <p className="kicker mb-5 !text-sky-light">Visit us</p>
+            <h2 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">Come and talk packaging.</h2>
+            <p className="mt-5 max-w-md text-white/70">{COMPANY.address}</p>
+            <div className="mt-8 flex flex-wrap gap-3"><Link href="/contact" className="btn-white">Contact us <ArrowRight size={16} /></Link><a href={mapsLink} target="_blank" rel="noopener noreferrer" className="btn border border-white/20 text-white hover:bg-white/10">Open in Maps</a></div>
+          </div>
+          <img src="/renders/gift.webp" alt="" aria-hidden="true" className="mx-auto w-full max-w-md" loading="lazy" />
+        </div>
+      </section>
+    </main>
+  );
+}
