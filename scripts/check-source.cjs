@@ -19,8 +19,7 @@ const products=JSON.parse(fs.readFileSync(path.join(root,'src/data/products.json
 const slugs=new Set(products.map(p=>p.slug));
 if(slugs.size!==products.length)errors.push('Duplicate product slug');
 for(const p of products){for(const k of ['slug','name','category','description','fullDescription','materials','sizes','customization','moq','uses','hue','model'])if(!p[k]||(Array.isArray(p[k])&&!p[k].length))errors.push(`Product ${p.slug} missing ${k}`)}
-const slugsUsed=['rigid-gift-boxes','ecommerce-mailer-boxes','pizza-boxes','kraft-shopping-bags','folding-cartons','standup-pouches','jewellery-boxes','corrugated-shipping-boxes','labels-stickers','cake-boxes','fruit-produce-boxes','custom-printed-boxes'];
-for(const slug of slugsUsed)if(!slugs.has(slug))errors.push(`Missing gallery product: ${slug}`);
-for(const route of ['contact','faq','about','gallery','journal','products','quote','studio','privacy'])if(!fs.existsSync(path.join(root,'src/app',route,'page.tsx')))errors.push(`Missing route: ${route}`);
+for(const p of products)if(!fs.existsSync(path.join(root,'public/renders',p.model+'.webp')))errors.push(`Missing render for ${p.slug}: ${p.model}.webp`);
+for(const route of ['contact','faq','about','gallery','insights','products','quote','studio','privacy'])if(!fs.existsSync(path.join(root,'src/app',route,'page.tsx')))errors.push(`Missing route: ${route}`);
 console.log(`Source files: ${checked}, products: ${products.length}, routes: 9, errors: ${errors.length}`);
 if(errors.length){for(const e of errors)console.error(e);process.exitCode=1;}
