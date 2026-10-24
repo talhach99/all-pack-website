@@ -1,5 +1,26 @@
-import type {Metadata} from 'next';
-import { PageIntro } from '@/components/PageIntro';
+import type { Metadata } from 'next';
 import { StudioConfigurator } from '@/components/StudioConfigurator';
-export const metadata:Metadata={title:'Custom Packaging Studio',description:'Explore a live 3D packaging concept and send dimensions, material, colour and artwork for a personalized quote.'};
-export default function StudioPage(){return <main><PageIntro eyebrow="SIGNATURE EXPERIENCE" title={<>Your packaging. <span className="gradient-text">Your imagination.</span></>} description="Experiment with shape, size, colour and finish in our interactive concept studio. Submit your preferences to request a production quotation."/><section className="site-container section-pad"><StudioConfigurator/></section></main>}
+import { Reveal } from '@/components/Reveal';
+
+export const metadata: Metadata = {
+  title: '3D Packaging Studio',
+  description: 'Design your custom box in 3D: choose a style, size, board, colour and finish, try your own logo, then send the specification to ALL PACK for a quote.',
+  alternates: { canonical: '/studio' },
+};
+
+export default function StudioPage() {
+  return (
+    <main className="pb-28 pt-28 sm:pt-32">
+      <div className="container-x">
+        <Reveal className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p className="kicker mb-5">3D Studio</p>
+            <h1 className="h-display !text-[clamp(2.6rem,5.6vw,5rem)]">Design it. <span className="accent">Spin it.</span> Send it.</h1>
+          </div>
+          <p className="lead max-w-md">Shape your box in real time, then send the specification straight to our team for an accurate quote.</p>
+        </Reveal>
+        <StudioConfigurator />
+      </div>
+    </main>
+  );
+}
