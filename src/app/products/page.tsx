@@ -1,5 +1,27 @@
-import type {Metadata} from 'next';
-import { PageIntro } from '@/components/PageIntro';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import { PageHero } from '@/components/PageHero';
 import { ProductCatalog } from '@/components/ProductCatalog';
-export const metadata:Metadata={title:'Products & Packaging Catalog',description:'Browse ALL PACK packaging concepts by material, industry and category. Request one combined quotation.'};
-export default async function ProductsPage({searchParams}:{searchParams:Promise<{category?:string}>}){const query=await searchParams;return <main><PageIntro eyebrow="EXPLORE OUR CATALOG" title={<>Every kind of package. <span className="gradient-text">One place to start.</span></>} description="Filter packaging concepts by material, use or category. Add products to an inquiry basket to request a combined quotation."/><section className="site-container section-pad"><div className="mb-8 rounded-2xl border border-[#C3D5ED] bg-[#F3F7FE] p-4 text-sm text-[#334f83]">Concept catalog: product availability, sizes, materials, print options and minimum quantities must be confirmed with ALL PACK.</div><ProductCatalog initialCategory={query.category||''}/></section></main>}
+import { categoryFromSlug, products } from '@/lib/products';
+
+export const metadata: Metadata = {
+  title: 'Packaging Products',
+  description: `Browse ${products.length} custom packaging formats from ALL PACK: mailer boxes, rigid boxes, food packaging, bags, pouches, labels and more. Add to your list and request one quote.`,
+  alternates: { canonical: '/products' },
+};
+
+export default async function ProductsPage({ searchParams }: { searchParams: Promise<{ category?: string | string[] }> }) {
+  const { category } = await searchParams;
+  const initial = categoryFromSlug(Array.isArray(category) ? category[0] : category);
+  return (
+    <main>
+      <PageHero kicker="Products" title={<>Every kind of package. <span className="accent">One partner.</span></>} description="Browse by collection, material or industry. Tap + to add products to your quote list and get one combined price.">
+        <Link href="/studio" className="btn-light">Or design one in 3D <ArrowRight size={16} /></Link>
+      </PageHero>
+      <section className="container-x pb-28">
+        <ProductCatalog initialCategory={initial} />
+      </section>
+    </main>
+  );
+}

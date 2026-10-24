@@ -1,11 +1,29 @@
-import type {Metadata} from 'next';
-import {COMPANY} from '@/lib/company';
-import {PageIntro} from '@/components/PageIntro';
-export const metadata:Metadata={title:'Privacy & Enquiries',description:'How the ALL PACK website handles quotation requests, artwork uploads and contact information.',robots:{index:false,follow:true}};
-export default function PrivacyPage(){return <main><PageIntro eyebrow="YOUR DATA" title={<>Privacy & <span className="gradient-text">enquiries.</span></>} description="A plain-language description of how this website is designed to handle information you choose to submit."/><section className="site-container max-w-4xl space-y-9 py-16 text-sm leading-8 text-muted">
- <div><h2 className="mb-3 text-2xl font-semibold text-ink">What information do we collect?</h2><p>When you request a quotation, you may submit your name, company, email address, phone number, dimensions, quantities, specifications and optional artwork. When you request packaging updates, we collect your email address and a statement of consent.</p></div>
- <div><h2 className="mb-3 text-2xl font-semibold text-ink">Why do we use it?</h2><p>Quote information is used to respond to your enquiry and review your proposed packaging project. Updates requests are delivered to the ALL PACK team for manual review. The website does not automatically enrol you in a mailing list.</p></div>
- <div><h2 className="mb-3 text-2xl font-semibold text-ink">Who processes it?</h2><p>When the sending integration is configured, submissions are forwarded using Resend, an external email service. Uploaded artwork is attached to the email sent to the business. The site does not currently store enquiry records in its own database. If the email service is not configured, the website does not claim to have delivered your request.</p></div>
- <div><h2 className="mb-3 text-2xl font-semibold text-ink">Browser storage and third parties</h2><p>The inquiry basket and display theme use your browser's local storage. The interactive 3D preview runs in your browser. The contact page may load Google Maps content if you view the map. No analytics or advertising trackers are intentionally included in this starter.</p></div>
- <div><h2 className="mb-3 text-2xl font-semibold text-ink">Questions, access and deletion</h2><p>To ask about a submitted enquiry, request deletion, or withdraw permission for future updates, email <a className="font-semibold text-skybrand underline" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>. ALL PACK should review and approve this privacy wording and set an appropriate retention policy before launch.</p></div>
- </section></main>}
+import type { Metadata } from 'next';
+import { PageHero } from '@/components/PageHero';
+import { COMPANY } from '@/lib/company';
+
+export const metadata: Metadata = { title: 'Privacy Policy', description: 'How ALL PACK handles the information you share through this website.', alternates: { canonical: '/privacy' } };
+
+const sections = [
+  ['What we collect', 'When you request a quote we receive the details you enter (name, email, phone, company, city, product requirements) and any artwork you upload. If you sign up for updates we receive your email address and your consent.'],
+  ['How we use it', 'Only to respond to your enquiry, prepare quotations, and, if you opted in, send occasional packaging updates. We do not sell or rent your information.'],
+  ['How it is delivered', 'Form submissions are sent to our team by email through Resend, an email delivery provider. The website does not keep a separate database of your enquiries.'],
+  ['Your browser', 'Your quote list is saved in your own browser (local storage) so it survives a page refresh. Logos you try in the 3D Studio stay on your device and are not uploaded. The contact page shows an embedded Google Map, which is subject to Google’s own privacy policy.'],
+  ['Your choices', `To access, correct or delete information you have sent us, or to stop receiving updates, email ${COMPANY.email}.`],
+];
+
+export default function PrivacyPage() {
+  return (
+    <main>
+      <PageHero kicker="Privacy" title={<>Your data, <span className="accent">handled simply.</span></>} description="A short, plain-language explanation of what happens to the information you share with us." />
+      <section className="container-x pb-28">
+        <div className="mx-auto max-w-3xl divide-y divide-line border-y border-line">
+          {sections.map(([h, b]) => (
+            <div key={h} className="grid gap-3 py-8 sm:grid-cols-[200px_1fr]"><h2 className="font-display text-lg font-semibold">{h}</h2><p className="leading-relaxed text-muted">{b}</p></div>
+          ))}
+        </div>
+        <p className="mx-auto mt-8 max-w-3xl text-sm text-muted">Last updated October 2026.</p>
+      </section>
+    </main>
+  );
+}

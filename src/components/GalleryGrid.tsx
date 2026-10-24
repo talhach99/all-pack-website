@@ -1,13 +1,56 @@
-"use client";
+'use client';
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Expand, X } from 'lucide-react';
-import { products } from '@/lib/products';
-import { ProductArt } from './ProductArt';
-const gallerySlugs=['rigid-gift-boxes','ecommerce-mailer-boxes','pizza-boxes','kraft-shopping-bags','folding-cartons','standup-pouches','jewellery-boxes','corrugated-shipping-boxes','labels-stickers','cake-boxes','fruit-produce-boxes','custom-printed-boxes'];
-const gallery=gallerySlugs.map(slug=>products.find(p=>p.slug===slug)!).filter(Boolean);
-export function GalleryGrid(){const [selected,setSelected]=useState<number|null>(null);useEffect(()=>{if(selected===null)return;const onKey=(event:KeyboardEvent)=>{if(event.key==='Escape')setSelected(null);if(event.key==='ArrowRight')setSelected(v=>v===null?v:(v+1)%gallery.length);if(event.key==='ArrowLeft')setSelected(v=>v===null?v:(v+gallery.length-1)%gallery.length)};document.addEventListener('keydown',onKey);return()=>document.removeEventListener('keydown',onKey);},[selected]);return <>
-  <div className="mb-8 rounded-2xl border border-[#C3D5ED] bg-[#F3F7FE] p-4 text-sm text-[#334f83]">This is a visual concept gallery using local illustrations, not photographs of completed ALL PACK client orders. Replace these assets with real portfolio photos before publishing them as case studies.</div>
-  <div className="grid auto-rows-[190px] grid-cols-2 gap-3 sm:auto-rows-[220px] sm:gap-5 lg:grid-cols-3">{gallery.map((p,i)=><motion.button key={p.slug} type="button" onClick={()=>setSelected(i)} initial={{opacity:0,y:22}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:.5,delay:i*.03}} className={`group relative overflow-hidden rounded-[1.35rem] text-left ${i%5===0?'row-span-2':''}`} aria-label={`Open concept image for ${p.name}`}><ProductArt name={p.name} model={p.model} hue={p.hue} className="h-full"/><span className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-[#101F44]/85 to-transparent px-4 pb-4 pt-16 text-white"><span className="text-sm font-bold sm:text-base">{p.name}</span><Expand className="shrink-0 transition-transform group-hover:scale-110" size={19}/></span></motion.button>)}</div>
-  <AnimatePresence>{selected!==null&&<motion.div className="fixed inset-0 z-[98] flex items-center justify-center bg-[#091329]/90 p-4 backdrop-blur-sm" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onMouseDown={e=>{if(e.target===e.currentTarget)setSelected(null)}}><div role="dialog" aria-modal="true" aria-label={`${gallery[selected].name} concept preview`} className="relative w-full max-w-[850px]"><button onClick={()=>setSelected(null)} className="absolute -top-14 right-1 rounded-full bg-white/15 p-2 text-white" aria-label="Close image"><X size={23}/></button><ProductArt name={gallery[selected].name} model={gallery[selected].model} hue={gallery[selected].hue} className="aspect-[1.6] overflow-hidden rounded-[1.7rem]"/><div className="mt-4 flex items-center justify-between text-white"><div><p className="text-xl font-semibold">{gallery[selected].name}</p><p className="text-xs text-white/60">Illustration · not a client photograph</p></div><div className="flex gap-2"><button onClick={()=>setSelected(v=>v===null?v:(v+gallery.length-1)%gallery.length)} aria-label="Previous image" className="rounded-full border border-white/25 p-3 hover:bg-white/15"><ArrowLeft size={20}/></button><button onClick={()=>setSelected(v=>v===null?v:(v+1)%gallery.length)} aria-label="Next image" className="rounded-full border border-white/25 p-3 hover:bg-white/15"><ArrowRight size={20}/></button></div></div></div></motion.div>}</AnimatePresence>
- </>}
+import { ArrowLeft, ArrowRight, ArrowUpRight, X } from 'lucide-react';
+import { products, productImage } from '@/lib/products';
+
+const spans = ['sm:col-span-2 sm:row-span-2', '', '', 'sm:row-span-2', '', 'sm:col-span-2', '', '', 'sm:col-span-2 sm:row-span-2', '', '', ''];
+
+export function GalleryGrid() {
+  const [sel, setSel] = useState<number | null>(null);
+  const n = products.length;
+  useEffect(() => {
+    if (sel === null) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setSel(null); if (e.key === 'ArrowRight') setSel(v => v === null ? v : (v + 1) % n); if (e.key === 'ArrowLeft') setSel(v => v === null ? v : (v + n - 1) % n); };
+    document.addEventListener('keydown', onKey); document.documentElement.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', onKey); document.documentElement.style.overflow = ''; };
+  }, [sel, n]);
+  const p = sel === null ? null : products[sel];
+  return (
+    <>
+      <div className="grid auto-rows-[260px] grid-flow-dense gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {products.map((x, i) => (
+          <motion.button key={x.slug} type="button" onClick={() => setSel(i)} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: .6, delay: (i % 4) * .05 }}
+            className={`group relative overflow-hidden rounded-4xl border border-line text-left ${x.materials.some(m => /kraft|corrugated/i.test(m)) ? 'tile-warm' : 'tile'} ${spans[i % spans.length]}`} aria-label={`View ${x.name}`}>
+            <img src={productImage(x)} alt={x.name} loading="lazy" className="h-full w-full object-contain p-6 transition-transform duration-700 group-hover:scale-105" />
+            <span className="absolute inset-x-3 bottom-3 flex translate-y-2 items-center justify-between rounded-2xl bg-white/90 px-4 py-3 opacity-0 shadow-card backdrop-blur transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:opacity-100">
+              <span className="text-sm font-semibold">{x.name}</span><ArrowUpRight size={16} />
+            </span>
+          </motion.button>
+        ))}
+      </div>
+      <AnimatePresence>
+        {p && sel !== null && (
+          <motion.div className="fixed inset-0 z-[95] flex items-center justify-center bg-ink/80 p-4 backdrop-blur-md" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={e => { if (e.target === e.currentTarget) setSel(null); }}>
+            <div role="dialog" aria-modal="true" aria-label={p.name} className="relative w-full max-w-5xl">
+              <button onClick={() => setSel(null)} className="absolute -top-14 right-0 grid h-11 w-11 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20" aria-label="Close"><X size={20} /></button>
+              <motion.div key={p.slug} initial={{ opacity: 0, scale: .97 }} animate={{ opacity: 1, scale: 1 }} className="tile overflow-hidden rounded-5xl">
+                <img src={productImage(p)} alt={p.name} className="mx-auto max-h-[70vh] w-full object-contain p-8" />
+              </motion.div>
+              <div className="mt-5 flex flex-wrap items-center justify-between gap-4 text-white">
+                <div><p className="text-sm text-white/60">{p.category}</p><p className="font-display text-2xl font-semibold">{p.name}</p></div>
+                <div className="flex gap-2">
+                  <button onClick={() => setSel((sel + n - 1) % n)} aria-label="Previous" className="grid h-11 w-11 place-items-center rounded-full border border-white/25 hover:bg-white/10"><ArrowLeft size={18} /></button>
+                  <button onClick={() => setSel((sel + 1) % n)} aria-label="Next" className="grid h-11 w-11 place-items-center rounded-full border border-white/25 hover:bg-white/10"><ArrowRight size={18} /></button>
+                  <Link href={`/products/${p.slug}`} className="btn-white btn-sm !min-h-11">View product</Link>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}

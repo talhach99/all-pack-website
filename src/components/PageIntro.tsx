@@ -1,2 +1,0 @@
-import { Reveal } from './Reveal';
-export function PageIntro({eyebrow,title,description}:{eyebrow:string;title:React.ReactNode;description:string}){return <section className="hero-gradient relative overflow-hidden py-20 sm:py-28"><div className="mesh-grid absolute inset-0" aria-hidden="true"/><div className="site-container relative"><Reveal><p className="eyebrow">{eyebrow}</p><h1 className="section-title max-w-4xl">{title}</h1><p className="lead mt-6 max-w-2xl">{description}</p></Reveal></div></section>}

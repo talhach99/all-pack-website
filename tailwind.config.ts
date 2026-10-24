@@ -1,21 +1,42 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
+
 const config: Config = {
-  darkMode: "class",
-  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
       colors: {
-        ink: "rgb(var(--ink) / <alpha-value>)",
-        paper: "rgb(var(--paper) / <alpha-value>)",
-        muted: "rgb(var(--muted) / <alpha-value>)",
-        line: "rgb(var(--line) / <alpha-value>)",
-        soft: "rgb(var(--soft) / <alpha-value>)",
-        brand: "#303C85",
-        skybrand: "#387EB7"
+        paper: '#FBFBF9',
+        ink: { DEFAULT: '#0A1433', soft: '#1C2750' },
+        muted: '#5B6785',
+        line: '#E5E8EF',
+        soft: '#F3F4F7',
+        mist: '#EAF1FB',
+        brand: { DEFAULT: '#2B3A8C', dark: '#1F2B6C', light: '#4D5FB8' },
+        sky: { DEFAULT: '#3A7FC0', light: '#9CC3EA' },
+        kraft: '#C9A27A',
+        gold: '#C9A35B',
       },
-      boxShadow: { card: "0 22px 60px rgba(36, 52, 107, .09)", soft: "0 6px 30px rgba(27,43,103,.06)" },
-      borderRadius: { '4xl': '2rem' },
-      fontFamily: { sans: ['var(--font-inter)', 'Arial', 'sans-serif'], display: ['var(--font-manrope)', 'Arial', 'sans-serif'] }
+      fontFamily: {
+        sans: ['"Inter Variable"', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['"Inter Tight Variable"', '"Inter Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['"Instrument Serif"', 'ui-serif', 'Georgia', 'serif'],
+      },
+      boxShadow: {
+        card: '0 1px 2px rgba(10,20,51,.04), 0 12px 40px -12px rgba(10,20,51,.12)',
+        lift: '0 2px 4px rgba(10,20,51,.04), 0 30px 60px -20px rgba(10,20,51,.25)',
+        glow: '0 20px 50px -12px rgba(43,58,140,.45)',
+      },
+      borderRadius: { '4xl': '2rem', '5xl': '2.5rem' },
+      keyframes: {
+        marquee: { from: { transform: 'translateX(0)' }, to: { transform: 'translateX(-50%)' } },
+        float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+        shimmer: { from: { backgroundPosition: '200% 0' }, to: { backgroundPosition: '-200% 0' } },
+      },
+      animation: {
+        marquee: 'marquee 40s linear infinite',
+        float: 'float 6s ease-in-out infinite',
+        shimmer: 'shimmer 6s linear infinite',
+      },
     },
   },
   plugins: [],

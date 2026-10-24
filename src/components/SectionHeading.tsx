@@ -1,4 +1,14 @@
 import { Reveal } from './Reveal';
-export function SectionHeading({eyebrow,title,description,center=false}:{eyebrow:string;title:React.ReactNode;description?:string;center?:boolean}){
-return <Reveal className={`mb-12 ${center?'mx-auto max-w-2xl text-center':''}`}><p className="eyebrow"> <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#3689c9]"/>{eyebrow}</p><h2 className="section-title">{title}</h2>{description&&<p className={`lead mt-5 ${center?'mx-auto':''} max-w-2xl`}>{description}</p>}</Reveal>
+
+export function SectionHeading({ kicker, title, description, center = false, className = '', children }: { kicker: string; title: React.ReactNode; description?: React.ReactNode; center?: boolean; className?: string; children?: React.ReactNode }) {
+  return (
+    <div className={`mb-14 flex flex-col gap-6 ${center ? 'items-center text-center' : 'md:flex-row md:items-end md:justify-between'} ${className}`}>
+      <Reveal className={center ? 'max-w-3xl' : 'max-w-3xl'}>
+        <p className="kicker mb-5">{kicker}</p>
+        <h2 className="h-section">{title}</h2>
+        {description && <p className={`lead mt-5 max-w-2xl ${center ? 'mx-auto' : ''}`}>{description}</p>}
+      </Reveal>
+      {children && <Reveal delay={.1} className="shrink-0">{children}</Reveal>}
+    </div>
+  );
 }

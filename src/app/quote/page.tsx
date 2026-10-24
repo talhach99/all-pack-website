@@ -1,6 +1,49 @@
-import type {Metadata} from 'next';
-import { PageIntro } from '@/components/PageIntro';
+import type { Metadata } from 'next';
+import { Clock, FileCheck2, MessageCircle, Phone } from 'lucide-react';
 import { QuoteForm } from '@/components/QuoteForm';
-import { COMPANY } from '@/lib/company';
-export const metadata:Metadata={title:'Request a Quote',description:'Tell ALL PACK about your packaging specifications, quantity and artwork to request a tailored quote.'};
-export default async function QuotePage({searchParams}:{searchParams:Promise<{product?:string}>}){const query=await searchParams;return <main><PageIntro eyebrow="LET'S TALK PACKAGING" title={<>Every great box starts <span className="gradient-text">with a good brief.</span></>} description="Tell us about your business, your product and your ideal packaging. No obligation or checkout required."/><section className="site-container grid gap-10 py-16 lg:grid-cols-[.65fr_1fr]"><div><p className="eyebrow">BEFORE YOU SEND</p><h2 className="mb-5 text-3xl font-bold">What helps us quote accurately?</h2><p className="lead mb-7">An approximate size, your desired quantity and a reference photo are enough to start the conversation.</p><ul className="space-y-4 text-sm leading-7 text-muted"><li>✓ What you plan to pack</li><li>✓ Approximate length × width × height</li><li>✓ Material, print and finishing ideas</li><li>✓ Quantity and delivery location</li><li>✓ Artwork or a reference image, if available</li></ul><div className="mt-10 rounded-2xl bg-soft p-6"><p className="mb-2 text-xs font-bold uppercase tracking-widest text-skybrand">DIRECT EMAIL</p><a className="font-semibold hover:text-skybrand" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a></div></div><QuoteForm prefillProduct={query.product||''}/></section></main>}
+import { Reveal } from '@/components/Reveal';
+import { COMPANY, phoneLink, whatsappLink } from '@/lib/company';
+
+export const metadata: Metadata = {
+  title: 'Get a Free Quote',
+  description: 'Tell ALL PACK what you need: products, quantity, size and artwork. Get a clear specification and a free, no-obligation packaging quote.',
+  alternates: { canonical: '/quote' },
+};
+
+export default async function QuotePage({ searchParams }: { searchParams: Promise<{ product?: string | string[] }> }) {
+  const { product } = await searchParams;
+  const slug = (Array.isArray(product) ? product[0] : product || '').slice(0, 80);
+  const call = phoneLink();
+  return (
+    <main className="relative overflow-hidden pb-28 pt-32 sm:pt-40">
+      <div className="grid-lines pointer-events-none absolute inset-0 [mask-image:radial-gradient(60%_40%_at_30%_0%,black,transparent)]" aria-hidden="true" />
+      <div className="container-x relative grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-16">
+        <Reveal className="lg:sticky lg:top-28 lg:self-start">
+          <p className="kicker mb-6">Free quote</p>
+          <h1 className="h-display !text-[clamp(2.6rem,5.4vw,5rem)]">Tell us what you&apos;re <span className="accent">packing.</span></h1>
+          <p className="lead mt-6 max-w-md">Two minutes is all it takes. The more you share, the more accurate your quote, but a rough idea is a perfectly good start.</p>
+          <ul className="mt-10 space-y-5">
+            {[
+              { icon: FileCheck2, t: 'Clear specification', d: 'Material, structure and finish spelled out.' },
+              { icon: Clock, t: 'Lead time confirmed', d: 'Know when it arrives before you commit.' },
+              { icon: MessageCircle, t: 'Real conversation', d: 'Questions answered by the team on phone or WhatsApp.' },
+            ].map(x => (
+              <li key={x.t} className="flex gap-4">
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-mist text-brand"><x.icon size={20} /></span>
+                <span><span className="block font-semibold">{x.t}</span><span className="text-sm text-muted">{x.d}</span></span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-10 rounded-3xl border border-line bg-white p-6">
+            <p className="text-sm text-muted">Prefer to talk?</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {call && <a href={call} className="btn-light btn-sm"><Phone size={15} /> {COMPANY.phone}</a>}
+              <a href={whatsappLink() || '#'} target="_blank" rel="noopener noreferrer" className="btn btn-sm bg-[#1FA855] text-white hover:bg-[#178a45]"><MessageCircle size={15} /> WhatsApp</a>
+            </div>
+          </div>
+        </Reveal>
+        <Reveal delay={.1}><QuoteForm prefillProduct={slug} /></Reveal>
+      </div>
+    </main>
+  );
+}
