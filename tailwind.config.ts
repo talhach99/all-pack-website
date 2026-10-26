@@ -1,41 +1,50 @@
 import type { Config } from 'tailwindcss';
 
+/**
+ * Premium palette: deep ink navy, warm ivory paper and brass accents.
+ * Token names are kept from the previous theme so every page restyles from here.
+ */
 const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
       colors: {
-        paper: '#FBFBF9',
-        ink: { DEFAULT: '#0A1433', soft: '#1C2750' },
-        muted: '#5B6785',
-        line: '#E5E8EF',
-        soft: '#F3F4F7',
-        mist: '#EAF1FB',
-        brand: { DEFAULT: '#2B3A8C', dark: '#1F2B6C', light: '#4D5FB8' },
-        sky: { DEFAULT: '#3A7FC0', light: '#9CC3EA' },
+        paper: { DEFAULT: '#F4EFE6', deep: '#EBE4D7', light: '#FAF7F1' },
+        ink: { DEFAULT: '#0D1220', soft: '#1D2640', deep: '#080C16', 2: '#141B2E' },
+        muted: '#5D6172',
+        line: '#DCD4C5',
+        soft: '#EDE7DC',
+        mist: '#ECE5D8',
+        brand: { DEFAULT: '#1B2A5C', dark: '#121C42', light: '#3A4F95' },
+        brass: { DEFAULT: '#B48A4F', light: '#D4B07A', dark: '#8E6A37' },
+        sky: { DEFAULT: '#B48A4F', light: '#D4B07A' },
         kraft: '#C9A27A',
         gold: '#C9A35B',
+        cream: '#EFE9DD',
       },
       fontFamily: {
-        sans: ['"Inter Variable"', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['"Inter Tight Variable"', '"Inter Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        serif: ['"Instrument Serif"', 'ui-serif', 'Georgia', 'serif'],
+        sans: ['"Manrope Variable"', 'Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['"Fraunces Variable"', 'Fraunces', 'ui-serif', 'Georgia', 'serif'],
+        serif: ['"Fraunces Variable"', 'Fraunces', 'ui-serif', 'Georgia', 'serif'],
       },
       boxShadow: {
-        card: '0 1px 2px rgba(10,20,51,.04), 0 12px 40px -12px rgba(10,20,51,.12)',
-        lift: '0 2px 4px rgba(10,20,51,.04), 0 30px 60px -20px rgba(10,20,51,.25)',
-        glow: '0 20px 50px -12px rgba(43,58,140,.45)',
+        card: '0 1px 2px rgba(13,18,32,.04), 0 18px 44px -22px rgba(13,18,32,.22)',
+        lift: '0 2px 4px rgba(13,18,32,.04), 0 40px 70px -36px rgba(13,18,32,.45)',
+        glow: '0 20px 50px -14px rgba(180,138,79,.55)',
+        plate: '0 60px 100px -50px rgba(13,18,32,.45), inset 0 0 0 1px rgba(255,255,255,.6)',
       },
       borderRadius: { '4xl': '2rem', '5xl': '2.5rem' },
       keyframes: {
         marquee: { from: { transform: 'translateX(0)' }, to: { transform: 'translateX(-50%)' } },
         float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
         shimmer: { from: { backgroundPosition: '200% 0' }, to: { backgroundPosition: '-200% 0' } },
+        spin3d: { from: { transform: 'rotateX(-24deg) rotateY(0deg)' }, to: { transform: 'rotateX(-24deg) rotateY(360deg)' } },
       },
       animation: {
-        marquee: 'marquee 40s linear infinite',
-        float: 'float 6s ease-in-out infinite',
+        marquee: 'marquee 50s linear infinite',
+        float: 'float 8s ease-in-out infinite',
         shimmer: 'shimmer 6s linear infinite',
+        spin3d: 'spin3d 16s linear infinite',
       },
     },
   },
