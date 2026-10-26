@@ -17,14 +17,14 @@ export default function ContactPage() {
   ].filter(Boolean) as { icon: typeof Phone; label: string; value: string; href: string; ext: boolean }[];
   return (
     <main>
-      <PageHero kicker="Contact" title={<>Let&apos;s talk <span className="accent">packaging.</span></>} description="Call, message or drop by. Or send your brief below and we'll come back with a clear quote." />
+      <PageHero kicker="Contact" title={<>Let&apos;s talk <span className="accent">packaging.</span></>} description="Call, message or drop by. Or send your brief below and we'll come back with a clear quote." image="tape" imageAlt="ALL PACK branded packaging tape" />
       <section className="container-x">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map((c, i) => (
             <Reveal key={c.label} delay={i * .05}>
-              <a href={c.href} {...(c.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="group flex h-full flex-col justify-between rounded-4xl border border-line bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-card">
-                <div className="flex items-center justify-between"><span className="grid h-12 w-12 place-items-center rounded-2xl bg-mist text-brand transition-colors group-hover:bg-ink group-hover:text-white"><c.icon size={21} /></span><ArrowUpRight size={18} className="text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></div>
-                <div className="mt-10"><p className="text-sm text-muted">{c.label}</p><p className="mt-1 break-all font-display text-lg font-semibold tracking-tight">{c.value}</p></div>
+              <a href={c.href} {...(c.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="group flex h-full flex-col justify-between rounded-[20px] border border-line bg-paper-light p-6 transition-all hover:-translate-y-1 hover:shadow-card">
+                <div className="flex items-center justify-between"><span className="grid h-12 w-12 place-items-center rounded-2xl bg-paper-deep text-ink transition-colors group-hover:bg-ink group-hover:text-cream"><c.icon size={21} /></span><ArrowUpRight size={18} className="text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></div>
+                <div className="mt-10"><p className="text-sm text-muted">{c.label}</p><p className="mt-1 break-all font-display text-xl">{c.value}</p></div>
               </a>
             </Reveal>
           ))}
@@ -34,15 +34,15 @@ export default function ContactPage() {
         <div className="container-x grid gap-10 lg:grid-cols-[1.15fr_.85fr]">
           <Reveal><QuoteForm compact /></Reveal>
           <Reveal delay={.1} className="flex flex-col gap-4">
-            <div className="overflow-hidden rounded-4xl border border-line bg-white">
+            <div className="overflow-hidden rounded-[20px] border border-line bg-paper-light">
               <iframe title="Map to ALL PACK office, Lahore" loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="h-[380px] w-full border-0 grayscale-[.3]" src={mapsEmbed} />
               <div className="p-6">
                 <p className="text-sm text-muted">Office</p>
                 <address className="mt-1 not-italic leading-relaxed">{COMPANY.address}</address>
-                <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand hover:underline">Get directions <ArrowUpRight size={15} /></a>
+                <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brass-dark hover:underline">Get directions <ArrowUpRight size={15} /></a>
               </div>
             </div>
-            <p className="rounded-3xl bg-mist p-5 text-sm text-muted">Planning a visit? Call or WhatsApp ahead so the right person is there to meet you.</p>
+            <p className="rounded-[16px] bg-paper-deep p-5 text-sm text-muted">Planning a visit? Call or WhatsApp ahead so the right person is there to meet you.</p>
           </Reveal>
         </div>
       </section>
