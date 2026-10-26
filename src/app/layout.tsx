@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from 'next';
-import '@fontsource-variable/inter/wght.css';
-import '@fontsource-variable/inter-tight/wght.css';
-import '@fontsource/instrument-serif/latin-400.css';
-import '@fontsource/instrument-serif/latin-400-italic.css';
+import '@fontsource-variable/manrope/wght.css';
+import '@fontsource-variable/fraunces/opsz.css';
+import '@fontsource-variable/fraunces/opsz-italic.css';
 import './globals.css';
 import { Providers } from '@/components/Providers';
 import { Header } from '@/components/Header';
@@ -23,7 +22,7 @@ export const metadata: Metadata = {
   formatDetection: { telephone: false },
 };
 
-export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#FBFBF9' };
+export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#F4EFE6' };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const schema = {

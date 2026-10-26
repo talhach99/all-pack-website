@@ -2,16 +2,14 @@ const items = ['Mailer boxes', 'Rigid gift boxes', 'Folding cartons', 'Corrugate
 
 export function Marquee() {
   return (
-    <div className="relative overflow-hidden border-y border-line bg-white py-6" aria-label="Packaging formats we produce">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-white to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-white to-transparent" />
+    <div className="relative overflow-hidden bg-ink py-6 text-cream sm:py-7" aria-label="Packaging formats we produce">
       <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
         {[0, 1].map(k => (
           <ul key={k} className="flex shrink-0 items-center" aria-hidden={k === 1}>
             {items.map(t => (
-              <li key={t} className="flex items-center gap-8 px-4 font-display text-xl font-medium tracking-tight text-ink/70 sm:text-2xl">
+              <li key={t} className="flex items-center gap-12 whitespace-nowrap px-6 font-serif text-[clamp(1.4rem,2.6vw,2.1rem)] font-light italic">
                 {t}
-                <svg viewBox="0 0 10 9" className="h-2.5 w-2.5 text-sky" aria-hidden="true"><path d="M5 0 10 9H0Z" fill="currentColor" /></svg>
+                <span className="text-sm not-italic text-brass" aria-hidden="true">✦</span>
               </li>
             ))}
           </ul>

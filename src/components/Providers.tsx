@@ -61,7 +61,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
             <motion.aside
               role="dialog" aria-modal="true" aria-label="Your quote list" data-lenis-prevent
               initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'spring', damping: 32, stiffness: 300 }}
-              className="fixed inset-y-0 right-0 z-[91] flex w-full max-w-[440px] flex-col bg-white shadow-2xl"
+              className="fixed inset-y-0 right-0 z-[91] flex w-full max-w-[440px] flex-col bg-paper-light shadow-2xl"
             >
               <div className="flex items-center justify-between border-b border-line px-6 py-5">
                 <div>
