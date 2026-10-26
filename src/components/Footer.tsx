@@ -4,6 +4,7 @@ import { Logo } from './Logo';
 import { NewsletterForm } from './NewsletterForm';
 import { COMPANY, mapsLink, phoneLink } from '@/lib/company';
 import { categories, categorySlug } from '@/lib/products';
+import { industries } from '@/data/industries';
 
 const company = [['About', '/about'], ['3D Studio', '/studio'], ['Gallery', '/gallery'], ['Insights', '/insights'], ['FAQ', '/faq'], ['Contact', '/contact'], ['Request a quote', '/quote']];
 
@@ -23,7 +24,7 @@ export function Footer() {
           <NewsletterForm />
         </div>
 
-        <div className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr]">
+        <div className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_.8fr_1.3fr]">
           <div>
             <Logo light />
             <p className="mt-6 max-w-xs text-[15px] leading-relaxed text-cream/55">Custom boxes, bags, labels and printed packaging, designed and produced for brands that care about the details.</p>
@@ -32,6 +33,10 @@ export function Footer() {
           <div>
             <h3 className="mb-5 font-sans text-[11px] font-bold uppercase tracking-[.22em] text-brass-light">Products</h3>
             <ul className="space-y-3 text-[15px]">{categories.map(c => <li key={c}><Link href={`/products?category=${categorySlug(c)}`} className="text-cream/60 transition-colors hover:text-cream">{c}</Link></li>)}</ul>
+          </div>
+          <div>
+            <h3 className="mb-5 font-sans text-[11px] font-bold uppercase tracking-[.22em] text-brass-light">Industries</h3>
+            <ul className="space-y-3 text-[15px]">{industries.map(i => <li key={i.slug}><Link href={`/industries/${i.slug}`} className="text-cream/60 transition-colors hover:text-cream">{i.name}</Link></li>)}</ul>
           </div>
           <div>
             <h3 className="mb-5 font-sans text-[11px] font-bold uppercase tracking-[.22em] text-brass-light">Company</h3>

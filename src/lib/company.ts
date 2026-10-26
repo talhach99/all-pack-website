@@ -15,6 +15,9 @@ export const COMPANY = {
   siteUrl: (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.allpack.com.pk').replace(/\/$/, ''),
 };
 
+/** Brands that have trusted ALL PACK with their packaging (names supplied by the owner). */
+export const CLIENTS = ['Sun Bread', 'City Bread', 'Don Valley', 'Global Pharma'];
+
 export const QUOTE_MESSAGE = 'Hello ALL PACK, I would like a quotation for custom packaging.';
 
 export function whatsappLink(message: string = QUOTE_MESSAGE): string | null {

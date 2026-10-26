@@ -102,12 +102,12 @@ export function QuoteForm({ prefillProduct = '', studioSpec = '', compact = fals
         {selected.length > 0 || studioSpec ? (
           <div className="mb-5 flex flex-wrap gap-2">
             {selected.map(p => (
-              <span key={p.slug} className="chip !bg-mist !pr-1.5">
+              <span key={p.slug} className="chip !bg-paper-deep !pr-1.5">
                 {p.name}
                 <button type="button" onClick={() => inquiry.remove(p.slug)} aria-label={`Remove ${p.name}`} className="grid h-5 w-5 place-items-center rounded-full hover:bg-paper-light"><X size={12} /></button>
               </span>
             ))}
-            {studioSpec && <span className="chip !bg-mist">Studio design attached</span>}
+            {studioSpec && <span className="chip !bg-paper-deep">Studio design attached</span>}
           </div>
         ) : null}
         <label className="mb-5 block">
@@ -132,17 +132,17 @@ export function QuoteForm({ prefillProduct = '', studioSpec = '', compact = fals
         <div
           onDragOver={e => { e.preventDefault(); setDrag(true); }} onDragLeave={() => setDrag(false)}
           onDrop={e => { e.preventDefault(); setDrag(false); pick(e.dataTransfer.files?.[0]); }}
-          className={`mt-5 flex flex-col items-center justify-center gap-2 rounded-3xl border-2 border-dashed p-6 text-center transition-colors ${drag ? 'border-brand bg-mist' : 'border-line'}`}
+          className={`mt-5 flex flex-col items-center justify-center gap-2 rounded-3xl border-2 border-dashed p-6 text-center transition-colors ${drag ? 'border-brand bg-paper-deep' : 'border-line'}`}
         >
           {file ? (
             <div className="flex items-center gap-3 text-sm">
-              <FileUp size={18} className="text-brand" /><span className="font-medium">{file.name}</span><span className="text-muted">{(file.size / 1024 / 1024).toFixed(1)} MB</span>
+              <FileUp size={18} className="text-brass-dark" /><span className="font-medium">{file.name}</span><span className="text-muted">{(file.size / 1024 / 1024).toFixed(1)} MB</span>
               <button type="button" onClick={() => { setFile(null); if (fileRef.current) fileRef.current.value = ''; }} className="grid h-7 w-7 place-items-center rounded-full hover:bg-soft" aria-label="Remove file"><X size={14} /></button>
             </div>
           ) : (
             <>
               <FileUp size={22} className="text-muted" />
-              <p className="text-sm"><button type="button" className="font-semibold text-brand underline-offset-4 hover:underline" onClick={() => fileRef.current?.click()}>Upload artwork or a reference photo</button> <span className="text-muted">or drag it here</span></p>
+              <p className="text-sm"><button type="button" className="font-semibold text-brass-dark underline-offset-4 hover:underline" onClick={() => fileRef.current?.click()}>Upload artwork or a reference photo</button> <span className="text-muted">or drag it here</span></p>
               <p className="text-xs text-muted">PNG, JPG or PDF · up to 4 MB · optional</p>
             </>
           )}
