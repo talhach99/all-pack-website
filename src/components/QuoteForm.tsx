@@ -104,7 +104,7 @@ export function QuoteForm({ prefillProduct = '', studioSpec = '', compact = fals
             {selected.map(p => (
               <span key={p.slug} className="chip !bg-mist !pr-1.5">
                 {p.name}
-                <button type="button" onClick={() => inquiry.remove(p.slug)} aria-label={`Remove ${p.name}`} className="grid h-5 w-5 place-items-center rounded-full hover:bg-white"><X size={12} /></button>
+                <button type="button" onClick={() => inquiry.remove(p.slug)} aria-label={`Remove ${p.name}`} className="grid h-5 w-5 place-items-center rounded-full hover:bg-paper-light"><X size={12} /></button>
               </span>
             ))}
             {studioSpec && <span className="chip !bg-mist">Studio design attached</span>}

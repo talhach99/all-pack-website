@@ -21,7 +21,7 @@ function Seg<T extends string>({ value, options, onChange, label }: { value: T; 
   return (
     <div role="radiogroup" aria-label={label} className="grid gap-1 rounded-2xl bg-soft p-1" style={{ gridTemplateColumns: `repeat(${options.length}, minmax(0,1fr))` }}>
       {options.map(o => (
-        <button key={o} type="button" role="radio" aria-checked={value === o} onClick={() => onChange(o)} className={`rounded-xl px-2 py-2.5 text-[13px] font-medium transition-all ${value === o ? 'bg-white text-ink shadow-card' : 'text-muted hover:text-ink'}`}>{o}</button>
+        <button key={o} type="button" role="radio" aria-checked={value === o} onClick={() => onChange(o)} className={`rounded-xl px-2 py-2.5 text-[13px] font-medium transition-all ${value === o ? 'bg-paper-light text-ink shadow-card' : 'text-muted hover:text-ink'}`}>{o}</button>
       ))}
     </div>
   );
@@ -114,9 +114,9 @@ export function StudioConfigurator() {
             {cfg.logo ? (
               <div className="flex items-center gap-3 rounded-2xl bg-soft p-3">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={cfg.logo} alt="Your uploaded logo" className="h-12 w-12 rounded-lg bg-white object-contain p-1" />
+                <img src={cfg.logo} alt="Your uploaded logo" className="h-12 w-12 rounded-lg bg-paper-light object-contain p-1" />
                 <span className="min-w-0 flex-1 truncate text-sm">{logoName}</span>
-                <button type="button" onClick={() => { set('logo', null); setLogoName(''); if (fileRef.current) fileRef.current.value = ''; }} className="grid h-8 w-8 place-items-center rounded-full hover:bg-white" aria-label="Remove logo"><X size={15} /></button>
+                <button type="button" onClick={() => { set('logo', null); setLogoName(''); if (fileRef.current) fileRef.current.value = ''; }} className="grid h-8 w-8 place-items-center rounded-full hover:bg-paper-light" aria-label="Remove logo"><X size={15} /></button>
               </div>
             ) : (
               <button type="button" onClick={() => fileRef.current?.click()} className="flex w-full items-center gap-3 rounded-2xl border-2 border-dashed border-line p-4 text-left transition-colors hover:border-brand hover:bg-mist">

@@ -36,7 +36,7 @@ export function ProductCatalog({ initialCategory = '' }: { initialCategory?: str
           <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 lg:flex-1 lg:pb-0 [scrollbar-width:none]" role="tablist" aria-label="Collections">
             {['', ...categories].map(c => (
               <button key={c || 'all'} role="tab" aria-selected={cat === c} onClick={() => setCat(c)}
-                className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all ${cat === c ? 'bg-ink text-white shadow-card' : 'border border-line bg-white text-ink/75 hover:border-ink/30 hover:text-ink'}`}>
+                className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all ${cat === c ? 'bg-ink text-white shadow-card' : 'border border-line bg-paper-light text-ink/75 hover:border-ink/30 hover:text-ink'}`}>
                 {c || 'All'}
               </button>
             ))}
