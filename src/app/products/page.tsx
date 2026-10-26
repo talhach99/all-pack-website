@@ -16,7 +16,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
   const initial = categoryFromSlug(Array.isArray(category) ? category[0] : category);
   return (
     <main>
-      <PageHero kicker="Products" title={<>Every kind of package. <span className="accent">One partner.</span></>} description="Browse by collection, material or industry. Tap + to add products to your quote list and get one combined price.">
+      <PageHero kicker="Products" title={<>Every kind of package. <span className="accent">One partner.</span></>} description="Browse by collection, material or industry. Tap + to add products to your quote list and get one combined price." image="printed" imageAlt="Custom printed boxes with a geometric pattern and gold foil">
         <Link href="/studio" className="btn-light">Or design one in 3D <ArrowRight size={16} /></Link>
       </PageHero>
       <section className="container-x pb-28">
