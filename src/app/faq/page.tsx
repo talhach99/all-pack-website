@@ -17,7 +17,7 @@ export default function FAQPage() {
       <section className="container-x pb-28">
         <div className="mx-auto max-w-4xl">
           <FaqAccordion />
-          <div className="mt-16 rounded-4xl bg-ink p-10 text-center text-white sm:p-14">
+          <div className="mt-16 rounded-[24px] bg-ink p-10 text-center text-cream sm:p-14">
             <h2 className="font-display text-3xl font-semibold tracking-tight">Still wondering about something?</h2>
             <p className="mx-auto mt-3 max-w-md text-white/70">Ask us directly. We&apos;re happy to talk through sizes, materials and finishes.</p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
