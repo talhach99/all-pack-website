@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Lenis from 'lenis';
 import Link from 'next/link';
 import { ArrowRight, ShoppingBag, Trash2, X } from 'lucide-react';
-import { productImage, products } from '@/lib/products';
+import { productThumb, products } from '@/lib/products';
 
 type Inquiry = { items: string[]; add: (slug: string, openDrawer?: boolean) => void; remove: (slug: string) => void; clear: () => void; open: () => void; has: (slug: string) => boolean };
 const InquiryContext = createContext<Inquiry | null>(null);
@@ -73,7 +73,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
               <div className="flex-1 overflow-y-auto px-6 py-5">
                 {items.length === 0 ? (
                   <div className="flex h-full flex-col items-center justify-center gap-3 text-center">
-                    <div className="grid h-16 w-16 place-items-center rounded-2xl bg-mist text-brand"><ShoppingBag size={28} /></div>
+                    <div className="grid h-16 w-16 place-items-center rounded-2xl bg-paper-deep text-brass-dark"><ShoppingBag size={28} /></div>
                     <h3 className="text-xl font-semibold">Nothing here yet</h3>
                     <p className="max-w-xs text-sm text-muted">Add the products you&apos;re interested in and request one combined quote.</p>
                     <Link href="/products" className="btn-dark btn-sm mt-3">Browse products <ArrowRight size={16} /></Link>
@@ -85,9 +85,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
                       if (!p) return null;
                       return (
                         <li key={slug} className="flex items-center gap-4 rounded-2xl border border-line p-3">
-                          <div className="tile h-16 w-20 shrink-0 overflow-hidden rounded-xl">
+                          <div className="h-16 w-20 shrink-0 overflow-hidden rounded-xl bg-paper-deep">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={productImage(p)} alt="" className="h-full w-full object-contain p-1" />
+                            <img src={productThumb(p)} alt="" className="h-full w-full object-cover" />
                           </div>
                           <div className="min-w-0 flex-1">
                             <p className="truncate font-semibold">{p.name}</p>

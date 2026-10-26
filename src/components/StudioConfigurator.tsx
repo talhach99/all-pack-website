@@ -119,8 +119,8 @@ export function StudioConfigurator() {
                 <button type="button" onClick={() => { set('logo', null); setLogoName(''); if (fileRef.current) fileRef.current.value = ''; }} className="grid h-8 w-8 place-items-center rounded-full hover:bg-paper-light" aria-label="Remove logo"><X size={15} /></button>
               </div>
             ) : (
-              <button type="button" onClick={() => fileRef.current?.click()} className="flex w-full items-center gap-3 rounded-2xl border-2 border-dashed border-line p-4 text-left transition-colors hover:border-brand hover:bg-mist">
-                <ImagePlus size={22} className="text-brand" />
+              <button type="button" onClick={() => fileRef.current?.click()} className="flex w-full items-center gap-3 rounded-2xl border-2 border-dashed border-line p-4 text-left transition-colors hover:border-brand hover:bg-paper-deep">
+                <ImagePlus size={22} className="text-brass-dark" />
                 <span><span className="block text-sm font-semibold">Try your own logo</span><span className="text-xs text-muted">PNG with transparency works best. Stays on your device.</span></span>
               </button>
             )}
