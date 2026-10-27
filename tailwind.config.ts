@@ -9,13 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: { DEFAULT: '#F4EFE6', deep: '#EBE4D7', light: '#FAF7F1' },
+        paper: { DEFAULT: '#FFFFFF', deep: '#F1F3F6', light: '#F8F9FA' },
         ink: { DEFAULT: '#0D1220', soft: '#1D2640', deep: '#080C16', 2: '#141B2E' },
         muted: '#5D6172',
-        line: '#DCD4C5',
+        line: '#E4E7EC',
         soft: '#EDE7DC',
         mist: '#ECE5D8',
-        brand: { DEFAULT: '#1B2A5C', dark: '#121C42', light: '#3A4F95' },
+        brand: { DEFAULT: '#22337A', dark: '#16224F', light: '#3D52A8' },
         brass: { DEFAULT: '#B48A4F', light: '#D4B07A', dark: '#8E6A37' },
         sky: { DEFAULT: '#B48A4F', light: '#D4B07A' },
         kraft: '#C9A27A',
@@ -24,7 +24,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['"Manrope Variable"', 'Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['"Fraunces Variable"', 'Fraunces', 'ui-serif', 'Georgia', 'serif'],
+        display: ['"Manrope Variable"', 'Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         serif: ['"Fraunces Variable"', 'Fraunces', 'ui-serif', 'Georgia', 'serif'],
       },
       boxShadow: {
