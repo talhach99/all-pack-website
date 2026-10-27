@@ -71,7 +71,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <span className="text-ink">{p.name}</span>
         </nav>
         <div className="grid gap-10 pb-20 lg:grid-cols-[1.12fr_.88fr] lg:gap-16">
-          <div className="lg:sticky lg:top-28 lg:self-start"><Reveal><ProductGallery images={gallery} /></Reveal></div>
+          <div className="lg:sticky lg:top-40 lg:self-start"><Reveal><ProductGallery images={gallery} /></Reveal></div>
           <Reveal delay={.08} className="lg:pt-2">
             <p className="kicker">{p.category}</p>
             <h1 className="mt-5 font-display text-[clamp(2.4rem,4.4vw,3.8rem)] font-light leading-[1.03]">{p.name}</h1>
