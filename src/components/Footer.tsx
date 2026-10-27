@@ -55,7 +55,7 @@ export function Footer() {
         </div>
       </div>
       <div className="pointer-events-none select-none overflow-hidden" aria-hidden="true">
-        <p className="outline-text whitespace-nowrap text-center font-display text-[17vw] font-light leading-[.85] tracking-[-.02em] text-cream/20">ALL PACK</p>
+        <p className="whitespace-nowrap text-center font-display text-[15vw] font-extrabold leading-[.85] tracking-[-.04em] text-white/[.04]">ALL PACK</p>
       </div>
       <div className="container-x">
         <div className="flex flex-col justify-between gap-3 border-t border-cream/10 py-7 pb-24 text-[13px] text-cream/50 sm:flex-row sm:pb-7">

@@ -31,7 +31,7 @@ export function ProductCatalog({ initialCategory = '' }: { initialCategory?: str
 
   return (
     <>
-      <div className="sticky top-[76px] z-30 -mx-4 mb-10 border-b border-line bg-paper/90 px-4 py-4 backdrop-blur-xl sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-10">
+      <div className="sticky top-[74px] lg:top-[123px] z-30 -mx-4 mb-10 border-b border-line bg-paper/90 px-4 py-4 backdrop-blur-xl sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-10">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
           <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 lg:flex-1 lg:pb-0 [scrollbar-width:none]" role="tablist" aria-label="Collections">
             {['', ...categories].map(c => (
