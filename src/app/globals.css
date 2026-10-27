@@ -9,36 +9,36 @@
   body { @apply bg-paper font-sans text-ink antialiased; text-rendering: optimizeLegibility; overflow-x: hidden; }
   ::selection { background: #B48A4F; color: #0D1220; }
   :focus-visible { outline: 2px solid #B48A4F; outline-offset: 3px; border-radius: 6px; }
-  h1, h2, h3, h4 { @apply font-display; font-weight: 380; letter-spacing: -.01em; text-wrap: balance; font-variation-settings: 'opsz' 96; }
+  h1, h2, h3, h4 { @apply font-display; font-weight: 750; letter-spacing: -.02em; text-wrap: balance; }
   p { text-wrap: pretty; }
   img { max-width: 100%; height: auto; }
 }
 
-/* Fraunces reads best light: soften heavy weights wherever the display face is used. */
-.font-display.font-semibold, .font-display.font-bold, .font-serif.font-semibold,
-h1.font-semibold, h2.font-semibold, h3.font-semibold, h4.font-semibold,
-h1.font-bold, h2.font-bold, h3.font-bold, h4.font-bold { font-weight: 420; }
-h1 .font-semibold, h2 .font-semibold, h3 .font-semibold { font-weight: inherit; }
+/* Catalogue look: bold sans headings everywhere, no italics. */
+.font-display, .font-serif { font-family: "Manrope Variable", Manrope, ui-sans-serif, system-ui, sans-serif; }
+.font-display.font-light, .font-display.font-normal, h1.font-light, h2.font-light, h3.font-light, h1.font-normal, h2.font-normal, h3.font-normal, h3.font-display { font-weight: 700; }
+h1 em, h2 em, h3 em, h1 .italic, h2 .italic, .font-display.italic, .font-serif.italic { font-style: normal; }
+.outline-text { -webkit-text-fill-color: currentColor !important; -webkit-text-stroke: 0 !important; }
 
 @layer components {
   .container-x { @apply mx-auto w-full max-w-[1280px] px-4 sm:px-8 lg:px-10; }
   .section { padding-block: clamp(5.5rem, 11vw, 9.5rem); }
-  .kicker { @apply inline-flex items-center gap-3 text-[11.5px] font-semibold uppercase tracking-[.22em] text-brass; }
-  .kicker::before { content: ''; @apply h-px w-7 bg-current; }
-  .h-display { @apply font-display text-ink; font-weight: 340; letter-spacing: -.018em; font-size: clamp(3rem, 7.4vw, 7rem); line-height: .98; }
-  .h-section { @apply font-display text-ink; font-weight: 350; letter-spacing: -.012em; font-size: clamp(2.4rem, 5.2vw, 4.5rem); line-height: 1.03; }
+  .kicker { @apply inline-flex items-center gap-3 text-[12px] font-bold uppercase tracking-[.16em] text-brand; }
+  .kicker::before { content: ''; @apply hidden; }
+  .h-display { @apply font-display text-ink; font-weight: 800; letter-spacing: -.035em; font-size: clamp(2.6rem, 5.4vw, 4.6rem); line-height: 1.04; }
+  .h-section { @apply font-display text-ink; font-weight: 800; letter-spacing: -.03em; font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.1; }
   .h-card { @apply font-display text-xl sm:text-2xl; font-weight: 400; }
-  .accent { @apply font-serif italic text-brass; font-weight: 300; }
+  .accent { @apply text-brand; font-style: normal; font-weight: inherit; }
   .lead { @apply text-[1.0625rem] leading-relaxed text-muted sm:text-lg; }
 
-  .btn { @apply relative inline-flex min-h-[3.25rem] select-none items-center justify-center gap-2.5 whitespace-nowrap rounded-full px-6 text-[15px] font-semibold tracking-[.01em] transition-all duration-300 ease-out disabled:pointer-events-none disabled:opacity-50; }
+  .btn { @apply relative inline-flex min-h-[3.1rem] select-none items-center justify-center gap-2.5 whitespace-nowrap rounded-lg px-6 text-[15px] font-semibold tracking-[.01em] transition-all duration-300 ease-out disabled:pointer-events-none disabled:opacity-50; }
   .btn svg { @apply transition-transform duration-300; }
   .btn:hover svg { transform: translateX(3px); }
-  .btn-dark { @apply btn bg-ink text-paper shadow-[0_10px_30px_-12px_rgba(13,18,32,.6)] hover:-translate-y-0.5 hover:bg-brass hover:text-ink; }
+  .btn-dark { @apply btn bg-brand text-white shadow-[0_8px_20px_-10px_rgba(34,51,122,.7)] hover:-translate-y-0.5 hover:bg-brand-dark; }
   .btn-brand { @apply btn bg-brand text-paper hover:-translate-y-0.5 hover:bg-brass hover:text-ink; }
-  .btn-light { @apply btn border border-line bg-paper-light/60 text-ink hover:-translate-y-0.5 hover:border-ink hover:bg-white; }
+  .btn-light { @apply btn border-2 border-ink/80 bg-white text-ink hover:-translate-y-0.5 hover:bg-ink hover:text-white; }
   .btn-ghost { @apply btn text-ink hover:bg-soft; }
-  .btn-white { @apply btn bg-paper text-ink hover:-translate-y-0.5 hover:bg-brass-light; }
+  .btn-white { @apply btn bg-white text-ink hover:-translate-y-0.5 hover:bg-paper-deep; }
   .btn-outline-light { @apply btn border border-cream/20 text-cream hover:border-cream; }
   .btn-sm { @apply min-h-10 px-4 text-sm; }
 
