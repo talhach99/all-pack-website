@@ -11,7 +11,6 @@ import { WhatsAppIcon } from '@/components/FloatingContact';
 import { whatsappLink } from '@/lib/company';
 
 export function generateStaticParams() { return industries.map(i => ({ slug: i.slug })); }
-export const dynamicParams = false;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params; const ind = findIndustry(slug); if (!ind) return {};
