@@ -13,7 +13,6 @@ import { WhatsAppIcon } from '@/components/FloatingContact';
 import { COMPANY, whatsappLink } from '@/lib/company';
 
 export function generateStaticParams() { return products.map(p => ({ slug: p.slug })); }
-export const dynamicParams = false;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
