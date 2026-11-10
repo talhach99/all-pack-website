@@ -9,6 +9,7 @@ import { ProductGallery } from '@/components/ProductGallery';
 import { AddToQuoteButton } from '@/components/AddToQuoteButton';
 import { Reveal } from '@/components/Reveal';
 import { FaqAccordion } from '@/components/FaqAccordion';
+import { Eyebrow, SectionHead } from '@/components/Section';
 import { WhatsAppIcon } from '@/components/FloatingContact';
 import { COMPANY, whatsappLink } from '@/lib/company';
 
@@ -41,7 +42,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const inds = industries.filter(i => i.products.includes(p.slug));
   const fin = finishShot(p);
   const gallery = [
-    { name: p.model, alt: `${p.name} by ALL PACK`, label: 'Studio sample' },
+    { name: p.model, alt: `${p.name} by ALL PACK`, label: 'Sample' },
     { name: fin.name, alt: fin.label, label: fin.label },
     ...inds.slice(0, 2).map(i => ({ name: i.image, alt: `${p.name} in a ${i.name.toLowerCase()} setting`, label: `For ${i.name}` })),
   ];
@@ -73,8 +74,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <div className="grid gap-10 pb-20 lg:grid-cols-[1.12fr_.88fr] lg:gap-16">
           <div className="lg:sticky lg:top-40 lg:self-start"><Reveal><ProductGallery images={gallery} /></Reveal></div>
           <Reveal delay={.08} className="lg:pt-2">
-            <p className="kicker">{p.category}</p>
-            <h1 className="mt-5 font-display text-[clamp(2.4rem,4.4vw,3.8rem)] font-light leading-[1.03]">{p.name}</h1>
+            <Eyebrow>{p.category}</Eyebrow>
+            <h1 className="mt-5 text-[clamp(2.4rem,4.4vw,3.6rem)] font-semibold leading-[1.05] tracking-[-.03em]">{p.name}</h1>
             <p className="lead mt-6">{p.fullDescription}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href={`/quote?product=${p.slug}`} className="btn-dark">Get a quote <ArrowRight size={17} /></Link>
@@ -87,7 +88,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <dl className="mt-10 divide-y divide-line border-y border-line">
               {specs.map(s => (
                 <div key={s.title} className="grid gap-3 py-5 sm:grid-cols-[170px_1fr]">
-                  <dt className="flex items-center gap-2.5 text-sm font-semibold"><s.icon size={16} className="text-brass" /> {s.title}</dt>
+                  <dt className="flex items-center gap-2.5 text-sm font-semibold"><s.icon size={16} className="text-brand" /> {s.title}</dt>
                   <dd><ul className="flex flex-wrap gap-2">{s.items.map(item => <li key={item} className="rounded-full border border-line bg-paper-light px-3 py-1 text-[13.5px] text-ink/80">{item}</li>)}</ul></dd>
                 </div>
               ))}
@@ -104,20 +105,16 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </div>
       </div>
 
-      <section className="border-t border-line bg-paper-light py-20 sm:py-24">
-        <div className="container-x grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
-          <Reveal>
-            <p className="kicker">How ordering works</p>
-            <h2 className="h-section mt-6 !text-[clamp(2rem,3.6vw,3.2rem)]">From brief to box in <span className="accent">four steps.</span></h2>
-            <p className="lead mt-5">No confusing jargon. A clear specification and a clear price before anything is printed.</p>
-          </Reveal>
-          <ol className="grid gap-px overflow-hidden rounded-[20px] border border-line bg-line sm:grid-cols-2">
+      <section className="section grain-dark bg-ink text-white">
+        <div className="container-x">
+          <SectionHead n={1} kicker="How ordering works" title="From brief to box in four steps." sub="A clear specification and a clear price before anything is printed." light />
+          <ol className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map(([t, d], i) => (
-              <Reveal as="li" key={t} delay={i * .05} className="bg-paper-light p-7">
-                <span className="font-serif text-[15px] italic text-brass">0{i + 1}</span>
-                <h3 className="mt-3 font-display text-[1.4rem]">{t}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-muted">{d}</p>
-              </Reveal>
+              <li key={t} className="border-t border-white/10 pt-6">
+                <span className="grid h-9 w-9 place-items-center rounded-full bg-brand text-[14px] font-semibold">{i + 1}</span>
+                <h3 className="mt-5 text-xl font-semibold text-white">{t}</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-cream/65">{d}</p>
+              </li>
             ))}
           </ol>
         </div>
@@ -125,18 +122,15 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
       <section className="section">
         <div className="container-x grid gap-14 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
-          <Reveal><p className="kicker">Questions</p><h2 className="h-section mt-6 !text-[clamp(2rem,3.6vw,3.2rem)]">Before you <span className="accent">order.</span></h2></Reveal>
+          <div><Eyebrow n={2}>Questions</Eyebrow><h2 className="h-section mt-5">Before you order.</h2></div>
           <Reveal delay={.08}><FaqAccordion limit={5} /></Reveal>
         </div>
       </section>
 
-      <section className="border-t border-line bg-paper-light py-20 sm:py-28">
+      <section className="section grain-dark bg-ink text-white">
         <div className="container-x">
-          <div className="mb-12 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-            <h2 className="h-section !text-[clamp(2rem,3.6vw,3rem)]">You might also <span className="accent">need.</span></h2>
-            <Link href="/products" className="btn-light">All products <ArrowRight size={16} /></Link>
-          </div>
-          <div className="grid gap-x-7 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{related.map(x => <ProductCard key={x.slug} product={x} />)}</div>
+          <SectionHead n={3} kicker="Related" title="You might also need." action={{ text: 'All products', href: '/products' }} light />
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{related.map((x, i) => <ProductCard key={x.slug} product={x} index={i} />)}</div>
         </div>
       </section>
     </main>

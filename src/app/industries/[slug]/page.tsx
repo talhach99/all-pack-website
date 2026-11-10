@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowRight, Check, ChevronRight } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import { findIndustry, industries } from '@/data/industries';
 import { products } from '@/lib/products';
 import { ProductCard } from '@/components/ProductCard';
-import { Reveal } from '@/components/Reveal';
+import { PageHero } from '@/components/PageHero';
 import { Photo } from '@/components/Photo';
+import { SectionHead } from '@/components/Section';
 import { WhatsAppIcon } from '@/components/FloatingContact';
 import { whatsappLink } from '@/lib/company';
 
@@ -14,7 +15,7 @@ export function generateStaticParams() { return industries.map(i => ({ slug: i.s
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params; const ind = findIndustry(slug); if (!ind) return {};
-  return { title: `${ind.name} Packaging`, description: `${ind.intro.split('. ')[0]}. Custom packaging for ${ind.name.toLowerCase()} from ALL PACK, Lahore.`, alternates: { canonical: `/industries/${slug}` }, openGraph: { images: [{ url: `/photos/${ind.image}.webp`, width: 1600, height: 1200, alt: `${ind.name} packaging` }] } };
+  return { title: `${ind.name} Packaging`, description: `${ind.intro.split('. ')[0]}. Custom packaging for ${ind.name.toLowerCase()} from ALL PACK, Lahore.`, alternates: { canonical: `/industries/${slug}` }, openGraph: { images: [{ url: `/photos/${ind.image}.webp`, alt: `${ind.name} packaging` }] } };
 }
 
 export default async function IndustryPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -23,60 +24,42 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
   const others = industries.filter(i => i.slug !== ind.slug).slice(0, 4);
   return (
     <main>
-      <div className="container-x">
-        <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 py-6 text-sm text-muted">
-          <Link href="/" className="hover:text-ink">Home</Link><ChevronRight size={14} />
-          <Link href="/industries" className="hover:text-ink">Industries</Link><ChevronRight size={14} />
-          <span className="text-ink">{ind.name}</span>
-        </nav>
-        <section className="grid items-center gap-10 pb-16 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
-          <Reveal>
-            <p className="kicker">{ind.name} packaging</p>
-            <h1 className="mt-6 font-display text-[clamp(2.5rem,5vw,4.6rem)] font-light leading-[1.02]">{ind.headline}</h1>
-            <p className="lead mt-7 max-w-[56ch]">{ind.intro}</p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link href="/quote" className="btn-dark">Get a free quote <ArrowRight size={16} /></Link>
-              <a href={whatsappLink(`Hello ALL PACK, I need packaging for my ${ind.name.toLowerCase()} business.`) || '#'} target="_blank" rel="noopener noreferrer" className="btn-light"><span className="text-[#1F9D55]"><WhatsAppIcon size={17} /></span> WhatsApp us</a>
-            </div>
-          </Reveal>
-          <Reveal delay={.1}><div className="aspect-[4/3] overflow-hidden rounded-[24px] shadow-plate"><Photo name={ind.image} alt={`Packaging for ${ind.name} by ALL PACK`} priority sizes="(min-width: 1024px) 50vw, 100vw" /></div></Reveal>
-        </section>
-      </div>
+      <PageHero kicker={`${ind.name} packaging`} title={ind.headline} description={ind.intro} image={ind.image} imageAlt={`Packaging for ${ind.name} by ALL PACK`} crumbs={[{ text: 'Industries', href: '/industries' }, { text: ind.name }]}>
+        <Link href="/quote" className="btn-dark">Get a free quote <ArrowRight size={17} /></Link>
+        <a href={whatsappLink(`Hello ALL PACK, I need packaging for my ${ind.name.toLowerCase()} business.`) || '#'} target="_blank" rel="noopener noreferrer" className="btn border-[1.5px] border-white/40 text-white hover:border-white"><WhatsAppIcon size={17} /> WhatsApp us</a>
+      </PageHero>
 
-      <section className="dark-section grain py-20 sm:py-24">
-        <div className="container-x grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:gap-16">
-          <Reveal><p className="kicker">What matters</p><h2 className="h-section mt-6 !text-[clamp(2rem,3.6vw,3.2rem)]">What {ind.name.toLowerCase()} packaging <span className="accent">needs to do.</span></h2></Reveal>
-          <div className="grid gap-8 sm:grid-cols-3">
+      <section className="section bg-white">
+        <div className="container-x">
+          <SectionHead n={1} kicker="What matters" title={`What ${ind.name.toLowerCase()} packaging needs to do.`} />
+          <div className="grid gap-6 md:grid-cols-3">
             {ind.needs.map((n, i) => (
-              <Reveal key={n.t} delay={i * .06}>
-                <span className="grid h-10 w-10 place-items-center rounded-full border border-cream/20 text-brass-light"><Check size={17} /></span>
-                <h3 className="mt-5 font-display text-[1.4rem] text-cream">{n.t}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-cream/60">{n.d}</p>
-              </Reveal>
+              <div key={n.t} className="rounded-[14px] border border-line bg-paper-deep p-7">
+                <div className="flex items-center justify-between"><span className="grid h-10 w-10 place-items-center rounded-full bg-brand text-white"><Check size={17} /></span><span className="text-[13px] font-semibold text-brand">0{i + 1}</span></div>
+                <h3 className="mt-6 text-xl font-semibold">{n.t}</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-muted">{n.d}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section">
+      <section className="section grain-dark bg-ink text-white">
         <div className="container-x">
-          <div className="mb-14 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-            <Reveal><p className="kicker">Recommended</p><h2 className="h-section mt-6 !text-[clamp(2rem,3.8vw,3.4rem)]">Products for <span className="accent">{ind.name.toLowerCase()}.</span></h2></Reveal>
-            <Link href="/products" className="btn-light">Full catalogue <ArrowRight size={16} /></Link>
-          </div>
-          <div className="grid gap-x-7 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{list.map((p, i) => <Reveal key={p.slug} delay={(i % 3) * .06} className="h-full"><ProductCard product={p} /></Reveal>)}</div>
+          <SectionHead n={2} kicker="Recommended" title={`Products for ${ind.name.toLowerCase()}.`} action={{ text: 'Full catalogue', href: '/products' }} light />
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{list.map((p, i) => <ProductCard key={p.slug} product={p} index={i} />)}</div>
         </div>
       </section>
 
-      <section className="border-t border-line bg-paper-light py-20">
+      <section className="section bg-white">
         <div className="container-x">
-          <h2 className="font-display text-3xl font-light">Other industries</h2>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <SectionHead n={3} kicker="Explore" title="Other industries we serve." action={{ text: 'All industries', href: '/industries' }} />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {others.map(o => (
-              <Link key={o.slug} href={`/industries/${o.slug}`} className="group relative block aspect-[4/3] overflow-hidden rounded-[16px]">
+              <Link key={o.slug} href={`/industries/${o.slug}`} className="group relative block aspect-[4/3] overflow-hidden rounded-[14px]">
                 <Photo name={o.image} alt={`Packaging for ${o.name}`} sizes="25vw" className="transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgba(13,18,32,.75))]" />
-                <p className="absolute bottom-4 left-4 font-display text-xl text-cream">{o.name}</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/90 to-ink/0" />
+                <p className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-lg font-semibold text-white">{o.name}<ArrowRight size={17} className="text-cyan" /></p>
               </Link>
             ))}
           </div>

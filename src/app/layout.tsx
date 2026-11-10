@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from 'next';
-import '@fontsource-variable/manrope/wght.css';
+import '@fontsource-variable/figtree/wght.css';
 import './globals.css';
 import { Providers } from '@/components/Providers';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { FloatingContact } from '@/components/FloatingContact';
+import { Motion } from '@/components/Motion';
 import { COMPANY, phoneLink } from '@/lib/company';
 
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   formatDetection: { telephone: false },
 };
 
-export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#F4EFE6' };
+export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#FFFFFF' };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const schema = {
@@ -33,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     telephone: phoneLink()?.slice(4),
     url: COMPANY.siteUrl,
     image: `${COMPANY.siteUrl}/og-image.png`,
-    logo: `${COMPANY.siteUrl}/logo.svg`,
+    logo: `${COMPANY.siteUrl}/brand/allpack-logo.png`,
     address: { '@type': 'PostalAddress', streetAddress: COMPANY.street, addressLocality: 'Lahore', addressRegion: 'Punjab', addressCountry: 'PK' },
     sameAs: [COMPANY.instagram, COMPANY.facebook, COMPANY.linkedin].filter(Boolean),
   };
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div id="main">{children}</div>
           <Footer />
           <FloatingContact />
+          <Motion />
         </Providers>
       </body>
     </html>

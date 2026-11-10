@@ -12,7 +12,7 @@ export default function GalleryPage() {
       <PageHero kicker="Gallery" title={<>Designed to be <span className="accent">noticed.</span></>} description="A look across our range. Tap any piece to see it larger, then make it yours.">
         <Link href="/quote" className="btn-dark">Start your project <ArrowRight size={16} /></Link>
       </PageHero>
-      <section className="container-x pb-28"><GalleryGrid /></section>
+      <section className="container-x pb-28 pt-16"><GalleryGrid /></section>
     </main>
   );
 }

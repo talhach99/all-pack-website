@@ -1,66 +1,52 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { Logo } from './Logo';
-import { NewsletterForm } from './NewsletterForm';
-import { COMPANY, mapsLink, phoneLink } from '@/lib/company';
+import { COMPANY, mapsLink, phoneLink, whatsappLink } from '@/lib/company';
 import { categories, categorySlug } from '@/lib/products';
-import { industries } from '@/data/industries';
 
-const company = [['About', '/about'], ['3D Studio', '/studio'], ['Gallery', '/gallery'], ['Insights', '/insights'], ['FAQ', '/faq'], ['Contact', '/contact'], ['Request a quote', '/quote']];
+const company = [['About', '/about'], ['Industries', '/industries'], ['Gallery', '/gallery'], ['Guides', '/insights'], ['FAQ', '/faq'], ['Contact', '/contact']];
 
 export function Footer() {
   const call = phoneLink();
+  const wa = whatsappLink();
   const socials = ([['Instagram', COMPANY.instagram], ['Facebook', COMPANY.facebook], ['LinkedIn', COMPANY.linkedin]] as const).filter(([, l]) => l);
+  const head = 'mb-4 text-[13px] font-bold uppercase tracking-[.14em] text-white';
+  const item = 'text-[15px] text-cream/65 transition-colors hover:text-white';
   return (
-    <footer className="relative overflow-hidden bg-ink-deep text-cream">
-      <div className="container-x relative pt-20 sm:pt-24">
-        <div className="grid items-end gap-10 border-b border-cream/10 pb-16 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <h2 className="font-display text-[clamp(2rem,3.4vw,2.8rem)] font-light leading-tight text-cream">
-              Packaging ideas, <span className="font-serif italic text-brass-light">occasionally.</span>
-            </h2>
-            <p className="mt-3 text-[15px] text-cream/55">New finishes, formats and launches. No spam.</p>
-          </div>
-          <NewsletterForm />
+    <footer className="bg-ink text-cream">
+      <div className="container-x grid gap-12 py-16 sm:grid-cols-2 sm:py-20 lg:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
+        <div>
+          <Logo light />
+          <p className="mt-6 max-w-xs text-[15px] leading-relaxed text-cream/65">Custom boxes, bags, labels and printed packaging, made to your size in Lahore and delivered across Pakistan.</p>
+          {socials.length > 0 && <div className="mt-6 flex gap-5 text-sm">{socials.map(([n, l]) => <a key={n} href={l} target="_blank" rel="noopener noreferrer" className="text-cream/70 hover:text-white">{n}</a>)}</div>}
         </div>
-
-        <div className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_.8fr_1.3fr]">
-          <div>
-            <Logo light />
-            <p className="mt-6 max-w-xs text-[15px] leading-relaxed text-cream/55">Custom boxes, bags, labels and printed packaging, designed and produced for brands that care about the details.</p>
-            {socials.length > 0 && <div className="mt-6 flex gap-5 text-sm">{socials.map(([n, l]) => <a key={n} href={l} target="_blank" rel="noopener noreferrer" className="text-cream/70 hover:text-cream">{n}</a>)}</div>}
-          </div>
-          <div>
-            <h3 className="mb-5 font-sans text-[11px] font-bold uppercase tracking-[.22em] text-brass-light">Products</h3>
-            <ul className="space-y-3 text-[15px]">{categories.map(c => <li key={c}><Link href={`/products?category=${categorySlug(c)}`} className="text-cream/60 transition-colors hover:text-cream">{c}</Link></li>)}</ul>
-          </div>
-          <div>
-            <h3 className="mb-5 font-sans text-[11px] font-bold uppercase tracking-[.22em] text-brass-light">Industries</h3>
-            <ul className="space-y-3 text-[15px]">{industries.map(i => <li key={i.slug}><Link href={`/industries/${i.slug}`} className="text-cream/60 transition-colors hover:text-cream">{i.name}</Link></li>)}</ul>
-          </div>
-          <div>
-            <h3 className="mb-5 font-sans text-[11px] font-bold uppercase tracking-[.22em] text-brass-light">Company</h3>
-            <ul className="space-y-3 text-[15px]">{company.map(([n, u]) => <li key={u}><Link href={u} className="text-cream/60 transition-colors hover:text-cream">{n}</Link></li>)}</ul>
-          </div>
-          <div>
-            <h3 className="mb-5 font-sans text-[11px] font-bold uppercase tracking-[.22em] text-brass-light">Get in touch</h3>
-            <address className="grid gap-4 not-italic">
-              {call && <a href={call} className="font-display text-2xl text-cream transition-colors hover:text-brass-light">{COMPANY.phone}</a>}
-              <a href={`mailto:${COMPANY.email}`} className="break-all text-[15px] text-cream hover:text-brass-light">{COMPANY.email}</a>
-              <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="group text-[15px] leading-relaxed text-cream/55 hover:text-cream">
-                {COMPANY.address} <ArrowUpRight size={14} className="inline align-[-2px] text-brass-light" />
-              </a>
-            </address>
-          </div>
+        <div>
+          <h2 className={head}>Shop</h2>
+          <ul className="space-y-2.5">
+            <li><Link href="/products" className={item}>All products</Link></li>
+            {categories.slice(0, 5).map(c => <li key={c}><Link href={`/products?category=${categorySlug(c)}`} className={item}>{c}</Link></li>)}
+          </ul>
         </div>
-      </div>
-      <div className="pointer-events-none select-none overflow-hidden" aria-hidden="true">
-        <p className="whitespace-nowrap text-center font-display text-[15vw] font-extrabold leading-[.85] tracking-[-.04em] text-white/[.04]">ALL PACK</p>
+        <div>
+          <h2 className={head}>Company</h2>
+          <ul className="space-y-2.5">{company.map(([n, u]) => <li key={u}><Link href={u} className={item}>{n}</Link></li>)}</ul>
+        </div>
+        <div>
+          <h2 className={head}>Get in touch</h2>
+          <address className="grid gap-3 not-italic">
+            {call && <a href={call} className="text-2xl font-semibold text-white hover:text-cyan">{COMPANY.phone}</a>}
+            {wa && <a href={wa} target="_blank" rel="noopener noreferrer" className={item}>WhatsApp us</a>}
+            <a href={`mailto:${COMPANY.email}`} className={`${item} break-all`}>{COMPANY.email}</a>
+            <a href={mapsLink} target="_blank" rel="noopener noreferrer" className={`${item} leading-relaxed`}>
+              {COMPANY.address} <ArrowUpRight size={14} className="inline align-[-2px] text-cyan" />
+            </a>
+          </address>
+        </div>
       </div>
       <div className="container-x">
-        <div className="flex flex-col justify-between gap-3 border-t border-cream/10 py-7 pb-24 text-[13px] text-cream/50 sm:flex-row sm:pb-7">
-          <p>© {new Date().getFullYear()} ALL PACK — The Packaging Experts. Lahore, Pakistan.</p>
-          <div className="flex gap-5"><Link href="/privacy" className="hover:text-cream">Privacy</Link><Link href="/faq" className="hover:text-cream">FAQ</Link><Link href="/sitemap.xml" className="hover:text-cream">Sitemap</Link></div>
+        <div className="flex flex-col justify-between gap-3 border-t border-white/10 py-7 pb-24 text-[13px] text-cream/50 sm:flex-row sm:pb-7">
+          <p>© {new Date().getFullYear()} ALL PACK · The Packaging Experts · Lahore, Pakistan</p>
+          <div className="flex gap-5"><Link href="/privacy" className="hover:text-white">Privacy</Link><Link href="/faq" className="hover:text-white">FAQ</Link><Link href="/sitemap.xml" className="hover:text-white">Sitemap</Link></div>
         </div>
       </div>
     </footer>

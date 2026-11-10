@@ -132,17 +132,17 @@ export function QuoteForm({ prefillProduct = '', studioSpec = '', compact = fals
         <div
           onDragOver={e => { e.preventDefault(); setDrag(true); }} onDragLeave={() => setDrag(false)}
           onDrop={e => { e.preventDefault(); setDrag(false); pick(e.dataTransfer.files?.[0]); }}
-          className={`mt-5 flex flex-col items-center justify-center gap-2 rounded-3xl border-2 border-dashed p-6 text-center transition-colors ${drag ? 'border-brand bg-paper-deep' : 'border-line'}`}
+          className={`mt-5 flex flex-col items-center justify-center gap-2 rounded-[20px] border-2 border-dashed p-6 text-center transition-colors ${drag ? 'border-brand bg-paper-deep' : 'border-line'}`}
         >
           {file ? (
             <div className="flex items-center gap-3 text-sm">
-              <FileUp size={18} className="text-brass-dark" /><span className="font-medium">{file.name}</span><span className="text-muted">{(file.size / 1024 / 1024).toFixed(1)} MB</span>
+              <FileUp size={18} className="text-brand" /><span className="font-medium">{file.name}</span><span className="text-muted">{(file.size / 1024 / 1024).toFixed(1)} MB</span>
               <button type="button" onClick={() => { setFile(null); if (fileRef.current) fileRef.current.value = ''; }} className="grid h-7 w-7 place-items-center rounded-full hover:bg-soft" aria-label="Remove file"><X size={14} /></button>
             </div>
           ) : (
             <>
               <FileUp size={22} className="text-muted" />
-              <p className="text-sm"><button type="button" className="font-semibold text-brass-dark underline-offset-4 hover:underline" onClick={() => fileRef.current?.click()}>Upload artwork or a reference photo</button> <span className="text-muted">or drag it here</span></p>
+              <p className="text-sm"><button type="button" className="font-semibold text-brand underline-offset-4 hover:underline" onClick={() => fileRef.current?.click()}>Upload artwork or a reference photo</button> <span className="text-muted">or drag it here</span></p>
               <p className="text-xs text-muted">PNG, JPG or PDF · up to 4 MB · optional</p>
             </>
           )}
@@ -164,7 +164,7 @@ export function QuoteForm({ prefillProduct = '', studioSpec = '', compact = fals
       <AnimatePresence>
         {status === 'error' && (
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} role="alert" className="overflow-hidden">
-            <div className="mt-8 rounded-3xl border border-amber-200 bg-amber-50 p-5">
+            <div className="mt-8 rounded-[20px] border border-amber-200 bg-amber-50 p-5">
               <p className="font-semibold text-amber-900">We couldn&apos;t send that online.</p>
               <p className="mt-1 text-sm text-amber-900/80">{message} Your details are ready to send another way:</p>
               <div className="mt-4 flex flex-wrap gap-2">

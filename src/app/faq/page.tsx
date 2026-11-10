@@ -14,7 +14,7 @@ export default function FAQPage() {
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
       <PageHero kicker="FAQ" title={<>Questions, <span className="accent">answered.</span></>} description="Everything you need to know before you order custom packaging." />
-      <section className="container-x pb-28">
+      <section className="container-x pb-28 pt-16">
         <div className="mx-auto max-w-4xl">
           <FaqAccordion />
           <div className="mt-16 rounded-[24px] bg-ink p-10 text-center text-cream sm:p-14">

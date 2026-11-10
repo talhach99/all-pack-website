@@ -2,7 +2,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Search, X } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight, Search, X } from 'lucide-react';
 import { categories, categorySlug, materialFilters, products, useFilters } from '@/lib/products';
 import { ProductCard } from './ProductCard';
 
@@ -31,12 +32,12 @@ export function ProductCatalog({ initialCategory = '' }: { initialCategory?: str
 
   return (
     <>
-      <div className="sticky top-[74px] lg:top-[123px] z-30 -mx-4 mb-10 border-b border-line bg-paper/90 px-4 py-4 backdrop-blur-xl sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-10">
+      <div className="sticky top-[84px] z-30 -mx-4 mb-10 border-b border-line bg-white/90 px-4 py-4 backdrop-blur-xl sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-10">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
           <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 lg:flex-1 lg:pb-0 [scrollbar-width:none]" role="tablist" aria-label="Collections">
             {['', ...categories].map(c => (
               <button key={c || 'all'} role="tab" aria-selected={cat === c} onClick={() => setCat(c)}
-                className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all ${cat === c ? 'bg-ink text-cream shadow-card' : 'border border-line bg-paper-light text-ink/75 hover:border-ink/30 hover:text-ink'}`}>
+                className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all ${cat === c ? 'bg-ink text-white' : 'border border-line bg-white text-ink/75 hover:border-ink/30 hover:text-ink'}`}>
                 {c || 'All'}
               </button>
             ))}
@@ -63,21 +64,33 @@ export function ProductCatalog({ initialCategory = '' }: { initialCategory?: str
 
       <div className="mb-8 flex items-center justify-between text-sm text-muted">
         <p aria-live="polite"><span className="font-semibold text-ink">{visible.length}</span> {visible.length === 1 ? 'product' : 'products'}{cat && <> in <span className="text-ink">{cat}</span></>}</p>
-        {filtered && <button onClick={reset} className="inline-flex items-center gap-1 font-medium text-ink hover:text-brass-dark"><X size={14} /> Clear filters</button>}
+        {filtered && <button onClick={reset} className="inline-flex items-center gap-1 font-medium text-ink hover:text-brand"><X size={14} /> Clear filters</button>}
       </div>
 
-      <motion.div layout className="grid gap-x-7 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+      <motion.div layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
           {visible.map((p, i) => (
             <motion.div layout key={p.slug} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: .96 }} transition={{ duration: .35 }}>
-              <ProductCard product={p} priority={i < 3} />
+              <ProductCard product={p} priority={i < 3} index={i} />
             </motion.div>
           ))}
         </AnimatePresence>
+        {!filtered && (
+          <motion.div layout key="custom-card">
+            <Link href="/quote" className="group flex h-full min-h-[320px] flex-col justify-between rounded-[14px] bg-ink p-8 text-white">
+              <span className="text-[12px] font-semibold uppercase tracking-[.16em] text-cyan">Custom</span>
+              <span>
+                <span className="block text-2xl font-semibold leading-tight">Need a size or style that isn&apos;t listed?</span>
+                <span className="mt-3 block text-[15px] leading-relaxed text-cream/70">Send a photo, sketch or dimensions and we will make it for you.</span>
+                <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-[14px] font-semibold">Start a custom quote <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" /></span>
+              </span>
+            </Link>
+          </motion.div>
+        )}
       </motion.div>
       {visible.length === 0 && (
         <div className="rounded-4xl border border-dashed border-line py-24 text-center">
-          <h3 className="font-display text-2xl">Nothing matches that yet</h3>
+          <h3 className="text-2xl font-semibold">Nothing matches that yet</h3>
           <p className="mt-2 text-muted">We probably still make it. Clear the filters or just ask us.</p>
           <button onClick={reset} className="btn-light mt-6">Clear filters</button>
         </div>
