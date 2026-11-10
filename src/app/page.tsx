@@ -64,7 +64,7 @@ export default function Home() {
         <div className="container-x grid items-center gap-12 py-12 sm:py-16 lg:min-h-[calc(100svh-72px)] lg:grid-cols-[1fr_1fr] lg:gap-16 lg:py-16">
           <div className="anim-up">
             <p className="text-[13px] font-medium text-muted">Custom packaging and printing · Lahore</p>
-            <h1 className="mt-4 text-[clamp(2.5rem,5.2vw,4.25rem)] font-medium leading-[1.04] tracking-[-.03em] text-ink">Custom boxes, bags and labels, printed in Lahore</h1>
+            <h1 className="mt-4 text-[clamp(2.5rem,5.2vw,4.25rem)] font-medium leading-[1.04] tracking-[-.03em] text-ink">Custom boxes, bags and labels printing in Lahore</h1>
             <p className="mt-6 max-w-[34rem] text-[18px] leading-[1.6] text-secondary">Rigid gift boxes, mailers, cartons, printed bags and stickers, made to your size and finish. Delivered anywhere in Pakistan.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-dark"><WhatsAppIcon size={18} /> Get a quote on WhatsApp</a>
