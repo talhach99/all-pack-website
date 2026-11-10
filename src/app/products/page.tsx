@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight, Ruler, Palette, Truck } from 'lucide-react';
 import { PageHero } from '@/components/PageHero';
 import { ProductCatalog } from '@/components/ProductCatalog';
+import { BoxStyles } from '@/components/BoxStyles';
 import { SectionHead } from '@/components/Section';
 import { WhatsAppIcon } from '@/components/FloatingContact';
 import { categoryFromSlug, categories, products } from '@/lib/products';
@@ -37,6 +38,13 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
       </PageHero>
 
       <section className="section bg-white !pt-14">
+        <div className="container-x">
+          <SectionHead kicker="Box styles" title="Shop by box style" />
+          <BoxStyles />
+        </div>
+      </section>
+
+      <section className="section border-t border-line bg-white">
         <div className="container-x">
           <SectionHead n={1} kicker="Catalogue" title="Browse the full range" className="mb-8" />
           <ProductCatalog initialCategory={initial} />
