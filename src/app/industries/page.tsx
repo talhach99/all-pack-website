@@ -31,18 +31,17 @@ export default function IndustriesPage() {
 
       <section className="section bg-white">
         <div className="container-x">
-          <SectionHead n={1} kicker="Who we pack for" title={`${industries.length} industries, one packaging partner.`} action={{ text: 'Browse all products', href: '/products' }} />
+          <SectionHead kicker="Who we pack for" title={`${industries.length} industries, one packaging partner`} action={{ text: 'Browse all products', href: '/products' }} />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {industries.map((ind, i) => (
-              <Link key={ind.slug} href={`/industries/${ind.slug}`} className="group flex flex-col rounded-xl border border-line bg-paper-deep p-3 transition lift hover:border-brand/40 hover:bg-white hover:shadow-card">
-                <div className="aspect-[4/3] overflow-hidden rounded-xl bg-white"><Photo name={ind.image} alt={`Packaging for ${ind.name}`} sizes="(min-width: 1024px) 33vw, 50vw" className="" /></div>
-                <div className="flex flex-1 items-start justify-between gap-4 px-3 pb-3 pt-5">
+            {industries.map(ind => (
+              <Link key={ind.slug} href={`/industries/${ind.slug}`} className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white transition-colors hover:border-ink/20">
+                <div className="relative aspect-[4/3] overflow-hidden bg-mist"><Photo name={ind.image} alt={`Packaging for ${ind.name}`} sizes="(min-width: 1024px) 33vw, 50vw" className="" /></div>
+                <div className="flex flex-1 items-start justify-between gap-4 p-5">
                   <div>
-                    <p className="text-[12px] font-semibold text-brand">{String(i + 1).padStart(2, '0')}</p>
-                    <h2 className="mt-1 text-[20px] font-semibold underline-offset-4 group-hover:underline">{ind.name}</h2>
-                    <p className="mt-2 text-[15px] leading-relaxed text-muted">{ind.short}</p>
+                    <h2 className="text-[17px] font-medium text-ink transition-colors group-hover:text-brand">{ind.name}</h2>
+                    <p className="mt-1 text-[14px] leading-relaxed text-secondary">{ind.short}</p>
                   </div>
-                  <span className="mt-6 grid h-9 w-9 shrink-0 place-items-center rounded-full border border-line bg-white transition group-hover:border-brand group-hover:bg-brand group-hover:text-white"><ArrowUpRight size={16} /></span>
+                  <ArrowUpRight size={16} strokeWidth={1.5} className="mt-1 shrink-0 text-muted transition-colors group-hover:text-brand" />
                 </div>
               </Link>
             ))}
@@ -50,20 +49,20 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      <section className="section bg-ink text-white">
+      <section className="section bg-mist">
         <div className="container-x">
-          <SectionHead n={2} kicker="Our approach" title="How we tailor packaging to your industry" light />
-          <ol className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <SectionHead kicker="Our approach" title="How we tailor packaging to your industry" />
+          <ol className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
             {approach.map((a, i) => (
-              <li key={a.t} className="border-t border-white/10 pt-6">
-                <span className="grid h-9 w-9 place-items-center rounded-full bg-brand text-[14px] font-semibold">{i + 1}</span>
-                <h3 className="mt-5 text-xl font-semibold text-white">{a.t}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-cream/65">{a.d}</p>
+              <li key={a.t} className="border-t border-ink/10 pt-6">
+                <span className="meta tabular-nums">0{i + 1}</span>
+                <h3 className="mt-4 text-[17px] font-medium">{a.t}</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-secondary">{a.d}</p>
               </li>
             ))}
           </ol>
-          <div className="mt-16 border-t border-white/10 pt-8">
-            <ClientStrip onDark />
+          <div className="mt-16 border-t border-ink/10 pt-8">
+            <ClientStrip />
           </div>
         </div>
       </section>

@@ -26,7 +26,7 @@ export function GalleryGrid() {
             className={`group relative overflow-hidden rounded-2xl bg-paper-deep text-left ${spans[i % spans.length]}`} aria-label={`View ${x.name}`}>
             <img src={productThumb(x)} srcSet={`${productThumb(x)} 800w, ${productImage(x)} 1600w`} sizes="(min-width:1024px) 50vw, 100vw" alt={x.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-1000" />
             <span className="absolute inset-x-3 bottom-3 flex translate-y-2 items-center justify-between rounded-xl bg-paper/90 px-4 py-3 opacity-0 shadow-card backdrop-blur transition-colors duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:opacity-100">
-              <span className="text-sm font-semibold">{x.name}</span><ArrowUpRight size={16} />
+              <span className="text-[14px] font-medium">{x.name}</span><ArrowUpRight size={16} strokeWidth={1.5} />
             </span>
           </motion.button>
         ))}

@@ -31,35 +31,35 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
 
       <section className="section bg-white">
         <div className="container-x">
-          <SectionHead n={1} kicker="What matters" title={`What ${ind.name.toLowerCase()} packaging needs to do`} />
-          <div className="grid gap-6 md:grid-cols-3">
-            {ind.needs.map((n, i) => (
-              <div key={n.t} className="rounded-xl border border-line bg-paper-deep p-7">
-                <div className="flex items-center justify-between"><span className="grid h-10 w-10 place-items-center rounded-full bg-brand text-white"><Check size={17} /></span><span className="text-[13px] font-semibold text-brand">0{i + 1}</span></div>
-                <h3 className="mt-6 text-xl font-semibold">{n.t}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-muted">{n.d}</p>
+          <SectionHead kicker="What matters" title={`What ${ind.name.toLowerCase()} packaging needs to do`} />
+          <div className="grid gap-x-8 gap-y-10 md:grid-cols-3">
+            {ind.needs.map(n => (
+              <div key={n.t} className="border-t border-ink/10 pt-6">
+                <Check size={18} strokeWidth={1.5} className="text-muted" aria-hidden="true" />
+                <h3 className="mt-4 text-[17px] font-medium">{n.t}</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-secondary">{n.d}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section bg-ink text-white">
+      <section className="section bg-mist">
         <div className="container-x">
-          <SectionHead n={2} kicker="Recommended" title={`Products for ${ind.name.toLowerCase()}`} action={{ text: 'Full catalogue', href: '/products' }} light />
+          <SectionHead kicker="Recommended" title={`Products for ${ind.name.toLowerCase()}`} action={{ text: 'Full catalogue', href: '/products' }} />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{list.map((p, i) => <ProductCard key={p.slug} product={p} index={i} />)}</div>
         </div>
       </section>
 
       <section className="section bg-white">
         <div className="container-x">
-          <SectionHead n={3} kicker="Explore" title="Other industries we serve" action={{ text: 'All industries', href: '/industries' }} />
+          <SectionHead kicker="Explore" title="Other industries we serve" action={{ text: 'All industries', href: '/industries' }} />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {others.map(o => (
               <Link key={o.slug} href={`/industries/${o.slug}`} className="group relative block aspect-[4/3] overflow-hidden rounded-xl">
                 <Photo name={o.image} alt={`Packaging for ${o.name}`} sizes="25vw" className="" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/90 to-ink/0" />
-                <p className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-lg font-semibold text-white">{o.name}<ArrowRight size={17} className="text-cyan" /></p>
+                <p className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[16px] font-medium text-white">{o.name}<ArrowRight size={16} strokeWidth={1.5} /></p>
               </Link>
             ))}
           </div>
