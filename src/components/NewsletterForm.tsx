@@ -19,13 +19,13 @@ export function NewsletterForm() {
       setState('error'); setMessage(err instanceof Error ? err.message : 'Something went wrong.');
     }
   }
-  if (state === 'done') return <p role="status" className="flex items-center gap-2 text-sm text-brass-light"><Check size={16} /> {message}</p>;
+  if (state === 'done') return <p role="status" className="flex items-center gap-2 text-sm text-cyan"><Check size={16} /> {message}</p>;
   return (
     <form onSubmit={submit}>
       <div className="flex border-b border-cream/30 pb-2 transition-colors focus-within:border-brass-light">
         <label htmlFor="nl-email" className="sr-only">Email address</label>
         <input id="nl-email" type="email" name="email" required maxLength={200} placeholder="Email address" className="min-w-0 flex-1 bg-transparent py-3 text-[17px] text-cream outline-none placeholder:text-cream/40" />
-        <button type="submit" disabled={state === 'sending'} className="inline-flex items-center gap-2 px-1 text-[15px] font-semibold text-brass-light transition-colors hover:text-cream" aria-label="Sign up">{state === 'sending' ? '…' : <>Sign up <ArrowRight size={15} /></>}</button>
+        <button type="submit" disabled={state === 'sending'} className="inline-flex items-center gap-2 px-1 text-[15px] font-semibold text-cyan transition-colors hover:text-cream" aria-label="Sign up">{state === 'sending' ? '…' : <>Sign up <ArrowRight size={15} /></>}</button>
       </div>
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
       <label className="mt-4 flex items-start gap-2.5 text-[13px] text-cream/50">

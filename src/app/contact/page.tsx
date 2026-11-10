@@ -1,49 +1,81 @@
 import type { Metadata } from 'next';
-import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
-import { PageHero } from '@/components/PageHero';
+import { ArrowUpRight, Clock, FileText, Mail, MapPin, Phone } from 'lucide-react';
 import { QuoteForm } from '@/components/QuoteForm';
-import { Reveal } from '@/components/Reveal';
-import { COMPANY, mapsEmbed, mapsLink, phoneLink, whatsappLink } from '@/lib/company';
+import { WhatsAppIcon } from '@/components/FloatingContact';
+import { Eyebrow } from '@/components/Section';
+import { COMPANY, mapsLink, phoneLink, whatsappLink } from '@/lib/company';
 
-export const metadata: Metadata = { title: 'Contact', description: 'Call, WhatsApp, email or visit ALL PACK in Lahore for custom packaging and printing.', alternates: { canonical: '/contact' } };
+export const metadata: Metadata = {
+  title: 'Contact',
+  description: 'Call, WhatsApp, email or visit ALL PACK in Lahore for custom packaging and printing. Send your brief for a free quote.',
+  alternates: { canonical: '/contact' },
+};
 
 export default function ContactPage() {
   const call = phoneLink();
-  const cards = [
-    call && { icon: Phone, label: 'Call', value: COMPANY.phone, href: call, ext: false },
-    { icon: MessageCircle, label: 'WhatsApp', value: 'Chat with the team', href: whatsappLink() || '#', ext: true },
-    { icon: Mail, label: 'Email', value: COMPANY.email, href: `mailto:${COMPANY.email}`, ext: false },
-    { icon: MapPin, label: 'Visit', value: 'Lakshmi Chowk, Lahore', href: mapsLink, ext: true },
-  ].filter(Boolean) as { icon: typeof Phone; label: string; value: string; href: string; ext: boolean }[];
+  const wa = whatsappLink();
+  const methods = [
+    { icon: WhatsAppIcon, label: 'WhatsApp', value: COMPANY.phone, note: 'Fastest way to reach us', href: wa || '#', ext: true },
+    ...(call ? [{ icon: Phone, label: 'Call', value: COMPANY.phone, note: 'Speak to the team', href: call, ext: false }] : []),
+    { icon: Mail, label: 'Email', value: COMPANY.email, note: 'For artwork and detailed briefs', href: `mailto:${COMPANY.email}`, ext: false },
+  ];
+
   return (
     <main>
-      <PageHero kicker="Contact" title={<>Let&apos;s talk <span className="accent">packaging.</span></>} description="Call, message or drop by. Or send your brief below and we'll come back with a clear quote." image="tape" imageAlt="ALL PACK branded packaging tape" />
-      <section className="container-x">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {cards.map((c, i) => (
-            <Reveal key={c.label} delay={i * .05}>
-              <a href={c.href} {...(c.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="group flex h-full flex-col justify-between rounded-[20px] border border-line bg-paper-light p-6 transition-all hover:-translate-y-1 hover:shadow-card">
-                <div className="flex items-center justify-between"><span className="grid h-12 w-12 place-items-center rounded-2xl bg-paper-deep text-ink transition-colors group-hover:bg-ink group-hover:text-cream"><c.icon size={21} /></span><ArrowUpRight size={18} className="text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></div>
-                <div className="mt-10"><p className="text-sm text-muted">{c.label}</p><p className="mt-1 break-all font-display text-xl">{c.value}</p></div>
+      {/* Header — dark */}
+      <section className="bg-ink text-white">
+        <div className="container-x py-16 sm:py-20">
+          <Eyebrow light>Contact</Eyebrow>
+          <h1 className="mt-5 max-w-3xl text-[clamp(2.5rem,4.6vw,3.75rem)] font-semibold leading-[1.05] tracking-[-.035em] text-white">Talk to the packaging team.</h1>
+          <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-cream/70 sm:text-lg">Call, message or email us, or send your brief with the form below. We reply to every enquiry within 24 hours.</p>
+
+          <div className="mt-12 grid gap-4 md:grid-cols-3">
+            {methods.map(m => (
+              <a key={m.label} href={m.href} {...(m.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="group flex items-start gap-4 rounded-[14px] border border-white/10 bg-white/[.04] p-6 transition hover:border-cyan hover:bg-white/[.07]">
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand text-white"><m.icon size={20} /></span>
+                <span className="min-w-0 flex-1">
+                  <span className="flex items-center justify-between text-[13px] font-semibold uppercase tracking-[.12em] text-cyan">{m.label}<ArrowUpRight size={16} className="text-cream/50 transition group-hover:text-white" /></span>
+                  <span className="mt-1.5 block break-all text-lg font-semibold text-white">{m.value}</span>
+                  <span className="mt-0.5 block text-[14px] text-cream/60">{m.note}</span>
+                </span>
               </a>
-            </Reveal>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
-      <section className="section">
-        <div className="container-x grid gap-10 lg:grid-cols-[1.15fr_.85fr]">
-          <Reveal><QuoteForm compact /></Reveal>
-          <Reveal delay={.1} className="flex flex-col gap-4">
-            <div className="overflow-hidden rounded-[20px] border border-line bg-paper-light">
-              <iframe title="Map to ALL PACK office, Lahore" loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="h-[380px] w-full border-0 grayscale-[.3]" src={mapsEmbed} />
-              <div className="p-6">
-                <p className="text-sm text-muted">Office</p>
-                <address className="mt-1 not-italic leading-relaxed">{COMPANY.address}</address>
-                <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brass-dark hover:underline">Get directions <ArrowUpRight size={15} /></a>
-              </div>
+
+      {/* Form + details — light */}
+      <section className="section bg-white">
+        <div className="container-x grid gap-12 lg:grid-cols-[1.25fr_.75fr] lg:gap-16">
+          <div>
+            <Eyebrow n={1}>Your brief</Eyebrow>
+            <h2 className="h-section mt-5">Send us the details.</h2>
+            <p className="mt-3 text-[16px] text-muted">Tell us what you need. A rough size and quantity is enough to start.</p>
+            <div className="mt-8"><QuoteForm compact /></div>
+          </div>
+
+          <aside className="space-y-5 lg:pt-2">
+            <div className="rounded-[14px] border border-line p-7">
+              <p className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-[.12em] text-brand"><MapPin size={16} /> Office</p>
+              <address className="mt-3 text-[16px] not-italic leading-relaxed text-ink">{COMPANY.address}</address>
+              <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-1.5 text-[15px] font-bold text-brand hover:underline">Open in Google Maps <ArrowUpRight size={15} /></a>
+              <p className="mt-4 border-t border-line pt-4 text-[14px] leading-relaxed text-muted">Planning a visit? Call or WhatsApp ahead so the right person is there to meet you.</p>
             </div>
-            <p className="rounded-[16px] bg-paper-deep p-5 text-sm text-muted">Planning a visit? Call or WhatsApp ahead so the right person is there to meet you.</p>
-          </Reveal>
+
+            <div className="rounded-[14px] border border-line p-7">
+              <p className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-[.12em] text-brand"><Clock size={16} /> Response time</p>
+              <p className="mt-3 text-[16px] leading-relaxed text-ink">We reply to every enquiry within 24 hours, usually much sooner on WhatsApp.</p>
+            </div>
+
+            <div className="rounded-[14px] bg-paper-deep p-7">
+              <p className="flex items-center gap-2 text-[13px] font-bold uppercase tracking-[.12em] text-brand"><FileText size={16} /> Helpful to include</p>
+              <ul className="mt-4 space-y-2.5 text-[15px] text-ink">
+                {['What you are packing', 'Approximate size and weight', 'Quantity you need', 'Your logo or artwork, if ready', 'When you need it delivered'].map(t => (
+                  <li key={t} className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan" aria-hidden="true" />{t}</li>
+                ))}
+              </ul>
+            </div>
+          </aside>
         </div>
       </section>
     </main>

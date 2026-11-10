@@ -73,7 +73,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
               <div className="flex-1 overflow-y-auto px-6 py-5">
                 {items.length === 0 ? (
                   <div className="flex h-full flex-col items-center justify-center gap-3 text-center">
-                    <div className="grid h-16 w-16 place-items-center rounded-2xl bg-paper-deep text-brass-dark"><ShoppingBag size={28} /></div>
+                    <div className="grid h-16 w-16 place-items-center rounded-[14px] bg-paper-deep text-brand"><ShoppingBag size={28} /></div>
                     <h3 className="text-xl font-semibold">Nothing here yet</h3>
                     <p className="max-w-xs text-sm text-muted">Add the products you&apos;re interested in and request one combined quote.</p>
                     <Link href="/products" className="btn-dark btn-sm mt-3">Browse products <ArrowRight size={16} /></Link>
@@ -84,7 +84,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
                       const p = products.find(v => v.slug === slug);
                       if (!p) return null;
                       return (
-                        <li key={slug} className="flex items-center gap-4 rounded-2xl border border-line p-3">
+                        <li key={slug} className="flex items-center gap-4 rounded-[14px] border border-line p-3">
                           <div className="h-16 w-20 shrink-0 overflow-hidden rounded-xl bg-paper-deep">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img src={productThumb(p)} alt="" className="h-full w-full object-cover" />

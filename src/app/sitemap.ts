@@ -6,7 +6,7 @@ import { industries } from '@/data/industries';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = COMPANY.siteUrl;
-  const routes = ['', '/products', '/industries', '/studio', '/quote', '/gallery', '/about', '/insights', '/contact', '/faq', '/privacy'];
+  const routes = ['', '/products', '/industries', '/quote', '/gallery', '/about', '/insights', '/contact', '/faq', '/privacy'];
   return [
     ...routes.map(path => ({ url: `${base}${path}`, changeFrequency: 'monthly' as const, priority: path === '' ? 1 : path === '/products' ? .9 : .7 })),
     ...products.map(p => ({ url: `${base}/products/${p.slug}`, changeFrequency: 'monthly' as const, priority: .8, images: [`${base}/photos/${p.model}.webp`] })),
