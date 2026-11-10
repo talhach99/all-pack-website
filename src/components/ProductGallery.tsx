@@ -19,7 +19,7 @@ export function ProductGallery({ images }: { images: { name: string; alt: string
         <div className="mt-3 grid grid-cols-4 gap-3" role="tablist" aria-label="Product photos">
           {images.map((im, k) => (
             <button key={im.name} role="tab" aria-selected={k === i} aria-label={`Show photo ${k + 1}: ${im.alt}`} onClick={() => setI(k)}
-              className={`aspect-[5/4] overflow-hidden rounded-xl border-2 transition-all ${k === i ? 'border-ink' : 'border-transparent opacity-70 hover:opacity-100'}`}>
+              className={`aspect-[5/4] overflow-hidden rounded-xl border-2 transition-colors ${k === i ? 'border-ink' : 'border-transparent opacity-70 hover:opacity-100'}`}>
               <Photo name={im.name} alt="" sizes="160px" />
             </button>
           ))}

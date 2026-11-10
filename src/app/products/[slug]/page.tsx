@@ -11,7 +11,7 @@ import { Reveal } from '@/components/Reveal';
 import { FaqAccordion } from '@/components/FaqAccordion';
 import { Eyebrow, SectionHead } from '@/components/Section';
 import { WhatsAppIcon } from '@/components/FloatingContact';
-import { COMPANY, whatsappLink } from '@/lib/company';
+import { COMPANY, quoteLink, whatsappLink } from '@/lib/company';
 
 export function generateStaticParams() { return products.map(p => ({ slug: p.slug })); }
 
@@ -78,7 +78,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <h1 className="mt-5 text-[clamp(2.4rem,4.4vw,3.6rem)] font-semibold leading-[1.05] tracking-[-.03em]">{p.name}</h1>
             <p className="lead mt-6">{p.fullDescription}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href={`/quote?product=${p.slug}`} className="btn-dark">Get a quote <ArrowRight size={17} /></Link>
+              <a href={quoteLink(`Hello ALL PACK, I would like a quotation for ${p.name}.`)} target="_blank" rel="noopener noreferrer" className="btn-dark"><WhatsAppIcon size={18} /> Get a quote on WhatsApp</a>
               <AddToQuoteButton slug={p.slug} />
             </div>
             <a href={whatsappLink(`Hello ALL PACK, I'm interested in ${p.name}. Can you share options and a quote?`) || '#'} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-muted hover:text-ink">
@@ -89,7 +89,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               {specs.map(s => (
                 <div key={s.title} className="grid gap-3 py-5 sm:grid-cols-[170px_1fr]">
                   <dt className="flex items-center gap-2.5 text-sm font-semibold"><s.icon size={16} className="text-brand" /> {s.title}</dt>
-                  <dd><ul className="flex flex-wrap gap-2">{s.items.map(item => <li key={item} className="rounded-full border border-line bg-paper-light px-3 py-1 text-[13.5px] text-ink/80">{item}</li>)}</ul></dd>
+                  <dd><ul className="flex flex-wrap gap-2">{s.items.map(item => <li key={item} className="rounded-full border border-line bg-paper-light px-3 py-1 text-[14px] text-ink/80">{item}</li>)}</ul></dd>
                 </div>
               ))}
               <div className="grid gap-3 py-5 sm:grid-cols-[170px_1fr]"><dt className="text-sm font-semibold">Minimum order</dt><dd className="text-[15px] text-ink/80">{p.moq}</dd></div>
@@ -105,9 +105,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </div>
       </div>
 
-      <section className="section grain-dark bg-ink text-white">
+      <section className="section bg-ink text-white">
         <div className="container-x">
-          <SectionHead n={1} kicker="How ordering works" title="From brief to box in four steps." sub="A clear specification and a clear price before anything is printed." light />
+          <SectionHead n={1} kicker="How ordering works" title="From brief to box in four steps" sub="A clear specification and a clear price before anything is printed." light />
           <ol className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map(([t, d], i) => (
               <li key={t} className="border-t border-white/10 pt-6">
@@ -122,14 +122,14 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
       <section className="section">
         <div className="container-x grid gap-14 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
-          <div><Eyebrow n={2}>Questions</Eyebrow><h2 className="h-section mt-5">Before you order.</h2></div>
+          <div><Eyebrow n={2}>Questions</Eyebrow><h2 className="h-section mt-5">Before you order</h2></div>
           <Reveal delay={.08}><FaqAccordion limit={5} /></Reveal>
         </div>
       </section>
 
-      <section className="section grain-dark bg-ink text-white">
+      <section className="section bg-ink text-white">
         <div className="container-x">
-          <SectionHead n={3} kicker="Related" title="You might also need." action={{ text: 'All products', href: '/products' }} light />
+          <SectionHead n={3} kicker="Related" title="You might also need" action={{ text: 'All products', href: '/products' }} light />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{related.map((x, i) => <ProductCard key={x.slug} product={x} index={i} />)}</div>
         </div>
       </section>

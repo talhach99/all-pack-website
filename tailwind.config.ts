@@ -1,53 +1,56 @@
 import type { Config } from 'tailwindcss';
 
 /**
- * Premium palette: deep ink navy, warm ivory paper and brass accents.
- * Token names are kept from the previous theme so every page restyles from here.
+ * ALL PACK palette: graphite neutrals on a mist page, logo blue as the only accent.
+ * Old token names (navy, cyan, brass, cream…) are kept so every page restyles from here,
+ * but they now resolve to the graphite ramp instead of extra hues.
  */
+const graphite = {
+  deep: '#0F1012',
+  page: '#141517',
+  card: '#1B1C1F',
+  raised: '#24252A',
+};
+
 const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
       colors: {
-        paper: { DEFAULT: '#FFFFFF', deep: '#F6F8FE', light: '#FAFBFF' },
-        ink: { DEFAULT: '#06104A', soft: '#26305E', deep: '#040B36', 2: '#0A1A6B' },
-        muted: '#4A5378',
-        line: '#E1E6F5',
-        soft: '#EEF2FF',
-        mist: '#EEF2FF',
-        brand: { DEFAULT: '#2B4BFF', dark: '#0A208F', light: '#5C76FF' },
-        navy: '#0A208F',
-        cyan: { DEFAULT: '#22C3F0', light: '#8FE1F8', dark: '#0E9CC6' },
-        brass: { DEFAULT: '#22C3F0', light: '#8FE1F8', dark: '#0E9CC6' },
-        sky: { DEFAULT: '#22C3F0', light: '#8FE1F8' },
-        kraft: '#C9A27A',
-        gold: '#C9A35B',
-        cream: '#F3F6FF',
+        // Light ramp
+        paper: { DEFAULT: '#FFFFFF', deep: '#F3F4F6', light: '#FFFFFF' },
+        mist: '#F3F4F6',
+        soft: '#EBECEF',
+        line: '#E4E5E9',
+        ink: { DEFAULT: '#16171A', soft: '#2A2B30', deep: graphite.deep, 2: graphite.card },
+        secondary: '#4A4D55',
+        muted: '#6B6E76',
+        graphite,
+        // The one accent, taken from the logo
+        brand: { DEFAULT: '#2B4AFC', dark: '#1D36CC', light: '#8EA0FF' },
+        // Legacy names folded back into the ramp
+        navy: '#16171A',
+        cream: '#ECEDEF',
+        cyan: { DEFAULT: '#A3A6AE', light: '#C9CBD1', dark: '#6B6E76' },
+        brass: { DEFAULT: '#A3A6AE', light: '#C9CBD1', dark: '#6B6E76' },
+        sky: { DEFAULT: '#A3A6AE', light: '#C9CBD1' },
+        kraft: '#B8946B',
+        gold: '#B8946B',
       },
       fontFamily: {
         sans: ['"Figtree Variable"', 'Figtree', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         display: ['"Figtree Variable"', 'Figtree', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        serif: ['"Fraunces Variable"', 'Fraunces', 'ui-serif', 'Georgia', 'serif'],
+        serif: ['"Figtree Variable"', 'Figtree', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono Variable"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       boxShadow: {
-        card: '0 1px 2px rgba(6,16,74,.04), 0 18px 44px -22px rgba(6,16,74,.22)',
-        lift: '0 2px 4px rgba(6,16,74,.04), 0 40px 70px -36px rgba(6,16,74,.45)',
-        glow: '0 20px 50px -14px rgba(43,75,255,.45)',
-        plate: '0 60px 100px -50px rgba(6,16,74,.45), inset 0 0 0 1px rgba(255,255,255,.6)',
+        card: '0 1px 2px rgba(22,23,26,.05)',
+        lift: '0 8px 24px rgba(22,23,26,.06)',
+        glow: '0 1px 2px rgba(22,23,26,.05)',
+        plate: '0 8px 24px rgba(22,23,26,.06)',
       },
-      borderRadius: { '4xl': '2rem', '5xl': '2.5rem' },
-      keyframes: {
-        marquee: { from: { transform: 'translateX(0)' }, to: { transform: 'translateX(-50%)' } },
-        float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
-        shimmer: { from: { backgroundPosition: '200% 0' }, to: { backgroundPosition: '-200% 0' } },
-        spin3d: { from: { transform: 'rotateX(-24deg) rotateY(0deg)' }, to: { transform: 'rotateX(-24deg) rotateY(360deg)' } },
-      },
-      animation: {
-        marquee: 'marquee 50s linear infinite',
-        float: 'float 8s ease-in-out infinite',
-        shimmer: 'shimmer 6s linear infinite',
-        spin3d: 'spin3d 16s linear infinite',
-      },
+      borderRadius: { '4xl': '1.25rem', '5xl': '1.25rem' },
+      transitionTimingFunction: { out: 'cubic-bezier(.22,1,.36,1)' },
     },
   },
   plugins: [],

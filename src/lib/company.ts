@@ -15,8 +15,22 @@ export const COMPANY = {
   siteUrl: (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.allpack.com.pk').replace(/\/$/, ''),
 };
 
-/** Brands that have trusted ALL PACK with their packaging (names supplied by the owner). */
-export const CLIENTS = ['Sun Bread', 'City Bread', 'Don Valley', 'Global Pharma'];
+/** Clients who have trusted ALL PACK with their packaging (list and logos supplied by the owner). */
+export type Client = { name: string; logo?: string; wide?: boolean };
+export const CLIENTS: Client[] = [
+  { name: 'Global Pharmaceuticals', logo: '/clients/global-pharmaceuticals.webp', wide: true },
+  { name: 'Don Valley Pharmaceuticals', logo: '/clients/don-valley.webp', wide: true },
+  { name: 'Citi Bread', logo: '/clients/citi-bread.webp' },
+  { name: 'Sun Bread', logo: '/clients/sun-bread.webp' },
+  { name: 'Gipsy Cosmetics' },
+  { name: "Bunny's", logo: '/clients/bunnys.webp' },
+  { name: 'Amson', logo: '/clients/amson.svg' },
+  { name: 'Citi Pharma', logo: '/clients/citi-pharma.webp' },
+  { name: 'Pak Red Crescent Teaching Hospital', logo: '/clients/red-crescent.webp' },
+  { name: 'National Hospital & Medical Centre', logo: '/clients/national-hospital.webp' },
+  { name: 'Hoest', logo: '/clients/hoest.webp' },
+  { name: 'Meatler', logo: '/clients/meatler.webp' },
+];
 
 export const QUOTE_MESSAGE = 'Hello ALL PACK, I would like a quotation for custom packaging.';
 
@@ -34,6 +48,15 @@ export function phoneLink(): string | null {
   if (/^0\d{10}$/.test(digits)) return `tel:+92${digits.slice(1)}`;
   if (/^92\d{10}$/.test(digits)) return `tel:+${digits}`;
   return `tel:${digits}`;
+}
+
+/** Quotes go to WhatsApp first, email as the fallback. There is no quote form in the main flow. */
+export const QUOTE_SUBJECT = 'Packaging quote request';
+export function emailLink(subject: string = QUOTE_SUBJECT, body = ''): string {
+  return `mailto:${COMPANY.email}?subject=${encodeURIComponent(subject)}${body ? `&body=${encodeURIComponent(body)}` : ''}`;
+}
+export function quoteLink(message?: string): string {
+  return whatsappLink(message) || emailLink();
 }
 
 export const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(COMPANY.address)}`;

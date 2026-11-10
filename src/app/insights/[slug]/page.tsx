@@ -4,7 +4,8 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Eyebrow } from '@/components/Section';
 import { articles, getArticle } from '@/data/articles';
-import { COMPANY } from '@/lib/company';
+import { COMPANY, quoteLink } from '@/lib/company';
+import { WhatsAppIcon } from '@/components/FloatingContact';
 
 export function generateStaticParams() { return articles.map(a => ({ slug: a.slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -34,7 +35,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         <div className="mt-16 rounded-[24px] bg-ink p-10 text-cream">
           <h2 className="text-3xl font-semibold text-white">Need help choosing packaging?</h2>
           <p className="mt-2 text-cream/65">Tell us what you&apos;re making and we&apos;ll recommend the right format.</p>
-          <Link href="/quote" className="btn-white mt-6">Get a free quote <ArrowRight size={16} /></Link>
+          <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="btn-white mt-6"><WhatsAppIcon size={18} /> Get a quote on WhatsApp</a>
         </div>
       </article>
     </main>

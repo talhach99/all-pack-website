@@ -83,7 +83,7 @@ export function QuoteForm({ prefillProduct = '', studioSpec = '', compact = fals
     return (
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="card flex min-h-[420px] flex-col items-center justify-center p-10 text-center">
         <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', delay: .1 }} className="grid h-20 w-20 place-items-center rounded-full bg-brand text-white shadow-glow"><Check size={36} /></motion.span>
-        <h2 className="mt-8 font-display text-3xl font-semibold tracking-tight">Brief received.</h2>
+        <h2 className="mt-8 font-display text-3xl font-semibold tracking-tight">Brief received</h2>
         <p className="lead mt-3 max-w-md">{message}</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link href="/products" className="btn-light">Keep browsing</Link>

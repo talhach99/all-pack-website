@@ -7,7 +7,7 @@ export type Industry = {
 export const industries: Industry[] = [
   {
     slug: 'e-commerce', name: 'E-commerce', short: 'Mailers that survive the courier and delight on arrival.',
-    headline: 'Packaging that survives the courier and makes the unboxing.',
+    headline: 'Packaging that survives the courier and makes the unboxing',
     intro: 'Online orders get one chance to make a first impression, and it happens on a doorstep. We build mailers and shippers that protect in transit and feel like part of the brand when they are opened.',
     needs: [
       { t: 'Right-sized to cut damage', d: 'Boxes sized around your product move less in transit and use less void fill.' },
@@ -19,7 +19,7 @@ export const industries: Industry[] = [
   },
   {
     slug: 'restaurants', name: 'Restaurants', short: 'Pizza, burger and takeaway packs that travel well.',
-    headline: 'Takeaway packaging that arrives the way it left the kitchen.',
+    headline: 'Takeaway packaging that arrives the way it left the kitchen',
     intro: 'Delivery and takeaway put your food in someone else’s hands. The right board, coating and closure keep it hot, intact and recognisably yours from the pass to the table.',
     needs: [
       { t: 'Food-appropriate materials', d: 'Tell us what goes inside and we recommend a suitable board and coating, subject to your specification.' },
@@ -31,7 +31,7 @@ export const industries: Industry[] = [
   },
   {
     slug: 'bakeries', name: 'Bakeries', short: 'Cake and pastry boxes worthy of what is inside.',
-    headline: 'Boxes as carefully made as what goes inside them.',
+    headline: 'Boxes as carefully made as what goes inside them',
     intro: 'Cakes, pastries and celebration orders deserve packaging that protects delicate decoration and looks good on the counter, in the car and on the table.',
     needs: [
       { t: 'Windows that sell', d: 'Window cake boxes let the product do the talking while keeping it covered.' },
@@ -43,7 +43,7 @@ export const industries: Industry[] = [
   },
   {
     slug: 'cafes', name: 'Cafés', short: 'Cups, sleeves and bags carrying your brand down the street.',
-    headline: 'Cups, sleeves and bags that carry your café down the street.',
+    headline: 'Cups, sleeves and bags that carry your café down the street',
     intro: 'A branded cup is the most-seen piece of packaging a café owns. We print cups, sleeves, coffee pouches and carry bags that make every order a little advertisement.',
     needs: [
       { t: 'Printed cups and sleeves', d: 'Cupstock and kraft sleeves printed in your colours, subject to specification.' },
@@ -55,7 +55,7 @@ export const industries: Industry[] = [
   },
   {
     slug: 'beauty', name: 'Beauty & Personal Care', short: 'Cartons and rigid boxes for shelf-ready cosmetics.',
-    headline: 'Shelf-ready cartons for products people choose with their eyes.',
+    headline: 'Shelf-ready cartons for products people choose with their eyes',
     intro: 'In beauty, the carton is part of the product. We produce folding cartons, rigid gift sets and labels with the print quality and finishes that belong on a shelf.',
     needs: [
       { t: 'Finishes that feel premium', d: 'Foil, soft-touch and spot effects on cartons and rigid boxes.' },
@@ -67,7 +67,7 @@ export const industries: Industry[] = [
   },
   {
     slug: 'pharmaceutical', name: 'Pharmaceutical', short: 'Cartons, labels and shippers printed to approved artwork.',
-    headline: 'Cartons and labels printed to your approved artwork and specification.',
+    headline: 'Cartons and labels printed to your approved artwork and specification',
     intro: 'Healthcare packaging has to be right before it can be beautiful. We print cartons, labels and outer shippers to the artwork and specification you approve, and confirm every detail before production.',
     needs: [
       { t: 'Artwork-led production', d: 'We print exactly what you approve, with a clear proof and specification before anything runs.' },
@@ -79,7 +79,7 @@ export const industries: Industry[] = [
   },
   {
     slug: 'fashion', name: 'Fashion & Footwear', short: 'Shoe boxes, bags and tissue for a boutique feel.',
-    headline: 'A boutique feel, from the shoe box to the shopping bag.',
+    headline: 'A boutique feel, from the shoe box to the shopping bag',
     intro: 'Fashion customers notice the details. Two-piece shoe boxes, printed tissue, handled bags and mailers that make online orders feel like an in-store purchase.',
     needs: [
       { t: 'The boutique moment', d: 'Rigid and two-piece boxes with printed tissue and seal stickers.' },
@@ -91,7 +91,7 @@ export const industries: Industry[] = [
   },
   {
     slug: 'jewellery', name: 'Jewellery', short: 'Small-format presentation boxes with real presence.',
-    headline: 'Small boxes with the presence of a much bigger one.',
+    headline: 'Small boxes with the presence of a much bigger one',
     intro: 'Jewellery packaging is opened slowly and kept for years. We make presentation boxes, inserts and outer boxes that are as considered as the piece inside.',
     needs: [
       { t: 'Presentation inserts', d: 'Cushions, slots and flocked inserts that hold rings, earrings and pendants.' },
@@ -103,7 +103,7 @@ export const industries: Industry[] = [
   },
   {
     slug: 'agriculture', name: 'Agriculture & Produce', short: 'Vented produce cartons built for the supply chain.',
-    headline: 'Produce cartons built for the field, the truck and the shelf.',
+    headline: 'Produce cartons built for the field, the truck and the shelf',
     intro: 'Fresh produce needs packaging that breathes, stacks and survives the supply chain. We make vented trays, cartons and heavy-duty shippers printed with your mark.',
     needs: [
       { t: 'Strength where it counts', d: 'Board grades chosen for stacking, humidity and the distance travelled.' },

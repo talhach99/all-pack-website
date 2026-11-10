@@ -23,9 +23,9 @@ export function GalleryGrid() {
       <div className="grid auto-rows-[260px] grid-flow-dense gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {products.map((x, i) => (
           <motion.button key={x.slug} type="button" onClick={() => setSel(i)} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: .6, delay: (i % 4) * .05 }}
-            className={`group relative overflow-hidden rounded-[18px] bg-paper-deep text-left ${spans[i % spans.length]}`} aria-label={`View ${x.name}`}>
-            <img src={productThumb(x)} srcSet={`${productThumb(x)} 800w, ${productImage(x)} 1600w`} sizes="(min-width:1024px) 50vw, 100vw" alt={x.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-            <span className="absolute inset-x-3 bottom-3 flex translate-y-2 items-center justify-between rounded-[14px] bg-paper/90 px-4 py-3 opacity-0 shadow-card backdrop-blur transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:opacity-100">
+            className={`group relative overflow-hidden rounded-2xl bg-paper-deep text-left ${spans[i % spans.length]}`} aria-label={`View ${x.name}`}>
+            <img src={productThumb(x)} srcSet={`${productThumb(x)} 800w, ${productImage(x)} 1600w`} sizes="(min-width:1024px) 50vw, 100vw" alt={x.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-1000" />
+            <span className="absolute inset-x-3 bottom-3 flex translate-y-2 items-center justify-between rounded-xl bg-paper/90 px-4 py-3 opacity-0 shadow-card backdrop-blur transition-colors duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:opacity-100">
               <span className="text-sm font-semibold">{x.name}</span><ArrowUpRight size={16} />
             </span>
           </motion.button>

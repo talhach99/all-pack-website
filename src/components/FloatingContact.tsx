@@ -1,9 +1,8 @@
 'use client';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Phone } from 'lucide-react';
-import { phoneLink, whatsappLink } from '@/lib/company';
+import { Mail, Phone } from 'lucide-react';
+import { emailLink, phoneLink, whatsappLink } from '@/lib/company';
 
 export function WhatsAppIcon({ size = 22 }: { size?: number }) {
   return (
@@ -29,16 +28,16 @@ export function FloatingContact() {
     <>
       <a
         href={wa} target="_blank" rel="noopener noreferrer" aria-label="Chat with ALL PACK on WhatsApp"
-        className="fixed bottom-6 right-6 z-40 hidden h-14 items-center gap-2.5 rounded-full bg-[#1F9D55] pl-4 pr-5 text-white shadow-[0_18px_40px_-14px_rgba(31,157,85,.75)] transition-transform duration-300 hover:-translate-y-0.5 sm:flex"
+        className={`fixed bottom-6 right-6 z-40 hidden h-12 items-center gap-2 rounded-full bg-[#1F8F4E] pl-4 pr-5 text-white shadow-lift transition-[background-color,opacity] duration-200 hover:bg-[#1A7A43] sm:flex ${visible ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
       >
-        <WhatsAppIcon />
-        <span className="whitespace-nowrap text-sm font-semibold">WhatsApp us</span>
+        <WhatsAppIcon size={20} />
+        <span className="whitespace-nowrap text-sm font-medium">WhatsApp us</span>
       </a>
-      <div className={`fixed inset-x-0 bottom-0 z-40 border-t border-line bg-paper/90 p-3 backdrop-blur-xl transition-transform duration-300 sm:hidden ${visible && path !== '/quote' ? 'translate-y-0' : 'translate-y-full'}`} style={{ paddingBottom: 'max(.75rem, env(safe-area-inset-bottom))' }}>
+      <div className={`fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white p-3 transition-transform duration-300 ease-out sm:hidden ${visible && path !== '/quote' ? 'translate-y-0' : 'translate-y-full'}`} style={{ paddingBottom: 'max(.75rem, env(safe-area-inset-bottom))' }}>
         <div className="grid grid-cols-[auto_auto_1fr] gap-2">
-          {call && <a href={call} aria-label="Call ALL PACK" className="grid h-12 w-12 place-items-center rounded-full border border-line"><Phone size={19} /></a>}
-          <a href={wa} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp ALL PACK" className="grid h-12 w-12 place-items-center rounded-full bg-[#1F9D55] text-white"><WhatsAppIcon size={20} /></a>
-          <Link href="/quote" className="btn-dark">Get a free quote</Link>
+          {call && <a href={call} aria-label="Call ALL PACK" className="grid h-12 w-12 place-items-center rounded-[10px] border border-line text-ink"><Phone size={18} strokeWidth={1.5} /></a>}
+          <a href={emailLink()} aria-label="Email ALL PACK" className="grid h-12 w-12 place-items-center rounded-[10px] border border-line text-ink"><Mail size={18} strokeWidth={1.5} /></a>
+          <a href={wa} target="_blank" rel="noopener noreferrer" className="btn-dark"><WhatsAppIcon size={18} /> Get a quote</a>
         </div>
       </div>
     </>
