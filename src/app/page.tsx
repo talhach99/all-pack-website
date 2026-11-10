@@ -112,45 +112,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2 · Two ways to order */}
-      <section className={white}>
-        <div className="container-x">
-          <SectionHead kicker="Two ways to order" title="Ready today, or made for you" />
-          <div className="grid gap-6 lg:grid-cols-2">
-            {[
-              { t: 'Ready-to-ship stock', d: 'Plain boxes and bags in popular sizes, delivered across Pakistan. Ideal for quick orders and small runs.', cta: 'Shop stock packaging', href: '/products', ext: false, image: 'stock-boxes', alt: 'Stacks of plain corrugated boxes and kraft pouches' },
-              { t: 'Custom printed', d: 'Your size, your artwork, your finish. A clear quote and approved artwork before production starts.', cta: 'Start a custom quote', href: quote, ext: true, image: 'custom-wedding-box', alt: 'Full-colour printed wedding gift box made by ALL PACK' },
-            ].map(o => (
-              <div key={o.t} className="grid overflow-hidden rounded-2xl border border-line bg-mist sm:grid-cols-2">
-                <div className="flex flex-col p-6 sm:p-8">
-                  <h3 className="text-2xl font-medium">{o.t}</h3>
-                  <p className="mt-3 flex-1 text-[15px] leading-relaxed text-secondary">{o.d}</p>
-                  <a href={o.href} {...(o.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="group mt-6 inline-flex items-center gap-2 text-[15px] font-medium text-brand">{o.cta} <ArrowRight size={16} strokeWidth={1.5} className="transition-transform duration-150 group-hover:translate-x-0.5" /></a>
-                </div>
-                <img src={img(o.image)} alt={o.alt} loading="lazy" className="h-64 w-full object-cover sm:h-full" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6 · Why ALL PACK */}
-      <section className={mist}>
-        <div className="container-x">
-          <SectionHead kicker="Why ALL PACK" title="One partner, from carton to sticker" />
-          <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-            {why.map(w => (
-              <div key={w.t} className="border-t border-ink/10 pt-6">
-                <w.icon size={18} strokeWidth={1.5} className="text-muted" aria-hidden="true" />
-                <h3 className="mt-4 text-[17px] font-medium">{w.t}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-secondary">{w.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 7 · Our work: the one dark band, where the printed colour carries the page */}
+      {/* 4 · Our work: the one dark band, where the printed colour carries the page */}
       <section className="section bg-ink text-white">
         <div className="container-x">
           <SectionHead kicker="Our work" title="Recent packaging we've made" action={{ text: 'See the gallery', href: '/gallery' }} light />
@@ -174,29 +136,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8 · Process */}
-      <section className={white} id="how-it-works">
-        <div className="container-x">
-          <SectionHead kicker="Process" title="From brief to box in four steps" />
-          <ol className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-            {steps.map((s, i) => (
-              <li key={s.t} className="border-t border-ink/10 pt-6">
-                <span className="meta tabular-nums">0{i + 1}</span>
-                <h3 className="mt-4 text-[17px] font-medium">{s.t}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-secondary">{s.d}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* 9 · Finishes */}
-      <section className={mist}>
+      {/* 5 · Finishes */}
+      <section className={white}>
         <div className="container-x">
           <SectionHead kicker="Finishes" title="Print and finishing options" />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {finishes.map(f => (
-              <div key={f.t} className="overflow-hidden rounded-2xl border border-line bg-white">
+              <div key={f.t} className="overflow-hidden rounded-2xl border border-line bg-mist">
                 <img src={img(f.image)} alt={`${f.t} finish`} loading="lazy" className="aspect-[3/2] w-full object-cover" />
                 <div className="p-5"><h3 className="text-[17px] font-medium">{f.t}</h3><p className="mt-2 text-[14px] leading-relaxed text-secondary">{f.d}</p></div>
               </div>
@@ -205,14 +151,71 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 11 · FAQ */}
+      {/* 6 · How we work: why ALL PACK and the four steps, side by side */}
+      <section className={mist} id="how-it-works">
+        <div className="container-x">
+          <SectionHead kicker="How we work" title="One partner, from brief to box" />
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <p className="text-[13px] font-medium text-muted">Why ALL PACK</p>
+              <div className="mt-6 grid gap-x-8 gap-y-8 sm:grid-cols-2">
+                {why.map(w => (
+                  <div key={w.t} className="border-t border-ink/10 pt-5">
+                    <w.icon size={18} strokeWidth={1.5} className="text-muted" aria-hidden="true" />
+                    <h3 className="mt-3 text-[17px] font-medium">{w.t}</h3>
+                    <p className="mt-2 text-[15px] leading-relaxed text-secondary">{w.d}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-2xl border border-line bg-white p-6 sm:p-8">
+              <p className="text-[13px] font-medium text-muted">Four steps to your order</p>
+              <ol className="mt-4">
+                {steps.map((s, i) => (
+                  <li key={s.t} className="grid grid-cols-[40px_1fr] gap-x-2 border-t border-line py-5 first:border-t-0">
+                    <span className="meta pt-1 tabular-nums">0{i + 1}</span>
+                    <span>
+                      <span className="block text-[17px] font-medium">{s.t}</span>
+                      <span className="mt-1 block text-[15px] leading-relaxed text-secondary">{s.d}</span>
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7 · Two ways to order */}
       <section className={white}>
+        <div className="container-x">
+          <SectionHead kicker="Two ways to order" title="Ready today, or made for you" />
+          <div className="grid gap-6 lg:grid-cols-2">
+            {[
+              { t: 'Ready-to-ship stock', d: 'Plain boxes and bags in popular sizes, delivered across Pakistan. Ideal for quick orders and small runs.', cta: 'Shop stock packaging', href: '/products', ext: false, image: img('stock-boxes'), alt: 'Stacks of plain corrugated boxes and kraft pouches' },
+              { t: 'Custom printed', d: 'Your size, your artwork, your finish. A clear quote and approved artwork before production starts.', cta: 'Start a custom quote', href: quote, ext: true, image: '/work/citi-queen-cake-mango.webp', alt: 'Citi Queen Cake Mango carton printed by ALL PACK' },
+            ].map(o => (
+              <div key={o.t} className="grid overflow-hidden rounded-2xl border border-line bg-mist sm:grid-cols-2">
+                <div className="flex flex-col p-6 sm:p-8">
+                  <h3 className="text-2xl font-medium">{o.t}</h3>
+                  <p className="mt-3 flex-1 text-[15px] leading-relaxed text-secondary">{o.d}</p>
+                  <a href={o.href} {...(o.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="group mt-6 inline-flex items-center gap-2 text-[15px] font-medium text-brand">{o.cta} <ArrowRight size={16} strokeWidth={1.5} className="transition-transform duration-150 group-hover:translate-x-0.5" /></a>
+                </div>
+                <img src={o.image} alt={o.alt} loading="lazy" className="h-64 w-full object-cover sm:h-full" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 8 · FAQ */}
+      <section className={mist}>
         <div className="container-x grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <Eyebrow>FAQ</Eyebrow>
             <h2 className="h-section mt-3">Questions, answered</h2>
             <p className="mt-4 max-w-md text-[17px] leading-relaxed text-secondary">The things most customers ask before their first order. Anything else, just ask the team.</p>
-            <div className="mt-8 max-w-md rounded-2xl border border-line bg-mist p-6">
+            <div className="mt-8 max-w-md rounded-2xl border border-line bg-white p-6">
               <p className="text-[17px] font-medium">Still have a question?</p>
               <p className="mt-1 text-[14px] text-secondary">Real people reply on WhatsApp, usually within the hour.</p>
               <div className="mt-5 flex flex-wrap gap-3">
@@ -225,8 +228,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 12 · Final CTA */}
-      <section className={mist}>
+      {/* 9 · Contact */}
+      <section className={white}>
         <div className="container-x">
           <div className="grid gap-12 lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:gap-20">
             <div>
@@ -243,7 +246,7 @@ export default function Home() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-2xl border border-line bg-white p-2">
+            <div className="rounded-2xl border border-line bg-mist p-2">
               <p className="px-4 pb-3 pt-4 text-[13px] font-medium text-muted">Talk to the team · replies within 24 hours</p>
               <div className="grid gap-2 sm:grid-cols-2">
                 {[
@@ -252,12 +255,12 @@ export default function Home() {
                   { icon: <Mail size={18} strokeWidth={1.5} />, label: 'Email', value: COMPANY.email, note: 'For artwork files', href: emailLink(), ext: false, mono: false },
                   { icon: <MapPin size={18} strokeWidth={1.5} />, label: 'Visit', value: 'Royal Park, Lakshmi Chowk, Lahore', note: 'Call ahead first', href: mapsLink, ext: true, mono: false },
                 ].map(c => (
-                  <a key={c.label} href={c.href} {...(c.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="group flex flex-col rounded-[10px] border border-line bg-mist p-4 transition-colors hover:border-ink/20">
+                  <a key={c.label} href={c.href} {...(c.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="group flex flex-col rounded-[10px] border border-line bg-white p-4 transition-colors hover:border-ink/20">
                     <span className="flex items-center justify-between text-muted">
                       <span className="flex items-center gap-2 text-[13px]">{c.icon}{c.label}</span>
                       <ArrowUpRight size={16} strokeWidth={1.5} className="transition-colors group-hover:text-ink" />
                     </span>
-                    <span className={`mt-4 break-all leading-snug text-ink ${c.mono ? 'font-mono text-[15px] tabular-nums' : 'text-[15px] font-medium'}`}>{c.value}</span>
+                    <span className={`mt-4 leading-snug text-ink ${c.label === 'Email' ? 'break-all' : ''} ${c.mono ? 'font-mono text-[15px] tabular-nums' : 'text-[15px] font-medium'}`}>{c.value}</span>
                     <span className="mt-1 text-[13px] text-muted">{c.note}</span>
                   </a>
                 ))}
