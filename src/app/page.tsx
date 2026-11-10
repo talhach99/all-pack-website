@@ -4,12 +4,10 @@ import Link from 'next/link';
 import { ArrowRight, ArrowUpRight, Check, Layers, Mail, MapPin, MessageCircle, Phone, Ruler } from 'lucide-react';
 import { FaqAccordion } from '@/components/FaqAccordion';
 import { Eyebrow, SectionHead } from '@/components/Section';
-import { AddToQuoteButton } from '@/components/AddToQuoteButton';
 import { WhatsAppIcon } from '@/components/FloatingContact';
 import { COMPANY, emailLink, mapsLink, phoneLink, quoteLink } from '@/lib/company';
 import { ClientLogos } from '@/components/ClientStrip';
 import { ClientWork } from '@/components/ClientWork';
-import { industries } from '@/data/industries';
 
 export const metadata: Metadata = {
   title: { absolute: 'ALL PACK — Custom Packaging & Printing in Lahore' },
@@ -18,24 +16,6 @@ export const metadata: Metadata = {
 };
 
 const img = (name: string) => `/images/home/${name}.webp`;
-
-const bestSellers = [
-  { slug: 'ecommerce-mailer-boxes', name: 'White mailer box', note: 'Clean unboxing for online brands', image: 'white-mailer-box' },
-  { slug: 'ecommerce-mailer-boxes', name: 'Kraft mailer box', note: 'Self-locking, eco look', image: 'kraft-mailer-box' },
-  { slug: 'corrugated-shipping-boxes', name: 'Shipping cartons', note: '3-ply and 5-ply for transit', image: 'shipping-cartons' },
-  { slug: 'pizza-boxes', name: 'Pizza boxes', note: 'Food-safe, stack and travel well', image: 'pizza-boxes' },
-];
-
-const styles = [
-  { slug: 'ecommerce-mailer-boxes', name: 'Mailer boxes', image: 'mailer-boxes' },
-  { slug: 'rigid-gift-boxes', name: 'Rigid gift boxes', image: 'rigid-drawer-box' },
-  { slug: 'corrugated-shipping-boxes', name: 'Shipping cartons', image: 'shipping-carton' },
-  { slug: 'folding-cartons', name: 'Folding cartons', image: 'folding-carton' },
-  { slug: 'takeaway-containers', name: 'Food boxes', image: 'food-boxes' },
-  { slug: 'cake-boxes', name: 'Bakery boxes', image: 'bakery-box' },
-  { slug: 'kraft-shopping-bags', name: 'Paper bags', image: 'paper-bag' },
-  { slug: 'labels-stickers', name: 'Labels and stickers', image: 'stickers' },
-];
 
 const work = [
   { t: 'Wedding gift box', d: 'Full-colour print · rigid board', image: 'custom-wedding-box', span: 'lg:col-span-2 lg:row-span-2' },
@@ -66,12 +46,6 @@ const finishes = [
   { t: 'Natural kraft', d: 'Earthy board that looks great with a one-colour print.', image: 'kraft-box' },
 ];
 
-const guides = [
-  { t: 'How to choose the right shipping box', image: 'guide-box-size', href: '/insights/choose-the-right-shipping-box', min: 4 },
-  { t: 'Kraft vs white cardboard: which fits your brand?', image: 'guide-corrugated', href: '/insights/kraft-vs-white-cardboard', min: 3 },
-  { t: 'A simple checklist before sending artwork', image: 'mailer-boxes', href: '/insights/prepare-packaging-artwork', min: 5 },
-];
-
 const heroWork = [
   { image: 'custom-wedding-box', label: 'Wedding gift box', alt: 'Full-colour paisley wedding gift box printed by ALL PACK' },
   { image: 'paper-bag', label: 'Printed paper bag', alt: 'Purple pattern-printed paper bag with rope handles made by ALL PACK' },
@@ -80,7 +54,6 @@ const heroWork = [
 
 export default function Home() {
   const quote = quoteLink();
-  const featured = industries.filter(i => ['e-commerce', 'restaurants', 'bakeries', 'beauty', 'pharmaceutical', 'agriculture'].includes(i.slug));
   const mist = 'section bg-mist';
   const white = 'section bg-white';
 
@@ -161,67 +134,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3 · Best sellers */}
-      <section className={mist}>
-        <div className="container-x">
-          <SectionHead kicker="Most ordered" title="Best sellers" action={{ text: 'View all products', href: '/products' }} />
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {bestSellers.map(p => (
-              <article key={p.name} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white">
-                <Link href={`/products/${p.slug}`} className="block aspect-[5/4] overflow-hidden bg-mist">
-                  <img src={img(p.image)} alt={p.name} loading="lazy" className="h-full w-full object-cover" />
-                </Link>
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="text-[17px] font-medium"><Link href={`/products/${p.slug}`} className="transition-colors hover:text-brand">{p.name}</Link></h3>
-                  <p className="mt-1 flex-1 text-[14px] text-secondary">{p.note}</p>
-                  <AddToQuoteButton slug={p.slug} className="btn-light btn-sm mt-5 w-full" />
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4 · Shop by box style */}
-      <section className={white}>
-        <div className="container-x">
-          <SectionHead kicker="Catalogue" title="Shop by box style" action={{ text: 'All 22 formats', href: '/products' }} />
-          <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 lg:grid-cols-4">
-            {styles.map(s => (
-              <Link key={s.name} href={`/products/${s.slug}`} className="group block">
-                <span className="block aspect-[1.05] overflow-hidden rounded-xl bg-mist">
-                  <img src={img(s.image)} alt={s.name} loading="lazy" className="h-full w-full object-cover" />
-                </span>
-                <span className="mt-3 flex items-center justify-between gap-2">
-                  <span className="text-[15px] font-medium text-ink transition-colors group-hover:text-brand">{s.name}</span>
-                  <ArrowRight size={16} strokeWidth={1.5} className="text-muted transition-[color,transform] duration-150 group-hover:translate-x-0.5 group-hover:text-brand" />
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5 · Industries */}
-      <section className={mist}>
-        <div className="container-x">
-          <SectionHead kicker="Industries" title="Built for how you sell" action={{ text: 'All industries', href: '/industries' }} />
-          <div className="grid overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3" style={{ gap: '1px' }}>
-            {featured.map(i => (
-              <Link key={i.slug} href={`/industries/${i.slug}`} className="group flex items-start justify-between gap-4 bg-white p-6 transition-colors hover:bg-mist">
-                <span>
-                  <span className="block text-[17px] font-medium text-ink">{i.name}</span>
-                  <span className="mt-1 block text-[14px] leading-relaxed text-secondary">{i.short}</span>
-                </span>
-                <ArrowRight size={16} strokeWidth={1.5} className="mt-1 shrink-0 text-muted transition-[color,transform] duration-150 group-hover:translate-x-0.5 group-hover:text-brand" />
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* 6 · Why ALL PACK */}
-      <section className={white}>
+      <section className={mist}>
         <div className="container-x">
           <SectionHead kicker="Why ALL PACK" title="One partner, from carton to sticker" />
           <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -291,30 +205,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 10 · Guides */}
-      <section className={white}>
-        <div className="container-x">
-          <SectionHead kicker="Guides" title="Packaging know-how" action={{ text: 'All guides', href: '/insights' }} />
-          <div className="grid gap-x-6 gap-y-10 md:grid-cols-3">
-            {guides.map(g => (
-              <Link key={g.t} href={g.href} className="group block">
-                <span className="block overflow-hidden rounded-xl bg-mist"><img src={img(g.image)} alt="" loading="lazy" className="aspect-[16/10] w-full object-cover" /></span>
-                <p className="meta mt-4">Guide · {g.min} min read</p>
-                <h3 className="mt-2 text-[17px] font-medium transition-colors group-hover:text-brand">{g.t}</h3>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* 11 · FAQ */}
-      <section className={mist}>
+      <section className={white}>
         <div className="container-x grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <Eyebrow>FAQ</Eyebrow>
             <h2 className="h-section mt-3">Questions, answered</h2>
             <p className="mt-4 max-w-md text-[17px] leading-relaxed text-secondary">The things most customers ask before their first order. Anything else, just ask the team.</p>
-            <div className="mt-8 max-w-md rounded-2xl border border-line bg-white p-6">
+            <div className="mt-8 max-w-md rounded-2xl border border-line bg-mist p-6">
               <p className="text-[17px] font-medium">Still have a question?</p>
               <p className="mt-1 text-[14px] text-secondary">Real people reply on WhatsApp, usually within the hour.</p>
               <div className="mt-5 flex flex-wrap gap-3">
@@ -328,7 +226,7 @@ export default function Home() {
       </section>
 
       {/* 12 · Final CTA */}
-      <section className={white}>
+      <section className={mist}>
         <div className="container-x">
           <div className="grid gap-12 lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:gap-20">
             <div>
@@ -345,16 +243,16 @@ export default function Home() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-2xl border border-line bg-mist p-2">
+            <div className="rounded-2xl border border-line bg-white p-2">
               <p className="px-4 pb-3 pt-4 text-[13px] font-medium text-muted">Talk to the team · replies within 24 hours</p>
               <div className="grid gap-2 sm:grid-cols-2">
                 {[
                   { icon: <WhatsAppIcon size={18} />, label: 'WhatsApp', value: COMPANY.phone, note: 'Fastest reply', href: quote, ext: true, mono: true },
                   { icon: <Phone size={18} strokeWidth={1.5} />, label: 'Call', value: COMPANY.phone, note: 'Mon to Sat', href: phoneLink() || '#', ext: false, mono: true },
                   { icon: <Mail size={18} strokeWidth={1.5} />, label: 'Email', value: COMPANY.email, note: 'For artwork files', href: emailLink(), ext: false, mono: false },
-                  { icon: <MapPin size={18} strokeWidth={1.5} />, label: 'Visit', value: 'Lakshmi Chowk, Lahore', note: 'Call ahead first', href: mapsLink, ext: true, mono: false },
+                  { icon: <MapPin size={18} strokeWidth={1.5} />, label: 'Visit', value: 'Royal Park, Lakshmi Chowk, Lahore', note: 'Call ahead first', href: mapsLink, ext: true, mono: false },
                 ].map(c => (
-                  <a key={c.label} href={c.href} {...(c.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="group flex flex-col rounded-[10px] border border-line bg-white p-4 transition-colors hover:border-ink/20">
+                  <a key={c.label} href={c.href} {...(c.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="group flex flex-col rounded-[10px] border border-line bg-mist p-4 transition-colors hover:border-ink/20">
                     <span className="flex items-center justify-between text-muted">
                       <span className="flex items-center gap-2 text-[13px]">{c.icon}{c.label}</span>
                       <ArrowUpRight size={16} strokeWidth={1.5} className="transition-colors group-hover:text-ink" />

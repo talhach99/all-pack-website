@@ -1,13 +1,20 @@
+/** Show Pakistani numbers in international form: 0321-8444590 or 923218444590 -> +92 321 8444590. */
+export function formatPhonePK(raw: string): string {
+  const d = raw.replace(/\D/g, '');
+  const local = /^0\d{10}$/.test(d) ? d.slice(1) : /^92\d{10}$/.test(d) ? d.slice(2) : '';
+  return local ? `+92 ${local.slice(0, 3)} ${local.slice(3)}` : raw.trim();
+}
+
 /** Brand, email and address from the ALL PACK letterhead; mobile number supplied by the owner. */
 export const COMPANY = {
   name: 'ALL PACK',
   tagline: 'The Packaging Experts',
   email: 'allpackprinters@gmail.com',
-  address: 'Office No. 33, Ali Arcade, 7 Royal Park, Lakshmi Chowk, Lahore, Pakistan',
-  street: 'Office No. 33, Ali Arcade, 7 Royal Park, Lakshmi Chowk',
+  address: 'Royal Park, Lakshmi Chowk, Lahore',
+  street: 'Royal Park, Lakshmi Chowk',
   city: 'Lahore',
   country: 'Pakistan',
-  phone: process.env.NEXT_PUBLIC_PHONE || '0321-8444590',
+  phone: formatPhonePK(process.env.NEXT_PUBLIC_PHONE || '0321-8444590'),
   whatsapp: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '923218444590').replace(/\D/g, ''),
   instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || '',
   facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || '',
@@ -30,6 +37,7 @@ export const CLIENTS: Client[] = [
   { name: 'National Hospital & Medical Centre', logo: '/clients/national-hospital.webp' },
   { name: 'Hoest', logo: '/clients/hoest.webp' },
   { name: 'Meatler', logo: '/clients/meatler.webp' },
+  { name: "Max's Chicken & Burgers", logo: '/clients/maxs.webp' },
 ];
 
 export const QUOTE_MESSAGE = 'Hello ALL PACK, I would like a quotation for custom packaging.';
