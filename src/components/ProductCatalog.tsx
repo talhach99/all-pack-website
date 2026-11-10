@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ArrowRight, Search, X } from 'lucide-react';
 import { categories, categorySlug, materialFilters, products, useFilters } from '@/lib/products';
 import { ProductCard } from './ProductCard';
+import { quoteLink } from '@/lib/company';
 
 export function ProductCatalog({ initialCategory = '' }: { initialCategory?: string }) {
   const [query, setQuery] = useState('');
@@ -37,7 +38,7 @@ export function ProductCatalog({ initialCategory = '' }: { initialCategory?: str
           <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 lg:flex-1 lg:pb-0 [scrollbar-width:none]" role="tablist" aria-label="Collections">
             {['', ...categories].map(c => (
               <button key={c || 'all'} role="tab" aria-selected={cat === c} onClick={() => setCat(c)}
-                className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all ${cat === c ? 'bg-ink text-white' : 'border border-line bg-white text-ink/75 hover:border-ink/30 hover:text-ink'}`}>
+                className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors ${cat === c ? 'bg-ink text-white' : 'border border-line bg-white text-ink/75 hover:border-ink/30 hover:text-ink'}`}>
                 {c || 'All'}
               </button>
             ))}
@@ -77,14 +78,14 @@ export function ProductCatalog({ initialCategory = '' }: { initialCategory?: str
         </AnimatePresence>
         {!filtered && (
           <motion.div layout key="custom-card">
-            <Link href="/quote" className="group flex h-full min-h-[320px] flex-col justify-between rounded-[14px] bg-ink p-8 text-white">
-              <span className="text-[12px] font-semibold uppercase tracking-[.16em] text-cyan">Custom</span>
+            <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="group flex h-full min-h-[320px] flex-col justify-between rounded-2xl bg-ink p-8 text-white">
+              <span className="text-[12px] font-semibold text-cyan">Custom</span>
               <span>
                 <span className="block text-2xl font-semibold leading-tight">Need a size or style that isn&apos;t listed?</span>
                 <span className="mt-3 block text-[15px] leading-relaxed text-cream/70">Send a photo, sketch or dimensions and we will make it for you.</span>
                 <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-[14px] font-semibold">Start a custom quote <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" /></span>
               </span>
-            </Link>
+            </a>
           </motion.div>
         )}
       </motion.div>

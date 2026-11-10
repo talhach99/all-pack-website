@@ -5,7 +5,9 @@ import { PageHero } from '@/components/PageHero';
 import { Photo } from '@/components/Photo';
 import { SectionHead } from '@/components/Section';
 import { industries } from '@/data/industries';
-import { CLIENTS } from '@/lib/company';
+import { quoteLink } from '@/lib/company';
+import { ClientStrip } from '@/components/ClientStrip';
+import { WhatsAppIcon } from '@/components/FloatingContact';
 
 export const metadata: Metadata = {
   title: 'Packaging by Industry',
@@ -23,8 +25,8 @@ const approach = [
 export default function IndustriesPage() {
   return (
     <main>
-      <PageHero kicker="Industries" title={<>Packaging built for the way you sell.</>} description="Every industry asks something different of its packaging. Pick yours to see what we recommend and why." image="ind_restaurants" imageAlt="Pizza boxes by ALL PACK">
-        <Link href="/quote" className="btn-dark">Get a free quote <ArrowRight size={17} /></Link>
+      <PageHero kicker="Industries" title={<>Packaging built for the way you sell</>} description="Every industry asks something different of its packaging. Pick yours to see what we recommend and why." image="ind_restaurants" imageAlt="Pizza boxes by ALL PACK">
+        <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="btn-dark"><WhatsAppIcon size={18} /> Get a quote on WhatsApp</a>
       </PageHero>
 
       <section className="section bg-white">
@@ -32,8 +34,8 @@ export default function IndustriesPage() {
           <SectionHead n={1} kicker="Who we pack for" title={`${industries.length} industries, one packaging partner.`} action={{ text: 'Browse all products', href: '/products' }} />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {industries.map((ind, i) => (
-              <Link key={ind.slug} href={`/industries/${ind.slug}`} className="group flex flex-col rounded-[14px] border border-line bg-paper-deep p-3 transition lift hover:border-brand/40 hover:bg-white hover:shadow-card">
-                <div className="aspect-[4/3] overflow-hidden rounded-xl bg-white"><Photo name={ind.image} alt={`Packaging for ${ind.name}`} sizes="(min-width: 1024px) 33vw, 50vw" className="transition-transform duration-700 group-hover:scale-[1.04]" /></div>
+              <Link key={ind.slug} href={`/industries/${ind.slug}`} className="group flex flex-col rounded-xl border border-line bg-paper-deep p-3 transition lift hover:border-brand/40 hover:bg-white hover:shadow-card">
+                <div className="aspect-[4/3] overflow-hidden rounded-xl bg-white"><Photo name={ind.image} alt={`Packaging for ${ind.name}`} sizes="(min-width: 1024px) 33vw, 50vw" className="" /></div>
                 <div className="flex flex-1 items-start justify-between gap-4 px-3 pb-3 pt-5">
                   <div>
                     <p className="text-[12px] font-semibold text-brand">{String(i + 1).padStart(2, '0')}</p>
@@ -48,9 +50,9 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      <section className="section grain-dark bg-ink text-white">
+      <section className="section bg-ink text-white">
         <div className="container-x">
-          <SectionHead n={2} kicker="Our approach" title="How we tailor packaging to your industry." light />
+          <SectionHead n={2} kicker="Our approach" title="How we tailor packaging to your industry" light />
           <ol className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {approach.map((a, i) => (
               <li key={a.t} className="border-t border-white/10 pt-6">
@@ -60,9 +62,8 @@ export default function IndustriesPage() {
               </li>
             ))}
           </ol>
-          <div className="mt-16 flex flex-wrap items-center gap-x-12 gap-y-3 border-t border-white/10 pt-8">
-            <span className="text-[12px] font-semibold uppercase tracking-[.16em] text-cyan">Trusted by</span>
-            {CLIENTS.map(c => <span key={c} className="text-lg font-semibold text-white/55">{c}</span>)}
+          <div className="mt-16 border-t border-white/10 pt-8">
+            <ClientStrip onDark />
           </div>
         </div>
       </section>

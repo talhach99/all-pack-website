@@ -16,9 +16,7 @@ export default async function QuotePage({ searchParams }: { searchParams: Promis
   const slug = (Array.isArray(product) ? product[0] : product || '').slice(0, 80);
   const call = phoneLink();
   return (
-    <main className="grain-dark relative isolate overflow-hidden bg-ink pb-28 pt-14 text-white sm:pt-20">
-      <div className="absolute inset-0 -z-10 opacity-[.14] [background-image:radial-gradient(#8FA6FF_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(60%_70%_at_80%_30%,#000,transparent)]" aria-hidden="true" />
-      <div className="absolute -left-40 top-0 -z-10 h-[520px] w-[520px] rounded-full bg-brand/35 blur-[140px]" aria-hidden="true" />
+    <main className="relative isolate overflow-hidden bg-ink pb-28 pt-14 text-white sm:pt-20">
       <div className="container-x relative grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-16">
         <Reveal className="lg:sticky lg:top-32 lg:self-start">
           <Eyebrow light>Free quote</Eyebrow>
@@ -36,7 +34,7 @@ export default async function QuotePage({ searchParams }: { searchParams: Promis
               </li>
             ))}
           </ul>
-          <div className="mt-10 rounded-[14px] border border-white/10 bg-white/[.05] p-6">
+          <div className="mt-10 rounded-xl border border-white/10 bg-white/[.05] p-6">
             <p className="text-sm text-cream/60">Prefer to talk?</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {call && <a href={call} className="btn btn-sm border border-white/30 text-white hover:border-white"><Phone size={15} /> {COMPANY.phone}</a>}
@@ -44,7 +42,7 @@ export default async function QuotePage({ searchParams }: { searchParams: Promis
             </div>
           </div>
         </Reveal>
-        <Reveal delay={.1}><div className="rounded-[14px] bg-white p-2 text-ink sm:p-3"><QuoteForm prefillProduct={slug} /></div></Reveal>
+        <Reveal delay={.1}><div className="rounded-xl bg-white p-2 text-ink sm:p-3"><QuoteForm prefillProduct={slug} /></div></Reveal>
       </div>
     </main>
   );

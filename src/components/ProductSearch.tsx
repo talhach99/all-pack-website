@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useMemo, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
 import { products, productThumb } from '@/lib/products';
+import { quoteLink } from '@/lib/company';
 
 /** Header search: instant results across all products. */
 export function ProductSearch({ className = '' }: { className?: string }) {
@@ -28,7 +29,7 @@ export function ProductSearch({ className = '' }: { className?: string }) {
               <img src={productThumb(p)} alt="" className="h-11 w-14 rounded-md object-cover" />
               <span><span className="block text-sm font-semibold">{p.name}</span><span className="block text-xs text-muted">{p.category}</span></span>
             </Link>
-          )) : <p className="px-4 py-4 text-sm text-muted">No match. <Link href="/quote" className="font-semibold text-brand">Ask us for a custom pack →</Link></p>}
+          )) : <p className="px-4 py-4 text-sm text-muted">No match. <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="font-medium text-brand">Ask us for a custom pack</a></p>}
         </div>
       )}
     </div>

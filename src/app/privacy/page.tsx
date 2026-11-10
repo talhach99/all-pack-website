@@ -15,7 +15,7 @@ const sections = [
 export default function PrivacyPage() {
   return (
     <main>
-      <PageHero kicker="Privacy" title={<>Your data, <span className="accent">handled simply.</span></>} description="A short, plain-language explanation of what happens to the information you share with us." />
+      <PageHero kicker="Privacy" title={<>Your data, <span className="accent">handled simply</span></>} description="A short, plain-language explanation of what happens to the information you share with us." />
       <section className="container-x pb-28 pt-16">
         <div className="mx-auto max-w-3xl divide-y divide-line border-y border-line">
           {sections.map(([h, b]) => (

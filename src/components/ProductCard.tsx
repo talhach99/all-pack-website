@@ -9,9 +9,9 @@ export function ProductCard({ product, priority = false, index }: { product: Pro
   const inquiry = useInquiry();
   const selected = inquiry.has(product.slug);
   return (
-    <article className="group relative flex h-full flex-col rounded-[14px] border border-line bg-paper-deep p-3 transition lift hover:border-brand/40 hover:bg-white hover:shadow-card">
+    <article className="group relative flex h-full flex-col rounded-xl border border-line bg-paper-deep p-3 transition lift hover:border-brand/40 hover:bg-white hover:shadow-card">
       <Link href={`/products/${product.slug}`} className="relative block overflow-hidden rounded-xl bg-white" aria-label={product.name} tabIndex={-1}>
-        <ProductImage product={product} priority={priority} className="aspect-[5/4]" imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.04]" sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+        <ProductImage product={product} priority={priority} className="aspect-[5/4]" imgClassName=" ease-out" sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
       </Link>
       <div className="flex flex-1 flex-col px-3 pb-3 pt-5">
         <p className="text-[12px] font-semibold text-brand">{index !== undefined ? `${String(index + 1).padStart(2, '0')} · ` : ''}{product.category}</p>
