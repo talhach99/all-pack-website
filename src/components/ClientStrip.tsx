@@ -16,12 +16,12 @@ function Logo({ c, onDark }: { c: Client; onDark: boolean }) {
   );
 }
 
-/** One row that slides right to left forever. Content is repeated so the loop has no gap. */
-function Row({ items, onDark, duration, offset = 0 }: { items: Client[]; onDark: boolean; duration: number; offset?: number }) {
+/** One row that slides forever, right to left (or left to right with `reverse`). Content is repeated so the loop has no gap. */
+function Row({ items, onDark, duration, offset = 0, reverse = false }: { items: Client[]; onDark: boolean; duration: number; offset?: number; reverse?: boolean }) {
   const set = [...items, ...items]; // one "half" is wider than any screen
   return (
     <div className="logo-marquee overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_6%,#000_94%,transparent)]">
-      <div className="logo-track flex w-max" style={{ animationDuration: `${duration}s`, animationDelay: `${-offset}s` }}>
+      <div className="logo-track flex w-max" style={{ animationDuration: `${duration}s`, animationDelay: `${-offset}s`, animationDirection: reverse ? 'reverse' : 'normal' }}>
         {[0, 1].map(half => (
           <ul key={half} aria-hidden={half === 1 || undefined} className="flex shrink-0 gap-4 pr-4">
             {set.map((c, i) => <Logo key={`${c.name}-${i}`} c={c} onDark={onDark} />)}
@@ -32,13 +32,13 @@ function Row({ items, onDark, duration, offset = 0 }: { items: Client[]; onDark:
   );
 }
 
-/** Client logos in two rows sliding right to left. Hover pauses; reduced-motion users see them still. */
+/** Client logos in two rows: top slides right to left, bottom left to right. Hover pauses; reduced-motion users see them still. */
 export function ClientLogos({ onDark = false, className = '' }: { onDark?: boolean; align?: 'center' | 'start'; className?: string }) {
   const mid = Math.ceil(CLIENTS.length / 2);
   return (
     <div className={`grid gap-4 ${className}`}>
       <Row items={CLIENTS.slice(0, mid)} onDark={onDark} duration={40} />
-      <Row items={CLIENTS.slice(mid)} onDark={onDark} duration={40} offset={8} />
+      <Row items={CLIENTS.slice(mid)} onDark={onDark} duration={40} offset={8} reverse />
     </div>
   );
 }
