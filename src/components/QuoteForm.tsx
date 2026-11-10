@@ -82,8 +82,8 @@ export function QuoteForm({ prefillProduct = '', studioSpec = '', compact = fals
   if (status === 'success') {
     return (
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="card flex min-h-[420px] flex-col items-center justify-center p-10 text-center">
-        <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', delay: .1 }} className="grid h-20 w-20 place-items-center rounded-full bg-brand text-white shadow-glow"><Check size={36} /></motion.span>
-        <h2 className="mt-8 font-display text-3xl font-semibold tracking-tight">Brief received</h2>
+        <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: .3, ease: [.22, 1, .36, 1] }} className="grid h-16 w-16 place-items-center rounded-full bg-mist text-ink"><Check size={28} strokeWidth={1.5} /></motion.span>
+        <h2 className="mt-6 text-3xl font-medium">Brief received</h2>
         <p className="lead mt-3 max-w-md">{message}</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link href="/products" className="btn-light">Keep browsing</Link>
@@ -98,7 +98,7 @@ export function QuoteForm({ prefillProduct = '', studioSpec = '', compact = fals
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
       <fieldset>
-        <legend className="mb-5 flex items-center gap-3 font-display text-xl font-semibold tracking-tight"><span className="grid h-7 w-7 place-items-center rounded-full bg-ink text-xs text-white">1</span> What do you need?</legend>
+        <legend className="mb-5 flex items-baseline gap-3 text-[19px] font-medium"><span className="meta tabular-nums">01</span> What do you need?</legend>
         {selected.length > 0 || studioSpec ? (
           <div className="mb-5 flex flex-wrap gap-2">
             {selected.map(p => (
@@ -125,7 +125,7 @@ export function QuoteForm({ prefillProduct = '', studioSpec = '', compact = fals
       </fieldset>
 
       <fieldset className="mt-10">
-        <legend className="mb-5 flex items-center gap-3 font-display text-xl font-semibold tracking-tight"><span className="grid h-7 w-7 place-items-center rounded-full bg-ink text-xs text-white">2</span> Tell us about the project</legend>
+        <legend className="mb-5 flex items-baseline gap-3 text-[19px] font-medium"><span className="meta tabular-nums">02</span> Tell us about the project</legend>
         <label className="block"><span className="label">Project details *</span>
           <textarea name="notes" className="input min-h-[140px] resize-y" minLength={5} maxLength={5000} required placeholder="What are you packing? Any material, print, finish or deadline in mind?" />
         </label>
@@ -136,13 +136,13 @@ export function QuoteForm({ prefillProduct = '', studioSpec = '', compact = fals
         >
           {file ? (
             <div className="flex items-center gap-3 text-sm">
-              <FileUp size={18} className="text-brand" /><span className="font-medium">{file.name}</span><span className="text-muted">{(file.size / 1024 / 1024).toFixed(1)} MB</span>
+              <FileUp size={18} strokeWidth={1.5} className="text-muted" /><span className="font-medium">{file.name}</span><span className="text-muted">{(file.size / 1024 / 1024).toFixed(1)} MB</span>
               <button type="button" onClick={() => { setFile(null); if (fileRef.current) fileRef.current.value = ''; }} className="grid h-7 w-7 place-items-center rounded-full hover:bg-soft" aria-label="Remove file"><X size={14} /></button>
             </div>
           ) : (
             <>
               <FileUp size={22} className="text-muted" />
-              <p className="text-sm"><button type="button" className="font-semibold text-brand underline-offset-4 hover:underline" onClick={() => fileRef.current?.click()}>Upload artwork or a reference photo</button> <span className="text-muted">or drag it here</span></p>
+              <p className="text-sm"><button type="button" className="font-medium text-brand underline-offset-4 hover:underline" onClick={() => fileRef.current?.click()}>Upload artwork or a reference photo</button> <span className="text-muted">or drag it here</span></p>
               <p className="text-xs text-muted">PNG, JPG or PDF · up to 4 MB · optional</p>
             </>
           )}
@@ -152,11 +152,11 @@ export function QuoteForm({ prefillProduct = '', studioSpec = '', compact = fals
       </fieldset>
 
       <fieldset className="mt-10">
-        <legend className="mb-5 flex items-center gap-3 font-display text-xl font-semibold tracking-tight"><span className="grid h-7 w-7 place-items-center rounded-full bg-ink text-xs text-white">3</span> Your details</legend>
+        <legend className="mb-5 flex items-baseline gap-3 text-[19px] font-medium"><span className="meta tabular-nums">03</span> Your details</legend>
         <div className="grid gap-5 sm:grid-cols-2">
           <label><span className="label">Name *</span><input className="input" required minLength={2} maxLength={120} name="name" autoComplete="name" /></label>
           <label><span className="label">Email *</span><input className="input" required name="email" type="email" maxLength={200} autoComplete="email" placeholder="you@company.com" /></label>
-          <label><span className="label">Phone / WhatsApp</span><input className="input" name="phone" type="tel" maxLength={50} autoComplete="tel" placeholder="03xx xxxxxxx" /></label>
+          <label><span className="label">Phone / WhatsApp</span><input className="input" name="phone" type="tel" maxLength={50} autoComplete="tel" placeholder="+92 3xx xxxxxxx" /></label>
           <label><span className="label">Company / brand</span><input className="input" name="company" maxLength={150} autoComplete="organization" /></label>
         </div>
       </fieldset>

@@ -19,7 +19,7 @@ export default function PrivacyPage() {
       <section className="container-x pb-28 pt-16">
         <div className="mx-auto max-w-3xl divide-y divide-line border-y border-line">
           {sections.map(([h, b]) => (
-            <div key={h} className="grid gap-3 py-8 sm:grid-cols-[200px_1fr]"><h2 className="font-display text-lg font-semibold">{h}</h2><p className="leading-relaxed text-muted">{b}</p></div>
+            <div key={h} className="grid gap-3 py-8 sm:grid-cols-[200px_1fr]"><h2 className="text-[17px] font-medium">{h}</h2><p className="leading-relaxed text-secondary">{b}</p></div>
           ))}
         </div>
         <p className="mx-auto mt-8 max-w-3xl text-sm text-muted">Last updated October 2026.</p>

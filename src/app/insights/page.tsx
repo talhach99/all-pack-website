@@ -21,9 +21,9 @@ export default function InsightsPage() {
                 <div className="aspect-[4/3] overflow-hidden"><Photo name={covers[i % covers.length]} alt="" sizes="(min-width: 768px) 33vw, 100vw" className="" /></div>
                 <div className="flex flex-1 flex-col p-7">
                   <p className="text-xs font-medium text-muted">{a.category} · {a.readMinutes} min read</p>
-                  <h2 className="mt-3 text-xl font-semibold leading-snug">{a.title}</h2>
+                  <h2 className="mt-2 text-[18px] font-medium leading-snug">{a.title}</h2>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{a.excerpt}</p>
-                  <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold">Read article <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5" /></span>
+                  <span className="mt-6 inline-flex items-center gap-1 text-[14px] font-medium">Read article <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5" /></span>
                 </div>
               </Link>
             </Reveal>
