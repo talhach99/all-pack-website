@@ -125,7 +125,7 @@ export default function Home() {
               <img src={unsplash(STOCK.cleanPlant, 1400)} alt="A pallet of printed cartons ready for dispatch in a clean, modern plant" loading="lazy" className="aspect-[4/3] w-full object-cover" />
             </div>
             <div>
-              <p className="text-[18px] leading-[1.7] text-secondary">ALL PACK prints and finishes packaging in its own plant in Lahore. Folding cartons, labels, rigid boxes and corrugated shippers run on Heidelberg, GTO 52 and Solna offset presses, then go through die-cutting, lamination, foil and gluing under the same roof.</p>
+              <p className="text-[18px] leading-[1.7] text-secondary">ALL PACK prints and finishes packaging in its own plant in Lahore. Folding cartons, labels, rigid boxes and corrugated shippers are printed on Heidelberg offset presses, then go through die-cutting, lamination, foil and gluing under the same roof.</p>
               <p className="mt-5 text-[18px] leading-[1.7] text-secondary">Pharmaceutical companies, bakeries, restaurants and cosmetic brands across Pakistan rely on us for packaging printed to approved artwork, in consistent colour, run after run. We are ISO 9001 and Halal certified.</p>
               <Link href="/about" className="btn-dark mt-8">Read more about us <ArrowRight size={16} /></Link>
             </div>

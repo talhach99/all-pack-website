@@ -28,7 +28,7 @@ export const PAGE_SEO = {
   about: {
     absolute: true,
     title: 'About ALL PACK | 25+ Years of Packaging in Lahore',
-    description: 'ALL PACK has printed packaging in Lahore for more than 25 years, on Heidelberg, GTO 52 and Solna presses. ISO 9001 and Halal certified. See how we work.',
+    description: 'ALL PACK has printed packaging in Lahore for more than 25 years, on Heidelberg offset presses with in-house finishing. ISO 9001 and Halal certified.',
   },
   contact: {
     absolute: true,
