@@ -41,7 +41,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const related = [...products.filter(x => x.category === p.category && x.slug !== p.slug), ...products.filter(x => x.category !== p.category && x.featured)].slice(0, 3);
   const inds = industries.filter(i => i.products.includes(p.slug));
   const fin = finishShot(p);
-  const gallery = [
+  const gallery = p.gallery ? p.gallery.map((name, k) => ({ name, alt: `${p.name}${k ? ` (photo ${k + 1})` : ''}` })) : [
     { name: p.model, alt: `${p.name} by ALL PACK`, label: 'Sample' },
     { name: fin.name, alt: fin.label, label: fin.label },
     ...inds.slice(0, 2).map(i => ({ name: i.image, alt: `${p.name} in a ${i.name.toLowerCase()} setting`, label: `For ${i.name}` })),
@@ -101,6 +101,23 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </Reveal>
         </div>
       </div>
+
+      {p.features && (
+        <section className="section border-t border-line bg-white">
+          <div className="container-x">
+            <SectionHead kicker="Why it works" title={`What makes our ${p.name.split(' &')[0].toLowerCase()} better`} />
+            <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+              {p.features.map(([t, d]) => (
+                <div key={t} className="border-t border-ink/10 pt-6">
+                  <Check size={18} strokeWidth={1.75} className="text-brand" aria-hidden="true" />
+                  <h3 className="mt-4 text-[17px] font-medium">{t}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-secondary">{d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="section bg-mist">
         <div className="container-x">

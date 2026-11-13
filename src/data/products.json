@@ -2,7 +2,7 @@
   {
     "slug": "corrugated-shipping-boxes",
     "name": "Corrugated Shipping Boxes",
-    "category": "Shipping & E-Commerce",
+    "category": "Shipping boxes",
     "description": "Dependable single-wall and double-wall boxes for transit and storage.",
     "fullDescription": "Dependable single-wall and double-wall boxes for transit and storage. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
@@ -32,7 +32,7 @@
   {
     "slug": "ecommerce-mailer-boxes",
     "name": "E-commerce Mailer Boxes",
-    "category": "Shipping & E-Commerce",
+    "category": "Shipping boxes",
     "description": "Smart self-locking mailers for a memorable unboxing experience.",
     "fullDescription": "Smart self-locking mailers for a memorable unboxing experience. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
@@ -60,11 +60,100 @@
     "featured": true
   },
   {
+    "slug": "fruit-produce-boxes",
+    "name": "Fruit & Produce Boxes",
+    "category": "Shipping boxes",
+    "description": "Vented corrugated cartons for fruit, vegetables and produce.",
+    "fullDescription": "Vented corrugated cartons for fruit, vegetables and produce. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
+    "materials": [
+      "Corrugated board",
+      "Kraft board"
+    ],
+    "sizes": [
+      "Produce-specific dimensions",
+      "Ventilation options"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Quoted per project",
+    "uses": [
+      "Agriculture",
+      "Logistics"
+    ],
+    "hue": "#DFE7B5",
+    "model": "produce",
+    "featured": false
+  },
+  {
+    "slug": "packaging-tape",
+    "name": "Plain & Branded Packaging Tape",
+    "category": "Shipping boxes",
+    "description": "Sealing tape for dispatch with optional branded design.",
+    "fullDescription": "Sealing tape for dispatch with optional branded design. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
+    "materials": [
+      "BOPP film",
+      "Adhesive"
+    ],
+    "sizes": [
+      "Width and length on request",
+      "Plain or printed"
+    ],
+    "customization": [
+      "Logo printing",
+      "Brand colours",
+      "Custom dimensions",
+      "Finish on request"
+    ],
+    "moq": "Quoted per project",
+    "uses": [
+      "Logistics",
+      "E-commerce"
+    ],
+    "hue": "#DFD8F4",
+    "model": "tape",
+    "featured": false
+  },
+  {
+    "slug": "folding-cartons",
+    "name": "Folding Cartons",
+    "category": "Cartons and gift boxes",
+    "description": "Printed tuck-end and crash-lock cartons for pharma, food, cosmetics and retail.",
+    "fullDescription": "Our core work: folding cartons printed four-colour offset on duplex or SBS board, then varnished or laminated, die-cut and glued in-house. Tuck-end, crash-lock and window styles, with foil, embossing or spot UV when the brand needs it. Send your dieline or product size and we will quote the board, finish and lead time.",
+    "materials": [
+      "Duplex board",
+      "SBS paperboard"
+    ],
+    "sizes": [
+      "Tuck-end, crash-lock and sleeve styles",
+      "Built to your dieline"
+    ],
+    "customization": [
+      "Four-colour offset print",
+      "Matte or gloss lamination",
+      "Spot UV and foil",
+      "Embossing",
+      "Window patching"
+    ],
+    "moq": "Quoted per project",
+    "uses": [
+      "Beauty",
+      "Retail",
+      "Pharmaceutical"
+    ],
+    "hue": "#DBE8F6",
+    "model": "carton",
+    "featured": false
+  },
+  {
     "slug": "rigid-gift-boxes",
-    "name": "Rigid & Magnetic Gift Boxes",
-    "category": "Premium & Retail",
-    "description": "Structured luxury boxes for gifts, accessories, and premium launches.",
-    "fullDescription": "Structured luxury boxes for gifts, accessories, and premium launches. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
+    "name": "Rigid & Gift Boxes",
+    "category": "Cartons and gift boxes",
+    "description": "Rigid, magnetic and drawer boxes for gifts, jewellery and premium launches.",
+    "fullDescription": "Board-wrapped rigid boxes with lift-off lids, magnetic flaps or drawers, sized for gifts, jewellery, watches and premium launches. Wrapped in printed or coloured paper, finished with foil or embossing, and fitted with foam or card inserts.",
     "materials": [
       "Rigid board",
       "Art paper"
@@ -90,18 +179,18 @@
     "featured": true
   },
   {
-    "slug": "folding-cartons",
-    "name": "Folding Cartons",
-    "category": "Premium & Retail",
-    "description": "Shelf-ready cartons for cosmetics, personal care, medicine and retail.",
-    "fullDescription": "Shelf-ready cartons for cosmetics, personal care, medicine and retail. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
+    "slug": "shoe-boxes",
+    "name": "Shoe & Apparel Boxes",
+    "category": "Cartons and gift boxes",
+    "description": "Stackable branded cartons for footwear and fashion products.",
+    "fullDescription": "Stackable branded cartons for footwear and fashion products. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
       "Duplex board",
-      "SBS paperboard"
+      "Corrugated board"
     ],
     "sizes": [
-      "Custom dielines",
-      "Tuck-end styles"
+      "Custom footwear dimensions",
+      "Lid or tuck styles"
     ],
     "customization": [
       "Logo printing",
@@ -111,107 +200,137 @@
     ],
     "moq": "Quoted per project",
     "uses": [
-      "Beauty",
-      "Retail",
-      "Pharmaceutical"
+      "Fashion",
+      "Retail"
     ],
-    "hue": "#DBE8F6",
-    "model": "carton",
+    "hue": "#D3DFEB",
+    "model": "shoe",
     "featured": false
-  },
-  {
-    "slug": "custom-printed-boxes",
-    "name": "Custom Printed Boxes",
-    "category": "Premium & Retail",
-    "description": "Bespoke shapes and print effects that bring your brand to life.",
-    "fullDescription": "Bespoke shapes and print effects that bring your brand to life. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
-    "materials": [
-      "Art card",
-      "Corrugated board",
-      "Rigid board"
-    ],
-    "sizes": [
-      "Made-to-measure",
-      "Custom structural design"
-    ],
-    "customization": [
-      "Logo printing",
-      "Brand colours",
-      "Custom dimensions",
-      "Finish on request"
-    ],
-    "moq": "Quoted per project",
-    "uses": [
-      "Retail",
-      "Gifting",
-      "E-commerce"
-    ],
-    "hue": "#D5D9FE",
-    "model": "printed",
-    "featured": true
   },
   {
     "slug": "pizza-boxes",
     "name": "Pizza Boxes",
-    "category": "Food & Beverage",
-    "description": "Sturdy folding pizza cartons designed for hot food takeaway.",
-    "fullDescription": "Sturdy folding pizza cartons designed for hot food takeaway. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
+    "category": "Food packaging",
+    "description": "Corrugated pizza boxes that keep the base crisp and the brand on show, from 7\" to 16\".",
+    "fullDescription": "Pizza boxes in E-flute or B-flute corrugated board with a kraft or white top liner, printed with your logo in one to three colours, or full-colour litho-laminated for chains that want photography on the lid. Corner vents let steam out so the base stays crisp, lock tabs keep the lid shut on the bike, and a food-safe liner faces the pizza. Delivered flat, they fold up in seconds on a busy shift.",
     "materials": [
-      "Food-grade board (subject to specification)",
-      "Corrugated board"
+      "E-flute corrugated (most popular)",
+      "B-flute for 14\" and up",
+      "Kraft or white top liner",
+      "Food-safe inner surface"
     ],
     "sizes": [
-      "Small to family-size on request",
-      "Custom dimensions"
+      "7\", 9\" and 10\" personal",
+      "12\" and 14\" medium to large",
+      "16\" family",
+      "Square, slice and party sizes on request"
     ],
     "customization": [
-      "Logo printing",
-      "Brand colours",
-      "Custom dimensions",
-      "Finish on request"
+      "1 to 3 colour logo print",
+      "Full-colour litho-laminated lid",
+      "Steam vents",
+      "Lock tabs and tear-away lids",
+      "Inside-lid print"
     ],
     "moq": "Quoted per project",
     "uses": [
-      "Restaurants",
-      "Takeaway"
+      "Pizzerias",
+      "Delivery kitchens",
+      "Restaurant chains",
+      "Bakeries"
     ],
     "hue": "#F2D1B6",
     "model": "pizza",
-    "featured": true
+    "featured": true,
+    "features": [
+      [
+        "Stays crisp",
+        "Corner vents release steam so the base does not go soggy on the way."
+      ],
+      [
+        "Holds its shape",
+        "Corrugated walls stack ten high in a delivery bag without crushing."
+      ],
+      [
+        "Folds in seconds",
+        "Delivered flat and pre-creased, made for busy service."
+      ],
+      [
+        "Your brand on every lid",
+        "From a one-colour logo to a full-colour photo print."
+      ]
+    ],
+    "gallery": [
+      "pizza",
+      "pizza_stack",
+      "pizza_print",
+      "pizza_open"
+    ]
   },
   {
     "slug": "burger-boxes",
     "name": "Burger & Fast Food Boxes",
-    "category": "Food & Beverage",
-    "description": "Compact takeaway packs for burgers, fries and fast food.",
-    "fullDescription": "Compact takeaway packs for burgers, fries and fast food. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
+    "category": "Food packaging",
+    "description": "Grease-resistant clamshell boxes, fries scoops and meal boxes for burgers and fast food.",
+    "fullDescription": "Clamshell burger boxes, fries scoops, wrap holders and combo meal boxes in food-grade board with a grease-resistant coating, so oil stays inside and the print stays clean. Lock-tab lids open with one hand and close firmly for delivery. Printed in your colours on kraft or white board, die-cut and glued, and delivered flat for easy storage behind the counter.",
     "materials": [
-      "Food-grade paperboard (subject to specification)",
-      "Kraft board"
+      "Food-grade SBS board",
+      "Natural kraft board",
+      "Grease-resistant coating",
+      "Corrugated for meal boxes"
     ],
     "sizes": [
-      "Single-serve sizes",
-      "Custom dielines"
+      "Single and double burger clamshells",
+      "Fries scoops and cones",
+      "Wrap and roll holders",
+      "Combo and family meal boxes"
     ],
     "customization": [
-      "Logo printing",
-      "Brand colours",
-      "Custom dimensions",
-      "Finish on request"
+      "Full-colour offset print",
+      "One-colour print on kraft",
+      "Lock-tab or clamshell lids",
+      "Vent holes",
+      "Matching bags and labels"
     ],
     "moq": "Quoted per project",
     "uses": [
-      "Restaurants",
-      "Takeaway"
+      "Burger joints",
+      "Fast food chains",
+      "Delivery kitchens",
+      "Food courts"
     ],
     "hue": "#F9E0B4",
     "model": "burger",
-    "featured": false
+    "featured": false,
+    "features": [
+      [
+        "Grease stays inside",
+        "Coated board stops oil marking the box or the customer."
+      ],
+      [
+        "One-hand open",
+        "Lock-tab clamshells open fast and close firmly for delivery."
+      ],
+      [
+        "One look across the menu",
+        "Burger box, fries scoop and meal box printed to match."
+      ],
+      [
+        "Flat-packed",
+        "Saves space behind the counter until service."
+      ]
+    ],
+    "gallery": [
+      "burger",
+      "burger_hand",
+      "burger_pair",
+      "fries"
+    ]
   },
   {
     "slug": "cake-boxes",
     "name": "Cake & Bakery Boxes",
-    "category": "Food & Beverage",
+    "category": "Food packaging",
     "description": "Presentation boxes for cakes, pastry assortments and bakery treats.",
     "fullDescription": "Presentation boxes for cakes, pastry assortments and bakery treats. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
@@ -238,67 +357,9 @@
     "featured": false
   },
   {
-    "slug": "takeaway-containers",
-    "name": "Takeaway Food Containers",
-    "category": "Food & Beverage",
-    "description": "Practical packaging for meals, snacks and food delivery.",
-    "fullDescription": "Practical packaging for meals, snacks and food delivery. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
-    "materials": [
-      "Kraft paperboard",
-      "Barrier-lined board (subject to approval)"
-    ],
-    "sizes": [
-      "Single and multi-compartment designs",
-      "Custom capacity"
-    ],
-    "customization": [
-      "Logo printing",
-      "Brand colours",
-      "Custom dimensions",
-      "Finish on request"
-    ],
-    "moq": "Quoted per project",
-    "uses": [
-      "Restaurants",
-      "Takeaway"
-    ],
-    "hue": "#EBD2A6",
-    "model": "takeaway",
-    "featured": false
-  },
-  {
-    "slug": "paper-cups-sleeves",
-    "name": "Paper Cups & Sleeves",
-    "category": "Food & Beverage",
-    "description": "Branded drink presentation for cafés and events.",
-    "fullDescription": "Branded drink presentation for cafés and events. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
-    "materials": [
-      "Cupstock (subject to specification)",
-      "Kraft paper"
-    ],
-    "sizes": [
-      "Capacity to be confirmed",
-      "Custom sleeve fit"
-    ],
-    "customization": [
-      "Logo printing",
-      "Brand colours",
-      "Custom dimensions",
-      "Finish on request"
-    ],
-    "moq": "Quoted per project",
-    "uses": [
-      "Cafés",
-      "Events"
-    ],
-    "hue": "#D8E9F7",
-    "model": "cup",
-    "featured": false
-  },
-  {
     "slug": "kraft-shopping-bags",
     "name": "Kraft & Shopping Bags",
-    "category": "Bags & Flexible",
+    "category": "Bags, pouches and labels",
     "description": "Paper carrier bags with optional handles and brand printing.",
     "fullDescription": "Paper carrier bags with optional handles and brand printing. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
@@ -326,38 +387,9 @@
     "featured": true
   },
   {
-    "slug": "poly-mailers",
-    "name": "Poly Mailers & Courier Bags",
-    "category": "Bags & Flexible",
-    "description": "Lightweight shipping bags for apparel and soft goods.",
-    "fullDescription": "Lightweight shipping bags for apparel and soft goods. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
-    "materials": [
-      "Polyethylene film"
-    ],
-    "sizes": [
-      "Custom sizes",
-      "Sealable options"
-    ],
-    "customization": [
-      "Logo printing",
-      "Brand colours",
-      "Custom dimensions",
-      "Finish on request"
-    ],
-    "moq": "Quoted per project",
-    "uses": [
-      "Fashion",
-      "E-commerce",
-      "Logistics"
-    ],
-    "hue": "#D8E3FB",
-    "model": "mailerbag",
-    "featured": false
-  },
-  {
     "slug": "standup-pouches",
     "name": "Stand-up & Zipper Pouches",
-    "category": "Bags & Flexible",
+    "category": "Bags, pouches and labels",
     "description": "Flexible packaging for retail goods, dry foods and refills.",
     "fullDescription": "Flexible packaging for retail goods, dry foods and refills. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
@@ -384,69 +416,9 @@
     "featured": false
   },
   {
-    "slug": "protective-wrap",
-    "name": "Bubble Wrap, Stretch Film & Void Fill",
-    "category": "Protection & Supplies",
-    "description": "Protective packaging consumables for safer shipment.",
-    "fullDescription": "Protective packaging consumables for safer shipment. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
-    "materials": [
-      "Polyethylene bubble film",
-      "Stretch film",
-      "Paper void fill"
-    ],
-    "sizes": [
-      "Roll and sheet formats",
-      "Custom requirements"
-    ],
-    "customization": [
-      "Logo printing",
-      "Brand colours",
-      "Custom dimensions",
-      "Finish on request"
-    ],
-    "moq": "Quoted per project",
-    "uses": [
-      "Logistics",
-      "E-commerce",
-      "Industrial"
-    ],
-    "hue": "#CFDAED",
-    "model": "roll",
-    "featured": false
-  },
-  {
-    "slug": "packaging-tape",
-    "name": "Plain & Branded Packaging Tape",
-    "category": "Protection & Supplies",
-    "description": "Sealing tape for dispatch with optional branded design.",
-    "fullDescription": "Sealing tape for dispatch with optional branded design. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
-    "materials": [
-      "BOPP film",
-      "Adhesive"
-    ],
-    "sizes": [
-      "Width and length on request",
-      "Plain or printed"
-    ],
-    "customization": [
-      "Logo printing",
-      "Brand colours",
-      "Custom dimensions",
-      "Finish on request"
-    ],
-    "moq": "Quoted per project",
-    "uses": [
-      "Logistics",
-      "E-commerce"
-    ],
-    "hue": "#DFD8F4",
-    "model": "tape",
-    "featured": false
-  },
-  {
     "slug": "labels-stickers",
     "name": "Labels & Stickers",
-    "category": "Labels & Print",
+    "category": "Bags, pouches and labels",
     "description": "Product labels, seals and promotional sticker formats.",
     "fullDescription": "Product labels, seals and promotional sticker formats. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
     "materials": [
@@ -471,182 +443,6 @@
     ],
     "hue": "#E6CDF6",
     "model": "label",
-    "featured": false
-  },
-  {
-    "slug": "tissue-wrapping",
-    "name": "Tissue Paper & Wrapping",
-    "category": "Labels & Print",
-    "description": "Soft protective wrapping and custom gift presentation.",
-    "fullDescription": "Soft protective wrapping and custom gift presentation. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
-    "materials": [
-      "Tissue paper",
-      "Wrapping paper"
-    ],
-    "sizes": [
-      "Sheet sizes",
-      "Custom prints"
-    ],
-    "customization": [
-      "Logo printing",
-      "Brand colours",
-      "Custom dimensions",
-      "Finish on request"
-    ],
-    "moq": "Quoted per project",
-    "uses": [
-      "Fashion",
-      "Gifting",
-      "Retail"
-    ],
-    "hue": "#F1D8E2",
-    "model": "tissue",
-    "featured": false
-  },
-  {
-    "slug": "bottles-jars",
-    "name": "Bottles & Jars",
-    "category": "Premium & Retail",
-    "description": "Container sourcing concepts for cosmetics and specialty products.",
-    "fullDescription": "Container sourcing concepts for cosmetics and specialty products. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
-    "materials": [
-      "Glass",
-      "PET plastic"
-    ],
-    "sizes": [
-      "Capacity and neck finish on request",
-      "Sample-led specifications"
-    ],
-    "customization": [
-      "Logo printing",
-      "Brand colours",
-      "Custom dimensions",
-      "Finish on request"
-    ],
-    "moq": "Quoted per project",
-    "uses": [
-      "Beauty",
-      "Food brands",
-      "Retail"
-    ],
-    "hue": "#DCEAE9",
-    "model": "bottle",
-    "featured": false
-  },
-  {
-    "slug": "fruit-produce-boxes",
-    "name": "Fruit & Produce Boxes",
-    "category": "Specialty Packaging",
-    "description": "Vented corrugated cartons for fruit, vegetables and produce.",
-    "fullDescription": "Vented corrugated cartons for fruit, vegetables and produce. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
-    "materials": [
-      "Corrugated board",
-      "Kraft board"
-    ],
-    "sizes": [
-      "Produce-specific dimensions",
-      "Ventilation options"
-    ],
-    "customization": [
-      "Logo printing",
-      "Brand colours",
-      "Custom dimensions",
-      "Finish on request"
-    ],
-    "moq": "Quoted per project",
-    "uses": [
-      "Agriculture",
-      "Logistics"
-    ],
-    "hue": "#DFE7B5",
-    "model": "produce",
-    "featured": false
-  },
-  {
-    "slug": "jewellery-boxes",
-    "name": "Jewellery Presentation Boxes",
-    "category": "Specialty Packaging",
-    "description": "Small-format premium boxes for jewellery and accessories.",
-    "fullDescription": "Small-format premium boxes for jewellery and accessories. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
-    "materials": [
-      "Rigid board",
-      "Art paper"
-    ],
-    "sizes": [
-      "Ring, pendant or set sizes",
-      "Custom inserts"
-    ],
-    "customization": [
-      "Logo printing",
-      "Brand colours",
-      "Custom dimensions",
-      "Finish on request"
-    ],
-    "moq": "Quoted per project",
-    "uses": [
-      "Jewellery",
-      "Gifting"
-    ],
-    "hue": "#D6D2ED",
-    "model": "jewellery",
-    "featured": false
-  },
-  {
-    "slug": "shoe-boxes",
-    "name": "Shoe & Apparel Boxes",
-    "category": "Specialty Packaging",
-    "description": "Stackable branded cartons for footwear and fashion products.",
-    "fullDescription": "Stackable branded cartons for footwear and fashion products. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
-    "materials": [
-      "Duplex board",
-      "Corrugated board"
-    ],
-    "sizes": [
-      "Custom footwear dimensions",
-      "Lid or tuck styles"
-    ],
-    "customization": [
-      "Logo printing",
-      "Brand colours",
-      "Custom dimensions",
-      "Finish on request"
-    ],
-    "moq": "Quoted per project",
-    "uses": [
-      "Fashion",
-      "Retail"
-    ],
-    "hue": "#D3DFEB",
-    "model": "shoe",
-    "featured": false
-  },
-  {
-    "slug": "cargo-storage-boxes",
-    "name": "Cargo & Storage Boxes",
-    "category": "Specialty Packaging",
-    "description": "Heavy-duty cartons for inventory, moving and warehousing.",
-    "fullDescription": "Heavy-duty cartons for inventory, moving and warehousing. Share your dimensions, quantity and artwork and our team will recommend the right material and finish, then send a tailored quote.",
-    "materials": [
-      "Double-wall corrugated board",
-      "Kraft board"
-    ],
-    "sizes": [
-      "Made-to-measure",
-      "Reinforcement on request"
-    ],
-    "customization": [
-      "Logo printing",
-      "Brand colours",
-      "Custom dimensions",
-      "Finish on request"
-    ],
-    "moq": "Quoted per project",
-    "uses": [
-      "Industrial",
-      "Logistics"
-    ],
-    "hue": "#D7DDE7",
-    "model": "cargo",
     "featured": false
   }
 ]

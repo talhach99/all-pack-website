@@ -15,6 +15,10 @@ export type Product = {
   hue: string;
   model: string;
   featured?: boolean;
+  /** Extra selling points shown on the product page. */
+  features?: [string, string][];
+  /** Photo names for the product gallery (first is the main photo). */
+  gallery?: string[];
 };
 
 export const products = data as Product[];
@@ -40,20 +44,14 @@ export const categoryFromSlug = (s?: string) => categories.find(c => categorySlu
 
 /** Hero product per collection, used for collection imagery. */
 export const categoryCover: Record<string, string> = {
-  'Shipping & E-Commerce': 'mailer',
-  'Premium & Retail': 'gift',
-  'Food & Beverage': 'pizza',
-  'Bags & Flexible': 'bag',
-  'Protection & Supplies': 'tape',
-  'Labels & Print': 'label',
-  'Specialty Packaging': 'produce',
+  'Shipping boxes': 'mailer',
+  'Cartons and gift boxes': 'carton',
+  'Food packaging': 'pizza',
+  'Bags, pouches and labels': 'label',
 };
 export const categoryBlurb: Record<string, string> = {
-  'Shipping & E-Commerce': 'Mailers and corrugated cartons built for the courier and designed for the unboxing.',
-  'Premium & Retail': 'Rigid boxes, cartons and printed packs that make products look worth more.',
-  'Food & Beverage': 'Pizza, bakery, burger and takeaway packaging for kitchens that care about presentation.',
-  'Bags & Flexible': 'Paper bags, courier mailers and stand-up pouches carrying your brand out the door.',
-  'Protection & Supplies': 'Branded tape and protective wrap that finish the job properly.',
-  'Labels & Print': 'Stickers, labels and printed tissue: the small touches people remember.',
-  'Specialty Packaging': 'Produce, jewellery, footwear and heavy-duty cargo formats.',
+  'Shipping boxes': 'Corrugated shippers, mailers and produce cartons built for the courier and the warehouse.',
+  'Cartons and gift boxes': 'Printed folding cartons and rigid gift boxes that make products look worth more.',
+  'Food packaging': 'Pizza, burger and bakery boxes for kitchens that care about presentation.',
+  'Bags, pouches and labels': 'Paper bags, stand-up pouches and labels that carry the brand out the door.',
 };

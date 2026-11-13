@@ -34,18 +34,31 @@ const nextConfig: NextConfig = {
   // Images are pre-optimised WebP renders; skip the runtime optimiser (not available on Cloudflare Workers by default).
   images: { unoptimized: true },
   experimental: { optimizePackageImports: ['lucide-react', 'framer-motion'] },
+  async redirects() {
+    const to = (from: string, dest: string) => ({ source: from, destination: dest, permanent: true });
+    return [
+      to('/journal', '/insights'),
+      to('/journal/:slug', '/insights/:slug'),
+      to('/home', '/'),
+      to('/gallery', '/products'),
+      to('/products/custom-printed-boxes', '/products/folding-cartons'),
+      to('/products/takeaway-containers', '/products/burger-boxes'),
+      to('/products/jewellery-boxes', '/products/rigid-gift-boxes'),
+      to('/products/paper-cups-sleeves', '/products'),
+      to('/products/poly-mailers', '/products/ecommerce-mailer-boxes'),
+      to('/products/tissue-wrapping', '/products'),
+      to('/products/protective-wrap', '/products/corrugated-shipping-boxes'),
+      to('/products/bottles-jars', '/products/folding-cartons'),
+      to('/products/cargo-storage-boxes', '/products/corrugated-shipping-boxes'),
+      to('/industries/cafes', '/industries/restaurants'),
+      to('/industries/jewellery', '/industries/fashion'),
+    ];
+  },
   async headers() {
     return [
       { source: '/:path*', headers: securityHeaders },
       { source: '/renders/:path*', headers: [{ key: 'Cache-Control', value: 'public, max-age=2592000' }] },
       { source: '/api/:path*', headers: [{ key: 'Cache-Control', value: 'no-store' }, { key: 'X-Robots-Tag', value: 'noindex' }] },
-    ];
-  },
-  async redirects() {
-    return [
-      { source: '/journal', destination: '/insights', permanent: true },
-      { source: '/journal/:slug', destination: '/insights/:slug', permanent: true },
-      { source: '/home', destination: '/', permanent: true },
     ];
   },
 };

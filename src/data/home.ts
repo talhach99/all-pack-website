@@ -31,7 +31,7 @@ export const sectors = [
     name: 'Food and bakery',
     d: 'Cake, rusk and confectionery cartons, window boxes and bread wrappers for bakeries and food brands.',
     img: stockUrl(STOCK.windowBox, 900), contain: false,
-    formats: [['Cake and bakery boxes', '/products/cake-boxes'], ['Folding cartons', '/products/folding-cartons'], ['Takeaway containers', '/products/takeaway-containers']],
+    formats: [['Cake and bakery boxes', '/products/cake-boxes'], ['Folding cartons', '/products/folding-cartons'], ['Pizza and burger boxes', '/products/pizza-boxes']],
     href: '/industries/bakeries',
   },
   {

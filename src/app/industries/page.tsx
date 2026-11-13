@@ -11,7 +11,7 @@ import { WhatsAppIcon } from '@/components/FloatingContact';
 
 export const metadata: Metadata = {
   title: 'Packaging by Industry',
-  description: 'Custom packaging for e-commerce, restaurants, bakeries, cafés, beauty, pharmaceutical, fashion, jewellery and agriculture from ALL PACK, Lahore.',
+  description: 'Custom packaging for pharmaceutical, food, bakery, restaurant, beauty, e-commerce, fashion and agriculture brands from ALL PACK, Lahore.',
   alternates: { canonical: '/industries' },
 };
 

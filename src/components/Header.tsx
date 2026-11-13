@@ -14,7 +14,6 @@ import { WhatsAppIcon } from './FloatingContact';
 type Panel = 'products' | 'industries' | null;
 const links = [
   { text: 'Capabilities', href: '/#capabilities' },
-  { text: 'Our work', href: '/gallery' },
   { text: 'About', href: '/about' },
   { text: 'Contact', href: '/contact' },
 ];

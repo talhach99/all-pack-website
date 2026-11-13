@@ -2,15 +2,14 @@ import type { Metadata } from 'next';
 import { Ruler, Palette, Truck } from 'lucide-react';
 import { PageHero } from '@/components/PageHero';
 import { ProductCatalog } from '@/components/ProductCatalog';
-import { BoxStyles } from '@/components/BoxStyles';
 import { SectionHead } from '@/components/Section';
 import { WhatsAppIcon } from '@/components/FloatingContact';
 import { categoryFromSlug, products } from '@/lib/products';
 import { quoteLink, whatsappLink } from '@/lib/company';
 
 export const metadata: Metadata = {
-  title: 'Shop Packaging',
-  description: 'Browse 22 packaging formats from ALL PACK: shipping cartons, mailer boxes, rigid gift boxes, food packaging, bags, pouches, labels and stickers. Made to measure in Lahore.',
+  title: 'Products',
+  description: 'Printed folding cartons, rigid gift boxes, shipping boxes, pizza, burger and bakery boxes, bags, pouches and labels from ALL PACK. Made to measure in Lahore.',
   alternates: { canonical: '/products' },
 };
 
@@ -25,18 +24,11 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
   const initial = categoryFromSlug(Array.isArray(category) ? category[0] : category);
   return (
     <main>
-      <PageHero kicker="Shop" title={<>Packaging for every product you sell</>} description="Browse by collection, material or industry. Tap + on any product to add it to your quote list and get one combined price." crumbs={[{ text: 'Shop' }]}>
+      <PageHero kicker="Products" title={<>Packaging for every product you sell</>} description="Every format is printed and finished in our Lahore plant, made to your size. Tap + on any product to add it to one combined quote." crumbs={[{ text: 'Products' }]}>
         <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="btn-dark"><WhatsAppIcon size={18} /> Get a quote on WhatsApp</a>
       </PageHero>
 
-      <section className="section bg-white !pt-14">
-        <div className="container-x">
-          <SectionHead kicker="Box styles" title="Shop by box style" />
-          <BoxStyles />
-        </div>
-      </section>
-
-      <section className="section border-t border-line bg-white">
+      <section className="section bg-white">
         <div className="container-x">
           <SectionHead kicker="Catalogue" title={`All ${products.length} packaging formats`} className="mb-8" />
           <ProductCatalog initialCategory={initial} />

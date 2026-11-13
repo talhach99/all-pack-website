@@ -53,7 +53,7 @@ export default function Home() {
             </div>
           </div>
           <div className="anim-up d2 overflow-hidden rounded-2xl bg-soft">
-            <img src={unsplash(STOCK.pressDelivery, 1600)} alt="Printed carton sheets coming off an offset press" width={1600} height={1200} fetchPriority="high" className="aspect-[4/3] w-full object-cover" />
+            <img src={unsplash(STOCK.cleanPlant, 1600)} alt="A pallet of printed cartons ready for dispatch" width={1600} height={1200} fetchPriority="high" className="aspect-[4/3] w-full object-cover" />
           </div>
         </div>
       </section>
@@ -152,7 +152,7 @@ export default function Home() {
       {/* 6 · Formats and finishes */}
       <section className="section bg-white" id="work">
         <div className="container-x">
-          <Head label="What comes off our line" title="Cartons, boxes and finishes we print" sub="Folding cartons, rigid boxes, bakery packs and printed shippers, finished in-house with foil, lamination and die-cutting." link={{ text: 'See the gallery', href: '/gallery' }} />
+          <Head label="What comes off our line" title="Cartons, boxes and finishes we print" sub="Folding cartons, rigid boxes, bakery packs and printed shippers, finished in-house with foil, lamination and die-cutting." link={{ text: 'Browse all products', href: '/products' }} />
           <ClientWork />
         </div>
       </section>
