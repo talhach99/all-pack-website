@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import '@fontsource-variable/figtree/wght.css';
-import '@fontsource-variable/bricolage-grotesque/opsz.css';
+import '@fontsource-variable/inter/wght.css';
 import '@fontsource-variable/jetbrains-mono/wght.css';
 import './globals.css';
 import { Providers } from '@/components/Providers';
@@ -23,7 +22,7 @@ export const metadata: Metadata = {
   formatDetection: { telephone: false },
 };
 
-export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#F3F4F6' };
+export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#FFFFFF' };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const schema = {

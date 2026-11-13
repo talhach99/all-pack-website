@@ -23,10 +23,10 @@ export default function ContactPage() {
   return (
     <main>
       {/* Header */}
-      <section className="border-b border-line bg-mist">
+      <section className="page-hero">
         <div className="container-x py-14 sm:py-20">
           <Eyebrow>Contact</Eyebrow>
-          <h1 className="mt-3 max-w-3xl text-[clamp(2.25rem,4.6vw,3.75rem)] font-medium leading-[1.06] tracking-[-.03em] text-ink">Talk to the packaging team</h1>
+          <h1 className="mt-5 max-w-3xl text-[clamp(2.4rem,4.8vw,4rem)] font-semibold leading-[1.05] tracking-[-.035em] text-ink">Talk to the packaging team</h1>
           <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-secondary sm:text-lg">Call, message or email us, or send your brief with the form below. We reply to every enquiry within 24 hours.</p>
 
           <div className="mt-10 grid gap-4 md:grid-cols-3">
@@ -49,7 +49,7 @@ export default function ContactPage() {
         <div className="container-x grid gap-12 lg:grid-cols-[1.25fr_.75fr] lg:gap-16">
           <div>
             <Eyebrow>Your brief</Eyebrow>
-            <h2 className="h-section mt-3">Send us the details</h2>
+            <h2 className="h-section mt-5">Send us the details</h2>
             <p className="mt-3 text-[16px] text-secondary">Tell us what you need. A rough size and quantity is enough to start.</p>
             <div className="mt-8"><QuoteForm compact /></div>
           </div>

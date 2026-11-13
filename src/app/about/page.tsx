@@ -42,11 +42,11 @@ export default function AboutPage() {
   return (
     <main>
       {/* Hero */}
-      <section className="border-b border-line bg-mist">
+      <section className="page-hero">
         <div className="container-x grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-[1.2fr_.8fr] lg:gap-16">
           <div className="anim-up">
             <Eyebrow>About ALL PACK</Eyebrow>
-            <h1 className="mt-3 text-[clamp(2.25rem,4.6vw,3.75rem)] font-medium leading-[1.06] tracking-[-.03em] text-ink">More than 25 years of packaging that works as hard as your product</h1>
+            <h1 className="mt-5 text-[clamp(2.4rem,4.8vw,4rem)] font-semibold leading-[1.05] tracking-[-.035em] text-ink">More than 25 years of packaging that works as hard as your product</h1>
             <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-secondary sm:text-lg">ALL PACK is a Lahore packaging and printing company. For over a quarter of a century we have helped businesses protect what they make, present it with pride and get it to their customers in one piece.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="btn-dark"><WhatsAppIcon size={18} /> Get a quote on WhatsApp</a>
@@ -66,7 +66,7 @@ export default function AboutPage() {
         <div className="container-x grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-20">
           <div>
             <Eyebrow>Our story</Eyebrow>
-            <h2 className="h-section mt-3">Built on quality, trust and customers who keep coming back</h2>
+            <h2 className="h-section mt-5">Built on quality, trust and customers who keep coming back</h2>
           </div>
           <div className="space-y-5 text-[17px] leading-[1.8] text-secondary">
             <p>For more than 25 years, ALL PACK has been part of how Lahore’s businesses reach their customers. Bakeries, restaurants, pharmaceutical companies, retailers and online brands have trusted us with the one thing every product needs and every customer sees first: its packaging.</p>
@@ -80,7 +80,7 @@ export default function AboutPage() {
       <section className="section bg-mist">
         <div className="container-x">
           <Eyebrow>Why it matters</Eyebrow>
-          <h2 className="h-section mt-3 max-w-3xl">Good packaging quietly does four jobs for your business</h2>
+          <h2 className="h-section mt-5 max-w-3xl">Good packaging quietly does four jobs for your business</h2>
           <div className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
             {impact.map(x => (
               <div key={x.t} className="border-t border-ink/10 pt-6">
@@ -98,7 +98,7 @@ export default function AboutPage() {
         <div className="container-x grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-20">
           <div className="min-w-0">
             <Eyebrow>Who we work with</Eyebrow>
-            <h2 className="h-section mt-3">Trusted across industries</h2>
+            <h2 className="h-section mt-5">Trusted across industries</h2>
             <p className="mt-5 text-[17px] leading-[1.8] text-secondary">Every industry asks something different of its packaging. Food needs to be safe and travel well. Medicine needs exact, approved print. E-commerce needs to survive the courier. Gifts need to feel special the moment they are held. Years of solving these problems is what we bring to every new order.</p>
             <div className="mt-8 border-t border-line pt-6">
               <ClientStrip label="Clients include" />
@@ -127,7 +127,7 @@ export default function AboutPage() {
       <section className="section bg-ink text-white">
         <div className="container-x">
           <Eyebrow light>How we work</Eyebrow>
-          <h2 className="h-section mt-3 !text-white">The standards behind every order</h2>
+          <h2 className="h-section mt-5 !text-white">The standards behind every order</h2>
           <div className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
             {values.map(v => (
               <div key={v.t} className="border-t border-white/10 pt-6">

@@ -10,7 +10,7 @@ export function PageHero({ kicker, title, description, children, aside, image, i
 }) {
   const split = Boolean(aside || image);
   return (
-    <section className="border-b border-line bg-mist">
+    <section className="page-hero">
       <div className="container-x pb-16 pt-8 sm:pb-20 sm:pt-10">
         <nav aria-label="Breadcrumb" className="mb-10 flex flex-wrap items-center gap-1.5 text-[13px] text-muted">
           <Link href="/" className="hover:text-ink">Home</Link>
@@ -21,14 +21,12 @@ export function PageHero({ kicker, title, description, children, aside, image, i
         <div className={split ? 'grid items-center gap-12 lg:grid-cols-[1.1fr_.9fr] lg:gap-16' : ''}>
           <div className="anim-up">
             <Eyebrow>{kicker}</Eyebrow>
-            <h1 className="mt-3 max-w-4xl text-[clamp(2.25rem,4.6vw,3.75rem)] font-medium leading-[1.06] tracking-[-.03em] text-ink">{title}</h1>
+            <h1 className="mt-5 max-w-4xl text-[clamp(2.4rem,4.8vw,4rem)] font-semibold leading-[1.05] tracking-[-.035em] text-ink">{title}</h1>
             {description && <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-secondary sm:text-lg">{description}</p>}
             {children && <div className="mt-8 flex flex-wrap gap-3">{children}</div>}
           </div>
           {image && (
-            <div className="crop m-3 sm:m-4">
-              <div className="relative aspect-[5/4] overflow-hidden rounded-xl bg-white"><Photo name={image} alt={imageAlt} priority /></div>
-            </div>
+            <div className="relative aspect-[5/4] overflow-hidden rounded-[28px] border-8 border-white bg-white shadow-plate"><Photo name={image} alt={imageAlt} priority /></div>
           )}
           {aside && !image && aside}
         </div>

@@ -14,8 +14,8 @@ export function SectionHead({ kicker, title, sub, action, light = false, classNa
     <div className={`flex flex-wrap items-end justify-between gap-x-8 gap-y-4 ${className}`}>
       <div className="max-w-3xl">
         <Eyebrow light={light}>{kicker}</Eyebrow>
-        <h2 className={`h-section mt-4 ${light ? '!text-white' : ''}`}>{title}</h2>
-        {sub && <p className={`mt-4 max-w-2xl text-[17px] leading-relaxed ${light ? 'text-cyan' : 'text-secondary'}`}>{sub}</p>}
+        <h2 className={`h-section mt-5 ${light ? '!text-white' : ''}`}>{title}</h2>
+        {sub && <p className={`mt-4 max-w-2xl text-[18px] leading-relaxed ${light ? "text-cyan" : "text-secondary"}`}>{sub}</p>}
       </div>
       {action && <PillLink href={action.href} light={light}>{action.text}</PillLink>}
     </div>

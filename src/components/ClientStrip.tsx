@@ -5,7 +5,7 @@ function Logo({ c, onDark }: { c: Client; onDark: boolean }) {
   return (
     <li
       title={c.name}
-      className={`flex h-20 ${c.wide ? 'w-72' : 'w-40'} shrink-0 items-center justify-center rounded-xl border px-4 py-3 ${onDark ? 'border-white/10 bg-white' : 'border-line bg-white'}`}
+      className={`flex h-24 ${c.wide ? "w-72" : "w-48"} shrink-0 items-center justify-center rounded-2xl border px-5 py-3 ${onDark ? 'border-white/10 bg-white' : 'border-line bg-white'}`}
     >
       {c.logo ? (
         <img src={c.logo} alt={c.name} loading="lazy" className="max-h-14 w-auto max-w-full object-contain" />

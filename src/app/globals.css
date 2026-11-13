@@ -12,8 +12,8 @@
   img { max-width: 100%; height: auto; }
 }
 
-/* Bricolage Grotesque for headlines, Figtree for body, JetBrains Mono for job-ticket labels. */
-.font-display, .font-serif { font-family: "Bricolage Grotesque Variable", "Figtree Variable", ui-sans-serif, system-ui, sans-serif; font-optical-sizing: auto; }
+/* One family: Inter for headlines, body and UI. */
+.font-display, .font-serif { font-family: "Inter Variable", Inter, ui-sans-serif, system-ui, sans-serif; }
 h1 em, h2 em, h3 em, h1 .italic, h2 .italic, .font-display.italic, .font-serif.italic { font-style: normal; }
 .font-bold, .font-extrabold, .font-black { font-weight: 600 !important; }
 h1.font-semibold, h2.font-semibold, h1.font-medium, h2.font-medium, .h-display, .h-section { font-weight: 600 !important; }
@@ -23,32 +23,26 @@ h3.font-medium, h3.font-semibold { font-weight: 600 !important; }
   .container-x { @apply mx-auto w-full max-w-[1280px] px-4 sm:px-8 lg:px-10; }
   .section { padding-block: clamp(4rem, 8vw, 7rem); }
 
-  /* Section label: a CMYK swatch strip, then a mono label like a job ticket */
-  .kicker { @apply inline-flex items-center gap-2.5 font-mono text-[12px] font-medium uppercase tracking-[.08em] text-secondary; }
-  .kicker::before { content: ''; width: 22px; height: 6px; flex: none; background: linear-gradient(90deg, #00A3E0 0 25%, #E6007E 25% 50%, #FFD400 50% 75%, #16171A 75%); }
-  .h-display { @apply font-display text-ink; letter-spacing: -.035em; font-size: clamp(2.6rem, 5.4vw, 4.75rem); line-height: 1.0; }
-  .h-section { @apply font-display text-ink; letter-spacing: -.03em; font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.05; }
-  .num-label { @apply font-mono text-[12px] uppercase tracking-[.08em] text-muted; }
-  /* Registration target, the printer's alignment mark */
-  .reg-mark { width: 18px; height: 18px; border-radius: 9999px; border: 1px solid currentColor; position: relative; }
-  .reg-mark::before, .reg-mark::after { content: ''; position: absolute; background: currentColor; }
-  .reg-mark::before { left: 50%; top: -5px; bottom: -5px; width: 1px; }
-  .reg-mark::after { top: 50%; left: -5px; right: -5px; height: 1px; }
-  .cmyk-bar { height: 6px; background: linear-gradient(90deg, #00A3E0 0 25%, #E6007E 25% 50%, #FFD400 50% 75%, #16171A 75%); }
+  /* Section label: short blue bar, then spaced capitals */
+  .kicker { @apply inline-flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[.14em] text-brand; }
+  .kicker::before { content: ''; width: 28px; height: 3px; border-radius: 2px; flex: none; background: currentColor; }
+  .h-display { @apply font-display text-ink; letter-spacing: -.035em; font-size: clamp(2.6rem, 5.2vw, 4.5rem); line-height: 1.04; }
+  .h-section { @apply font-display text-ink; letter-spacing: -.03em; font-size: clamp(2rem, 3.8vw, 3.25rem); line-height: 1.08; }
+  .num-label { @apply text-[12px] font-semibold uppercase tracking-[.12em] text-muted; }
   .h-card { @apply font-display text-xl sm:text-2xl; font-weight: 500; }
   .accent { color: inherit; font-style: normal; font-weight: inherit; }
   .lead { @apply text-[17px] leading-relaxed text-secondary sm:text-lg; }
   .meta { @apply font-mono text-[12px] leading-4 text-muted; font-feature-settings: "zero" 0; }
 
-  /* Buttons: 48 tall, 10 radius, colour change on hover, tiny press */
-  .btn { @apply relative inline-flex h-12 select-none items-center justify-center gap-2 whitespace-nowrap rounded-[10px] px-5 text-[15px] font-medium transition-[color,background-color,border-color,transform] duration-150 ease-out active:scale-[.98] disabled:pointer-events-none disabled:opacity-50; }
+  /* Buttons: 48 tall, 8 radius, colour change on hover, tiny press */
+  .btn { @apply relative inline-flex h-12 select-none items-center justify-center gap-2 whitespace-nowrap rounded-lg px-6 text-[15px] font-semibold transition-[color,background-color,border-color,transform] duration-150 ease-out active:scale-[.98] disabled:pointer-events-none disabled:opacity-50; }
   .btn-dark { @apply btn bg-brand text-white hover:bg-brand-dark; }
   .btn-brand { @apply btn bg-brand text-white hover:bg-brand-dark; }
-  .btn-navy { @apply btn bg-ink text-white hover:bg-ink-soft; }
-  .btn-light { @apply btn border border-ink/15 bg-white text-ink hover:border-ink/30 hover:bg-mist; }
+  .btn-navy { @apply btn bg-navy text-white hover:bg-navy-deep; }
+  .btn-light { @apply btn border border-[#C9D3F2] bg-white text-ink hover:border-ink; }
   .btn-ghost { @apply btn text-ink hover:bg-soft; }
-  .btn-white { @apply btn bg-white text-ink hover:bg-cream; }
-  .btn-outline-light { @apply btn border border-white/20 text-white hover:border-white/40 hover:bg-white/5; }
+  .btn-white { @apply btn bg-white text-ink hover:bg-brand-tint; }
+  .btn-outline-light { @apply btn border border-white/30 text-white hover:border-white hover:bg-white/5; }
   .btn-sm { @apply h-9 rounded-lg px-4 text-sm; }
 
   .card { @apply rounded-2xl border border-line bg-white; }
@@ -58,7 +52,7 @@ h3.font-medium, h3.font-semibold { font-weight: 600 !important; }
   .label { @apply mb-2 block text-sm font-medium text-ink; }
 
   /* Product image grounds: plain mist so the real photos carry the colour */
-  .tile, .tile-warm { background: #F3F4F6; }
+  .tile, .tile-warm { background: #F3F5F8; }
   .grid-lines { background-image: none; }
 
   /* Retired decoration: kept as no-ops so old markup stays harmless */
@@ -67,26 +61,17 @@ h3.font-medium, h3.font-semibold { font-weight: 600 !important; }
   .holo { background: #EBECEF; }
   .outline-text { -webkit-text-fill-color: currentColor; -webkit-text-stroke: 0; }
 
-  /* Signature: printer's crop marks around a proof */
-  .crop { position: relative; --crop: rgba(22,23,26,.38); --crop-gap: 12px; }
-  .crop::before {
-    content: ''; position: absolute; inset: calc(var(--crop-gap) * -1); pointer-events: none;
-    background:
-      linear-gradient(var(--crop), var(--crop)) 0 var(--crop-gap) / 8px 1px no-repeat,
-      linear-gradient(var(--crop), var(--crop)) var(--crop-gap) 0 / 1px 8px no-repeat,
-      linear-gradient(var(--crop), var(--crop)) 100% var(--crop-gap) / 8px 1px no-repeat,
-      linear-gradient(var(--crop), var(--crop)) calc(100% - var(--crop-gap)) 0 / 1px 8px no-repeat,
-      linear-gradient(var(--crop), var(--crop)) 0 calc(100% - var(--crop-gap)) / 8px 1px no-repeat,
-      linear-gradient(var(--crop), var(--crop)) var(--crop-gap) 100% / 1px 8px no-repeat,
-      linear-gradient(var(--crop), var(--crop)) 100% calc(100% - var(--crop-gap)) / 8px 1px no-repeat,
-      linear-gradient(var(--crop), var(--crop)) calc(100% - var(--crop-gap)) 100% / 1px 8px no-repeat;
-  }
-  .crop-light { --crop: rgba(255,255,255,.4); }
+  .crop, .crop-light { position: relative; }
 
   /* Dark band */
   .dark-section { @apply bg-ink text-cream; }
   .dark-section .h-section, .dark-section .h-display { @apply text-white; }
-  .dark-section .lead { color: #A3A6AE; }
+  .dark-section .lead { color: #AAB3C5; }
+
+  /* Inner-page header: white to soft blue, faint dot grid on the right */
+  .page-hero { position: relative; isolation: isolate; overflow: hidden; border-bottom: 1px solid #E2E5EA; background: linear-gradient(160deg, #FFFFFF 0%, #F4F7FF 45%, #E7EDFF 100%); }
+  .page-hero::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background-image: radial-gradient(rgba(11,31,77,.12) 1px, transparent 1.2px); background-size: 22px 22px; -webkit-mask-image: radial-gradient(ellipse 55% 75% at 85% 40%, #000 0%, transparent 70%); mask-image: radial-gradient(ellipse 55% 75% at 85% 40%, #000 0%, transparent 70%); }
+  .page-hero::after { content: ''; position: absolute; z-index: -1; width: 560px; height: 560px; right: -140px; top: -200px; border-radius: 50%; background: radial-gradient(circle, rgba(43,74,252,.16), rgba(43,74,252,0) 65%); pointer-events: none; }
 
   .prose-ap { @apply text-[17px] leading-[1.75] text-secondary; }
   .prose-ap h2 { @apply mb-4 mt-12 text-2xl text-ink sm:text-[28px]; }
@@ -105,7 +90,28 @@ h3.font-medium, h3.font-semibold { font-weight: 600 !important; }
 .anim-up, .anim-slide, .anim-pop { animation: fadeUp .45s cubic-bezier(.22,1,.36,1) both; }
 .anim-float { animation: none; }
 .d1 { animation-delay: 0ms } .d2 { animation-delay: 50ms } .d3 { animation-delay: 100ms } .d4 { animation-delay: 150ms } .d5 { animation-delay: 200ms } .d6, .d7 { animation-delay: 250ms }
-.marquee-track { animation: none; }
+.marquee-track { animation: logo-scroll 45s linear infinite; will-change: transform; }
+.ticker:hover .marquee-track { animation-play-state: paused; }
+
+/* Home hero: floating cards and a slow dashed ring */
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+.float { animation: float 6s ease-in-out infinite; }
+.spin-slow { animation: spin 30s linear infinite; }
+
+/* Machinery row: panels share one line; the hovered one widens */
+.mach-row { display: grid; gap: 14px; }
+.mach-panel { transition: flex-grow .6s cubic-bezier(.22,1,.36,1); }
+.mach-panel img { transition: transform 1.2s cubic-bezier(.22,1,.36,1); }
+.mach-panel:hover img, .mach-panel:focus-within img { transform: scale(1.1); }
+.mach-panel .bar { transition: width .4s cubic-bezier(.22,1,.36,1); }
+.mach-panel:hover .bar, .mach-panel:focus-within .bar { width: 72px; }
+@media (min-width: 640px) { .mach-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) {
+  .mach-row { display: flex; }
+  .mach-panel { flex: 1 1 0; min-width: 0; }
+  .mach-panel:hover, .mach-panel:focus-within { flex-grow: 1.6; }
+}
 .no-scrollbar { scrollbar-width: none; } .no-scrollbar::-webkit-scrollbar { display: none; }
 
 /* Client logos: two rows sliding right to left; hover pauses, reduced motion keeps them still */
@@ -117,7 +123,7 @@ h3.font-medium, h3.font-semibold { font-weight: 600 !important; }
 .lift { transition: border-color .15s, background-color .15s; }
 
 .site-header { transition: box-shadow .2s cubic-bezier(.22,1,.36,1); }
-.scrolled .site-header { box-shadow: 0 1px 0 rgba(22,23,26,.06), 0 8px 24px rgba(22,23,26,.04); }
+.scrolled .site-header { box-shadow: 0 1px 0 rgba(11,31,77,.06), 0 8px 24px rgba(11,31,77,.06); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }

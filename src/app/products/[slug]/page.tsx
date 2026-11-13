@@ -119,7 +119,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
       <section className="section bg-white">
         <div className="container-x grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-16">
-          <div><Eyebrow>Questions</Eyebrow><h2 className="h-section mt-3">Before you order</h2></div>
+          <div><Eyebrow>Questions</Eyebrow><h2 className="h-section mt-5">Before you order</h2></div>
           <Reveal delay={.08}><FaqAccordion limit={5} /></Reveal>
         </div>
       </section>
