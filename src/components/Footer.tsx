@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react';
 import { Logo } from './Logo';
+import { CertBadge } from './Certifications';
 import { COMPANY, mapsLink, phoneLink, whatsappLink } from '@/lib/company';
 import { categories, categorySlug } from '@/lib/products';
 
@@ -18,6 +19,7 @@ export function Footer() {
         <div>
           <Logo light />
           <p className="mt-6 max-w-xs text-[15px] leading-relaxed">Printers and packaging makers in Lahore for more than 25 years. Cartons, rigid boxes, corrugated, bags and labels, delivered across Pakistan.</p>
+          <div className="mt-6 flex items-center gap-3"><CertBadge id="iso" size={48} /><CertBadge id="halal" size={48} /><span className="text-[13px] leading-snug">ISO 9001:2015<br />Halal certified</span></div>
           {socials.length > 0 && <div className="mt-6 flex gap-5 text-sm">{socials.map(([n, l]) => <a key={n} href={l} target="_blank" rel="noopener noreferrer" className={item}>{n}</a>)}</div>}
         </div>
         <div>

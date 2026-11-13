@@ -5,6 +5,7 @@ import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/FloatingContact';
 import { ClientLogos } from '@/components/ClientStrip';
 import { ClientWork } from '@/components/ClientWork';
+import { Certifications } from '@/components/Certifications';
 import { CLIENTS, COMPANY, emailLink, phoneLink, quoteLink } from '@/lib/company';
 import { products } from '@/lib/products';
 import { machines, reasons, sectors, steps, tickerPoints, unsplash } from '@/data/home';
@@ -183,6 +184,8 @@ export default function Home() {
                 </div>
               ))}
             </div>
+            <p className="mt-10 text-[15px] font-medium text-brand-dark">Certified</p>
+            <div className="mt-4"><Certifications /></div>
             <Link href="/about" className="group mt-8 inline-flex items-center gap-1.5 text-[15px] font-medium text-ink hover:text-brand">More about ALL PACK <ArrowRight size={16} strokeWidth={1.75} className="transition-transform duration-150 group-hover:translate-x-0.5" /></Link>
           </div>
         </div>
