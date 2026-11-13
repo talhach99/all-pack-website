@@ -8,7 +8,7 @@ const reasonIcons = [Factory, BadgeCheck, Boxes, MessageSquareText];
 import { WhatsAppIcon } from '@/components/FloatingContact';
 import { ClientLogos } from '@/components/ClientStrip';
 import { ClientWork } from '@/components/ClientWork';
-import { Certifications } from '@/components/Certifications';
+import { CertBadge, Certifications } from '@/components/Certifications';
 import { CLIENTS, COMPANY, emailLink, phoneLink, quoteLink } from '@/lib/company';
 import { products } from '@/lib/products';
 import { machines, reasons, sectors, steps, tickerPoints, unsplash } from '@/data/home';
@@ -39,26 +39,56 @@ function Head({ title, sub, link, light = false }: { title: string; sub?: string
   );
 }
 
+const heroClients = ['Global Pharmaceuticals', 'Citi Pharma', 'Don Valley Pharmaceuticals', 'Hoest', 'Sun Bread']
+  .map(n => CLIENTS.find(c => c.name === n))
+  .filter((c): c is (typeof CLIENTS)[number] & { logo: string } => !!c?.logo);
+
 export default function Home() {
   const quote = quoteLink();
   const call = phoneLink();
 
   return (
     <main>
-      {/* 1 · Hero: what we do, for whom, and one real visual */}
-      <section className="border-b border-ink/[.08] bg-[#F5F7FA]">
-        <div className="container-x grid items-center gap-10 py-10 sm:gap-12 sm:py-20 lg:min-h-[calc(100svh-84px-60px)] lg:grid-cols-[1fr_1.05fr] lg:gap-16 lg:py-16">
+      {/* 1 · Hero: light, layered and credible — promise, proof and one strong visual */}
+      <section className="relative isolate overflow-hidden border-b border-ink/[.08] bg-gradient-to-b from-white via-[#F4F7FF] to-[#E9EFFF]">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(rgba(37,56,214,.13)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_70%_60%_at_70%_40%,#000_30%,transparent_75%)]" />
+        <div aria-hidden="true" className="pointer-events-none absolute -right-40 top-10 -z-10 h-[560px] w-[560px] rounded-full bg-brand/20 blur-[120px]" />
+        <div aria-hidden="true" className="pointer-events-none absolute -left-40 bottom-0 -z-10 h-[360px] w-[360px] rounded-full bg-[#7FA2FF]/20 blur-[110px]" />
+        <div className="container-x grid items-center gap-12 py-12 sm:py-20 lg:min-h-[calc(100svh-84px-60px)] lg:grid-cols-[1fr_1.05fr] lg:gap-16 lg:py-16">
           <div className="anim-up">
-            <p className="text-[15px] font-medium text-brand-dark">Printers and packaging makers in Lahore</p>
-            <h1 className="mt-4 text-[clamp(2.15rem,4.6vw,3.9rem)] sm:mt-5 font-medium leading-[1.06] tracking-[-.03em] text-ink">Carton, label and box printing for Pakistan&rsquo;s pharma and food brands</h1>
-            <p className="mt-5 max-w-[36rem] text-[17px] leading-[1.6] text-secondary sm:mt-6 sm:text-[19px]">For more than 25 years ALL PACK has printed packaging on its own Heidelberg and Solna presses, from approved pharmaceutical cartons to bakery boxes and shipping cartons.</p>
-            <div className="mt-8 grid gap-3 sm:mt-9 sm:flex sm:flex-wrap">
-              <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-brand"><WhatsAppIcon size={18} /> Request a quote</a>
+            <p className="inline-flex items-center gap-2 rounded-full border border-brand/15 bg-white/80 px-3.5 py-1.5 text-[14px] font-medium text-brand-dark shadow-sm backdrop-blur">
+              <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand/40" /><span className="relative inline-flex h-2 w-2 rounded-full bg-brand" /></span>
+              ISO 9001 and Halal certified printers in Lahore
+            </p>
+            <h1 className="mt-6 text-[clamp(2.3rem,4.8vw,4.1rem)] font-medium leading-[1.04] tracking-[-.035em] text-ink">Carton, label and box printing for Pakistan&rsquo;s <span className="bg-gradient-to-r from-brand to-[#4F6BFF] bg-clip-text text-transparent">pharma and food brands</span></h1>
+            <p className="mt-6 max-w-[36rem] text-[17px] leading-[1.65] text-secondary sm:text-[19px]">For more than 25 years ALL PACK has printed packaging in its own Lahore plant, from approved pharmaceutical cartons to bakery boxes and shipping cartons.</p>
+            <div className="mt-9 grid gap-3 sm:flex sm:flex-wrap">
+              <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-brand shadow-[0_12px_30px_-12px_rgba(37,56,214,.7)]"><WhatsAppIcon size={18} /> Request a quote</a>
               <Link href="/products" className="btn-light">See what we print</Link>
             </div>
+            <div className="mt-10 border-t border-ink/[.08] pt-6">
+              <p className="text-[13px] font-medium uppercase tracking-[.12em] text-muted">Trusted by</p>
+              <ul className="mt-4 flex flex-wrap items-center gap-x-7 gap-y-4">
+                {heroClients.map(c => (
+                  <li key={c.name}><img src={c.logo} alt={c.name} className="h-9 w-auto max-w-[120px] object-contain opacity-80 grayscale transition duration-200 hover:opacity-100 hover:grayscale-0" /></li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="anim-up d2 overflow-hidden rounded-2xl bg-soft">
-            <img src={unsplash(STOCK.cleanPlant, 1600)} alt="A pallet of printed cartons ready for dispatch" width={1600} height={1200} fetchPriority="high" className="aspect-[4/3] w-full object-cover" />
+          <div className="anim-up d2 relative mx-auto w-full max-w-[640px] lg:max-w-none">
+            <div className="relative overflow-hidden rounded-[28px] border-[6px] border-white bg-soft shadow-[0_40px_80px_-30px_rgba(11,31,77,.45)]">
+              <img src={unsplash(STOCK.pressSheets, 1600)} alt="Printed sheets running through an offset printing press" width={1600} height={1200} fetchPriority="high" className="aspect-[4/3] w-full object-cover" />
+              <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-navy/35 via-transparent to-transparent" />
+            </div>
+            <div className="absolute -bottom-6 left-4 flex items-center gap-4 rounded-2xl border border-ink/[.06] bg-white/95 px-5 py-4 shadow-[0_20px_40px_-20px_rgba(11,31,77,.4)] backdrop-blur sm:-left-6">
+              <span className="text-[36px] font-semibold leading-none tracking-[-.03em] text-brand">25+</span>
+              <span className="text-[14px] leading-snug text-secondary">years printing<br />packaging in Lahore</span>
+            </div>
+            <div className="absolute -right-3 -top-5 hidden items-center gap-3 rounded-2xl border border-ink/[.06] bg-white/95 px-4 py-3 shadow-[0_20px_40px_-20px_rgba(11,31,77,.4)] backdrop-blur sm:flex lg:-right-6">
+              <CertBadge id="iso" size={42} />
+              <CertBadge id="halal" size={42} />
+              <span className="text-[14px] font-medium leading-snug text-ink">Certified<br /><span className="font-normal text-secondary">quality and Halal</span></span>
+            </div>
           </div>
         </div>
       </section>
@@ -92,7 +122,7 @@ export default function Home() {
           <Head title="About ALL PACK" sub="A Lahore print house trusted by pharmaceutical, food and consumer brands for more than 25 years." />
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <div className="overflow-hidden rounded-2xl bg-soft">
-              <img src={unsplash(STOCK.pressSheets, 1400)} alt="Printed sheets running through a printing press" loading="lazy" className="aspect-[4/3] w-full object-cover" />
+              <img src={unsplash(STOCK.cleanPlant, 1400)} alt="A pallet of printed cartons ready for dispatch in a clean, modern plant" loading="lazy" className="aspect-[4/3] w-full object-cover" />
             </div>
             <div>
               <p className="text-[18px] leading-[1.7] text-secondary">ALL PACK prints and finishes packaging in its own plant in Lahore. Folding cartons, labels, rigid boxes and corrugated shippers run on Heidelberg, GTO 52 and Solna offset presses, then go through die-cutting, lamination, foil and gluing under the same roof.</p>
@@ -100,8 +130,8 @@ export default function Home() {
               <Link href="/about" className="btn-dark mt-8">Read more about us <ArrowRight size={16} /></Link>
             </div>
           </div>
-          <dl className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-ink/[.08] bg-ink/[.08] sm:mt-16 lg:grid-cols-4">
-            {([[25, '+', 'Years in printing'], [3, '', 'Offset presses'], [CLIENTS.length, '+', 'Brands served'], [2, '', 'Certifications: ISO 9001 and Halal']] as const).map(([n, suf, l]) => (
+          <dl className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-ink/[.08] bg-ink/[.08] sm:mt-16 sm:grid-cols-3">
+            {([[25, '+', 'Years in printing'], [CLIENTS.length, '+', 'Brands served'], [2, '', 'Certifications: ISO 9001 and Halal']] as const).map(([n, suf, l]) => (
               <div key={l} className="bg-white px-6 py-8 text-center sm:py-10">
                 <dt className="sr-only">{l}</dt>
                 <dd className="text-[clamp(2.5rem,5vw,3.5rem)] font-medium leading-none tracking-[-.03em] text-ink"><CountUp value={n} suffix={suf} /></dd>
@@ -147,7 +177,7 @@ export default function Home() {
             <div>
               <h2 className="text-[clamp(2.25rem,4.4vw,3.4rem)] font-medium leading-[1.08] tracking-[-.03em]">Our Printing Machinery</h2>
               <span aria-hidden="true" className="mx-auto mt-5 block h-[3px] w-12 rounded-full bg-brand-light" />
-              <p className="mx-auto mt-5 max-w-2xl text-[18px] leading-relaxed text-cyan">Three offset presses and a full finishing line, under one roof in Lahore.</p>
+              <p className="mx-auto mt-5 max-w-2xl text-[18px] leading-relaxed text-cyan">Offset printing and a full finishing line, under one roof in Lahore.</p>
             </div>
           </div>
           <div className="mach-row no-scrollbar">
