@@ -28,6 +28,8 @@ const config: Config = {
         graphite,
         // The one accent, taken from the logo
         brand: { DEFAULT: '#2B4AFC', dark: '#1D36CC', light: '#8EA0FF' },
+        // Process colours, used only for print marks
+        cmyk: { c: '#00A3E0', m: '#E6007E', y: '#FFD400', k: '#16171A' },
         // Legacy names folded back into the ramp
         navy: '#16171A',
         cream: '#ECEDEF',
@@ -39,8 +41,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['"Figtree Variable"', 'Figtree', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['"Source Serif 4 Variable"', 'Source Serif 4', 'Georgia', 'ui-serif', 'serif'],
-        serif: ['"Source Serif 4 Variable"', 'Source Serif 4', 'Georgia', 'ui-serif', 'serif'],
+        display: ['"Bricolage Grotesque Variable"', '"Figtree Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['"Bricolage Grotesque Variable"', '"Figtree Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono Variable"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       boxShadow: {
