@@ -33,12 +33,12 @@ export function ProductCatalog({ initialCategory = '' }: { initialCategory?: str
 
   return (
     <>
-      <div className="mb-8 rounded-2xl border border-line bg-mist p-4 sm:p-5">
+      <div className="mb-6 sm:mb-8 sm:rounded-2xl sm:border sm:border-line sm:bg-mist sm:p-5">
         {/* Row 1: collections */}
-        <div className="flex flex-wrap gap-2" role="tablist" aria-label="Collections">
+        <div className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:px-0" role="tablist" aria-label="Collections">
           {['', ...categories].map(c => (
             <button key={c || 'all'} role="tab" aria-selected={cat === c} onClick={() => setCat(c)}
-              className={`h-9 rounded-lg px-3.5 text-[14px] font-medium transition-colors ${cat === c ? 'bg-ink text-white' : 'border border-line bg-white text-secondary hover:border-ink/30 hover:text-ink'}`}>
+              className={`h-10 shrink-0 whitespace-nowrap rounded-lg px-3.5 text-[14px] font-medium transition-colors ${cat === c ? 'bg-ink text-white' : 'border border-line bg-white text-secondary hover:border-ink/30 hover:text-ink'}`}>
               {c || 'All'}
             </button>
           ))}
@@ -48,14 +48,14 @@ export function ProductCatalog({ initialCategory = '' }: { initialCategory?: str
           <label className="relative">
             <span className="sr-only">Search products</span>
             <Search size={16} strokeWidth={1.5} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-muted" />
-            <input className="input !h-10 !pl-10 text-[14px]" placeholder="Search" value={query} onChange={e => setQuery(e.target.value)} />
+            <input className="input !h-11 !pl-10 text-[16px] sm:!h-10 sm:text-[14px]" placeholder="Search" value={query} onChange={e => setQuery(e.target.value)} />
           </label>
-          <label><span className="sr-only">Material</span>
+          <label className="hidden sm:block"><span className="sr-only">Material</span>
             <select className="input !h-10 !py-0 text-[14px]" value={material} onChange={e => setMaterial(e.target.value)}>
               <option value="">Any material</option>{materialFilters.map(m => <option key={m}>{m}</option>)}
             </select>
           </label>
-          <label><span className="sr-only">Industry</span>
+          <label className="hidden sm:block"><span className="sr-only">Industry</span>
             <select className="input !h-10 !py-0 text-[14px]" value={use} onChange={e => setUse(e.target.value)}>
               <option value="">Any industry</option>{useFilters.map(u => <option key={u}>{u}</option>)}
             </select>
@@ -63,12 +63,12 @@ export function ProductCatalog({ initialCategory = '' }: { initialCategory?: str
         </div>
       </div>
 
-      <div className="mb-8 flex items-center justify-between text-sm text-muted">
+      <div className="mb-5 flex items-center justify-between text-sm text-muted sm:mb-8">
         <p aria-live="polite"><span className="font-medium tabular-nums text-ink">{visible.length}</span> {visible.length === 1 ? 'product' : 'products'}{cat && <> in <span className="text-ink">{cat}</span></>}</p>
         {filtered && <button onClick={reset} className="inline-flex items-center gap-1 font-medium text-ink hover:text-brand"><X size={16} strokeWidth={1.5} /> Clear filters</button>}
       </div>
 
-      <motion.div layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <motion.div layout className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
           {visible.map((p, i) => (
             <motion.div layout key={p.slug} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: .96 }} transition={{ duration: .3, ease: [.22, 1, .36, 1] }}>
@@ -77,8 +77,8 @@ export function ProductCatalog({ initialCategory = '' }: { initialCategory?: str
           ))}
         </AnimatePresence>
         {!filtered && (
-          <motion.div layout key="custom-card">
-            <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="group flex h-full min-h-[320px] flex-col justify-between rounded-2xl border border-dashed border-ink/20 bg-mist p-7 text-ink transition-colors hover:border-ink/40">
+          <motion.div layout key="custom-card" className="col-span-2 sm:col-span-1">
+            <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="group flex h-full flex-col justify-between rounded-2xl border border-dashed border-ink/20 bg-mist p-6 sm:min-h-[320px] sm:p-7 text-ink transition-colors hover:border-ink/40">
               <span className="text-[13px] text-muted">Custom</span>
               <span>
                 <span className="block text-[22px] font-medium leading-tight">Need a size or style that isn&apos;t listed?</span>

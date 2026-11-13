@@ -65,19 +65,19 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([schema, crumbs]).replace(/</g, '\\u003c') }} />
       <div className="container-x">
-        <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 py-6 text-sm text-muted">
+        <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 py-4 text-sm text-muted sm:py-6">
           <Link href="/" className="hover:text-ink">Home</Link><ChevronRight size={14} strokeWidth={1.5} />
           <Link href="/products" className="hover:text-ink">Products</Link><ChevronRight size={14} strokeWidth={1.5} />
           <Link href={`/products?category=${categorySlug(p.category)}`} className="hover:text-ink">{p.category}</Link><ChevronRight size={14} strokeWidth={1.5} />
           <span className="text-ink">{p.name}</span>
         </nav>
-        <div className="grid gap-10 pb-20 lg:grid-cols-[1.12fr_.88fr] lg:gap-16">
+        <div className="grid gap-8 pb-16 sm:gap-10 sm:pb-20 lg:grid-cols-[1.12fr_.88fr] lg:gap-16">
           <div className="lg:sticky lg:top-40 lg:self-start"><Reveal><ProductGallery images={gallery} /></Reveal></div>
           <Reveal delay={.08} className="lg:pt-2">
             <Eyebrow>{p.category}</Eyebrow>
             <h1 className="mt-3 text-[clamp(2.25rem,4.2vw,3.25rem)] font-medium leading-[1.06] tracking-[-.03em]">{p.name}</h1>
             <p className="lead mt-6">{p.fullDescription}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
               <a href={quoteLink(`Hello ALL PACK, I would like a quotation for ${p.name}.`)} target="_blank" rel="noopener noreferrer" className="btn-dark"><WhatsAppIcon size={18} /> Get a quote on WhatsApp</a>
               <AddToQuoteButton slug={p.slug} />
             </div>
@@ -106,12 +106,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <section className="section border-t border-line bg-white">
           <div className="container-x">
             <SectionHead kicker="Why it works" title={`What makes our ${p.name.split(' &')[0].toLowerCase()} better`} />
-            <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-x-5 gap-y-8 sm:gap-x-8 sm:gap-y-10 lg:grid-cols-4">
               {p.features.map(([t, d]) => (
                 <div key={t} className="border-t border-ink/10 pt-6">
                   <Check size={18} strokeWidth={1.75} className="text-brand" aria-hidden="true" />
                   <h3 className="mt-4 text-[17px] font-medium">{t}</h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-secondary">{d}</p>
+                  <p className="mt-2 text-[14px] leading-relaxed text-secondary sm:text-[15px]">{d}</p>
                 </div>
               ))}
             </div>
@@ -122,12 +122,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <section className="section bg-mist">
         <div className="container-x">
           <SectionHead kicker="How ordering works" title="From brief to box in four steps" sub="A clear specification and a clear price before anything is printed." />
-          <ol className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="grid grid-cols-2 gap-x-5 gap-y-8 sm:gap-x-8 sm:gap-y-10 lg:grid-cols-4">
             {steps.map(([t, d], i) => (
               <li key={t} className="border-t border-ink/10 pt-6">
                 <span className="meta tabular-nums">0{i + 1}</span>
                 <h3 className="mt-4 text-[17px] font-medium">{t}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-secondary">{d}</p>
+                <p className="mt-2 text-[14px] leading-relaxed text-secondary sm:text-[15px]">{d}</p>
               </li>
             ))}
           </ol>
@@ -144,7 +144,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <section className="section bg-mist">
         <div className="container-x">
           <SectionHead kicker="Related" title="You might also need" action={{ text: 'All products', href: '/products' }} />
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{related.map((x, i) => <ProductCard key={x.slug} product={x} index={i} />)}</div>
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">{related.map((x, i) => <ProductCard key={x.slug} product={x} index={i} />)}</div>
         </div>
       </section>
     </main>

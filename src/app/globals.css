@@ -92,6 +92,10 @@ h3.font-medium, h3.font-semibold { font-weight: 500 !important; }
 
 /* Machinery row: panels share one line; the hovered one widens */
 .mach-row { display: grid; gap: 14px; }
+@media (max-width: 639px) {
+  .mach-row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -1rem; padding: 0 1rem 4px; }
+  .mach-panel { flex: 0 0 84%; scroll-snap-align: start; }
+}
 .mach-panel { transition: flex-grow .6s cubic-bezier(.22,1,.36,1); }
 .mach-panel img { transition: transform 1.2s cubic-bezier(.22,1,.36,1); }
 .mach-panel:hover img, .mach-panel:focus-within img { transform: scale(1.1); }

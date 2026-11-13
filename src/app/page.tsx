@@ -43,12 +43,12 @@ export default function Home() {
     <main>
       {/* 1 · Hero: what we do, for whom, and one real visual */}
       <section className="border-b border-ink/[.08] bg-[#F5F7FA]">
-        <div className="container-x grid items-center gap-12 py-16 sm:py-20 lg:min-h-[calc(100svh-84px-60px)] lg:grid-cols-[1fr_1.05fr] lg:gap-16 lg:py-16">
+        <div className="container-x grid items-center gap-10 py-10 sm:gap-12 sm:py-20 lg:min-h-[calc(100svh-84px-60px)] lg:grid-cols-[1fr_1.05fr] lg:gap-16 lg:py-16">
           <div className="anim-up">
             <p className="text-[15px] font-medium text-brand-dark">Printers and packaging makers in Lahore</p>
-            <h1 className="mt-5 text-[clamp(2.5rem,4.6vw,3.9rem)] font-medium leading-[1.06] tracking-[-.03em] text-ink">Cartons, labels and boxes printed for Pakistan&rsquo;s pharma and food brands</h1>
-            <p className="mt-6 max-w-[36rem] text-[19px] leading-[1.6] text-secondary">For more than 25 years ALL PACK has printed packaging on its own Heidelberg and Solna presses, from approved pharmaceutical cartons to bakery boxes and shipping cartons.</p>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <h1 className="mt-4 text-[clamp(2.15rem,4.6vw,3.9rem)] sm:mt-5 font-medium leading-[1.06] tracking-[-.03em] text-ink">Cartons, labels and boxes printed for Pakistan&rsquo;s pharma and food brands</h1>
+            <p className="mt-5 max-w-[36rem] text-[17px] leading-[1.6] text-secondary sm:mt-6 sm:text-[19px]">For more than 25 years ALL PACK has printed packaging on its own Heidelberg and Solna presses, from approved pharmaceutical cartons to bakery boxes and shipping cartons.</p>
+            <div className="mt-8 grid gap-3 sm:mt-9 sm:flex sm:flex-wrap">
               <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-brand"><WhatsAppIcon size={18} /> Request a quote</a>
               <Link href="/products" className="btn-light">See what we print</Link>
             </div>
@@ -86,13 +86,13 @@ export default function Home() {
       <section className="section border-t border-ink/[.08] bg-[#F5F7FA]" id="products">
         <div className="container-x">
           <Head label="What we print" title="Packaging for the industries we know best" link={{ text: `All ${products.length} products`, href: '/products' }} />
-          <div className="grid gap-6 lg:grid-cols-[1.25fr_1fr_1fr]">
+          <div className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-1 sm:mx-0 sm:grid sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 md:grid-cols-2 lg:grid-cols-[1.25fr_1fr_1fr]">
             {sectors.map((s, i) => (
-              <article key={s.name} className="flex flex-col overflow-hidden rounded-2xl border border-ink/[.08] bg-white">
+              <article key={s.name} className="flex w-[86%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-ink/[.08] bg-white sm:w-auto">
                 <div className={`overflow-hidden ${s.contain ? 'bg-white' : 'bg-soft'}`}>
-                  <img src={s.img} alt="" loading="lazy" className={`w-full ${i === 0 ? 'aspect-[16/10]' : 'aspect-[4/3]'} ${s.contain ? 'object-contain p-8' : 'object-cover'}`} />
+                  <img src={s.img} alt="" loading="lazy" className={`w-full aspect-[16/10] ${i === 0 ? '' : 'lg:aspect-[4/3]'} ${s.contain ? 'object-contain p-8' : 'object-cover'}`} />
                 </div>
-                <div className="flex flex-1 flex-col p-6 sm:p-7">
+                <div className="flex flex-1 flex-col p-5 sm:p-7">
                   <h3 className="text-[22px] font-medium tracking-[-.02em]">{s.name}</h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-secondary">{s.d}</p>
                   <ul className="mt-5 border-t border-ink/[.08]">
@@ -113,7 +113,7 @@ export default function Home() {
       {/* 5 · Manufacturing capabilities, with the numbers that matter */}
       <section className="section bg-navy-deep text-white" id="capabilities">
         <div className="container-x">
-          <div className="mb-12 grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-end">
+          <div className="mb-10 grid gap-8 sm:mb-12 sm:gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-end">
             <div>
               <p className="text-[15px] font-medium text-brand-light">Our manufacturing capabilities</p>
               <h2 className="mt-3 text-[clamp(2rem,3.4vw,2.75rem)] font-medium leading-[1.1] tracking-[-.025em]">Three offset presses and a full finishing line, under one roof</h2>
@@ -128,10 +128,10 @@ export default function Home() {
               ))}
             </dl>
           </div>
-          <div className="mach-row">
+          <div className="mach-row no-scrollbar">
             {machines.map(m => (
               <article key={m.name} tabIndex={0} className="mach-panel relative flex sm:min-h-[500px] flex-col overflow-hidden rounded-2xl border border-white/[.08] bg-graphite-card outline-none focus-visible:ring-2 focus-visible:ring-brand-light lg:min-h-[540px]">
-                <div className="relative h-[240px] shrink-0 overflow-hidden">
+                <div className="relative h-[190px] shrink-0 overflow-hidden sm:h-[240px]">
                   <img src={unsplash(m.img, 1100)} alt="" loading="lazy" className="h-full w-full object-cover" />
                   <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-graphite-card/0 to-graphite-card" />
                 </div>
@@ -209,7 +209,7 @@ export default function Home() {
               const body = (
                 <>
                   <c.icon size={18} strokeWidth={1.5} className="shrink-0 text-cyan" />
-                  <span><span className="block text-[13px] text-cyan">{c.k}</span><span className="mt-0.5 block break-all text-[17px] font-medium">{c.v}</span></span>
+                  <span><span className="block text-[13px] text-cyan">{c.k}</span><span className="mt-0.5 block break-words text-[17px] font-medium [overflow-wrap:anywhere]">{c.v}</span></span>
                 </>
               );
               return c.href

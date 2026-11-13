@@ -15,8 +15,8 @@ export function Footer() {
   const item = 'text-[15px] text-[#9AA3B2] transition-colors hover:text-white';
   return (
     <footer className="border-t border-[#1A2C57] bg-navy-deep text-[#9AA3B2]">
-      <div className="container-x grid gap-12 py-16 sm:grid-cols-2 sm:py-20 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr]">
-        <div>
+      <div className="container-x grid grid-cols-2 gap-x-6 gap-y-10 py-14 sm:gap-12 sm:py-20 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr]">
+        <div className="col-span-2 sm:col-span-1">
           <Logo light />
           <p className="mt-6 max-w-xs text-[15px] leading-relaxed">Printers and packaging makers in Lahore for more than 25 years. Cartons, rigid boxes, corrugated, bags and labels, delivered across Pakistan.</p>
           <div className="mt-6 flex items-center gap-3"><CertBadge id="iso" size={48} /><CertBadge id="halal" size={48} /><span className="text-[13px] leading-snug">ISO 9001:2015<br />Halal certified</span></div>
@@ -33,14 +33,14 @@ export function Footer() {
             {categories.slice(0, 6).map(c => <li key={c}><Link href={`/products?category=${categorySlug(c)}`} className={item}>{c}</Link></li>)}
           </ul>
         </div>
-        <div>
+        <div className="col-span-2 sm:col-span-1">
           <h2 className={head}>Head office</h2>
           <address className="grid gap-3.5 not-italic">
             <a href={mapsLink} target="_blank" rel="noopener noreferrer" className={`${item} flex gap-3 leading-relaxed`}>
               <MapPin size={18} strokeWidth={1.6} className="mt-0.5 shrink-0" /> <span>{COMPANY.address} <ArrowUpRight size={14} strokeWidth={1.6} className="inline align-[-2px]" /></span>
             </a>
             {call && <a href={call} className={`${item} flex items-center gap-3 tabular-nums`}><Phone size={18} strokeWidth={1.6} className="shrink-0" /> {COMPANY.phone}</a>}
-            <a href={`mailto:${COMPANY.email}`} className={`${item} flex items-center gap-3 break-all`}><Mail size={18} strokeWidth={1.6} className="shrink-0" /> {COMPANY.email}</a>
+            <a href={`mailto:${COMPANY.email}`} className={`${item} flex items-center gap-3 [overflow-wrap:anywhere]`}><Mail size={18} strokeWidth={1.6} className="shrink-0" /> {COMPANY.email}</a>
             {wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex w-fit items-center gap-2 text-[15px] font-semibold text-brand-light hover:text-white">Chat on WhatsApp <ArrowUpRight size={16} strokeWidth={1.6} /></a>}
           </address>
         </div>

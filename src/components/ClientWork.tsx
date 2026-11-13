@@ -5,7 +5,7 @@ import { clientWork, workImage } from '@/data/work';
 export function ClientWork({ limit }: { limit?: number }) {
   const items = limit ? clientWork.slice(0, limit) : clientWork;
   return (
-    <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 lg:grid-cols-5">
+    <ul className="grid grid-cols-2 gap-x-4 gap-y-7 sm:gap-x-6 sm:gap-y-8 lg:grid-cols-5 [&>li:nth-child(n+7)]:hidden sm:[&>li:nth-child(n+7)]:block">
       {items.map(w => (
         <li key={w.photo}>
           <figure>
