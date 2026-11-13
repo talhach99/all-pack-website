@@ -12,6 +12,7 @@ export function stockUrl(ref: string, w = 1600) {
 
 /** Home and capability photos. */
 export const STOCK = {
+  pressSheets: 'photo-1503694978374-8a2fa686963a', // printed sheets running through a press, clean and sharp — Unsplash
   pressDelivery: 'px:9550363/pexels-photo-9550363.jpeg', // printed carton sheets leaving an offset press
   cleanPlant: 'photo-1651525670033-279c26cc2347', // pallet of printed cartons in a clean, bright plant
   pressFeeder: 'px:19316517/pexels-photo-19316517/free-photo-of-machinery-in-factory.png',

@@ -2,7 +2,9 @@
 import type { Metadata } from 'next';
 import { PAGE_SEO, seoTitle } from '@/data/seo';
 import Link from 'next/link';
-import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
+import { ArrowRight, BadgeCheck, Boxes, Factory, Mail, MapPin, MessageSquareText, Phone } from 'lucide-react';
+
+const reasonIcons = [Factory, BadgeCheck, Boxes, MessageSquareText];
 import { WhatsAppIcon } from '@/components/FloatingContact';
 import { ClientLogos } from '@/components/ClientStrip';
 import { ClientWork } from '@/components/ClientWork';
@@ -90,7 +92,7 @@ export default function Home() {
           <Head title="About ALL PACK" sub="A Lahore print house trusted by pharmaceutical, food and consumer brands for more than 25 years." />
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <div className="overflow-hidden rounded-2xl bg-soft">
-              <img src={unsplash(STOCK.pressDelivery, 1400)} alt="Printed carton sheets coming off an offset press" loading="lazy" className="aspect-[4/3] w-full object-cover" />
+              <img src={unsplash(STOCK.pressSheets, 1400)} alt="Printed sheets running through a printing press" loading="lazy" className="aspect-[4/3] w-full object-cover" />
             </div>
             <div>
               <p className="text-[18px] leading-[1.7] text-secondary">ALL PACK prints and finishes packaging in its own plant in Lahore. Folding cartons, labels, rigid boxes and corrugated shippers run on Heidelberg, GTO 52 and Solna offset presses, then go through die-cutting, lamination, foil and gluing under the same roof.</p>
@@ -178,36 +180,49 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7 · How we work, and why brands stay */}
-      <section className="section border-t border-ink/[.08] bg-[#F5F7FA]">
+      {/* 7 · Why choose us: four equal reasons, then certifications */}
+      <section className="section border-t border-ink/[.08] bg-[#F5F7FA]" id="why-us">
         <div className="container-x">
-          <Head title="Why Choose ALL PACK" sub="A print house first, so the details get done right, from your brief to delivered boxes." />
-        </div>
-        <div className="container-x grid gap-14 lg:grid-cols-2 lg:gap-20">
-          <div>
-            <h3 className="text-[22px] font-medium tracking-[-.015em]">How an order runs</h3>
-            <ol className="mt-6 border-t border-ink/[.08]">
-              {steps.map((s, i) => (
-                <li key={s.t} className="grid grid-cols-[48px_1fr] gap-x-2 border-b border-ink/[.08] py-6">
-                  <span className="text-[15px] font-medium tabular-nums text-brand-dark">0{i + 1}</span>
-                  <span><span className="block text-[18px] font-medium">{s.t}</span><span className="mt-1.5 block text-[15px] leading-relaxed text-secondary">{s.d}</span></span>
+          <Head title="Why Choose ALL PACK" sub="A print house first, so the details get done right." />
+          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {reasons.map((r, i) => {
+              const Icon = reasonIcons[i % reasonIcons.length];
+              return (
+                <li key={r.t} className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-ink/[.08] bg-white p-7 transition-shadow duration-200 hover:shadow-[0_18px_40px_-24px_rgba(11,31,77,.35)]">
+                  <span aria-hidden="true" className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-brand transition-transform duration-300 group-hover:scale-x-100" />
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand/[.08] text-brand"><Icon size={24} strokeWidth={1.6} /></span>
+                  <h3 className="mt-6 text-[19px] font-medium leading-snug tracking-[-.01em]">{r.t}</h3>
+                  <p className="mt-2.5 text-[15px] leading-relaxed text-secondary">{r.d}</p>
                 </li>
-              ))}
-            </ol>
+              );
+            })}
+          </ul>
+          <div className="mx-auto mt-12 max-w-2xl sm:mt-14">
+            <p className="mb-5 text-center text-[15px] font-medium text-brand-dark">Certified for quality and food safety</p>
+            <Certifications />
           </div>
-          <div>
-            <h3 className="text-[22px] font-medium tracking-[-.015em]">Why brands stay with us</h3>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              {reasons.map(r => (
-                <div key={r.t} className="rounded-2xl border border-ink/[.08] bg-white p-6">
-                  <h4 className="text-[18px] font-medium">{r.t}</h4>
-                  <p className="mt-2 text-[15px] leading-relaxed text-secondary">{r.d}</p>
+        </div>
+      </section>
+
+      {/* 7b · How an order runs: four steps on a timeline */}
+      <section className="section bg-white" id="process">
+        <div className="container-x">
+          <Head title="How an Order Runs" sub="Four clear steps from your first message to boxes at your door." />
+          <ol className="relative grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+            <span aria-hidden="true" className="absolute left-[12.5%] right-[12.5%] top-7 hidden h-px bg-ink/[.12] lg:block" />
+            {steps.map((st, i) => (
+              <li key={st.t} className="relative flex gap-5 lg:flex-col lg:items-center lg:gap-0 lg:text-center">
+                <span className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-[6px] border-white bg-brand text-[17px] font-semibold tabular-nums text-white shadow-[0_0_0_1px_rgba(11,31,77,.08)]">{i + 1}</span>
+                <div className="lg:mt-6">
+                  <h3 className="text-[19px] font-medium tracking-[-.01em]">{st.t}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-secondary lg:mx-auto lg:max-w-[16rem]">{st.d}</p>
                 </div>
-              ))}
-            </div>
-            <p className="mt-10 text-[15px] font-medium text-brand-dark">Certified</p>
-            <div className="mt-4"><Certifications /></div>
-            <Link href="/about" className="group mt-8 inline-flex items-center gap-1.5 text-[15px] font-medium text-ink hover:text-brand">More about ALL PACK <ArrowRight size={16} strokeWidth={1.75} className="transition-transform duration-150 group-hover:translate-x-0.5" /></Link>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-12 flex flex-wrap justify-center gap-3 sm:mt-14">
+            <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-brand"><WhatsAppIcon size={18} /> Start with step 1 on WhatsApp</a>
+            <Link href="/about" className="btn-light">More about ALL PACK</Link>
           </div>
         </div>
       </section>
