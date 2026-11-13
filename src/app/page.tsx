@@ -18,11 +18,11 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
 
-/** Left-aligned section heading with an optional link on the right. */
+/** Centred section heading with an optional link underneath. */
 function Head({ label, title, sub, link, light = false }: { label: string; title: string; sub?: string; link?: { text: string; href: string }; light?: boolean }) {
   return (
-    <div className="mb-12 flex flex-wrap items-end justify-between gap-x-12 gap-y-6">
-      <div className="max-w-2xl">
+    <div className="mx-auto mb-12 flex max-w-3xl flex-col items-center gap-y-6 text-center">
+      <div>
         <p className={`text-[15px] font-medium ${light ? 'text-brand-light' : 'text-brand-dark'}`}>{label}</p>
         <h2 className={`mt-3 text-[clamp(2rem,3.4vw,2.75rem)] font-medium leading-[1.1] tracking-[-.025em] ${light ? 'text-white' : 'text-ink'}`}>{title}</h2>
         {sub && <p className={`mt-4 text-[17px] leading-relaxed ${light ? 'text-cyan' : 'text-secondary'}`}>{sub}</p>}
@@ -47,7 +47,7 @@ export default function Home() {
         <div className="container-x grid items-center gap-10 py-10 sm:gap-12 sm:py-20 lg:min-h-[calc(100svh-84px-60px)] lg:grid-cols-[1fr_1.05fr] lg:gap-16 lg:py-16">
           <div className="anim-up">
             <p className="text-[15px] font-medium text-brand-dark">Printers and packaging makers in Lahore</p>
-            <h1 className="mt-4 text-[clamp(2.15rem,4.6vw,3.9rem)] sm:mt-5 font-medium leading-[1.06] tracking-[-.03em] text-ink">Cartons, labels and boxes printed for Pakistan&rsquo;s pharma and food brands</h1>
+            <h1 className="mt-4 text-[clamp(2.15rem,4.6vw,3.9rem)] sm:mt-5 font-medium leading-[1.06] tracking-[-.03em] text-ink">Carton, label and box printing for Pakistan&rsquo;s pharma and food brands</h1>
             <p className="mt-5 max-w-[36rem] text-[17px] leading-[1.6] text-secondary sm:mt-6 sm:text-[19px]">For more than 25 years ALL PACK has printed packaging on its own Heidelberg and Solna presses, from approved pharmaceutical cartons to bakery boxes and shipping cartons.</p>
             <div className="mt-8 grid gap-3 sm:mt-9 sm:flex sm:flex-wrap">
               <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-brand"><WhatsAppIcon size={18} /> Request a quote</a>
@@ -78,7 +78,7 @@ export default function Home() {
       {/* 3 · Clients, as proof right after the promise */}
       <section className="bg-white py-20 sm:py-24" id="clients">
         <div className="container-x">
-          <Head label="Trusted by" title="Printing for pharmaceutical, food and healthcare brands across Pakistan" />
+          <Head label="Trusted by" title="Printing for pharmaceutical, food and cosmetic brands across Pakistan" />
         </div>
         <ClientLogos />
       </section>
@@ -114,12 +114,12 @@ export default function Home() {
       {/* 5 · Manufacturing capabilities, with the numbers that matter */}
       <section className="section bg-navy-deep text-white" id="capabilities">
         <div className="container-x">
-          <div className="mb-10 grid gap-8 sm:mb-12 sm:gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-end">
+          <div className="mx-auto mb-10 flex max-w-3xl flex-col items-center gap-8 text-center sm:mb-12 sm:gap-10">
             <div>
               <p className="text-[15px] font-medium text-brand-light">Our manufacturing capabilities</p>
               <h2 className="mt-3 text-[clamp(2rem,3.4vw,2.75rem)] font-medium leading-[1.1] tracking-[-.025em]">Three offset presses and a full finishing line, under one roof</h2>
             </div>
-            <dl className="grid grid-cols-3 border-t border-white/10 pt-6">
+            <dl className="grid w-full max-w-xl grid-cols-3 border-t border-white/10 pt-6">
               {[['25+', 'years on press'], ['3', 'offset presses'], [`${CLIENTS.length}+`, 'brands served']].map(([n, l]) => (
                 <div key={l}>
                   <dt className="sr-only">{l}</dt>
