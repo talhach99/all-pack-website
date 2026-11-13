@@ -18,14 +18,14 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
 
-/** Centred section heading with an optional link underneath. */
-function Head({ label, title, sub, link, light = false }: { label: string; title: string; sub?: string; link?: { text: string; href: string }; light?: boolean }) {
+/** Centred section heading: one large title naming the topic, one supporting line, optional link. */
+function Head({ title, sub, link, light = false }: { title: string; sub?: string; link?: { text: string; href: string }; light?: boolean }) {
   return (
-    <div className="mx-auto mb-12 flex max-w-3xl flex-col items-center gap-y-6 text-center">
+    <div className="mx-auto mb-12 flex max-w-3xl flex-col items-center gap-y-6 text-center sm:mb-14">
       <div>
-        <p className={`text-[15px] font-medium ${light ? 'text-brand-light' : 'text-brand-dark'}`}>{label}</p>
-        <h2 className={`mt-3 text-[clamp(2rem,3.4vw,2.75rem)] font-medium leading-[1.1] tracking-[-.025em] ${light ? 'text-white' : 'text-ink'}`}>{title}</h2>
-        {sub && <p className={`mt-4 text-[17px] leading-relaxed ${light ? 'text-cyan' : 'text-secondary'}`}>{sub}</p>}
+        <h2 className={`text-[clamp(2.25rem,4.4vw,3.4rem)] font-medium leading-[1.08] tracking-[-.03em] ${light ? 'text-white' : 'text-ink'}`}>{title}</h2>
+        <span aria-hidden="true" className="mx-auto mt-5 block h-[3px] w-12 rounded-full bg-brand" />
+        {sub && <p className={`mx-auto mt-5 max-w-2xl text-[18px] leading-relaxed ${light ? 'text-cyan' : 'text-secondary'}`}>{sub}</p>}
       </div>
       {link && (
         <Link href={link.href} className={`group inline-flex items-center gap-1.5 text-[15px] font-medium transition-colors ${light ? 'text-white hover:text-brand-light' : 'text-ink hover:text-brand'}`}>
@@ -78,7 +78,7 @@ export default function Home() {
       {/* 3 · Clients, as proof right after the promise */}
       <section className="bg-white py-20 sm:py-24" id="clients">
         <div className="container-x">
-          <Head label="Trusted by" title="Printing for pharmaceutical, food and cosmetic brands across Pakistan" />
+          <Head title="Our Clients" sub="Printing for pharmaceutical, food and cosmetic brands across Pakistan." />
         </div>
         <ClientLogos />
       </section>
@@ -86,7 +86,7 @@ export default function Home() {
       {/* 4 · What we print, by sector */}
       <section className="section border-t border-ink/[.08] bg-[#F5F7FA]" id="products">
         <div className="container-x">
-          <Head label="What we print" title="Packaging for the industries we know best" link={{ text: `All ${products.length} products`, href: '/products' }} />
+          <Head title="Packaging We Print" sub="Packaging for the industries we know best, from medicine cartons to bakery boxes." link={{ text: `All ${products.length} products`, href: '/products' }} />
           <div className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-1 sm:mx-0 sm:grid sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 md:grid-cols-2 lg:grid-cols-[1.25fr_1fr_1fr]">
             {sectors.map((s, i) => (
               <article key={s.name} className="flex w-[86%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-ink/[.08] bg-white sm:w-auto">
@@ -116,8 +116,9 @@ export default function Home() {
         <div className="container-x">
           <div className="mx-auto mb-10 flex max-w-3xl flex-col items-center gap-8 text-center sm:mb-12 sm:gap-10">
             <div>
-              <p className="text-[15px] font-medium text-brand-light">Our manufacturing capabilities</p>
-              <h2 className="mt-3 text-[clamp(2rem,3.4vw,2.75rem)] font-medium leading-[1.1] tracking-[-.025em]">Three offset presses and a full finishing line, under one roof</h2>
+              <h2 className="text-[clamp(2.25rem,4.4vw,3.4rem)] font-medium leading-[1.08] tracking-[-.03em]">Our Printing Machinery</h2>
+              <span aria-hidden="true" className="mx-auto mt-5 block h-[3px] w-12 rounded-full bg-brand-light" />
+              <p className="mx-auto mt-5 max-w-2xl text-[18px] leading-relaxed text-cyan">Three offset presses and a full finishing line, under one roof in Lahore.</p>
             </div>
             <dl className="grid w-full max-w-xl grid-cols-3 border-t border-white/10 pt-6">
               {[['25+', 'years on press'], ['3', 'offset presses'], [`${CLIENTS.length}+`, 'brands served']].map(([n, l]) => (
@@ -154,18 +155,20 @@ export default function Home() {
       {/* 6 · Formats and finishes */}
       <section className="section bg-white" id="work">
         <div className="container-x">
-          <Head label="What comes off our line" title="Cartons, boxes and finishes we print" sub="Folding cartons, rigid boxes, bakery packs and printed shippers, finished in-house with foil, lamination and die-cutting." link={{ text: 'Browse all products', href: '/products' }} />
+          <Head title="Our Printing Work" sub="Folding cartons, rigid boxes, bakery packs and printed shippers, finished in-house with foil, lamination and die-cutting." link={{ text: 'Browse all products', href: '/products' }} />
           <ClientWork />
         </div>
       </section>
 
       {/* 7 · How we work, and why brands stay */}
       <section className="section border-t border-ink/[.08] bg-[#F5F7FA]">
+        <div className="container-x">
+          <Head title="Why Choose ALL PACK" sub="A print house first, so the details get done right, from your brief to delivered boxes." />
+        </div>
         <div className="container-x grid gap-14 lg:grid-cols-2 lg:gap-20">
           <div>
-            <p className="text-[15px] font-medium text-brand-dark">How an order runs</p>
-            <h2 className="mt-3 text-[clamp(2rem,3.4vw,2.75rem)] font-medium leading-[1.1] tracking-[-.025em]">From your brief to delivered boxes</h2>
-            <ol className="mt-10 border-t border-ink/[.08]">
+            <h3 className="text-[22px] font-medium tracking-[-.015em]">How an order runs</h3>
+            <ol className="mt-6 border-t border-ink/[.08]">
               {steps.map((s, i) => (
                 <li key={s.t} className="grid grid-cols-[48px_1fr] gap-x-2 border-b border-ink/[.08] py-6">
                   <span className="text-[15px] font-medium tabular-nums text-brand-dark">0{i + 1}</span>
@@ -175,12 +178,11 @@ export default function Home() {
             </ol>
           </div>
           <div>
-            <p className="text-[15px] font-medium text-brand-dark">Why brands stay with us</p>
-            <h2 className="mt-3 text-[clamp(2rem,3.4vw,2.75rem)] font-medium leading-[1.1] tracking-[-.025em]">A print house first, so the details get done right</h2>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            <h3 className="text-[22px] font-medium tracking-[-.015em]">Why brands stay with us</h3>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
               {reasons.map(r => (
                 <div key={r.t} className="rounded-2xl border border-ink/[.08] bg-white p-6">
-                  <h3 className="text-[18px] font-medium">{r.t}</h3>
+                  <h4 className="text-[18px] font-medium">{r.t}</h4>
                   <p className="mt-2 text-[15px] leading-relaxed text-secondary">{r.d}</p>
                 </div>
               ))}
