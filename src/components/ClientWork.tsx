@@ -9,7 +9,7 @@ export function ClientWork({ limit }: { limit?: number }) {
       {items.map(w => (
         <li key={w.image}>
           <figure>
-            <div className="aspect-[4/3] overflow-hidden rounded-xl border border-line bg-white">
+            <div className="aspect-[4/3] overflow-hidden rounded-xl border border-ink/[.08] bg-white">
               <img
                 src={workImage(w.image)}
                 alt={`${w.brand} ${w.product}, ${w.format.toLowerCase()} printed by ALL PACK`}
@@ -20,7 +20,7 @@ export function ClientWork({ limit }: { limit?: number }) {
             </div>
             <figcaption className="mt-3">
               <span className="block text-[15px] font-medium leading-snug text-ink">{w.brand} {w.product}</span>
-              <span className="meta mt-1 block">{w.format}</span>
+              <span className="mt-1 block text-[14px] text-muted">{w.format}</span>
             </figcaption>
           </figure>
         </li>

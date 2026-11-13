@@ -7,7 +7,7 @@
   body { @apply bg-paper font-sans text-ink antialiased; text-rendering: optimizeLegibility; overflow-x: hidden; }
   ::selection { background: #2B4AFC; color: #fff; }
   :focus-visible { outline: 2px solid #2B4AFC; outline-offset: 2px; border-radius: 6px; }
-  h1, h2, h3, h4 { @apply font-display; font-weight: 600; text-wrap: balance; }
+  h1, h2, h3, h4 { @apply font-display; font-weight: 500; text-wrap: balance; }
   p { text-wrap: pretty; }
   img { max-width: 100%; height: auto; }
 }
@@ -16,26 +16,25 @@
 .font-display, .font-serif { font-family: "Inter Variable", Inter, ui-sans-serif, system-ui, sans-serif; }
 h1 em, h2 em, h3 em, h1 .italic, h2 .italic, .font-display.italic, .font-serif.italic { font-style: normal; }
 .font-bold, .font-extrabold, .font-black { font-weight: 600 !important; }
-h1.font-semibold, h2.font-semibold, h1.font-medium, h2.font-medium, .h-display, .h-section { font-weight: 600 !important; }
-h3.font-medium, h3.font-semibold { font-weight: 600 !important; }
+h1.font-semibold, h2.font-semibold, h1.font-medium, h2.font-medium, .h-display, .h-section { font-weight: 500 !important; }
+h3.font-medium, h3.font-semibold { font-weight: 500 !important; }
 
 @layer components {
   .container-x { @apply mx-auto w-full max-w-[1280px] px-4 sm:px-8 lg:px-10; }
   .section { padding-block: clamp(4rem, 8vw, 7rem); }
 
-  /* Section label: short blue bar, then spaced capitals */
-  .kicker { @apply inline-flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[.14em] text-brand; }
-  .kicker::before { content: ''; width: 28px; height: 3px; border-radius: 2px; flex: none; background: currentColor; }
-  .h-display { @apply font-display text-ink; letter-spacing: -.035em; font-size: clamp(2.6rem, 5.2vw, 4.5rem); line-height: 1.04; }
-  .h-section { @apply font-display text-ink; letter-spacing: -.03em; font-size: clamp(2rem, 3.8vw, 3.25rem); line-height: 1.08; }
-  .num-label { @apply text-[12px] font-semibold uppercase tracking-[.12em] text-muted; }
+  /* Section label: a short line of text in the accent, sentence case */
+  .kicker { @apply inline-flex items-center text-[15px] font-medium text-brand-dark; }
+  .h-display { @apply font-display text-ink; letter-spacing: -.03em; font-size: clamp(2.5rem, 5vw, 4.25rem); line-height: 1.05; }
+  .h-section { @apply font-display text-ink; letter-spacing: -.025em; font-size: clamp(2rem, 3.4vw, 2.75rem); line-height: 1.1; }
+  .num-label { @apply text-[13px] font-medium text-muted; }
   .h-card { @apply font-display text-xl sm:text-2xl; font-weight: 500; }
   .accent { color: inherit; font-style: normal; font-weight: inherit; }
   .lead { @apply text-[17px] leading-relaxed text-secondary sm:text-lg; }
   .meta { @apply font-mono text-[12px] leading-4 text-muted; font-feature-settings: "zero" 0; }
 
   /* Buttons: 48 tall, 8 radius, colour change on hover, tiny press */
-  .btn { @apply relative inline-flex h-12 select-none items-center justify-center gap-2 whitespace-nowrap rounded-lg px-6 text-[15px] font-semibold transition-[color,background-color,border-color,transform] duration-150 ease-out active:scale-[.98] disabled:pointer-events-none disabled:opacity-50; }
+  .btn { @apply relative inline-flex h-12 select-none items-center justify-center gap-2 whitespace-nowrap rounded-lg px-5 text-[15px] font-medium transition-[color,background-color,border-color,transform] duration-150 ease-out active:scale-[.98] disabled:pointer-events-none disabled:opacity-50; }
   .btn-dark { @apply btn bg-brand text-white hover:bg-brand-dark; }
   .btn-brand { @apply btn bg-brand text-white hover:bg-brand-dark; }
   .btn-navy { @apply btn bg-navy text-white hover:bg-navy-deep; }
@@ -68,10 +67,8 @@ h3.font-medium, h3.font-semibold { font-weight: 600 !important; }
   .dark-section .h-section, .dark-section .h-display { @apply text-white; }
   .dark-section .lead { color: #AAB3C5; }
 
-  /* Inner-page header: white to soft blue, faint dot grid on the right */
-  .page-hero { position: relative; isolation: isolate; overflow: hidden; border-bottom: 1px solid #E2E5EA; background: linear-gradient(160deg, #FFFFFF 0%, #F4F7FF 45%, #E7EDFF 100%); }
-  .page-hero::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background-image: radial-gradient(rgba(11,31,77,.12) 1px, transparent 1.2px); background-size: 22px 22px; -webkit-mask-image: radial-gradient(ellipse 55% 75% at 85% 40%, #000 0%, transparent 70%); mask-image: radial-gradient(ellipse 55% 75% at 85% 40%, #000 0%, transparent 70%); }
-  .page-hero::after { content: ''; position: absolute; z-index: -1; width: 560px; height: 560px; right: -140px; top: -200px; border-radius: 50%; background: radial-gradient(circle, rgba(43,74,252,.16), rgba(43,74,252,0) 65%); pointer-events: none; }
+  /* Inner-page header: quiet mist ground with a hairline */
+  .page-hero { position: relative; background: #F5F7FA; border-bottom: 1px solid rgba(11,31,77,.08); }
 
   .prose-ap { @apply text-[17px] leading-[1.75] text-secondary; }
   .prose-ap h2 { @apply mb-4 mt-12 text-2xl text-ink sm:text-[28px]; }
@@ -92,12 +89,6 @@ h3.font-medium, h3.font-semibold { font-weight: 600 !important; }
 .d1 { animation-delay: 0ms } .d2 { animation-delay: 50ms } .d3 { animation-delay: 100ms } .d4 { animation-delay: 150ms } .d5 { animation-delay: 200ms } .d6, .d7 { animation-delay: 250ms }
 .marquee-track { animation: logo-scroll 45s linear infinite; will-change: transform; }
 .ticker:hover .marquee-track { animation-play-state: paused; }
-
-/* Home hero: floating cards and a slow dashed ring */
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-@keyframes spin { to { transform: rotate(360deg); } }
-.float { animation: float 6s ease-in-out infinite; }
-.spin-slow { animation: spin 30s linear infinite; }
 
 /* Machinery row: panels share one line; the hovered one widens */
 .mach-row { display: grid; gap: 14px; }

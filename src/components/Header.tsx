@@ -13,8 +13,8 @@ import { WhatsAppIcon } from './FloatingContact';
 
 type Panel = 'products' | 'industries' | null;
 const links = [
-  { text: 'Gallery', href: '/gallery' },
-  { text: 'Guides', href: '/insights' },
+  { text: 'Capabilities', href: '/#capabilities' },
+  { text: 'Our work', href: '/gallery' },
   { text: 'About', href: '/about' },
   { text: 'Contact', href: '/contact' },
 ];
@@ -48,8 +48,7 @@ export function Header() {
           <Logo />
           <nav aria-label="Primary" className="mx-auto hidden items-center gap-1 lg:flex">
             {[
-              { kind: 'link' as const, text: 'Home', href: '/' },
-              { kind: 'panel' as const, text: 'Shop', panel: 'products' as Panel, on: path.startsWith('/products') },
+              { kind: 'panel' as const, text: 'Products', panel: 'products' as Panel, on: path.startsWith('/products') },
               { kind: 'panel' as const, text: 'Industries', panel: 'industries' as Panel, on: path.startsWith('/industries') },
               ...links.map(l => ({ kind: 'link' as const, ...l })),
             ].map(item => (
@@ -113,7 +112,7 @@ export function Header() {
         {menu && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 top-[84px] z-40 overflow-y-auto bg-white lg:hidden" data-lenis-prevent>
             <nav aria-label="Mobile" className="container-x flex min-h-full flex-col py-5">
-              {[{ text: 'Shop all products', href: '/products' }, { text: 'Industries', href: '/industries' }, ...links, { text: 'FAQ', href: '/faq' }].map(n => (
+              {[{ text: 'Products', href: '/products' }, { text: 'Industries', href: '/industries' }, ...links, { text: 'Guides', href: '/insights' }, { text: 'FAQ', href: '/faq' }].map(n => (
                 <Link key={n.href + n.text} href={n.href} className="flex items-center justify-between border-b border-line py-4 text-xl font-medium">{n.text} <ArrowRight size={18} strokeWidth={1.5} className="text-muted" /></Link>
               ))}
               <div className="mt-auto grid gap-3 pt-8">

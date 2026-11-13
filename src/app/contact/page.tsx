@@ -26,7 +26,7 @@ export default function ContactPage() {
       <section className="page-hero">
         <div className="container-x py-14 sm:py-20">
           <Eyebrow>Contact</Eyebrow>
-          <h1 className="mt-5 max-w-3xl text-[clamp(2.4rem,4.8vw,4rem)] font-semibold leading-[1.05] tracking-[-.035em] text-ink">Talk to the packaging team</h1>
+          <h1 className="mt-4 max-w-3xl text-[clamp(2.25rem,4.4vw,3.5rem)] font-medium leading-[1.08] tracking-[-.03em] text-ink">Talk to the packaging team</h1>
           <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-secondary sm:text-lg">Call, message or email us, or send your brief with the form below. We reply to every enquiry within 24 hours.</p>
 
           <div className="mt-10 grid gap-4 md:grid-cols-3">

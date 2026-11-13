@@ -4,7 +4,7 @@ import { Logo } from './Logo';
 import { COMPANY, mapsLink, phoneLink, whatsappLink } from '@/lib/company';
 import { categories, categorySlug } from '@/lib/products';
 
-const company = [['About us', '/about'], ['Industries', '/industries'], ['Gallery', '/gallery'], ['Guides', '/insights'], ['FAQ', '/faq'], ['Contact', '/contact']];
+const company = [['About us', '/about'], ['Capabilities', '/#capabilities'], ['Industries', '/industries'], ['Our work', '/gallery'], ['Guides', '/insights'], ['FAQ', '/faq'], ['Contact', '/contact']];
 
 export function Footer() {
   const call = phoneLink();

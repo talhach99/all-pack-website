@@ -46,7 +46,7 @@ export default function AboutPage() {
         <div className="container-x grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-[1.2fr_.8fr] lg:gap-16">
           <div className="anim-up">
             <Eyebrow>About ALL PACK</Eyebrow>
-            <h1 className="mt-5 text-[clamp(2.4rem,4.8vw,4rem)] font-semibold leading-[1.05] tracking-[-.035em] text-ink">More than 25 years of packaging that works as hard as your product</h1>
+            <h1 className="mt-4 text-[clamp(2.25rem,4.4vw,3.5rem)] font-medium leading-[1.08] tracking-[-.03em] text-ink">More than 25 years of packaging that works as hard as your product</h1>
             <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-secondary sm:text-lg">ALL PACK is a Lahore packaging and printing company. For over a quarter of a century we have helped businesses protect what they make, present it with pride and get it to their customers in one piece.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="btn-dark"><WhatsAppIcon size={18} /> Get a quote on WhatsApp</a>

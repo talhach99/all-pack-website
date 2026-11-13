@@ -28,7 +28,7 @@ export const IMG = {
 } as const;
 
 export const tickerPoints = [
-  '25+ years of printing experience',
+  'More than 25 years of printing',
   'In-house Heidelberg offset printing',
   'Printed to approved artwork',
   'Die-cutting, lamination and gluing',
@@ -37,15 +37,29 @@ export const tickerPoints = [
   'Delivery across Pakistan',
 ];
 
-export const homeProducts = [
-  { t: 'Pharmaceutical cartons', d: 'Tablet, syrup and tube cartons printed to approved artwork.', img: IMG.pharmaBox, href: '/industries/pharmaceutical' },
-  { t: 'Food and bakery cartons', d: 'Cake, rusk and confectionery cartons with window options.', img: IMG.bakery, href: '/products/cake-boxes' },
-  { t: 'Rigid gift boxes', d: 'Wrapped boxes, drawers and magnetic lids for premium gifting.', img: IMG.giftBoxes, href: '/products/rigid-gift-boxes' },
-  { t: 'Folding cartons', d: 'Full-colour retail cartons for shelf-ready products.', img: IMG.printedBoxes, href: '/products/folding-cartons' },
-  { t: 'Corrugated shipping boxes', d: 'Single and double wall cartons for transport and storage.', img: IMG.cartonStack, href: '/products/corrugated-shipping-boxes' },
-  { t: 'E-commerce mailers', d: 'Printed mailer boxes that arrive in one piece.', img: IMG.mailer, href: '/products/ecommerce-mailer-boxes' },
-  { t: 'Paper bags', d: 'Printed paper bags with rope or twisted handles.', img: IMG.paperBags, href: '/products/kraft-shopping-bags' },
-  { t: 'Labels and stickers', d: 'Product labels and stickers in sheets or rolls.', img: IMG.labels, href: '/products/labels-stickers' },
+/** What we print, grouped the way buyers think about it. Formats link to their product pages. */
+export const sectors = [
+  {
+    name: 'Pharmaceutical',
+    d: 'Cartons, inserts and labels printed to your approved artwork, with the exact text and colour your regulator signed off.',
+    img: '/work/aloram-carton.webp', contain: true,
+    formats: [['Folding cartons', '/products/folding-cartons'], ['Labels and stickers', '/products/labels-stickers'], ['Corrugated shippers', '/products/corrugated-shipping-boxes']],
+    href: '/industries/pharmaceutical',
+  },
+  {
+    name: 'Food and bakery',
+    d: 'Cake, rusk and confectionery cartons, window boxes and bread wrappers for bakeries and food brands.',
+    img: '/work/citi-queen-cake-mango.webp', contain: false,
+    formats: [['Cake and bakery boxes', '/products/cake-boxes'], ['Folding cartons', '/products/folding-cartons'], ['Takeaway containers', '/products/takeaway-containers']],
+    href: '/industries/bakeries',
+  },
+  {
+    name: 'Retail and e-commerce',
+    d: 'Rigid gift boxes, printed mailers, paper bags and shipping cartons for brands that sell in shops and online.',
+    img: unsplash(IMG.giftBoxes, 900), contain: false,
+    formats: [['Rigid gift boxes', '/products/rigid-gift-boxes'], ['E-commerce mailers', '/products/ecommerce-mailer-boxes'], ['Paper bags', '/products/kraft-shopping-bags']],
+    href: '/industries/e-commerce',
+  },
 ];
 
 export const machines = [
@@ -55,20 +69,16 @@ export const machines = [
   { name: 'Finishing line', type: 'Post-press', d: 'Die-cutting, creasing, lamination, varnish and gluing, so every sheet leaves as a finished box.', best: ['Die-cutting and creasing', 'Lamination and varnish', 'Folding and gluing'], img: IMG.cutter },
 ];
 
-export const homeIndustries = [
-  { name: 'Pharmaceutical', label: 'Healthcare', img: IMG.pharmaPills, href: '/industries/pharmaceutical' },
-  { name: 'Food and bakery', label: 'Food', img: IMG.bakery, href: '/industries/bakeries' },
-  { name: 'FMCG and confectionery', label: 'Consumer goods', img: IMG.coffeeBags, href: '/products' },
-  { name: 'Hospitals and healthcare', label: 'Healthcare', img: IMG.vials, href: '/industries/pharmaceutical' },
-  { name: 'Retail and e-commerce', label: 'Retail', img: IMG.rackBoxes, href: '/industries/e-commerce' },
-  { name: 'Industrial and logistics', label: 'Industrial', img: IMG.warehouse, href: '/industries' },
+export const steps = [
+  { t: 'Send your brief', d: 'Product, size and quantity on WhatsApp or email. A photo or an old box is enough to start.' },
+  { t: 'Proof and price', d: 'We suggest the board, structure and finish, and confirm the price and delivery date in writing.' },
+  { t: 'Print and finish', d: 'Printed on our own presses, then die-cut, laminated and glued.' },
+  { t: 'Delivered', d: 'Checked against the proof, packed by quantity and delivered across Pakistan.' },
 ];
 
-export const whyTrust = [
-  { t: '25+ years on press', d: 'A quarter century of printing for brands across Pakistan. We know what holds up on the line and on the shelf.' },
-  { t: 'Machines in house', d: 'Heidelberg 4-colour, GTO 52 and Solna 125 under one roof, so quality and timelines stay in our hands.' },
-  { t: 'Printed to approved artwork', d: 'Pharmaceutical and food clients trust us with exact text, colour and batch consistency.' },
-  { t: 'Print to finished box', d: 'Printing, die-cutting, lamination and gluing in one place. One supplier, one point of contact.' },
-  { t: 'Clear quotes', d: 'Specification, price and delivery date confirmed in writing before anything is printed.' },
-  { t: 'Delivered on time', d: 'Packed by quantity and delivered on the agreed date, across Pakistan.' },
+export const reasons = [
+  { t: 'Machines in house', d: 'Printing and finishing under one roof, so colour, quality and dates stay in our hands.' },
+  { t: 'Printed to approved artwork', d: 'Pharmaceutical and food clients rely on exact text, colour and batch-to-batch consistency.' },
+  { t: 'One supplier', d: 'From the label to the shipping carton, one team and one point of contact.' },
+  { t: 'Straight answers', d: 'A clear yes or no on what will work, and a price before anything is printed.' },
 ];
