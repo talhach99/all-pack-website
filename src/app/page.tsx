@@ -149,10 +149,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6 · Real jobs off our presses */}
+      {/* 6 · Formats and finishes */}
       <section className="section bg-white" id="work">
         <div className="container-x">
-          <Head label="Printed for our clients" title="Real jobs for real brands, no mock-ups" sub="Cartons, wrappers and labels we have printed for bakeries, confectioners and pharmaceutical companies." link={{ text: 'See all our work', href: '/gallery' }} />
+          <Head label="What comes off our line" title="Cartons, boxes and finishes we print" sub="Folding cartons, rigid boxes, bakery packs and printed shippers, finished in-house with foil, lamination and die-cutting." link={{ text: 'See the gallery', href: '/gallery' }} />
           <ClientWork />
         </div>
       </section>

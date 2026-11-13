@@ -21,6 +21,29 @@ export const STOCK = {
   colourCheck: 'photo-1715154470884-1c2be0b0129f', // loupe on a colour chart — Jakub Żerdzicki, Unsplash
   pantone: 'photo-1739146051825-0a1e54e6f1c6',
   kraftStack: 'px:17260158/pexels-photo-17260158/free-photo-of-stack-of-cardboard-boxes.jpeg',
+  // packaging showcase (Unsplash) — stand-ins until the owner's own job photos arrive
+  printedCartons: 'photo-1617825295690-28ae56c56135',
+  pharmaCarton: 'photo-1762328494330-6bed4db5e7f9',
+  serumCarton: 'photo-1648712788983-11311123c622',
+  windowBox: 'photo-1771333297902-1a05063aec2e',
+  cupcakeBox: 'photo-1771016833994-400a164912ac',
+  cosmeticCartons: 'photo-1633793566189-8e9fe6f817fc',
+  foilGiftBox: 'photo-1772925450192-8c79e42f458e',
+  foilCard: 'photo-1765483469974-3f544df12caf',
+  softTouch: 'photo-1597979732130-9d2ad18df38b',
+  drawerBox: 'photo-1595246135406-803418233494',
+  gableBox: 'photo-1626253934161-08cfea22e968',
+  printedTape: 'photo-1585221330389-24fb30535ec7',
+  printedKraft: 'photo-1556227996-370b60576b84',
+  kraftLids: 'photo-1686632979221-62fab48a9028',
+  plainCarton: 'photo-1631010231888-777b6285ef84',
+  tapedShippers: 'photo-1766040923580-16ad32fae8b4',
+  polyMailer: 'photo-1617909516764-0507fdb74882',
+  produceCrate: 'photo-1635341083777-5f93a755e916',
+  harvest: 'photo-1535379453347-1ffd615e2e08',
+  pressRun: 'photo-1503694978374-8a2fa686963a',
+  loupe: 'photo-1510511336377-1a9caa095849',
+  pressHall: 'photo-1693031630146-568e2f72db0e',
 } as const;
 
 const MAP: Record<string, string> = {
@@ -62,6 +85,15 @@ const MAP: Record<string, string> = {
   'bakery-box': 'px:15807279/pexels-photo-15807279/free-photo-of-boxes-with-cakes-on-handrail.jpeg',
   'paper-bag': 'px:6956906/pexels-photo-6956906.jpeg',
   stickers: 'photo-1773525912464-d2640e7aff9c',
+  // previously local-only
+  tape: STOCK.printedTape,
+  mailerbag: STOCK.polyMailer,
+  produce: STOCK.produceCrate,
+  ind_agriculture: STOCK.harvest,
+  fin_foil: STOCK.foilGiftBox,
+  fin_kraft: STOCK.printedKraft,
+  fin_soft: STOCK.softTouch,
+  fin_print: STOCK.printedCartons,
 };
 
 export const hasStock = (name: string) => name in MAP;

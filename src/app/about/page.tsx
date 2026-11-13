@@ -7,6 +7,7 @@ import { Eyebrow } from '@/components/Section';
 import { COMPANY, phoneLink, quoteLink, whatsappLink } from '@/lib/company';
 import { ClientStrip } from '@/components/ClientStrip';
 import { industries } from '@/data/industries';
+import { STOCK, stockUrl } from '@/lib/photos';
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -30,10 +31,10 @@ const values = [
 ];
 
 const work = [
-  { image: '/work/citi-queen-cake-mango.webp', t: 'Citi Queen Cake Mango carton', contain: false },
-  { image: '/work/hoest-eclair.webp', t: 'Hoest Eclair window carton', contain: false },
-  { image: '/work/bunnys-queen-cake.webp', t: "Bunny's Queen Cake carton", contain: true },
-  { image: '/work/aloram-carton.webp', t: 'Aloram pharmaceutical carton', contain: true },
+  { image: stockUrl(STOCK.pressRun, 800), t: 'Offset press run' },
+  { image: stockUrl(STOCK.loupe, 800), t: 'Colour checked under a loupe' },
+  { image: stockUrl(STOCK.printedCartons, 800), t: 'Printed folding cartons' },
+  { image: stockUrl(STOCK.foilGiftBox, 800), t: 'Foil-stamped gift box' },
 ];
 
 export default function AboutPage() {
@@ -139,7 +140,7 @@ export default function AboutPage() {
           <div className="mt-14 grid grid-cols-2 gap-4 lg:grid-cols-4">
             {work.map(w => (
               <figure key={w.t} className="overflow-hidden rounded-xl bg-graphite-card">
-                <img src={w.image} alt={`${w.t}, printed by ALL PACK`} loading="lazy" className={`aspect-square w-full bg-white ${w.contain ? 'object-contain p-4' : 'object-cover'}`} />
+                <img src={w.image} alt={w.t} loading="lazy" className="aspect-square w-full object-cover" />
                 <figcaption className="px-4 py-3 text-[14px] font-medium text-white">{w.t}</figcaption>
               </figure>
             ))}

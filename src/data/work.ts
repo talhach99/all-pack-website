@@ -1,26 +1,22 @@
-/** Packaging ALL PACK has printed for clients (artwork and photos supplied by the owner). */
-export type Work = {
-  image: string;
-  brand: string;
-  product: string;
-  format: string;
-  /** cover: photo with its own setting fills the frame; contain: cut-out pack sits on the card */
-  fit: 'cover' | 'contain';
-  /** focal point when cropped, e.g. '50% 40%' */
-  focus?: string;
-};
+import { STOCK, stockUrl } from '@/lib/photos';
+
+/**
+ * Formats and finishes we print. Stock photography for now (Unsplash); swap each
+ * `photo` for the owner's own job photos when they arrive.
+ */
+export type Work = { photo: string; title: string; detail: string };
 
 export const clientWork: Work[] = [
-  { image: 'citi-queen-cake-mango', brand: 'Citi', product: 'Queen Cake Mango', format: 'Printed carton', fit: 'cover' },
-  { image: 'bunnys-queen-cake', brand: "Bunny's", product: 'Queen Cake', format: 'Printed carton', fit: 'contain' },
-  { image: 'hoest-eclair', brand: 'Hoest', product: 'Eclair Milk Toffee', format: 'Window carton', fit: 'cover' },
-  { image: 'sun-bread-wrapper', brand: 'Sun Bread', product: 'White Bread', format: 'Printed bread wrapper', fit: 'cover', focus: '50% 48%' },
-  { image: 'citi-cake-rusk', brand: 'Citi Bread', product: 'Supreme Cake Rusk', format: 'Window carton', fit: 'cover' },
-  { image: 'hoest-drops', brand: 'Hoest', product: 'Drops', format: 'Printed carton', fit: 'contain' },
-  { image: 'aloram-carton', brand: 'Aloram', product: '0.25 mg tablets', format: 'Pharmaceutical carton', fit: 'contain' },
-  { image: 'artinil-k-gel-carton', brand: 'Artinil-K Gel', product: '20 g tube', format: 'Pharmaceutical carton', fit: 'contain' },
-  { image: 'sun-cake-rusk-label', brand: 'Sun', product: 'Cake Rusk', format: 'Printed label', fit: 'contain' },
-  { image: 'sun-biscuits-label', brand: 'Sun', product: 'Biscuits', format: 'Printed label', fit: 'contain' },
+  { photo: STOCK.printedCartons, title: 'Printed folding cartons', detail: 'Four-colour offset on SBS board' },
+  { photo: STOCK.pharmaCarton, title: 'Pharmaceutical carton', detail: 'Blister-pack carton with insert' },
+  { photo: STOCK.windowBox, title: 'Window bakery box', detail: 'Die-cut window, food-safe board' },
+  { photo: STOCK.cupcakeBox, title: 'Cake box with insert', detail: 'Folding box with cupcake divider' },
+  { photo: STOCK.cosmeticCartons, title: 'Cosmetic cartons', detail: 'Matte black with metallic accents' },
+  { photo: STOCK.foilGiftBox, title: 'Foil-stamped gift box', detail: 'Gold foil on coloured board' },
+  { photo: STOCK.drawerBox, title: 'Rigid drawer box', detail: 'Kraft-wrapped sleeve and tray' },
+  { photo: STOCK.gableBox, title: 'Gable box with handle', detail: 'One-colour print on kraft' },
+  { photo: STOCK.printedTape, title: 'Printed packing tape', detail: 'Your logo on every shipper' },
+  { photo: STOCK.printedKraft, title: 'Printed kraft mailers', detail: 'Mailer boxes in bulk runs' },
 ];
 
-export const workImage = (name: string) => `/work/${name}.webp`;
+export const workImage = (ref: string, w = 800) => stockUrl(ref, w);

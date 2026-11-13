@@ -23,14 +23,14 @@ export const sectors = [
   {
     name: 'Pharmaceutical',
     d: 'Cartons, inserts and labels printed to your approved artwork, with the exact text and colour your regulator signed off.',
-    img: '/work/aloram-carton.webp', contain: true,
+    img: stockUrl(STOCK.pharmaCarton, 900), contain: false,
     formats: [['Folding cartons', '/products/folding-cartons'], ['Labels and stickers', '/products/labels-stickers'], ['Corrugated shippers', '/products/corrugated-shipping-boxes']],
     href: '/industries/pharmaceutical',
   },
   {
     name: 'Food and bakery',
     d: 'Cake, rusk and confectionery cartons, window boxes and bread wrappers for bakeries and food brands.',
-    img: '/work/citi-queen-cake-mango.webp', contain: false,
+    img: stockUrl(STOCK.windowBox, 900), contain: false,
     formats: [['Cake and bakery boxes', '/products/cake-boxes'], ['Folding cartons', '/products/folding-cartons'], ['Takeaway containers', '/products/takeaway-containers']],
     href: '/industries/bakeries',
   },

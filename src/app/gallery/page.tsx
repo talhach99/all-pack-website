@@ -17,7 +17,7 @@ export default function GalleryPage() {
         <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="btn-dark"><WhatsAppIcon size={18} /> Start your project on WhatsApp</a>
       </PageHero>
       <section className="container-x pt-16">
-        <SectionHead kicker="Client work" title="Printed for our clients" sub="Cartons, wrappers and labels we have printed for bakeries, confectioners and pharmaceutical companies." />
+        <SectionHead kicker="Formats and finishes" title="What comes off our line" sub="Folding cartons, rigid boxes, bakery packs and printed shippers, finished in-house." />
         <ClientWork />
       </section>
       <section className="container-x pb-28 pt-20">
