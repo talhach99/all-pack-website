@@ -39,8 +39,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['"Figtree Variable"', 'Figtree', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['"Figtree Variable"', 'Figtree', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        serif: ['"Figtree Variable"', 'Figtree', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['"Source Serif 4 Variable"', 'Source Serif 4', 'Georgia', 'ui-serif', 'serif'],
+        serif: ['"Source Serif 4 Variable"', 'Source Serif 4', 'Georgia', 'ui-serif', 'serif'],
         mono: ['"JetBrains Mono Variable"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       boxShadow: {

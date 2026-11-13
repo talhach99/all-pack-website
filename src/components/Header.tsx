@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, ChevronDown, Mail, Menu, Phone, ShoppingBag, X } from 'lucide-react';
 import { categories, categorySlug, products } from '@/lib/products';
 import { industries } from '@/data/industries';
-import { emailLink, phoneLink, quoteLink } from '@/lib/company';
+import { COMPANY, emailLink, phoneLink, quoteLink } from '@/lib/company';
 import { useInquiry } from './Providers';
 import { Logo } from './Logo';
 import { WhatsAppIcon } from './FloatingContact';
@@ -43,7 +43,17 @@ export function Header() {
     <>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-lg focus:bg-ink focus:px-4 focus:py-2 focus:text-white">Skip to content</a>
 
-      <header className="site-header sticky top-0 z-50 border-b border-line bg-white text-ink" onMouseLeave={close}>
+      <div className="hidden border-b border-line bg-mist text-[11px] uppercase tracking-[.24em] text-secondary lg:block">
+        <div className="container-x flex h-9 items-center justify-between">
+          <span>More than 25 years of packaging experience</span>
+          <span className="flex items-center gap-6 normal-case tracking-normal text-[13px]">
+            {call && <a href={call} className="font-mono tabular-nums hover:text-brand">{COMPANY.phone}</a>}
+            <a href={emailLink()} className="hover:text-brand">{COMPANY.email}</a>
+          </span>
+        </div>
+      </div>
+
+      <header className="site-header sticky top-0 z-50 border-b border-line bg-white/95 text-ink backdrop-blur" onMouseLeave={close}>
         <div className="container-x flex h-[72px] items-center gap-6">
           <Logo />
           <nav aria-label="Primary" className="mx-auto hidden items-center gap-1 lg:flex">
@@ -67,7 +77,7 @@ export function Header() {
               <ShoppingBag size={18} strokeWidth={1.5} />
               {inquiry.items.length > 0 && <span className="font-mono text-[12px] tabular-nums text-ink">{inquiry.items.length}</span>}
             </button>
-            <a href={quote} target="_blank" rel="noopener noreferrer" className="hidden h-9 items-center rounded-lg bg-brand px-4 text-[14px] font-medium text-white transition-colors hover:bg-brand-dark sm:inline-flex">Get a quote</a>
+            <a href={quote} target="_blank" rel="noopener noreferrer" className="hidden h-10 items-center gap-2 rounded-full bg-brand px-5 text-[14px] font-medium text-white transition-colors hover:bg-brand-dark sm:inline-flex">Request a quote <ArrowRight size={16} strokeWidth={1.75} /></a>
             <button className="grid h-9 w-9 place-items-center rounded-lg text-ink hover:bg-soft lg:hidden" onClick={() => setMenu(v => !v)} aria-label={menu ? 'Close menu' : 'Open menu'} aria-expanded={menu}>{menu ? <X size={20} strokeWidth={1.5} /> : <Menu size={20} strokeWidth={1.5} />}</button>
           </div>
         </div>

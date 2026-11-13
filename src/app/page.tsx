@@ -1,271 +1,275 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight, Check, Layers, Mail, MapPin, MessageCircle, Phone, Ruler } from 'lucide-react';
-import { FaqAccordion } from '@/components/FaqAccordion';
-import { Eyebrow, SectionHead } from '@/components/Section';
+import { ArrowRight, ArrowUpRight, Award, Boxes, Clock, Mail, Users } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/FloatingContact';
-import { COMPANY, emailLink, mapsLink, phoneLink, quoteLink } from '@/lib/company';
 import { ClientLogos } from '@/components/ClientStrip';
 import { ClientWork } from '@/components/ClientWork';
+import { CLIENTS, emailLink, quoteLink } from '@/lib/company';
+import { findProduct, productThumb, products } from '@/lib/products';
 
 export const metadata: Metadata = {
   title: { absolute: 'ALL PACK — Custom Packaging & Printing in Lahore' },
-  description: 'Rigid boxes, mailers, cartons, printed bags and stickers, made to your size in Lahore and delivered across Pakistan. Get a free quote within 24 hours.',
+  description: 'Printed cartons, rigid boxes, mailers, corrugated boxes, bags and labels, made to your size in Lahore and delivered across Pakistan. 25+ years of packaging experience.',
   alternates: { canonical: '/' },
 };
 
-const img = (name: string) => `/images/home/${name}.webp`;
+const home = (name: string) => `/images/home/${name}.webp`;
+const work = (name: string) => `/work/${name}.webp`;
 
-const work = [
-  { t: 'Wedding gift box', d: 'Full-colour print · rigid board', image: 'custom-wedding-box', span: 'lg:col-span-2 lg:row-span-2' },
-  { t: 'Ornate rigid box', d: 'Printed wrap · gold detailing', image: 'foil-ornate-box', span: '' },
-  { t: 'Drawer box with dividers', d: 'Soft-touch black · spot colour logo', image: 'rigid-drawer-box', span: '' },
-  { t: 'Branded paper bag', d: 'Pattern print · rope handles', image: 'paper-bag', span: '' },
-  { t: 'Shaadi gift bag', d: 'Full colour · gold rope', image: 'wedding-bag', span: '' },
+/** Hero collage: real packs printed for ALL PACK clients. */
+const heroCols = [
+  [
+    { src: work('citi-queen-cake-mango'), alt: 'Citi Queen Cake Mango carton printed by ALL PACK', fit: 'cover', ratio: 'aspect-[4/5]' },
+    { src: work('hoest-drops'), alt: 'Hoest Drops carton printed by ALL PACK', fit: 'contain', ratio: 'aspect-square' },
+  ],
+  [
+    { src: work('bunnys-queen-cake'), alt: "Bunny's Queen Cake carton printed by ALL PACK", fit: 'contain', ratio: 'aspect-square' },
+    { src: work('sun-bread-wrapper'), alt: 'Sun Bread wrapper printed by ALL PACK', fit: 'cover', ratio: 'aspect-[3/4]' },
+  ],
+  [
+    { src: work('hoest-eclair'), alt: 'Hoest Eclair milk toffee window carton printed by ALL PACK', fit: 'cover', ratio: 'aspect-[4/5]' },
+    { src: work('sun-cake-rusk-label'), alt: 'Sun Cake Rusk label printed by ALL PACK', fit: 'contain', ratio: 'aspect-[4/3]' },
+  ],
+] as const;
+
+const ticker = [
+  'More than 25 years in packaging',
+  'Full-colour offset printing',
+  'Foil, emboss and soft-touch finishes',
+  'Pharmaceutical cartons and labels',
+  'Made to your exact size',
+  'Delivered across Pakistan',
 ];
 
-const why = [
-  { icon: Ruler, t: 'Made to measure', d: 'Sized to your product, so it protects better and ships cheaper.' },
-  { icon: Check, t: 'Clear quotes', d: 'Specification, price and lead time confirmed before anything is printed.' },
-  { icon: Layers, t: 'One supplier', d: 'From shipping carton to sticker, every format in one place.' },
-  { icon: MessageCircle, t: 'Real people', d: 'Talk to the team on phone or WhatsApp, not a ticket queue.' },
+const stats = [
+  { label: 'Heritage', icon: Award, n: '25', suffix: '+', d: 'Years of printing and packaging experience in Lahore' },
+  { label: 'Clients', icon: Users, n: String(CLIENTS.length), suffix: '+', d: 'Pharma, food, healthcare and retail brands served' },
+  { label: 'Formats', icon: Boxes, n: String(products.length), suffix: '', d: 'Packaging formats, from shipping cartons to labels' },
+  { label: 'Response', icon: Clock, n: '24', suffix: 'h', d: 'Quote reply on WhatsApp or email' },
 ];
 
-const steps = [
-  { t: 'Share your brief', d: 'What you are packing, the quantity and the size. A photo is enough to start.' },
-  { t: 'Get your quote', d: 'We recommend structure, board and finish, with a clear price and lead time.' },
-  { t: 'Approve and print', d: 'Once artwork is approved, your packaging is printed, cut and finished.' },
-  { t: 'Delivered', d: 'Packed and handed over on the agreed date, anywhere in Pakistan.' },
+const dots = ['bg-brand', 'bg-[#E0464B]', 'bg-[#E8B23A]', 'bg-[#2FA36B]'];
+const featured = ['custom-printed-boxes', 'rigid-gift-boxes', 'folding-cartons', 'ecommerce-mailer-boxes', 'corrugated-shipping-boxes', 'cake-boxes', 'kraft-shopping-bags', 'labels-stickers']
+  .map(findProduct)
+  .filter((p): p is NonNullable<typeof p> => Boolean(p));
+
+const capabilities = [
+  { t: 'Full-colour offset printing', d: 'Sharp CMYK and spot-colour print on board and paper, matched to your approved artwork.', image: home('full-colour-cartons') },
+  { t: 'Foil stamping and embossing', d: 'Gold, silver and coloured foils with raised or debossed detail for logos and patterns.', image: home('foil-ornate-box') },
+  { t: 'Lamination and soft-touch', d: 'Gloss, matte and velvety soft-touch coatings that protect the print and feel premium.', image: home('soft-touch-box') },
+  { t: 'Die-cutting and folding cartons', d: 'Custom dielines, windows and inserts, cut and glued to fit your product exactly.', image: work('citi-cake-rusk') },
+  { t: 'Rigid box making', d: 'Wrapped rigid boxes, drawers and magnetic lids for gifts and premium retail.', image: home('rigid-drawer-box') },
+  { t: 'Corrugated and shipping boxes', d: 'Strong single and double wall cartons for courier, storage and industrial use.', image: home('shipping-cartons') },
 ];
 
-const finishes = [
-  { t: 'Foil stamping', d: 'Gold, silver or coloured foil on logos and patterns.', image: 'foil-ornate-box' },
-  { t: 'Soft-touch', d: 'A velvety matte coating people notice the moment they hold it.', image: 'soft-touch-box' },
-  { t: 'Full colour', d: 'Rich CMYK print in matte or gloss, edge to edge.', image: 'full-colour-cartons' },
-  { t: 'Natural kraft', d: 'Earthy board that looks great with a one-colour print.', image: 'kraft-box' },
+const industryCards = [
+  { slug: 'pharmaceutical', name: 'Pharmaceutical packaging', label: 'Healthcare', image: work('aloram-carton'), contain: true },
+  { slug: 'bakeries', name: 'Bakery and confectionery', label: 'Food', image: work('citi-queen-cake-mango') },
+  { slug: 'restaurants', name: 'Restaurant and takeaway', label: 'Food service', image: '/photos/ind_restaurants-800.webp' },
+  { slug: 'e-commerce', name: 'E-commerce and shipping', label: 'Retail', image: '/photos/ind_ecommerce-800.webp' },
+  { slug: 'beauty', name: 'Beauty and personal care', label: 'Consumer goods', image: '/photos/ind_beauty-800.webp' },
 ];
 
-const heroWork = [
-  { image: 'custom-wedding-box', label: 'Wedding gift box', alt: 'Full-colour paisley wedding gift box printed by ALL PACK' },
-  { image: 'paper-bag', label: 'Printed paper bag', alt: 'Purple pattern-printed paper bag with rope handles made by ALL PACK' },
-  { image: 'stickers', label: 'Printed label', alt: 'Sun Cake Rusk printed label made by ALL PACK' },
-];
+const pad = (i: number) => String(i + 1).padStart(2, '0');
 
 export default function Home() {
   const quote = quoteLink();
-  const mist = 'section bg-mist';
-  const white = 'section bg-white';
 
   return (
     <main>
       {/* 1 · Hero */}
-      <section className="border-b border-line bg-mist">
-        <div className="container-x grid items-center gap-12 py-12 sm:py-16 lg:min-h-[calc(100svh-72px)] lg:grid-cols-[1fr_1fr] lg:gap-16 lg:py-16">
+      <section className="relative isolate overflow-hidden border-b border-line bg-[linear-gradient(115deg,#F4F6FD_0%,#E6EBFB_55%,#D9E0F8_100%)]">
+        <div aria-hidden="true" className="absolute inset-0 -z-10 opacity-[.35] [background-image:linear-gradient(rgba(43,74,252,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(43,74,252,.08)_1px,transparent_1px)] [background-size:56px_56px] [mask-image:linear-gradient(90deg,transparent,#000_60%)]" />
+        <div className="container-x grid items-center gap-12 py-14 sm:py-20 lg:min-h-[640px] lg:grid-cols-[1.02fr_1fr] lg:gap-14 lg:py-16">
           <div className="anim-up">
-            <p className="text-[13px] font-medium text-muted">Custom packaging and printing · Lahore</p>
-            <h1 className="mt-4 text-[clamp(2.5rem,5.2vw,4.25rem)] font-medium leading-[1.04] tracking-[-.03em] text-ink">Custom boxes, bags and labels printing in Lahore</h1>
-            <p className="mt-6 max-w-[34rem] text-[18px] leading-[1.6] text-secondary">Rigid gift boxes, mailers, cartons, printed bags and stickers, made to your size and finish. Delivered anywhere in Pakistan.</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-dark"><WhatsAppIcon size={18} /> Get a quote on WhatsApp</a>
-              <a href={emailLink()} className="btn-light"><Mail size={18} strokeWidth={1.5} /> Email your brief</a>
+            <p className="kicker">25+ years of packaging excellence</p>
+            <h1 className="mt-6 font-display text-[clamp(2.6rem,5.4vw,4.5rem)] leading-[1.05] tracking-[-.02em] text-ink">Packaging and print for brands that lead</h1>
+            <p className="mt-6 max-w-[34rem] text-[18px] leading-[1.65] text-secondary">ALL PACK prints cartons, rigid boxes, corrugated shippers, bags and labels, made to your size and finish in Lahore and delivered across Pakistan.</p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-dark h-[52px] px-7">Request a quote <ArrowRight size={18} strokeWidth={1.75} /></a>
+              <Link href="/products" className="btn-light h-[52px] bg-white/70 px-7">Explore products</Link>
             </div>
-            <dl className="mt-12 grid max-w-md grid-cols-3 border-t border-ink/10 pt-6">
-              {[['25+', 'Years in print'], ['22', 'Packaging formats'], ['24h', 'Quote reply']].map(([n, l]) => (
-                <div key={l}><dt className="sr-only">{l}</dt><dd className="text-[28px] font-medium leading-none tabular-nums text-ink">{n}</dd><dd className="mt-2 text-[13px] text-muted">{l}</dd></div>
-              ))}
-            </dl>
+            <p className="mt-5 text-[14px] text-muted">Reply within one business day</p>
           </div>
 
-          <figure className="anim-up d2 crop m-3 sm:m-4">
-            <div className="overflow-hidden rounded-2xl border border-line bg-white p-2">
-              <div className="grid aspect-[4/3] grid-cols-[1.3fr_1fr] grid-rows-2 gap-2">
-                {heroWork.map((w, i) => (
-                  <div key={w.image} className={`relative overflow-hidden rounded-[10px] bg-mist ${i === 0 ? 'row-span-2' : ''}`}>
-                    <img src={img(w.image)} alt={w.alt} className="absolute inset-0 h-full w-full object-cover" {...(i === 0 ? { fetchPriority: 'high' as const } : { loading: 'lazy' as const })} />
+          <div className="anim-up d2 grid grid-cols-3 items-start gap-3 sm:gap-4" aria-label="Packaging printed by ALL PACK">
+            {heroCols.map((col, ci) => (
+              <div key={ci} className={`grid gap-3 sm:gap-4 ${ci === 1 ? 'mt-10 sm:mt-16' : ci === 2 ? 'mt-4 sm:mt-6' : ''}`}>
+                {col.map((im, i) => (
+                  <div key={im.src} className={`relative overflow-hidden rounded-2xl bg-white shadow-[0_18px_40px_-18px_rgba(29,54,204,.35)] ring-1 ring-black/5 ${im.ratio}`}>
+                    <img src={im.src} alt={im.alt} className={`absolute inset-0 h-full w-full ${im.fit === 'cover' ? 'object-cover' : 'object-contain p-3'}`} {...(ci === 0 && i === 0 ? { fetchPriority: 'high' as const } : { loading: 'eager' as const })} />
                   </div>
                 ))}
               </div>
-              <figcaption className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 px-3 pb-2 pt-4">
-                <span className="text-[15px] font-medium text-ink">Recent work from our press</span>
-                <span className="meta">{heroWork.map(w => w.label).join(' · ')}</span>
-              </figcaption>
-            </div>
-          </figure>
-        </div>
-
-      </section>
-
-      {/* 1b · Clients */}
-      <section className="border-b border-line bg-white py-12 sm:py-16">
-        <div className="container-x">
-          <p className="text-center text-[13px] font-medium text-muted">Trusted by pharmaceutical companies, bakeries and hospitals across Pakistan</p>
-          <ClientLogos className="mt-6" />
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* 1c · Printed for our clients */}
+      {/* 2 · Trust ticker */}
+      <section className="ticker overflow-hidden border-b border-line bg-white py-4" aria-label="Why ALL PACK">
+        <div className="flex [mask-image:linear-gradient(90deg,transparent,#000_6%,#000_94%,transparent)]">
+          <div className="marquee-track flex w-max">
+            {[0, 1].map(half => (
+              <ul key={half} aria-hidden={half === 1 || undefined} className="flex shrink-0 items-center">
+                {[...ticker, ...ticker].map((t, i) => (
+                  <li key={`${t}-${i}`} className="flex items-center whitespace-nowrap text-[12px] uppercase tracking-[.22em] text-secondary">
+                    <span className="mx-7 text-[9px] text-brand" aria-hidden="true">◆</span>{t}
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3 · By the numbers */}
       <section className="section bg-mist">
         <div className="container-x">
-          <SectionHead kicker="Client work" title="Printed for our clients" sub="Cartons, wrappers and labels we have printed for bakeries, confectioners and pharmaceutical companies." action={{ text: 'See the gallery', href: '/gallery' }} />
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <p className="kicker">By the numbers</p>
+              <h2 className="h-section mt-4">Built on experience. Trusted across industries.</h2>
+              <p className="mt-4 text-[17px] leading-relaxed text-secondary">A quarter century of printing in Lahore, a client list that runs from pharmaceutical companies to bakeries, and a team that answers the same day.</p>
+            </div>
+            <Link href="/about" className="group inline-flex items-center gap-1.5 text-[15px] font-medium text-ink hover:text-brand">More about us <ArrowUpRight size={16} strokeWidth={1.5} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></Link>
+          </div>
+          <dl className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+            {stats.map((s, i) => (
+              <div key={s.label} className="rv flex flex-col rounded-2xl border border-line bg-white p-4 sm:p-7" style={{ ['--rv-d' as string]: `${i * 60}ms` }}>
+                <dt className="flex items-center justify-between">
+                  <span className="flex items-center gap-2 num-label"><span className={`h-1.5 w-1.5 rounded-full ${dots[i]}`} />/ {pad(i)} {s.label}</span>
+                  <s.icon size={16} strokeWidth={1.5} className="hidden text-muted sm:block" aria-hidden="true" />
+                </dt>
+                <dd className="mt-6 font-display text-[44px] sm:mt-8 sm:text-[56px] leading-none tracking-[-.02em] text-ink tabular-nums">{s.n}<span className="text-[26px] text-brand sm:text-[32px]">{s.suffix}</span></dd>
+                <dd className="mt-4 text-[14px] leading-relaxed text-secondary">{s.d}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* 4 · Products */}
+      <section className="section bg-white">
+        <div className="container-x">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <p className="kicker">Our products</p>
+              <h2 className="h-section mt-4">Packaging for every product, printed in every colour.</h2>
+            </div>
+            <Link href="/products" className="group inline-flex items-center gap-1.5 text-[15px] font-medium text-ink hover:text-brand">View all products <ArrowUpRight size={16} strokeWidth={1.5} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></Link>
+          </div>
+          <ul className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
+            {featured.map((p, i) => (
+              <li key={p.slug} className="rv" style={{ ['--rv-d' as string]: `${(i % 4) * 50}ms` }}>
+                <Link href={`/products/${p.slug}`} className="group block">
+                  <span className="num-label">{pad(i)}</span>
+                  <div className="mt-2 overflow-hidden rounded-2xl border border-line bg-mist transition-colors group-hover:border-brand/40">
+                    <div className="aspect-square overflow-hidden">
+                      <img src={productThumb(p)} alt={p.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]" />
+                    </div>
+                    <div className="flex items-center justify-between gap-2 border-t border-line bg-white px-4 py-3.5">
+                      <span className="flex items-center gap-2.5 text-[15px] font-medium text-ink"><span className={`h-2 w-2 shrink-0 rounded-full ${dots[i % 4]}`} />{p.name}</span>
+                      <ArrowRight size={16} strokeWidth={1.5} className="shrink-0 text-muted transition-all group-hover:translate-x-0.5 group-hover:text-brand" />
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 5 · Capabilities, swipeable */}
+      <section className="section overflow-hidden bg-mist">
+        <div className="container-x">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <p className="kicker">What we do in house</p>
+              <h2 className="h-section mt-4">Our printing and finishing capabilities</h2>
+              <p className="mt-4 text-[17px] leading-relaxed text-secondary">From print to die-cut to the finished box, every step is handled by one team, so colour, fit and delivery stay consistent from first sample to full run.</p>
+            </div>
+            <p className="num-label hidden sm:block">Swipe to explore →</p>
+          </div>
+        </div>
+        <div className="no-scrollbar mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:gap-5 sm:px-8 lg:px-[max(2.5rem,calc((100vw_-_1280px)/2_+_2.5rem))]" data-lenis-prevent>
+          {capabilities.map((c, i) => (
+            <article key={c.t} className="w-[78vw] max-w-[340px] shrink-0 snap-start overflow-hidden rounded-2xl border border-line bg-white">
+              <div className="relative aspect-[4/3] overflow-hidden bg-soft">
+                <img src={c.image} alt={c.t} loading="lazy" className="h-full w-full object-cover" />
+                <span className="absolute left-4 top-4 rounded-full bg-white/90 px-2.5 py-1 font-mono text-[11px] tracking-[.18em] text-ink backdrop-blur">/ {pad(i)}</span>
+              </div>
+              <div className="p-6">
+                <h3 className="font-display text-[22px] leading-snug text-ink">{c.t}</h3>
+                <p className="mt-3 text-[14px] leading-relaxed text-secondary">{c.d}</p>
+              </div>
+            </article>
+          ))}
+          <span className="w-1 shrink-0" aria-hidden="true" />
+        </div>
+      </section>
+
+      {/* 6 · Industries */}
+      <section className="section bg-white">
+        <div className="container-x">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="kicker">Industries we serve</p>
+              <h2 className="h-section mt-4">Packaging made for every industry</h2>
+            </div>
+            <Link href="/industries" className="group inline-flex items-center gap-1.5 text-[15px] font-medium text-ink hover:text-brand">View all industries <ArrowRight size={16} strokeWidth={1.5} className="transition-transform group-hover:translate-x-0.5" /></Link>
+          </div>
+          <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+            {industryCards.map((ind, i) => (
+              <Link key={ind.slug} href={`/industries/${ind.slug}`} className={`rv group relative isolate flex aspect-[3/4] flex-col justify-end overflow-hidden rounded-2xl ${ind.contain ? 'bg-[#E6EBFB]' : 'bg-soft'} p-5`} style={{ ['--rv-d' as string]: `${i * 50}ms` }}>
+                <img src={ind.image} alt="" loading="lazy" className={`absolute inset-0 -z-10 h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.05] ${ind.contain ? 'object-contain p-6 pb-24 mix-blend-multiply' : 'object-cover'}`} />
+                <span aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/85 via-ink/25 to-transparent" />
+                <span className="font-display text-[19px] leading-tight text-white">{ind.name}</span>
+                <span className="mt-2 text-[11px] uppercase tracking-[.2em] text-white/70">{ind.label}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7 · Client work */}
+      <section className="section bg-mist">
+        <div className="container-x">
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-6 sm:mb-12">
+            <div className="max-w-2xl">
+              <p className="kicker">Client work</p>
+              <h2 className="h-section mt-4">Printed for our clients</h2>
+              <p className="mt-4 text-[17px] leading-relaxed text-secondary">Cartons, wrappers and labels we have printed for bakeries, confectioners and pharmaceutical companies.</p>
+            </div>
+            <Link href="/gallery" className="group inline-flex items-center gap-1.5 text-[15px] font-medium text-ink hover:text-brand">See the gallery <ArrowRight size={16} strokeWidth={1.5} className="transition-transform group-hover:translate-x-0.5" /></Link>
+          </div>
           <ClientWork />
         </div>
       </section>
 
-      {/* 4 · Our work: the one dark band, where the printed colour carries the page */}
-      <section className="section bg-ink text-white">
-        <div className="container-x">
-          <SectionHead kicker="Our work" title="Recent packaging we've made" action={{ text: 'See the gallery', href: '/gallery' }} light />
-          <div className="grid auto-rows-[220px] gap-4 sm:grid-cols-2 lg:auto-rows-[248px] lg:grid-cols-4">
-            {work.map(w => (
-              <figure key={w.t} className={`flex flex-col overflow-hidden rounded-xl bg-graphite-card ${w.span}`}>
-                <div className="min-h-0 flex-1 overflow-hidden bg-white">
-                  <img src={img(w.image)} alt={`${w.t} made by ALL PACK`} loading="lazy" className="h-full w-full object-cover" />
-                </div>
-                <figcaption className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 px-4 py-3">
-                  <span className="text-[15px] font-medium text-white">{w.t}</span>
-                  <span className="font-mono text-[12px] text-cyan">{w.d}</span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-          <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-8">
-            <p className="text-[17px] text-cream">Have a design in mind? Send a photo or sketch and we will price it</p>
-            <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-white"><WhatsAppIcon size={18} /> Send it on WhatsApp</a>
-          </div>
+      {/* 8 · Trusted by */}
+      <section className="section border-t border-line bg-white">
+        <div className="container-x text-center">
+          <p className="kicker kicker-center justify-center">Trusted by</p>
+          <h2 className="h-section mx-auto mt-4 max-w-3xl"><span className="text-brand">Trusted by experts.</span> Chosen by leading brands.</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-[17px] leading-relaxed text-secondary">Pharmaceutical companies, bakeries, hospitals and food brands across Pakistan rely on ALL PACK for their printed packaging.</p>
         </div>
+        <ClientLogos className="mt-12" />
       </section>
 
-      {/* 5 · Finishes */}
-      <section className={white}>
-        <div className="container-x">
-          <SectionHead kicker="Finishes" title="Print and finishing options" />
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {finishes.map(f => (
-              <div key={f.t} className="overflow-hidden rounded-2xl border border-line bg-mist">
-                <img src={img(f.image)} alt={`${f.t} finish`} loading="lazy" className="aspect-[3/2] w-full object-cover" />
-                <div className="p-5"><h3 className="text-[17px] font-medium">{f.t}</h3><p className="mt-2 text-[14px] leading-relaxed text-secondary">{f.d}</p></div>
-              </div>
-            ))}
+      {/* 9 · Closing call to action */}
+      <section className="section border-t border-line bg-[linear-gradient(115deg,#F4F6FD_0%,#E6EBFB_100%)]">
+        <div className="container-x grid items-center gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+          <div>
+            <p className="kicker">Start your project</p>
+            <h2 className="mt-5 font-display text-[clamp(2.5rem,4.8vw,4rem)] leading-[1.05] tracking-[-.02em] text-ink">Let&rsquo;s package what you make.</h2>
+            <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-secondary">From a short run to large-scale supply, tell us what you are packing and how many you need. We will recommend the right board, box style and finish, with a clear price.</p>
           </div>
-        </div>
-      </section>
-
-      {/* 6 · How we work: why ALL PACK and the four steps, side by side */}
-      <section className={mist} id="how-it-works">
-        <div className="container-x">
-          <SectionHead kicker="How we work" title="One partner, from brief to box" />
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <p className="text-[13px] font-medium text-muted">Why ALL PACK</p>
-              <div className="mt-6 grid gap-x-8 gap-y-8 sm:grid-cols-2">
-                {why.map(w => (
-                  <div key={w.t} className="border-t border-ink/10 pt-5">
-                    <w.icon size={18} strokeWidth={1.5} className="text-muted" aria-hidden="true" />
-                    <h3 className="mt-3 text-[17px] font-medium">{w.t}</h3>
-                    <p className="mt-2 text-[15px] leading-relaxed text-secondary">{w.d}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="rounded-2xl border border-line bg-white p-6 sm:p-8">
-              <p className="text-[13px] font-medium text-muted">Four steps to your order</p>
-              <ol className="mt-4">
-                {steps.map((s, i) => (
-                  <li key={s.t} className="grid grid-cols-[40px_1fr] gap-x-2 border-t border-line py-5 first:border-t-0">
-                    <span className="meta pt-1 tabular-nums">0{i + 1}</span>
-                    <span>
-                      <span className="block text-[17px] font-medium">{s.t}</span>
-                      <span className="mt-1 block text-[15px] leading-relaxed text-secondary">{s.d}</span>
-                    </span>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7 · Two ways to order */}
-      <section className={white}>
-        <div className="container-x">
-          <SectionHead kicker="Two ways to order" title="Ready today, or made for you" />
-          <div className="grid gap-6 lg:grid-cols-2">
-            {[
-              { t: 'Ready-to-ship stock', d: 'Plain boxes and bags in popular sizes, delivered across Pakistan. Ideal for quick orders and small runs.', cta: 'Shop stock packaging', href: '/products', ext: false, image: img('stock-boxes'), alt: 'Stacks of plain corrugated boxes and kraft pouches' },
-              { t: 'Custom printed', d: 'Your size, your artwork, your finish. A clear quote and approved artwork before production starts.', cta: 'Start a custom quote', href: quote, ext: true, image: '/work/citi-queen-cake-mango.webp', alt: 'Citi Queen Cake Mango carton printed by ALL PACK' },
-            ].map(o => (
-              <div key={o.t} className="grid overflow-hidden rounded-2xl border border-line bg-mist sm:grid-cols-2">
-                <div className="flex flex-col p-6 sm:p-8">
-                  <h3 className="text-2xl font-medium">{o.t}</h3>
-                  <p className="mt-3 flex-1 text-[15px] leading-relaxed text-secondary">{o.d}</p>
-                  <a href={o.href} {...(o.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="group mt-6 inline-flex items-center gap-2 text-[15px] font-medium text-brand">{o.cta} <ArrowRight size={16} strokeWidth={1.5} className="transition-transform duration-150 group-hover:translate-x-0.5" /></a>
-                </div>
-                <img src={o.image} alt={o.alt} loading="lazy" className="h-64 w-full object-cover sm:h-full" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 8 · FAQ */}
-      <section className={mist}>
-        <div className="container-x grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:gap-16">
-          <div className="lg:sticky lg:top-28 lg:self-start">
-            <Eyebrow>FAQ</Eyebrow>
-            <h2 className="h-section mt-3">Questions, answered</h2>
-            <p className="mt-4 max-w-md text-[17px] leading-relaxed text-secondary">The things most customers ask before their first order. Anything else, just ask the team.</p>
-            <div className="mt-8 max-w-md rounded-2xl border border-line bg-white p-6">
-              <p className="text-[17px] font-medium">Still have a question?</p>
-              <p className="mt-1 text-[14px] text-secondary">Real people reply on WhatsApp, usually within the hour.</p>
-              <div className="mt-5 flex flex-wrap gap-3">
-                <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-light btn-sm"><WhatsAppIcon size={16} /> Ask on WhatsApp</a>
-                <Link href="/faq" className="btn-ghost btn-sm">See all FAQs <ArrowRight size={16} strokeWidth={1.5} /></Link>
-              </div>
-            </div>
-          </div>
-          <FaqAccordion limit={6} />
-        </div>
-      </section>
-
-      {/* 9 · Contact */}
-      <section className={white}>
-        <div className="container-x">
-          <div className="grid gap-12 lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:gap-20">
-            <div>
-              <Eyebrow>Start your order</Eyebrow>
-              <h2 className="mt-3 text-[clamp(2.25rem,4.2vw,3.5rem)] font-medium leading-[1.06] tracking-[-.03em] text-ink">Send a size, get a box</h2>
-              <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-secondary">Tell us what you are packing and how many you need. You will get a clear specification and a free, no-obligation quote within 24 hours.</p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-dark"><WhatsAppIcon size={18} /> Get a quote on WhatsApp</a>
-                <Link href="/products" className="btn-light">Browse products</Link>
-              </div>
-              <ul className="mt-10 grid gap-3 text-[15px] text-secondary sm:grid-cols-3">
-                {['Free, no obligation', 'Reply within 24 hours', 'Delivery across Pakistan'].map(t => (
-                  <li key={t} className="flex items-center gap-2"><Check size={16} strokeWidth={1.5} className="text-muted" />{t}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="rounded-2xl border border-line bg-mist p-2">
-              <p className="px-4 pb-3 pt-4 text-[13px] font-medium text-muted">Talk to the team · replies within 24 hours</p>
-              <div className="grid gap-2 sm:grid-cols-2">
-                {[
-                  { icon: <WhatsAppIcon size={18} />, label: 'WhatsApp', value: COMPANY.phone, note: 'Fastest reply', href: quote, ext: true, mono: true },
-                  { icon: <Phone size={18} strokeWidth={1.5} />, label: 'Call', value: COMPANY.phone, note: 'Mon to Sat', href: phoneLink() || '#', ext: false, mono: true },
-                  { icon: <Mail size={18} strokeWidth={1.5} />, label: 'Email', value: COMPANY.email, note: 'For artwork files', href: emailLink(), ext: false, mono: false },
-                  { icon: <MapPin size={18} strokeWidth={1.5} />, label: 'Visit', value: 'Royal Park, Lakshmi Chowk, Lahore', note: 'Call ahead first', href: mapsLink, ext: true, mono: false },
-                ].map(c => (
-                  <a key={c.label} href={c.href} {...(c.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="group flex flex-col rounded-[10px] border border-line bg-white p-4 transition-colors hover:border-ink/20">
-                    <span className="flex items-center justify-between text-muted">
-                      <span className="flex items-center gap-2 text-[13px]">{c.icon}{c.label}</span>
-                      <ArrowUpRight size={16} strokeWidth={1.5} className="transition-colors group-hover:text-ink" />
-                    </span>
-                    <span className={`mt-4 leading-snug text-ink ${c.label === 'Email' ? 'break-all' : ''} ${c.mono ? 'font-mono text-[15px] tabular-nums' : 'text-[15px] font-medium'}`}>{c.value}</span>
-                    <span className="mt-1 text-[13px] text-muted">{c.note}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
+          <div className="flex flex-col gap-3 sm:max-w-sm lg:ml-auto lg:w-full">
+            <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-dark h-14 text-[16px]"><WhatsAppIcon size={18} /> Request a quote on WhatsApp</a>
+            <a href={emailLink()} className="btn-light h-14 bg-white text-[16px]"><Mail size={18} strokeWidth={1.5} /> Email your brief</a>
+            <p className="mt-1 text-center text-[13px] text-muted">Reply within one business day, on either channel.</p>
           </div>
         </div>
       </section>
