@@ -7,7 +7,8 @@ import { ClientLogos } from '@/components/ClientStrip';
 import { ClientWork } from '@/components/ClientWork';
 import { CLIENTS, COMPANY, emailLink, phoneLink, quoteLink } from '@/lib/company';
 import { products } from '@/lib/products';
-import { IMG, machines, reasons, sectors, steps, tickerPoints, unsplash } from '@/data/home';
+import { machines, reasons, sectors, steps, tickerPoints, unsplash } from '@/data/home';
+import { STOCK } from '@/lib/photos';
 
 export const metadata: Metadata = {
   title: { absolute: 'ALL PACK — Printing & Packaging in Lahore' },
@@ -52,7 +53,7 @@ export default function Home() {
             </div>
           </div>
           <div className="anim-up d2 overflow-hidden rounded-2xl bg-soft">
-            <img src={unsplash(IMG.pressRollers, 1600)} alt="Ink rollers on an offset printing press" width={1600} height={1200} fetchPriority="high" className="aspect-[4/3] w-full object-cover" />
+            <img src={unsplash(STOCK.pressDelivery, 1600)} alt="Printed carton sheets coming off an offset press" width={1600} height={1200} fetchPriority="high" className="aspect-[4/3] w-full object-cover" />
           </div>
         </div>
       </section>

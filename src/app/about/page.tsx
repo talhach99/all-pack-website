@@ -14,7 +14,6 @@ export const metadata: Metadata = {
   alternates: { canonical: '/about' },
 };
 
-const img = (name: string) => `/images/home/${name}.webp`;
 
 const impact = [
   { icon: ShieldCheck, t: 'Protects the product', d: 'The right board, structure and fit, so goods arrive the way they left, whether they travel across town or across the country.' },
@@ -31,10 +30,10 @@ const values = [
 ];
 
 const work = [
-  { image: 'custom-wedding-box', t: 'Printed wedding gift box' },
-  { image: 'rigid-drawer-box', t: 'Drawer box with dividers' },
-  { image: 'paper-bag', t: 'Branded paper bag' },
-  { image: 'foil-ornate-box', t: 'Ornate rigid box' },
+  { image: '/work/citi-queen-cake-mango.webp', t: 'Citi Queen Cake Mango carton', contain: false },
+  { image: '/work/hoest-eclair.webp', t: 'Hoest Eclair window carton', contain: false },
+  { image: '/work/bunnys-queen-cake.webp', t: "Bunny's Queen Cake carton", contain: true },
+  { image: '/work/aloram-carton.webp', t: 'Aloram pharmaceutical carton', contain: true },
 ];
 
 export default function AboutPage() {
@@ -140,7 +139,7 @@ export default function AboutPage() {
           <div className="mt-14 grid grid-cols-2 gap-4 lg:grid-cols-4">
             {work.map(w => (
               <figure key={w.t} className="overflow-hidden rounded-xl bg-graphite-card">
-                <img src={img(w.image)} alt={`${w.t} made by ALL PACK`} loading="lazy" className="aspect-square w-full bg-white object-cover" />
+                <img src={w.image} alt={`${w.t}, printed by ALL PACK`} loading="lazy" className={`aspect-square w-full bg-white ${w.contain ? 'object-contain p-4' : 'object-cover'}`} />
                 <figcaption className="px-4 py-3 text-[14px] font-medium text-white">{w.t}</figcaption>
               </figure>
             ))}

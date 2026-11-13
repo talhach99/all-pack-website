@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
+import { photoUrl } from '@/lib/photos';
 import { ArrowRight } from 'lucide-react';
 
-const img = (name: string) => `/images/home/${name}.webp`;
+const img = (name: string) => photoUrl(name, true, 'images/home');
 
 const styles = [
   { slug: 'ecommerce-mailer-boxes', name: 'Mailer boxes', image: 'mailer-boxes' },

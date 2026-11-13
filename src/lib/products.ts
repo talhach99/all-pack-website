@@ -1,4 +1,5 @@
 import data from '@/data/products.json';
+import { photoUrl } from './photos';
 
 export type Product = {
   slug: string;
@@ -22,10 +23,10 @@ export const materialFilters = [...new Set(products.flatMap(p => p.materials))].
 export const useFilters = [...new Set(products.flatMap(p => p.uses))].sort();
 export const findProduct = (slug: string) => products.find(p => p.slug === slug);
 /** Studio photograph of the product (1600 px wide). */
-export const productImage = (p: Pick<Product, 'model'>) => `/photos/${p.model}.webp`;
+export const productImage = (p: Pick<Product, 'model'>) => photoUrl(p.model);
 /** Smaller (800 px) version for cards and thumbnails. */
-export const productThumb = (p: Pick<Product, 'model'>) => `/photos/${p.model}-800.webp`;
-export const photo = (name: string, small = false) => `/photos/${name}${small ? '-800' : ''}.webp`;
+export const productThumb = (p: Pick<Product, 'model'>) => photoUrl(p.model, true);
+export const photo = (name: string, small = false) => photoUrl(name, small);
 /** Close-up finish photography that best matches a product's materials. */
 export function finishShot(p: Pick<Product, 'materials' | 'category'>): { name: string; label: string } {
   const m = p.materials.join(' ').toLowerCase();
