@@ -11,6 +11,7 @@ import { CLIENTS, COMPANY, emailLink, phoneLink, quoteLink } from '@/lib/company
 import { products } from '@/lib/products';
 import { machines, reasons, sectors, steps, tickerPoints, unsplash } from '@/data/home';
 import { STOCK } from '@/lib/photos';
+import { CountUp } from '@/components/CountUp';
 
 export const metadata: Metadata = {
   title: seoTitle(PAGE_SEO.home),
@@ -83,8 +84,34 @@ export default function Home() {
         <ClientLogos />
       </section>
 
+      {/* 3b · Who we are, with the figures that back it up */}
+      <section className="section border-t border-ink/[.08] bg-[#F5F7FA]" id="about">
+        <div className="container-x">
+          <Head title="About ALL PACK" sub="A Lahore print house trusted by pharmaceutical, food and consumer brands for more than 25 years." />
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <div className="overflow-hidden rounded-2xl bg-soft">
+              <img src={unsplash(STOCK.pressDelivery, 1400)} alt="Printed carton sheets coming off an offset press" loading="lazy" className="aspect-[4/3] w-full object-cover" />
+            </div>
+            <div>
+              <p className="text-[18px] leading-[1.7] text-secondary">ALL PACK prints and finishes packaging in its own plant in Lahore. Folding cartons, labels, rigid boxes and corrugated shippers run on Heidelberg, GTO 52 and Solna offset presses, then go through die-cutting, lamination, foil and gluing under the same roof.</p>
+              <p className="mt-5 text-[18px] leading-[1.7] text-secondary">Pharmaceutical companies, bakeries, restaurants and cosmetic brands across Pakistan rely on us for packaging printed to approved artwork, in consistent colour, run after run. We are ISO 9001 and Halal certified.</p>
+              <Link href="/about" className="btn-dark mt-8">Read more about us <ArrowRight size={16} /></Link>
+            </div>
+          </div>
+          <dl className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-ink/[.08] bg-ink/[.08] sm:mt-16 lg:grid-cols-4">
+            {([[25, '+', 'Years in printing'], [3, '', 'Offset presses'], [CLIENTS.length, '+', 'Brands served'], [2, '', 'Certifications: ISO 9001 and Halal']] as const).map(([n, suf, l]) => (
+              <div key={l} className="bg-white px-6 py-8 text-center sm:py-10">
+                <dt className="sr-only">{l}</dt>
+                <dd className="text-[clamp(2.5rem,5vw,3.5rem)] font-medium leading-none tracking-[-.03em] text-ink"><CountUp value={n} suffix={suf} /></dd>
+                <dd className="mt-3 text-[15px] text-secondary">{l}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       {/* 4 · What we print, by sector */}
-      <section className="section border-t border-ink/[.08] bg-[#F5F7FA]" id="products">
+      <section className="section bg-white" id="products">
         <div className="container-x">
           <Head title="Packaging We Print" sub="Packaging for the industries we know best, from medicine cartons to bakery boxes." link={{ text: `All ${products.length} products`, href: '/products' }} />
           <div className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-1 sm:mx-0 sm:grid sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 md:grid-cols-2 lg:grid-cols-[1.25fr_1fr_1fr]">
@@ -120,15 +147,6 @@ export default function Home() {
               <span aria-hidden="true" className="mx-auto mt-5 block h-[3px] w-12 rounded-full bg-brand-light" />
               <p className="mx-auto mt-5 max-w-2xl text-[18px] leading-relaxed text-cyan">Three offset presses and a full finishing line, under one roof in Lahore.</p>
             </div>
-            <dl className="grid w-full max-w-xl grid-cols-3 border-t border-white/10 pt-6">
-              {[['25+', 'years on press'], ['3', 'offset presses'], [`${CLIENTS.length}+`, 'brands served']].map(([n, l]) => (
-                <div key={l}>
-                  <dt className="sr-only">{l}</dt>
-                  <dd className="text-[36px] font-medium leading-none tracking-[-.02em] tabular-nums">{n}</dd>
-                  <dd className="mt-2 text-[14px] text-cyan">{l}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
           <div className="mach-row no-scrollbar">
             {machines.map(m => (
