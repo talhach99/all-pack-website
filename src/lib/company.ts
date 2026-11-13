@@ -19,7 +19,7 @@ export const COMPANY = {
   instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || '',
   facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || '',
   linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || '',
-  siteUrl: (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.allpack.com.pk').replace(/\/$/, ''),
+  siteUrl: (process.env.NEXT_PUBLIC_SITE_URL || 'https://allpackpk.com').replace(/\/$/, ''),
 };
 
 /** Clients who have trusted ALL PACK with their packaging (list and logos supplied by the owner). */

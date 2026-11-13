@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
+import { PAGE_SEO, seoTitle } from '@/data/seo';
 import Link from 'next/link';
 import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/FloatingContact';
@@ -12,8 +13,8 @@ import { machines, reasons, sectors, steps, tickerPoints, unsplash } from '@/dat
 import { STOCK } from '@/lib/photos';
 
 export const metadata: Metadata = {
-  title: { absolute: 'ALL PACK — Printing & Packaging in Lahore' },
-  description: 'Cartons, labels, rigid boxes and corrugated packaging printed in Lahore on our own Heidelberg and Solna presses, for pharmaceutical, food and retail brands across Pakistan. More than 25 years of experience.',
+  title: seoTitle(PAGE_SEO.home),
+  description: PAGE_SEO.home.description,
   alternates: { canonical: '/' },
 };
 

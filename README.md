@@ -28,7 +28,7 @@ npm run typecheck && npm run build
 
 See `.env.example`. To make the quote form deliver email, set **`RESEND_API_KEY`** and **`RESEND_FROM_EMAIL`** (a sender on a domain you have verified in Resend) in your hosting dashboard (Cloudflare → Workers → Settings → Variables). Until then, the form tells visitors to send the same details on WhatsApp/email with one tap, so no enquiry is lost.
 
-`NEXT_PUBLIC_SITE_URL` defaults to `https://www.allpack.com.pk` and is used for canonical URLs, sitemap and social previews. Set it to your live domain.
+`NEXT_PUBLIC_SITE_URL` defaults to `https://allpackpk.com` and is used for canonical URLs, sitemap and social previews. Set it to your live domain.
 
 ## Security
 

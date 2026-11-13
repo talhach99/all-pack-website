@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { PAGE_SEO, seoTitle } from '@/data/seo';
 import { Ruler, Palette, Truck } from 'lucide-react';
 import { PageHero } from '@/components/PageHero';
 import { ProductCatalog } from '@/components/ProductCatalog';
@@ -8,8 +9,8 @@ import { categoryFromSlug, products } from '@/lib/products';
 import { quoteLink, whatsappLink } from '@/lib/company';
 
 export const metadata: Metadata = {
-  title: 'Products',
-  description: 'Printed folding cartons, rigid gift boxes, shipping boxes, pizza, burger and bakery boxes, bags, pouches and labels from ALL PACK. Made to measure in Lahore.',
+  title: seoTitle(PAGE_SEO.products),
+  description: PAGE_SEO.products.description,
   alternates: { canonical: '/products' },
 };
 

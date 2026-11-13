@@ -8,13 +8,14 @@ import { Footer } from '@/components/Footer';
 import { FloatingContact } from '@/components/FloatingContact';
 import { Motion } from '@/components/Motion';
 import { COMPANY, phoneLink } from '@/lib/company';
+import { PAGE_SEO } from '@/data/seo';
+import { Analytics } from '@/components/Analytics';
 
 export const metadata: Metadata = {
   metadataBase: new URL(COMPANY.siteUrl),
-  title: { default: 'ALL PACK — Custom Packaging & Printing in Lahore', template: '%s · ALL PACK' },
-  description: 'Custom printed boxes, mailers, rigid gift boxes, food packaging, bags, pouches and labels. ALL PACK — The Packaging Experts, Lahore, Pakistan.',
+  title: { default: PAGE_SEO.home.title, template: '%s | ALL PACK' },
+  description: PAGE_SEO.home.description,
   applicationName: 'ALL PACK',
-  keywords: ['custom packaging Lahore', 'printed boxes Pakistan', 'mailer boxes', 'rigid gift boxes', 'pizza boxes', 'packaging company Lahore'],
   alternates: { canonical: '/' },
   openGraph: { title: 'ALL PACK — The Packaging Experts', description: 'Packaging that sells before it’s opened. Custom boxes, bags, labels and print from Lahore.', type: 'website', locale: 'en_PK', siteName: 'ALL PACK', images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'ALL PACK — The Packaging Experts' }] },
   twitter: { card: 'summary_large_image', images: ['/og-image.png'] },
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <FloatingContact />
           <Motion />
         </Providers>
+        <Analytics />
       </body>
     </html>
   );

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { PAGE_SEO, seoTitle } from '@/data/seo';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { PageHero } from '@/components/PageHero';
@@ -6,7 +7,8 @@ import { Reveal } from '@/components/Reveal';
 import { articles } from '@/data/articles';
 import { Photo } from '@/components/Photo';
 
-export const metadata: Metadata = { title: 'Insights', description: 'Practical guides on choosing boxes, materials and preparing print-ready packaging artwork.', alternates: { canonical: '/insights' } };
+export const metadata: Metadata = { title: seoTitle(PAGE_SEO.insights),
+  description: PAGE_SEO.insights.description, alternates: { canonical: '/insights' } };
 const covers = ['ind_ecommerce', 'fin_kraft', 'fin_print'];
 
 export default function InsightsPage() {

@@ -12,6 +12,7 @@ import { FaqAccordion } from '@/components/FaqAccordion';
 import { Eyebrow, SectionHead } from '@/components/Section';
 import { WhatsAppIcon } from '@/components/FloatingContact';
 import { COMPANY, quoteLink } from '@/lib/company';
+import { PRODUCT_SEO, seoTitle } from '@/data/seo';
 
 export function generateStaticParams() { return products.map(p => ({ slug: p.slug })); }
 
@@ -19,9 +20,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const p = findProduct(slug);
   if (!p) return {};
+  const seo = PRODUCT_SEO[slug] ?? { title: `${p.name}, Custom Printed`, description: `${p.description} Custom sizes and printing from ALL PACK, Lahore.` };
   return {
-    title: `${p.name} — Custom Printed`,
-    description: `${p.description} Custom sizes, materials and printing from ALL PACK, Lahore. Request a free quote.`,
+    title: seoTitle(seo),
+    description: seo.description,
     alternates: { canonical: `/products/${slug}` },
     openGraph: { images: [{ url: productImage(p), width: 1600, height: 1280, alt: p.name }] },
   };

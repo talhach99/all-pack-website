@@ -48,7 +48,7 @@ export function Footer() {
       <div className="container-x">
         <div className="flex flex-col justify-between gap-3 border-t border-[#1A2C57] py-7 pb-24 text-[13px] sm:flex-row sm:pb-7">
           <p>© {new Date().getFullYear()} ALL PACK · The Packaging Experts · Lahore</p>
-          <div className="flex gap-5"><Link href="/privacy" className="hover:text-white">Privacy</Link><Link href="/faq" className="hover:text-white">FAQ</Link><Link href="/sitemap.xml" className="hover:text-white">Sitemap</Link></div>
+          <div className="flex gap-5"><Link href="/privacy" className="hover:text-white">Privacy</Link><Link href="/terms" className="hover:text-white">Terms</Link><Link href="/faq" className="hover:text-white">FAQ</Link><Link href="/sitemap.xml" className="hover:text-white">Sitemap</Link></div>
         </div>
       </div>
     </footer>

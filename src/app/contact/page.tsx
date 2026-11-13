@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { PAGE_SEO, seoTitle } from '@/data/seo';
 import { ArrowUpRight, Clock, FileText, Mail, MapPin, Phone } from 'lucide-react';
 import { QuoteForm } from '@/components/QuoteForm';
 import { WhatsAppIcon } from '@/components/FloatingContact';
@@ -6,8 +7,8 @@ import { Eyebrow } from '@/components/Section';
 import { COMPANY, mapsLink, phoneLink, whatsappLink } from '@/lib/company';
 
 export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Call, WhatsApp, email or visit ALL PACK in Lahore for custom packaging and printing. Send your brief for a free quote.',
+  title: seoTitle(PAGE_SEO.contact),
+  description: PAGE_SEO.contact.description,
   alternates: { canonical: '/contact' },
 };
 

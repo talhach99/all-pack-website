@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { INDUSTRY_SEO, seoTitle } from '@/data/seo';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowRight, Check, Mail } from 'lucide-react';
@@ -15,7 +16,8 @@ export function generateStaticParams() { return industries.map(i => ({ slug: i.s
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params; const ind = findIndustry(slug); if (!ind) return {};
-  return { title: `${ind.name} Packaging`, description: `${ind.intro.split('. ')[0]}. Custom packaging for ${ind.name.toLowerCase()} from ALL PACK, Lahore.`, alternates: { canonical: `/industries/${slug}` }, openGraph: { images: [{ url: `/photos/${ind.image}.webp`, alt: `${ind.name} packaging` }] } };
+  const seo = INDUSTRY_SEO[slug] ?? { title: `${ind.name} Packaging`, description: `${ind.intro.split('. ')[0]}. Custom packaging from ALL PACK, Lahore.` };
+  return { title: seoTitle(seo), description: seo.description, alternates: { canonical: `/industries/${slug}` }, openGraph: { images: [{ url: `/photos/${ind.image}.webp`, alt: `${ind.name} packaging` }] } };
 }
 
 export default async function IndustryPage({ params }: { params: Promise<{ slug: string }> }) {

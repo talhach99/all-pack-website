@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { PAGE_SEO, seoTitle } from '@/data/seo';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { PageHero } from '@/components/PageHero';
@@ -6,7 +7,8 @@ import { FaqAccordion } from '@/components/FaqAccordion';
 import { faqs } from '@/data/faqs';
 import { whatsappLink } from '@/lib/company';
 
-export const metadata: Metadata = { title: 'FAQ', description: 'Answers about custom printed packaging from ALL PACK: minimum orders, custom sizes, artwork, lead times, food packaging and delivery.', alternates: { canonical: '/faq' } };
+export const metadata: Metadata = { title: seoTitle(PAGE_SEO.faq),
+  description: PAGE_SEO.faq.description, alternates: { canonical: '/faq' } };
 
 export default function FAQPage() {
   const schema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };

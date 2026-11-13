@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { PAGE_SEO, seoTitle } from '@/data/seo';
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { PageHero } from '@/components/PageHero';
@@ -10,8 +11,8 @@ import { ClientStrip } from '@/components/ClientStrip';
 import { WhatsAppIcon } from '@/components/FloatingContact';
 
 export const metadata: Metadata = {
-  title: 'Packaging by Industry',
-  description: 'Custom packaging for pharmaceutical, food, bakery, restaurant, beauty, e-commerce, fashion and agriculture brands from ALL PACK, Lahore.',
+  title: seoTitle(PAGE_SEO.industries),
+  description: PAGE_SEO.industries.description,
   alternates: { canonical: '/industries' },
 };
 

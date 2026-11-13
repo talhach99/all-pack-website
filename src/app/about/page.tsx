@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
+import { PAGE_SEO, seoTitle } from '@/data/seo';
 import Link from 'next/link';
 import { ArrowRight, BadgeCheck, Handshake, PackageCheck, Palette, Ruler, ShieldCheck, Timer, Wallet } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/FloatingContact';
@@ -10,8 +11,8 @@ import { industries } from '@/data/industries';
 import { STOCK, stockUrl } from '@/lib/photos';
 
 export const metadata: Metadata = {
-  title: 'About Us',
-  description: 'ALL PACK is a Lahore packaging and printing company with more than 25 years of experience making boxes, bags, labels and printed packaging for businesses across Pakistan.',
+  title: seoTitle(PAGE_SEO.about),
+  description: PAGE_SEO.about.description,
   alternates: { canonical: '/about' },
 };
 

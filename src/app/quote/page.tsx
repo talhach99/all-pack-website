@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: 'Get a Free Quote',
   description: 'Tell ALL PACK what you need: products, quantity, size and artwork. Get a clear specification and a free, no-obligation packaging quote.',
   alternates: { canonical: '/quote' },
+  robots: { index: false, follow: true },
 };
 
 export default async function QuotePage({ searchParams }: { searchParams: Promise<{ product?: string | string[] }> }) {

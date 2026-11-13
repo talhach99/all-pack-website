@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { ARTICLE_SEO, seoTitle } from '@/data/seo';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
@@ -9,7 +10,8 @@ import { WhatsAppIcon } from '@/components/FloatingContact';
 export function generateStaticParams() { return articles.map(a => ({ slug: a.slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params; const a = getArticle(slug);
-  return a ? { title: a.title, description: a.excerpt, alternates: { canonical: `/insights/${slug}` }, openGraph: { type: 'article' } } : {};
+  const seo = ARTICLE_SEO[slug] ?? { title: a?.title ?? '', description: a?.excerpt ?? '' };
+  return a ? { title: seoTitle(seo), description: seo.description, alternates: { canonical: `/insights/${slug}` }, openGraph: { type: 'article' } } : {};
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
