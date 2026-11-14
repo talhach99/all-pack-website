@@ -52,12 +52,12 @@ export default function Home() {
       {/* 1 · Hero: light, layered and credible — promise, proof and one strong visual */}
       <section className="relative isolate overflow-hidden border-b border-ink/[.08] bg-gradient-to-b from-white via-[#F4F7FF] to-[#E9EFFF]">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(rgba(37,56,214,.13)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_70%_60%_at_70%_40%,#000_30%,transparent_75%)]" />
-        <div aria-hidden="true" className="pointer-events-none absolute -right-40 top-10 -z-10 h-[560px] w-[560px] rounded-full bg-brand/20 blur-[120px]" />
-        <div aria-hidden="true" className="pointer-events-none absolute -left-40 bottom-0 -z-10 h-[360px] w-[360px] rounded-full bg-[#7FA2FF]/20 blur-[110px]" />
+        {/* Soft glows as plain radial gradients: large CSS blur filters render as black boxes in iOS Safari. */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_85%_25%,rgba(37,56,214,.16),transparent_45%),radial-gradient(circle_at_5%_95%,rgba(127,162,255,.18),transparent_40%)]" />
         <div className="container-x grid items-center gap-12 py-12 sm:py-20 lg:min-h-[calc(100svh-84px-60px)] lg:grid-cols-[1fr_1.05fr] lg:gap-16 lg:py-16">
           <div className="anim-up">
-            <p className="inline-flex items-center gap-2 rounded-full border border-brand/15 bg-white/80 px-3.5 py-1.5 text-[14px] font-medium text-brand-dark shadow-sm backdrop-blur">
-              <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand/40" /><span className="relative inline-flex h-2 w-2 rounded-full bg-brand" /></span>
+            <p className="inline-flex items-center gap-2 rounded-full border border-brand/15 bg-white/80 px-3.5 py-1.5 text-[14px] font-medium text-brand-dark shadow-sm">
+              <span className="inline-flex h-2 w-2 rounded-full bg-brand" />
               ISO 9001 and Halal certified printers in Lahore
             </p>
             <h1 className="mt-6 text-[clamp(2.3rem,4.8vw,4.1rem)] font-medium leading-[1.04] tracking-[-.035em] text-ink">Carton, label and box printing for Pakistan&rsquo;s <span className="bg-gradient-to-r from-brand to-[#4F6BFF] bg-clip-text text-transparent">pharma and food brands</span></h1>
@@ -80,11 +80,11 @@ export default function Home() {
               <img src={unsplash(STOCK.pressSheets, 1600)} alt="Printed sheets running through an offset printing press" width={1600} height={1200} fetchPriority="high" className="aspect-[4/3] w-full object-cover" />
               <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-navy/35 via-transparent to-transparent" />
             </div>
-            <div className="absolute -bottom-6 left-4 flex items-center gap-4 rounded-2xl border border-ink/[.06] bg-white/95 px-5 py-4 shadow-[0_20px_40px_-20px_rgba(11,31,77,.4)] backdrop-blur sm:-left-6">
+            <div className="absolute -bottom-6 left-4 flex items-center gap-4 rounded-2xl border border-ink/[.06] bg-white px-5 py-4 shadow-[0_20px_40px_-20px_rgba(11,31,77,.4)] sm:-left-6">
               <span className="text-[36px] font-semibold leading-none tracking-[-.03em] text-brand">25+</span>
               <span className="text-[14px] leading-snug text-secondary">years printing<br />packaging in Lahore</span>
             </div>
-            <div className="absolute -right-3 -top-5 hidden items-center gap-3 rounded-2xl border border-ink/[.06] bg-white/95 px-4 py-3 shadow-[0_20px_40px_-20px_rgba(11,31,77,.4)] backdrop-blur sm:flex lg:-right-6">
+            <div className="absolute -right-3 -top-5 hidden items-center gap-3 rounded-2xl border border-ink/[.06] bg-white px-4 py-3 shadow-[0_20px_40px_-20px_rgba(11,31,77,.4)] sm:flex lg:-right-6">
               <CertBadge id="iso" size={42} />
               <CertBadge id="halal" size={42} />
               <span className="text-[14px] font-medium leading-snug text-ink">Certified<br /><span className="font-normal text-secondary">quality and Halal</span></span>
