@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params; const a = getArticle(slug);
   if (!a) notFound();
-  const schema = { '@context': 'https://schema.org', '@type': 'Article', headline: a.title, description: a.excerpt, publisher: { '@type': 'Organization', name: COMPANY.name }, mainEntityOfPage: `${COMPANY.siteUrl}/insights/${a.slug}` };
+  const schema = { '@context': 'https://schema.org', '@type': 'Article', headline: a.title, description: a.excerpt, author: { '@type': 'Organization', name: COMPANY.name, url: COMPANY.siteUrl }, publisher: { '@type': 'Organization', name: COMPANY.name, url: COMPANY.siteUrl, logo: { '@type': 'ImageObject', url: `${COMPANY.siteUrl}/brand/allpack-logo.png` } }, image: `${COMPANY.siteUrl}/og-image.png`, mainEntityOfPage: `${COMPANY.siteUrl}/insights/${a.slug}` };
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
