@@ -49,8 +49,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     ...inds.slice(0, 2).map(i => ({ name: i.image, alt: `${p.name} in a ${i.name.toLowerCase()} setting`, label: `For ${i.name}` })),
   ];
   const schema = {
-    '@context': 'https://schema.org', '@type': 'Product', name: p.name, description: p.fullDescription, category: p.category,
-    image: productImage(p).startsWith('http') ? productImage(p) : `${COMPANY.siteUrl}${productImage(p)}`, brand: { '@type': 'Brand', name: COMPANY.name }, url: `${COMPANY.siteUrl}/products/${p.slug}`,
+    '@context': 'https://schema.org', '@type': 'Service', name: p.name, description: p.fullDescription, serviceType: p.category,
+    image: productImage(p).startsWith('http') ? productImage(p) : `${COMPANY.siteUrl}${productImage(p)}`, provider: { '@type': 'LocalBusiness', name: COMPANY.name, url: COMPANY.siteUrl }, areaServed: 'PK', url: `${COMPANY.siteUrl}/products/${p.slug}`,
   };
   const crumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Products', item: `${COMPANY.siteUrl}/products` },
