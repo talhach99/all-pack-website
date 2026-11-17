@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import { PAGE_SEO, seoTitle } from '@/data/seo';
 import { families, sectors } from '@/data/catalog';
 import { quoteLink } from '@/lib/company';
@@ -22,10 +23,13 @@ export default function IndustriesPage() {
           <ol className="border-b border-white/10">
             {sectors.map((s, i) => (
               <li key={s.slug}>
-                <a href={`#${s.slug}`} className="group grid grid-cols-[40px_1fr_auto] items-center gap-4 border-t border-white/10 py-3.5 transition-colors hover:bg-white/[.03]">
+                <a href={`#${s.slug}`} className="group grid grid-cols-[40px_1fr_auto] items-center gap-4 border-t border-white/10 py-3 transition-colors hover:bg-white/[.03]">
                   <span className="font-mono text-[12px] text-[#7FD3F0]">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="font-display text-[20px] font-medium tracking-[-.01em] text-white">{s.name}</span>
-                  <span className="hidden max-w-[220px] text-right text-[13px] leading-relaxed text-[#9AA5CC] sm:block">{s.clients.join(' · ')}</span>
+                  <span>
+                    <span className="block font-display text-[18px] font-medium tracking-[-.01em] text-white">{s.name}</span>
+                    <span className="mt-0.5 block text-[13px] text-[#9AA5CC]">{s.formats.join(' · ')}</span>
+                  </span>
+                  <ArrowRight size={16} strokeWidth={1.5} className="text-white/40 transition-transform group-hover:translate-x-1 group-hover:text-white" />
                 </a>
               </li>
             ))}

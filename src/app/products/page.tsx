@@ -32,7 +32,21 @@ export default function ProductsPage() {
         kicker="Products"
         title={<>Custom packaging, specified and <span className="text-[#8FC2F2]">printed in Lahore</span></>}
         description="Eight formats, each made to your dimensions, board grade and artwork, then printed and finished in our own facility. Choose a format below for its styles, board and finishes."
-        aside={<img src="/renders/packaging-range.webp" alt="ALL PACK printed packaging: cartons, rigid and drawer boxes" width={2000} height={1245} className="float mx-auto w-full max-w-[640px] lg:max-w-none lg:origin-left lg:scale-[1.18]" />}
+        aside={
+          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {families.map((f, i) => (
+              <li key={f.slug}>
+                <a href={`#${f.slug}`} className="group flex h-full flex-col rounded-xl border border-white/10 bg-white/[.04] p-3 transition-colors hover:border-white/30 hover:bg-white/[.07]">
+                  <span className="font-mono text-[11px] text-[#7FD3F0]">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="flex aspect-square items-center justify-center p-1">
+                    <img src={f.image} alt={f.alt} loading="eager" className="max-h-full w-full object-contain transition-transform duration-300 group-hover:-translate-y-1" />
+                  </span>
+                  <span className="mt-1 text-[13px] font-medium leading-snug text-white">{f.name}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        }
       >
         <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="btn-primary"><WhatsAppIcon size={18} /> Request a quote</a>
         <a href="#pharmaceutical-cartons" className="btn-outline">See the formats</a>
