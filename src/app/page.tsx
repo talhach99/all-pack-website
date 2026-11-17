@@ -58,6 +58,12 @@ export default function Home() {
         </ul>
       </section>
 
+      {/* Clients */}
+      <section aria-label="Our clients" className="border-b border-line py-12 sm:py-14">
+        <p className="meta mb-7 text-center">Brands that print with ALL PACK</p>
+        <ClientLogos />
+      </section>
+
       {/* Product range */}
       <section className="section">
         <div className="container-x">
@@ -137,8 +143,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <p className="meta mt-16 text-center">Brands that print with ALL PACK</p>
-          <ClientLogos className="mt-6" />
         </div>
       </section>
 

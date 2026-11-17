@@ -5,7 +5,7 @@ function Tile({ c }: { c: Client }) {
   return (
     <li title={c.name} className={`flex h-24 ${c.wide ? 'w-64' : 'w-44'} shrink-0 items-center justify-center rounded-2xl border border-line bg-white px-5`}>
       {c.logo
-        ? <img src={c.logo} alt={c.name} loading="lazy" className="max-h-12 w-auto max-w-full object-contain opacity-75 grayscale transition duration-200 hover:opacity-100 hover:grayscale-0" />
+        ? <img src={c.logo} alt={c.name} loading="lazy" className="max-h-12 w-auto max-w-full object-contain" />
         : <span className="text-center text-[14px] font-semibold leading-tight text-secondary">{c.name}</span>}
     </li>
   );
