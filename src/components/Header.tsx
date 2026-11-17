@@ -63,10 +63,16 @@ export function Header() {
   const path = usePathname();
   const [menu, setMenu] = useState(false);
   const [stuck, setStuck] = useState(false);
+  const [hash, setHash] = useState('');
   const call = phoneLink();
   const quote = quoteLink();
 
-  useEffect(() => { setMenu(false); }, [path]);
+  useEffect(() => { setMenu(false); setHash(window.location.hash); }, [path]);
+  useEffect(() => {
+    const f = () => setHash(window.location.hash);
+    window.addEventListener('hashchange', f);
+    return () => window.removeEventListener('hashchange', f);
+  }, []);
   // Once the top row has scrolled away, the menu bar turns white.
   useEffect(() => {
     const f = () => setStuck(window.scrollY > 88);
@@ -79,7 +85,11 @@ export function Header() {
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, []);
-  const active = (href: string) => (href === '/' ? path === '/' : !href.includes('#') && (path === href || path.startsWith(`${href}/`)));
+  const active = (href: string) => {
+    if (href.includes('#')) { const [p, h] = href.split('#'); return (path === (p || '/')) && hash === `#${h}`; }
+    if (href === '/') return path === '/' && hash !== '#why';
+    return path === href || path.startsWith(`${href}/`);
+  };
 
   return (
     <>
@@ -103,7 +113,7 @@ export function Header() {
             const tone = stuck ? (on ? 'text-ink' : 'text-ink-soft hover:text-ink') : (on ? 'text-white' : 'text-white/70 hover:text-white');
             return (
               <li key={n.href} className="h-full">
-                <Link href={n.href} aria-current={on ? 'page' : undefined} className={`relative flex h-full items-center text-[15px] font-medium transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] after:rounded-t-full after:bg-rule after:transition-transform after:duration-200 ${tone} ${on ? 'after:scale-x-100' : 'after:scale-x-0'}`}>{n.text}</Link>
+                <Link href={n.href} onClick={() => setHash(n.href.includes('#') ? `#${n.href.split('#')[1]}` : '')} aria-current={on ? 'page' : undefined} className={`relative flex h-full items-center text-[15px] font-medium transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] after:rounded-t-full after:bg-rule after:transition-transform after:duration-200 ${tone} ${on ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}>{n.text}</Link>
               </li>
             );
           })}
