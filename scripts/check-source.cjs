@@ -15,13 +15,9 @@ for(const file of walk(path.join(root,'src')).filter(f=>/\.tsx?$/.test(f))){
  }
  checked++;
 }
-const products=JSON.parse(fs.readFileSync(path.join(root,'src/data/products.json'),'utf8'));
-const slugs=new Set(products.map(p=>p.slug));
-if(slugs.size!==products.length)errors.push('Duplicate product slug');
-for(const p of products){for(const k of ['slug','name','category','description','fullDescription','materials','sizes','customization','moq','uses','hue','model'])if(!p[k]||(Array.isArray(p[k])&&!p[k].length))errors.push(`Product ${p.slug} missing ${k}`)}
-for(const p of products)for(const v of ['','-800'])if(!fs.existsSync(path.join(root,'public/photos',p.model+v+'.webp')))errors.push(`Missing photo for ${p.slug}: ${p.model}${v}.webp`);
-const extra=(fs.readFileSync(path.join(root,'src/data/industries.ts'),'utf8').match(/image: '([^']+)'/g)||[]).map(x=>x.slice(8,-1)).concat(['fin_foil','fin_soft','fin_kraft','fin_print','hero-1200']);
-for(const n of extra)if(!fs.existsSync(path.join(root,'public/photos',n+'.webp')))errors.push(`Missing photo: ${n}.webp`);
-for(const route of ['contact','faq','about','gallery','insights','products','quote','studio','privacy','industries'])if(!fs.existsSync(path.join(root,'src/app',route,'page.tsx')))errors.push(`Missing route: ${route}`);
-console.log(`Source files: ${checked}, products: ${products.length}, routes: 9, errors: ${errors.length}`);
+const catalog=fs.readFileSync(path.join(root,'src/data/catalog.ts'),'utf8');
+const images=[...catalog.matchAll(/image: '([^']+)'/g)].map(m=>m[1]).concat(['/renders/packaging-range.webp']);
+for(const img of images)if(!fs.existsSync(path.join(root,'public',img)))errors.push(`Missing image: ${img}`);
+for(const route of ['contact','faq','about','insights','products','privacy','terms','industries'])if(!fs.existsSync(path.join(root,'src/app',route,'page.tsx')))errors.push(`Missing route: ${route}`);
+console.log(`Source files: ${checked}, images: ${images.length}, errors: ${errors.length}`);
 if(errors.length){for(const e of errors)console.error(e);process.exitCode=1;}

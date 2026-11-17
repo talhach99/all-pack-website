@@ -1,51 +1,42 @@
 import type { Config } from 'tailwindcss';
 
 /**
- * ALL PACK palette: navy and white, with the logo blue as the accent. No black.
- * Old token names (ink, graphite, cyan, cream…) are kept so every page restyles from here.
+ * ALL PACK palette, taken from the logo: deep navy, logo blue and sky, with a cyan rule.
+ * White and mist grounds only; no black. Older token names stay mapped so nothing breaks.
  */
-const graphite = {
-  deep: '#06122E',
-  page: '#0A1A3F',
-  card: '#10224A',
-  raised: '#1E3466',
-};
+const graphite = { deep: '#0E1440', page: '#141B4D', card: '#1C2460', raised: '#262F72' };
 
 const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
       colors: {
-        paper: { DEFAULT: '#FFFFFF', deep: '#F3F5F8', light: '#FFFFFF' },
-        mist: '#F3F5F8',
-        soft: '#E9EDF5',
-        line: '#E2E5EA',
-        ink: { DEFAULT: '#0B1F4D', soft: '#16306A', deep: graphite.deep, 2: graphite.card },
-        secondary: '#454B55',
-        muted: '#6B717B',
+        paper: { DEFAULT: '#FFFFFF', deep: '#F5F7FA', light: '#FFFFFF' },
+        mist: '#F5F7FA',
+        card: '#EEF1F5',
+        soft: '#E9EDF4',
+        line: '#E2E6EE',
+        ink: { DEFAULT: '#10142E', soft: '#2B3150', deep: graphite.deep, 2: graphite.card },
+        secondary: '#454B66',
+        muted: '#626884',
         graphite,
-        navy: { DEFAULT: '#0B1F4D', 2: '#0F2A63', deep: '#0A1A3F' },
-        brand: { DEFAULT: '#2B4AFC', dark: '#1D36CC', light: '#A9B8FF', tint: '#EEF2FF' },
+        navy: { DEFAULT: '#141B4D', 2: '#1C2460', deep: '#0E1440' },
+        brand: { DEFAULT: '#343B82', dark: '#272D6B', light: '#9FB3E8', tint: '#EEF1FA' },
+        sky: { DEFAULT: '#5C8DC3', light: '#B4C6EA' },
+        rule: '#1FA8E0',
         cream: '#E3E8F7',
-        cyan: { DEFAULT: '#AAB3C5', light: '#C9D2FF', dark: '#6B717B' },
-        brass: { DEFAULT: '#AAB3C5', light: '#C9D2FF', dark: '#6B717B' },
-        sky: { DEFAULT: '#A9B8FF', light: '#C9D2FF' },
-        kraft: '#B8946B',
-        gold: '#B8946B',
+        cyan: { DEFAULT: '#B4BCDB', light: '#D3D9F0', dark: '#626884' },
+        kraft: '#B48C62',
       },
       fontFamily: {
         sans: ['"Inter Variable"', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['"Inter Variable"', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        serif: ['"Inter Variable"', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['"Inter Tight Variable"', '"Inter Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono Variable"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       boxShadow: {
-        card: '0 1px 2px rgba(11,31,77,.05)',
-        lift: '0 24px 48px -28px rgba(11,31,77,.4)',
-        glow: '0 1px 2px rgba(11,31,77,.05)',
-        plate: '0 30px 60px -28px rgba(11,31,77,.45)',
+        card: '0 1px 2px rgba(20,27,77,.05)',
+        lift: '0 24px 48px -28px rgba(20,27,77,.35)',
       },
-      borderRadius: { '4xl': '1.5rem', '5xl': '1.75rem' },
       transitionTimingFunction: { out: 'cubic-bezier(.22,1,.36,1)' },
     },
   },

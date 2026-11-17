@@ -33,10 +33,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         <div className="prose-ap mt-12 border-t border-line pt-4">
           {a.sections.map(s => <section key={s.heading}><h2>{s.heading}</h2>{s.body.map((p, i) => <p key={i}>{p}</p>)}</section>)}
         </div>
-        <div className="mt-16 rounded-2xl border border-line bg-mist p-8 sm:p-10">
-          <h2 className="text-[26px] font-medium">Need help choosing packaging?</h2>
-          <p className="mt-2 text-secondary">Tell us what you&apos;re making and we&apos;ll recommend the right format.</p>
-          <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="btn-dark mt-6"><WhatsAppIcon size={18} /> Get a quote on WhatsApp</a>
+        <div className="mt-16 rounded-3xl border border-line bg-mist p-8 sm:p-10">
+          <h2 className="text-[26px]">Need advice on your packaging?</h2>
+          <p className="mt-2 text-secondary">Tell us about your product and we will recommend a structure, board and finish.</p>
+          <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="btn-dark mt-6"><WhatsAppIcon size={18} /> Request a quote on WhatsApp</a>
         </div>
       </article>
     </main>

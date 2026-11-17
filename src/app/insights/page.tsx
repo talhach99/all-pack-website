@@ -5,27 +5,24 @@ import { ArrowUpRight } from 'lucide-react';
 import { PageHero } from '@/components/PageHero';
 import { Reveal } from '@/components/Reveal';
 import { articles } from '@/data/articles';
-import { Photo } from '@/components/Photo';
 
 export const metadata: Metadata = { title: seoTitle(PAGE_SEO.insights),
   description: PAGE_SEO.insights.description, alternates: { canonical: '/insights' } };
-const covers = ['ind_ecommerce', 'fin_kraft', 'fin_print'];
 
 export default function InsightsPage() {
   return (
     <main>
-      <PageHero kicker="Guides" title={<>Good ideas, <span className="accent">well packed</span></>} description="Practical packaging advice for founders, makers and growing brands." />
+      <PageHero kicker="Guides" title="Packaging guides from the press floor." description="Practical advice on choosing a box structure, selecting board and preparing artwork that prints correctly first time." />
       <section className="container-x pb-28 pt-16">
         <div className="grid gap-6 md:grid-cols-3">
           {articles.map((a, i) => (
             <Reveal key={a.slug} delay={i * .06}>
-              <Link href={`/insights/${a.slug}`} className="group flex h-full flex-col overflow-hidden rounded-[20px] border border-line bg-paper-light transition-colors hover:shadow-card">
-                <div className="aspect-[4/3] overflow-hidden"><Photo name={covers[i % covers.length]} alt="" sizes="(min-width: 768px) 33vw, 100vw" className="" /></div>
-                <div className="flex flex-1 flex-col p-7">
-                  <p className="text-xs font-medium text-muted">{a.category} · {a.readMinutes} min read</p>
-                  <h2 className="mt-2 text-[18px] font-medium leading-snug">{a.title}</h2>
+              <Link href={`/insights/${a.slug}`} className="group card flex h-full flex-col transition-colors hover:border-[#C9CFDC]">
+                                <div className="flex flex-1 flex-col p-7">
+                  <p className="meta">{String(i + 1).padStart(2, '0')} · {a.category} · {a.readMinutes} min read</p>
+                  <h2 className="mt-4 text-[21px] leading-snug group-hover:text-brand">{a.title}</h2>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{a.excerpt}</p>
-                  <span className="mt-6 inline-flex items-center gap-1 text-[14px] font-medium">Read article <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5" /></span>
+                  <span className="mt-6 inline-flex items-center gap-1 text-[14px] font-semibold text-brand">Read the guide <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5" /></span>
                 </div>
               </Link>
             </Reveal>

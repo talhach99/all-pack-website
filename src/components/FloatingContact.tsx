@@ -33,7 +33,7 @@ export function FloatingContact() {
         <WhatsAppIcon size={20} />
         <span className="whitespace-nowrap text-sm font-medium">WhatsApp us</span>
       </a>
-      <div className={`fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white p-3 transition-transform duration-300 ease-out sm:hidden ${visible && path !== '/quote' ? 'translate-y-0' : 'translate-y-full'}`} style={{ paddingBottom: 'max(.75rem, env(safe-area-inset-bottom))' }}>
+      <div className={`fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white p-3 transition-transform duration-300 ease-out sm:hidden ${visible ? 'translate-y-0' : 'translate-y-full'}`} style={{ paddingBottom: 'max(.75rem, env(safe-area-inset-bottom))' }}>
         <div className="grid grid-cols-[auto_auto_1fr] gap-2">
           {call && <a href={call} aria-label="Call ALL PACK" className="grid h-12 w-12 place-items-center rounded-[10px] border border-line text-ink"><Phone size={18} strokeWidth={1.5} /></a>}
           <a href={emailLink()} aria-label="Email ALL PACK" className="grid h-12 w-12 place-items-center rounded-[10px] border border-line text-ink"><Mail size={18} strokeWidth={1.5} /></a>

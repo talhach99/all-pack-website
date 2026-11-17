@@ -1,18 +1,16 @@
 import type { MetadataRoute } from 'next';
 import { COMPANY } from '@/lib/company';
-import { products, productImage } from '@/lib/products';
-import { photoUrl } from '@/lib/photos';
 import { articles } from '@/data/articles';
-import { industries } from '@/data/industries';
+import { families } from '@/data/catalog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = COMPANY.siteUrl;
-  const absolute = (u: string) => (u.startsWith('http') ? u : `${base}${u}`);
-  const routes = ['', '/products', '/industries', '/about', '/insights', '/contact', '/faq', '/privacy', '/terms'];
+  const pages: [string, number][] = [['', 1], ['/products', .9], ['/industries', .8], ['/about', .7], ['/contact', .7], ['/insights', .6], ['/faq', .6], ['/privacy', .2], ['/terms', .2]];
   return [
-    ...routes.map(path => ({ url: `${base}${path}`, changeFrequency: 'monthly' as const, priority: path === '' ? 1 : path === '/products' ? .9 : .7 })),
-    ...products.map(p => ({ url: `${base}/products/${p.slug}`, changeFrequency: 'monthly' as const, priority: .8, images: [absolute(productImage(p))] })),
-    ...industries.map(i => ({ url: `${base}/industries/${i.slug}`, changeFrequency: 'monthly' as const, priority: .8, images: [absolute(photoUrl(i.image))] })),
+    ...pages.map(([path, priority]) => ({
+      url: `${base}${path}`, changeFrequency: 'monthly' as const, priority,
+      ...(path === '/products' ? { images: families.map(f => `${base}${f.image}`) } : path === '' ? { images: [`${base}/renders/packaging-range.webp`] } : {}),
+    })),
     ...articles.map(a => ({ url: `${base}/insights/${a.slug}`, changeFrequency: 'yearly' as const, priority: .5 })),
   ];
 }

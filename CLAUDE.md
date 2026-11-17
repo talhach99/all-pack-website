@@ -11,4 +11,7 @@
 - Phone numbers shown in +92 format; address shown as "Royal Park, Lakshmi Chowk, Lahore".
 - No separate quote page in the owner's plan: quote CTAs go to WhatsApp and email.
 - Keep the homepage lean; guides, industries and box styles live on their own pages.
-- Real photos preferred over AI-generated ones.
+- Product images are the studio renders in `public/renders/` (source: `scripts/renders/`). Do not use stock photos (Unsplash, Pexels) or the owner's earlier client/product photos.
+- One Products page (`/products#slug`) and one Industries page; no per-product or per-industry pages. Product data lives in `src/data/catalog.ts`.
+- Meta titles and descriptions live in `src/data/seo.ts`; run `npm run seo:check` after editing them.
+- Copy must be formal and specific: no invented figures, no counts of presses.

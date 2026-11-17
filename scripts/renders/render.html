@@ -1,0 +1,208 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:transparent}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+</head><body>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+
+const P = new URLSearchParams(location.search);
+const KIND = P.get('p') || 'carton';
+const SIZE = +(P.get('s') || 1200);
+const NAVY='#141B4D', BRAND='#343B82', SKY='#5C8DC3', CYAN='#1FA8E0';
+
+await new FontFace('IT', 'url(it.woff2)', { weight: '100 900' }).load().then(f => document.fonts.add(f));
+const loadImg = s => new Promise(r => { const i = new Image(); i.onload = () => r(i); i.src = s; });
+const LOGO = await loadImg('logo.png'), LOGOL = await loadImg('logo-light.png');
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1); renderer.setSize(SIZE, SIZE);
+renderer.toneMapping = THREE.NeutralToneMapping; renderer.toneMappingExposure = 1.0;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.VSMShadowMap;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const pm = new THREE.PMREMGenerator(renderer);
+scene.environment = pm.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 0.85;
+
+const sun = new THREE.DirectionalLight(0xffffff, 1.6);
+sun.position.set(-1.6, 8, 2.6); sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048); sun.shadow.radius = 14; sun.shadow.blurSamples = 25; sun.shadow.bias = -0.0005;
+const sc = sun.shadow.camera; sc.left = -4; sc.right = 4; sc.top = 4; sc.bottom = -4; sc.near = 0.5; sc.far = 20;
+scene.add(sun);
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(30, 30), new THREE.ShadowMaterial({ opacity: 0.13 }));
+ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; ground.userData.skip = 1; scene.add(ground);
+// contact shadow: soft dark blob under objects
+function contact(w, d, x = 0, z = 0, o = 0.32) {
+  const c = document.createElement('canvas'); c.width = c.height = 256; const g = c.getContext('2d');
+  const gr = g.createRadialGradient(128, 128, 10, 128, 128, 128); gr.addColorStop(0, `rgba(0,0,0,${o})`); gr.addColorStop(1, 'rgba(0,0,0,0)');
+  g.fillStyle = gr; g.fillRect(0, 0, 256, 256);
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(w, d), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(c), transparent: true, depthWrite: false }));
+  m.rotation.x = -Math.PI / 2; m.position.set(x, 0.002, z); m.userData.skip = 1; scene.add(m);
+}
+
+// ---------- texture helpers ----------
+function tex(w, h, draw) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h; const g = c.getContext('2d'); draw(g, w, h);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t;
+}
+function kraft(g, w, h, base = '#C49A6C') {
+  g.fillStyle = base; g.fillRect(0, 0, w, h);
+  const id = g.getImageData(0, 0, w, h), d = id.data;
+  for (let i = 0; i < d.length; i += 4) { const n = (Math.random() - .5) * 18; d[i] += n; d[i + 1] += n; d[i + 2] += n * .8; }
+  g.putImageData(id, 0, 0);
+  g.globalAlpha = .06; for (let i = 0; i < 900; i++) { g.fillStyle = Math.random() > .5 ? '#000' : '#fff'; g.fillRect(Math.random() * w, Math.random() * h, Math.random() * 30 + 4, 1.2); } g.globalAlpha = 1;
+}
+function logo(g, x, y, w, light = false) { const L = light ? LOGOL : LOGO; g.drawImage(L, x, y, w, w * L.height / L.width); }
+function tri(g, x, y, s, color) { g.fillStyle = color; g.beginPath(); g.moveTo(x, y + s); g.lineTo(x + s * .58, y); g.lineTo(x + s * 1.16, y + s); g.closePath(); g.fill(); }
+function mat(t, o = {}) { return new THREE.MeshStandardMaterial({ map: t, roughness: o.r ?? .55, metalness: o.m ?? 0, color: o.c ?? 0xffffff }); }
+function plain(color, r = .6) { return new THREE.MeshStandardMaterial({ color, roughness: r }); }
+function box(w, h, d, mats, r = .012) {
+  const m = new THREE.Mesh(r>0.0099 && P.get('round') ? new RoundedBoxGeometry(w, h, d, 4, r) : new THREE.BoxGeometry(w, h, d), mats); m.castShadow = true; m.receiveShadow = true; return m;
+}
+const add = (m, x = 0, y = 0, z = 0, ry = 0) => { m.position.set(x, y, z); m.rotation.y = -ry; scene.add(m); return m; };
+
+// ---------- products ----------
+const B = {};
+// 1 Pharmaceutical carton: white SBS, navy band
+B.pharma = () => {
+  const W = 1.9, H = .62, D = .46;
+  const front = tex(1900, 620, (g, w, h) => {
+    g.fillStyle = '#fff'; g.fillRect(0, 0, w, h);
+    g.fillStyle = NAVY; g.beginPath(); g.moveTo(w * .62, 0); g.lineTo(w, 0); g.lineTo(w, h); g.lineTo(w * .48, h); g.closePath(); g.fill();
+    g.fillStyle = SKY; g.beginPath(); g.moveTo(w * .58, 0); g.lineTo(w * .62, 0); g.lineTo(w * .48, h); g.lineTo(w * .44, h); g.closePath(); g.fill();
+    g.fillStyle = NAVY; g.font = '600 120px IT'; g.fillText('Pharmacarton', 80, 230);
+    g.fillStyle = '#5A6180'; g.font = '500 54px IT'; g.fillText('500 mg · 3 × 10 Tablets', 84, 320);
+    g.fillStyle = CYAN; g.fillRect(84, 380, 120, 10);
+    g.fillStyle = '#8A90A6'; g.font = '400 34px IT'; g.fillText('Store below 30°C. Protect from light.', 84, 470);
+    tri(g, w * .78, h * .3, 230, 'rgba(255,255,255,.12)');
+  });
+  const side = tex(460, 620, (g, w, h) => { g.fillStyle = '#fff'; g.fillRect(0, 0, w, h); g.fillStyle = NAVY; g.fillRect(0, h * .72, w, h * .28); g.save(); g.translate(w / 2 + 30, h * .62); g.rotate(-Math.PI / 2); g.fillStyle = NAVY; g.font = '600 64px IT'; g.fillText('Pharmacarton', 0, 0); g.restore(); });
+  const top = tex(1900, 460, (g, w, h) => { g.fillStyle = '#fff'; g.fillRect(0, 0, w, h); g.fillStyle = NAVY; g.beginPath(); g.moveTo(w * .62, 0); g.lineTo(w, 0); g.lineTo(w, h); g.lineTo(w * .55, h); g.fill(); g.fillStyle = '#9097AE'; g.font = '400 40px IT'; g.fillText('Batch  ·  Mfg  ·  Exp', 80, h / 2 + 14); });
+  const m = [mat(side, { r: .4 }), mat(side, { r: .4 }), mat(top, { r: .4 }), plain('#eee'), mat(front, { r: .38 }), mat(front, { r: .38 })];
+  add(box(W, H, D, m, .008), 0, H / 2, 0, -.28);
+  contact(2.6, 1.4);
+  return { cam: [2.3, 1.55, 2.7], look: [0, .28, 0], fov: 30 };
+};
+// 2 Folding carton: printed retail box
+B.folding = () => {
+  const W = 1.0, H = 1.35, D = .5;
+  const art = tex(1000, 1350, (g, w, h) => {
+    g.fillStyle = '#F4F1EA'; g.fillRect(0, 0, w, h);
+    g.fillStyle = BRAND; g.fillRect(0, h * .62, w, h * .38);
+    tri(g, w * .08, h * .18, 520, SKY); tri(g, w * .38, h * .3, 360, NAVY); tri(g, w * .6, h * .1, 260, CYAN);
+    g.fillStyle = '#fff'; g.font = '600 92px IT'; g.fillText('Daybreak', 70, h * .74);
+    g.font = '500 44px IT'; g.fillStyle = 'rgba(255,255,255,.8)'; g.fillText('Oat & honey biscuits', 72, h * .8);
+    g.fillStyle = '#fff'; g.font = '600 40px IT'; g.fillText('NET WT 250 g', 72, h * .93);
+  });
+  const side = tex(500, 1350, (g, w, h) => { g.fillStyle = '#F4F1EA'; g.fillRect(0, 0, w, h); g.fillStyle = BRAND; g.fillRect(0, h * .62, w, h * .38); tri(g, -60, h * .3, 300, SKY); g.fillStyle = '#fff'; g.font = '500 30px IT'; g.fillText('Ingredients: oats, wheat', 40, h * .72); g.fillText('flour, honey, butter.', 40, h * .76); g.fillStyle = '#fff'; g.fillRect(40, h * .84, 220, 90); g.fillStyle = '#222'; for (let i = 0; i < 40; i++) g.fillRect(50 + i * 5, h * .85, Math.random() > .5 ? 3 : 1.5, 70); });
+  const top = tex(1000, 500, (g, w, h) => { g.fillStyle = '#F4F1EA'; g.fillRect(0, 0, w, h); tri(g, w * .1, h * .1, 300, SKY); });
+  const m = [mat(side), mat(side), mat(top), plain('#ddd'), mat(art, { r: .35 }), mat(art)];
+  add(box(W, H, D, m, .01), 0, H / 2, 0, -.3);
+  contact(1.8, 1.5);
+  return { cam: [2.1, 1.65, 2.6], look: [0, .62, 0], fov: 32 };
+};
+// 3 Rigid gift box: navy wrap, lid + base, foil logo
+B.rigid = () => {
+  const W = 1.5, D = 1.1;
+  const lidTop = tex(1500, 1100, (g, w, h) => { g.fillStyle = NAVY; g.fillRect(0, 0, w, h); g.globalAlpha = .9; logo(g, w / 2 - 330, h / 2 - 110, 660, true); g.globalAlpha = 1; g.strokeStyle = 'rgba(200,170,110,.55)'; g.lineWidth = 4; g.strokeRect(70, 70, w - 140, h - 140); });
+  const navy = plain(NAVY, .45);
+  const base = box(W - .03, .42, D - .03, navy, .01); add(base, 0, .21, 0, -.5);
+  const lm = [navy, navy, mat(lidTop, { r: .4 }), navy, navy, navy];
+  const lid = box(W, .2, D, lm, .012); add(lid, 0, .42 + .02, 0, -.5); lid.position.y = .4 + .1;
+  // ribbon band
+  const rib = box(.12, .22, D + .004, plain('#C9A86A', .35), .004); add(rib, 0, .5, 0, -.5); rib.translateX(-.48);
+  contact(2.4, 2.0);
+  return { cam: [2.2, 2.0, 2.6], look: [0, .25, 0], fov: 32 };
+};
+// 4 Mailer box: kraft, open lid showing white inside
+B.mailer = () => {
+  const W = 1.5, D = 1.05, H = .34, t = .012;
+  const g = new THREE.Group();
+  const out = tex(1024, 1024, (c, w, h) => kraft(c, w, h));
+  const kmat = mat(out, { r: .85 }), white = plain('#F7F6F2', .8);
+  const wall = (w, h, x, y, z, ry = 0) => { const m = box(w, h, t, [kmat, kmat, kmat, kmat, white, kmat], .003); m.position.set(x, y, z); m.rotation.y = ry; g.add(m); };
+  const bottom = box(W, t, D, [kmat, kmat, white, kmat, kmat, kmat], .003); bottom.position.y = t / 2; g.add(bottom);
+  wall(W, H, 0, H / 2, D / 2 - t / 2, Math.PI); wall(W, H, 0, H / 2, -D / 2 + t / 2); wall(D, H, W / 2 - t / 2, H / 2, 0, -Math.PI / 2); wall(D, H, -W / 2 + t / 2, H / 2, 0, Math.PI / 2);
+  // lid hinged at back, opened ~105deg
+  const lidArt = tex(1500, 1050, (c, w, h) => { kraft(c, w, h); c.globalAlpha = .85; c.filter = 'grayscale(1) brightness(.25)'; logo(c, w / 2 - 330, h / 2 - 100, 660); c.filter = 'none'; c.globalAlpha = 1; });
+  const pivot = new THREE.Group(); pivot.position.set(0, H, -D / 2); g.add(pivot);
+  const lid = box(W + .01, t, D + .01, [kmat, kmat, mat(lidArt, { r: .85 }), white, kmat, kmat], .003);
+  lid.position.set(0, 0, D / 2); pivot.add(lid);
+  const flap = box(W, .12, t, kmat, .003); flap.position.set(0, -.06, D); pivot.add(flap);
+  pivot.rotation.x = -1.95;
+  // tissue/insert
+  const ins = box(W - .1, .08, D - .1, plain('#EDEFF5', .9), .02); ins.position.y = .06; g.add(ins);
+  g.traverse(o => { if (o.isMesh) { o.castShadow = o.receiveShadow = true; } });
+  g.rotation.y = .5; scene.add(g);
+  contact(2.4, 1.8, 0, -.1);
+  return { cam: [2.0, 2.2, 2.7], look: [0, .35, -.15], fov: 32 };
+};
+// 5 Corrugated shipping box: kraft, tape, printed logo
+B.shipping = () => {
+  const S = 1.15;
+  const side = tex(1024, 1024, (c, w, h) => { kraft(c, w, h, '#B48C62'); c.filter = 'brightness(.2)'; c.globalAlpha = .75; logo(c, 140, 380, 740); c.globalAlpha = 1; c.filter = 'none'; c.strokeStyle = 'rgba(40,30,20,.5)'; c.lineWidth = 3; c.strokeRect(70, 860, 300, 100); c.fillStyle = 'rgba(40,30,20,.6)'; c.font = '500 30px IT'; c.fillText('THIS SIDE UP', 98, 922); });
+  const top = tex(1024, 1024, (c, w, h) => { kraft(c, w, h, '#B48C62'); c.fillStyle = 'rgba(80,55,30,.35)'; c.fillRect(0, h / 2 - 2, w, 4); c.fillStyle = 'rgba(205,185,155,.6)'; c.fillRect(0, h / 2 - 90, w, 180); });
+  const k = mat(side, { r: .9 });
+  const m = [k, k, mat(top, { r: .9 }), k, k, k];
+  add(box(S, S * .82, S, m, .015), -.15, S * .41, 0, -.6);
+  const s2 = box(.8, .55, .8, m, .012); add(s2, .95, .275, .55, -.35);
+  contact(2.8, 2.2, .3, .2);
+  return { cam: [2.6, 2.2, 3.4], look: [.3, .45, .1], fov: 32 };
+};
+// 6 Food box: white pizza/bakery box with print
+B.food = () => {
+  const S = 1.5, H = .22;
+  const top = tex(1500, 1500, (c, w, h) => { c.fillStyle = '#FBFAF7'; c.fillRect(0, 0, w, h); c.strokeStyle = BRAND; c.lineWidth = 10; c.beginPath(); c.arc(w / 2, h / 2, 420, 0, Math.PI * 2); c.stroke(); c.fillStyle = BRAND; c.font = '600 120px IT'; c.textAlign = 'center'; c.fillText('Fornaio', w / 2, h / 2 + 10); c.font = '500 50px IT'; c.fillStyle = SKY; c.fillText('WOOD-FIRED · LAHORE', w / 2, h / 2 + 100); c.fillStyle = CYAN; c.fillRect(w / 2 - 60, h / 2 - 150, 120, 8); });
+  const side = tex(1500, 220, (c, w, h) => { c.fillStyle = '#FBFAF7'; c.fillRect(0, 0, w, h); c.fillStyle = BRAND; c.fillRect(0, h - 30, w, 30); });
+  const m = [mat(side), mat(side), mat(top, { r: .7 }), plain('#eee'), mat(side), mat(side)];
+  add(box(S, H, S, m, .01), 0, H / 2, 0, -.5);
+  add(box(S, H, S, m, .01), .05, H * 1.5 + .004, -.02, -.42);
+  contact(2.4, 2.4);
+  return { cam: [2.2, 2.4, 2.6], look: [0, .2, 0], fov: 32 };
+};
+// 7 Paper bag: white bag with rope handles
+B.bag = () => {
+  const W = 1.05, H = 1.3, D = .45;
+  const face = tex(1050, 1300, (c, w, h) => { c.fillStyle = '#FBFBF9'; c.fillRect(0, 0, w, h); logo(c, w / 2 - 330, h * .42, 660); c.fillStyle = NAVY; c.fillRect(0, h - 120, w, 120); });
+  const side = tex(450, 1300, (c, w, h) => { c.fillStyle = '#F3F3F0'; c.fillRect(0, 0, w, h); c.fillStyle = 'rgba(0,0,0,.06)'; c.beginPath(); c.moveTo(w / 2, 0); c.lineTo(w / 2 + 3, h * .8); c.lineTo(0, h); c.lineTo(0, h * .99); c.fill(); c.fillStyle = NAVY; c.fillRect(0, h - 120, w, 120); });
+  const g = new THREE.Group();
+  const body = box(W, H, D, [mat(side, { r: .8 }), mat(side, { r: .8 }), plain('#E9E8E4', .9), plain('#ddd'), mat(face, { r: .7 }), mat(face, { r: .7 })], .006);
+  body.position.y = H / 2; g.add(body);
+  const rope = (z) => { const curve = new THREE.CatmullRomCurve3([new THREE.Vector3(-.22, H - .05, z), new THREE.Vector3(-.2, H + .3, z), new THREE.Vector3(0, H + .42, z), new THREE.Vector3(.2, H + .3, z), new THREE.Vector3(.22, H - .05, z)]); const m = new THREE.Mesh(new THREE.TubeGeometry(curve, 60, .016, 10), plain(NAVY, .7)); m.castShadow = true; g.add(m); };
+  rope(D / 2 + .005); rope(-D / 2 - .005);
+  g.traverse(o => { if (o.isMesh) { o.castShadow = o.receiveShadow = true; } });
+  g.rotation.y = .3; scene.add(g);
+  contact(2.0, 1.4);
+  return { cam: [2.2, 1.9, 2.9], look: [0, .8, 0], fov: 32 };
+};
+// 8 Labels: jar with printed label + label roll
+B.labels = () => {
+  const lab = tex(2048, 512, (c, w, h) => { c.fillStyle = '#fff'; c.fillRect(0, 0, w, h); c.fillStyle = NAVY; c.fillRect(0, 0, w, 70); c.fillRect(0, h - 70, w, 70); c.fillStyle = NAVY; c.font = '600 120px IT'; c.fillText('Wild honey', 120, 290); c.fillText('Wild honey', 1144, 290); c.fillStyle = SKY; c.font = '500 50px IT'; c.fillText('RAW · 500 g', 124, 370); c.fillText('RAW · 500 g', 1148, 370); });
+  const jar = new THREE.Mesh(new THREE.CylinderGeometry(.42, .42, 1.0, 96), [new THREE.MeshPhysicalMaterial({ color: 0xC98A2B, roughness: .15, clearcoat: 1 }), plain('#222', .4), plain('#222')]);
+  jar.position.set(-.25, .5, 0); jar.castShadow = true; scene.add(jar);
+  const lbl = new THREE.Mesh(new THREE.CylinderGeometry(.425, .425, .5, 96, 1, true), mat(lab, { r: .45 })); lbl.position.set(-.25, .5, 0); lbl.rotation.y = 2.2; scene.add(lbl);
+  const cap = new THREE.Mesh(new THREE.CylinderGeometry(.43, .43, .16, 96), plain(NAVY, .35)); cap.position.set(-.25, 1.08, 0); cap.castShadow = true; scene.add(cap);
+  // label roll
+  const roll = new THREE.Mesh(new THREE.CylinderGeometry(.42, .42, .3, 96), [mat(tex(2048, 300, (c, w, h) => { c.fillStyle = '#fff'; c.fillRect(0, 0, w, h); for (let i = 0; i < 12; i++) { c.fillStyle = NAVY; c.fillRect(i * 170 + 10, 20, 150, 260); c.fillStyle = '#fff'; c.font = '600 28px IT'; c.fillText('honey', i * 170 + 40, 160); } })), plain('#F2F2F2', .8), plain('#F2F2F2', .8)]);
+  roll.position.set(.75, .15, .45); roll.castShadow = true; scene.add(roll);
+  const core = new THREE.Mesh(new THREE.CylinderGeometry(.16, .16, .302, 48), plain('#B98F62', .9)); core.position.copy(roll.position); scene.add(core);
+  contact(2.6, 2.0, .2, .2);
+  return { cam: [2.0, 1.7, 2.8], look: [.15, .45, .1], fov: 32 };
+};
+
+const cfg = B[KIND]();
+const cam = new THREE.PerspectiveCamera(cfg.fov, 1, .1, 100);
+const bb = new THREE.Box3(); scene.updateMatrixWorld(true);
+scene.traverse(o => { if (o.isMesh && !o.userData.skip) bb.expandByObject(o); });
+const sph = bb.getBoundingSphere(new THREE.Sphere());
+const dir = new THREE.Vector3(...cfg.cam).sub(new THREE.Vector3(...cfg.look)).normalize();
+const dist = sph.radius / Math.sin(THREE.MathUtils.degToRad(cfg.fov / 2)) * (+P.get('m') || 0.9);
+const tgt = sph.center.clone(); tgt.y -= sph.radius * .04;
+cam.position.copy(tgt).addScaledVector(dir, dist); cam.lookAt(tgt);
+renderer.render(scene, cam);
+window.DONE = true;
+</script></body></html>

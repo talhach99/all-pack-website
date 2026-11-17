@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: seoTitle(PAGE_SEO.terms), description
 
 const sections = [
   ['About these terms', `These terms cover the use of this website and orders placed with ${COMPANY.name}, ${COMPANY.address}, Pakistan. Anything agreed in writing in your quotation or order confirmation takes priority over these general terms.`],
-  ['Using this website', 'Product descriptions, photographs and guides are for general information. Photographs show typical examples and may include stock images; the final pack is always made to the specification agreed with you.'],
+  ['Using this website', 'Product descriptions, images and guides are for general information. Product images are illustrative renders; your packaging is always made to the specification agreed with you.'],
   ['Quotations', 'Prices depend on material, size, quantity, print and finish. A quotation is valid for the period stated on it. Board and paper prices can change, so a quotation that has expired may need to be re-confirmed before production.'],
   ['Artwork and proofs', 'You are responsible for the content of your artwork, including spelling, barcodes, product and legal information, and for having the right to use any logos, images and trademarks you send us. Nothing goes to press until you approve a proof, and errors in an approved proof are not our responsibility.'],
   ['Colour and finish', 'Printed colours can vary slightly between screen and print, between materials, and from one production run to the next. If colour matching is critical, ask for a physical proof or a reference standard before production.'],
@@ -23,11 +23,11 @@ const sections = [
 export default function TermsPage() {
   return (
     <main>
-      <PageHero kicker="Terms" title={<>Clear terms, <span className="accent">no surprises</span></>} description="The ground rules for using this website and ordering printed packaging from ALL PACK." />
+      <PageHero kicker="Terms" title="Terms of service." description="The terms that apply to this website and to packaging orders placed with ALL PACK." />
       <section className="container-x pb-28 pt-16">
         <div className="mx-auto max-w-3xl divide-y divide-line border-y border-line">
           {sections.map(([h, b]) => (
-            <div key={h} className="grid gap-3 py-8 sm:grid-cols-[200px_1fr]"><h2 className="text-[17px] font-medium">{h}</h2><p className="leading-relaxed text-secondary">{b}</p></div>
+            <div key={h} className="grid gap-3 py-8 sm:grid-cols-[200px_1fr]"><h2 className="text-[17px]">{h}</h2><p className="leading-relaxed text-secondary">{b}</p></div>
           ))}
         </div>
         <p className="mx-auto mt-8 max-w-3xl text-sm text-muted">Last updated November 2026.</p>

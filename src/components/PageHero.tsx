@@ -1,34 +1,25 @@
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
-import { Photo } from './Photo';
 import { Eyebrow } from './Section';
 
-/** Inner page header on the mist ground, with an optional proof-style photo. */
-export function PageHero({ kicker, title, description, children, aside, image, imageAlt = '', crumbs }: {
-  kicker: string; title: React.ReactNode; description?: React.ReactNode; children?: React.ReactNode; aside?: React.ReactNode; image?: string; imageAlt?: string;
-  crumbs?: { text: string; href?: string }[];
+/** Inner page header: breadcrumb, label, one large centred title and a supporting line. */
+export function PageHero({ kicker, title, description, children, crumbs }: {
+  kicker: string; title: React.ReactNode; description?: React.ReactNode; children?: React.ReactNode; crumbs?: { text: string; href?: string }[];
 }) {
-  const split = Boolean(aside || image);
   return (
     <section className="page-hero">
-      <div className="container-x pb-16 pt-8 sm:pb-20 sm:pt-10">
-        <nav aria-label="Breadcrumb" className="mb-10 flex flex-wrap items-center gap-1.5 text-[13px] text-muted">
+      <div className="container-x pb-16 pt-8 sm:pb-20">
+        <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-[13px] text-muted">
           <Link href="/" className="hover:text-ink">Home</Link>
           {(crumbs || [{ text: kicker }]).map(c => (
             <span key={c.text} className="flex items-center gap-1.5"><ChevronRight size={14} strokeWidth={1.5} />{c.href ? <Link href={c.href} className="hover:text-ink">{c.text}</Link> : <span className="text-secondary">{c.text}</span>}</span>
           ))}
         </nav>
-        <div className={split ? 'grid items-center gap-12 lg:grid-cols-[1.1fr_.9fr] lg:gap-16' : ''}>
-          <div className="anim-up">
-            <Eyebrow>{kicker}</Eyebrow>
-            <h1 className="mt-4 max-w-4xl text-[clamp(2.25rem,4.4vw,3.5rem)] font-medium leading-[1.08] tracking-[-.03em] text-ink">{title}</h1>
-            {description && <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-secondary sm:text-lg">{description}</p>}
-            {children && <div className="mt-8 flex flex-wrap gap-3">{children}</div>}
-          </div>
-          {image && (
-            <div className="relative aspect-[5/4] overflow-hidden rounded-2xl bg-white"><Photo name={image} alt={imageAlt} priority /></div>
-          )}
-          {aside && !image && aside}
+        <div className="anim-up mx-auto mt-12 max-w-3xl text-center sm:mt-14">
+          <Eyebrow>{kicker}</Eyebrow>
+          <h1 className="h-page mt-5">{title}</h1>
+          {description && <p className="lead mx-auto mt-6 max-w-2xl">{description}</p>}
+          {children && <div className="mt-9 flex flex-wrap justify-center gap-3">{children}</div>}
         </div>
       </div>
     </section>

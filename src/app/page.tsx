@@ -1,288 +1,174 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
-import { PAGE_SEO, seoTitle } from '@/data/seo';
 import Link from 'next/link';
-import { ArrowRight, BadgeCheck, Boxes, Factory, Mail, MapPin, MessageSquareText, Phone } from 'lucide-react';
-
-const reasonIcons = [Factory, BadgeCheck, Boxes, MessageSquareText];
-import { WhatsAppIcon } from '@/components/FloatingContact';
+import { ArrowRight, BadgeCheck, Factory, Mail, MapPin, Phone, ShieldCheck, Truck } from 'lucide-react';
+import { PAGE_SEO, seoTitle } from '@/data/seo';
+import { families, presses, process, sectors } from '@/data/catalog';
+import { COMPANY, emailLink, mapsLink, phoneLink, quoteLink } from '@/lib/company';
+import { ArrowLink, Eyebrow, SectionHead } from '@/components/Section';
 import { ClientLogos } from '@/components/ClientStrip';
-import { ClientWork } from '@/components/ClientWork';
-import { CertBadge, Certifications } from '@/components/Certifications';
-import { CLIENTS, COMPANY, emailLink, phoneLink, quoteLink } from '@/lib/company';
-import { products } from '@/lib/products';
-import { machines, reasons, sectors, steps, tickerPoints, unsplash } from '@/data/home';
-import { STOCK } from '@/lib/photos';
-import { CountUp } from '@/components/CountUp';
+import { CertBadge } from '@/components/Certifications';
+import { WhatsAppIcon } from '@/components/FloatingContact';
 
-export const metadata: Metadata = {
-  title: seoTitle(PAGE_SEO.home),
-  description: PAGE_SEO.home.description,
-  alternates: { canonical: '/' },
-};
+export const metadata: Metadata = { title: seoTitle(PAGE_SEO.home), description: PAGE_SEO.home.description, alternates: { canonical: '/' } };
 
-/** Centred section heading: one large title naming the topic, one supporting line, optional link. */
-function Head({ title, sub, link, light = false }: { title: string; sub?: string; link?: { text: string; href: string }; light?: boolean }) {
-  return (
-    <div className="mx-auto mb-12 flex max-w-3xl flex-col items-center gap-y-6 text-center sm:mb-14">
-      <div>
-        <h2 className={`text-[clamp(2.25rem,4.4vw,3.4rem)] font-medium leading-[1.08] tracking-[-.03em] ${light ? 'text-white' : 'text-ink'}`}>{title}</h2>
-        <span aria-hidden="true" className="mx-auto mt-5 block h-[3px] w-12 rounded-full bg-brand" />
-        {sub && <p className={`mx-auto mt-5 max-w-2xl text-[18px] leading-relaxed ${light ? 'text-cyan' : 'text-secondary'}`}>{sub}</p>}
-      </div>
-      {link && (
-        <Link href={link.href} className={`group inline-flex items-center gap-1.5 text-[15px] font-medium transition-colors ${light ? 'text-white hover:text-brand-light' : 'text-ink hover:text-brand'}`}>
-          {link.text} <ArrowRight size={16} strokeWidth={1.75} className="transition-transform duration-150 group-hover:translate-x-0.5" />
-        </Link>
-      )}
-    </div>
-  );
-}
+const trust = [
+  { icon: ShieldCheck, text: 'ISO 9001:2015 certified' },
+  { icon: BadgeCheck, text: 'Halal certified' },
+  { icon: Factory, text: 'In-house Heidelberg offset' },
+  { icon: Truck, text: 'Delivery across Pakistan' },
+];
 
-const heroClients = ['Global Pharmaceuticals', 'Citi Pharma', 'Don Valley Pharmaceuticals', 'Hoest', 'Sun Bread']
-  .map(n => CLIENTS.find(c => c.name === n))
-  .filter((c): c is (typeof CLIENTS)[number] & { logo: string } => !!c?.logo);
+const reasons = [
+  { badge: 'iso' as const, title: 'Certified quality management', text: 'ISO 9001:2015 certified. Every order follows a documented process, from the artwork check to final inspection.' },
+  { badge: 'halal' as const, title: 'Halal certified', text: 'Certified for food and consumer packaging, as food, bakery and FMCG brands require of their suppliers.' },
+  { badge: '25+', title: '25+ years in production', text: 'More than a quarter of a century producing packaging in Lahore for pharmaceutical, food and retail brands.' },
+  { badge: 'factory', title: 'One facility, no outsourcing', text: 'Printing, finishing and converting take place under one roof, so quality and delivery dates stay in our hands.' },
+];
 
 export default function Home() {
   const quote = quoteLink();
   const call = phoneLink();
-
+  const homeSectors = sectors.filter(s => ['pharmaceutical', 'food-and-bakery', 'confectionery', 'restaurants'].includes(s.slug));
   return (
     <main>
-      {/* 1 · Hero: light, layered and credible — promise, proof and one strong visual */}
-      <section className="relative isolate overflow-hidden border-b border-ink/[.08] bg-gradient-to-b from-white via-[#F4F7FF] to-[#E9EFFF]">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(rgba(37,56,214,.13)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_70%_60%_at_70%_40%,#000_30%,transparent_75%)]" />
-        {/* Soft glows as plain radial gradients: large CSS blur filters render as black boxes in iOS Safari. */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_85%_25%,rgba(37,56,214,.16),transparent_45%),radial-gradient(circle_at_5%_95%,rgba(127,162,255,.18),transparent_40%)]" />
-        <div className="container-x grid items-center gap-12 py-12 sm:py-20 lg:min-h-[calc(100svh-84px-60px)] lg:grid-cols-[1fr_1.05fr] lg:gap-16 lg:py-16">
+      {/* Hero */}
+      <section className="border-b border-line bg-mist">
+        <div className="container-x grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-[1.15fr_.85fr] lg:gap-14 lg:py-24">
           <div className="anim-up">
-            <p className="inline-flex items-center gap-2 rounded-full border border-brand/15 bg-white/80 px-3.5 py-1.5 text-[14px] font-medium text-brand-dark shadow-sm">
-              <span className="inline-flex h-2 w-2 rounded-full bg-brand" />
-              ISO 9001 and Halal certified printers in Lahore
-            </p>
-            <h1 className="mt-6 text-[clamp(2.3rem,4.8vw,4.1rem)] font-medium leading-[1.04] tracking-[-.035em] text-ink">Carton, label and box printing for Pakistan&rsquo;s <span className="bg-gradient-to-r from-brand to-[#4F6BFF] bg-clip-text text-transparent">pharma and food brands</span></h1>
-            <p className="mt-6 max-w-[36rem] text-[17px] leading-[1.65] text-secondary sm:text-[19px]">For more than 25 years ALL PACK has printed packaging in its own Lahore plant, from approved pharmaceutical cartons to bakery boxes and shipping cartons.</p>
-            <div className="mt-9 grid gap-3 sm:flex sm:flex-wrap">
-              <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-brand shadow-[0_12px_30px_-12px_rgba(37,56,214,.7)]"><WhatsAppIcon size={18} /> Request a quote</a>
-              <Link href="/products" className="btn-light">See what we print</Link>
+            <Eyebrow>Packaging printers · Lahore</Eyebrow>
+            <h1 className="h-display mt-6">Custom printed packaging, produced in Lahore <span className="text-brand">to your specification.</span></h1>
+            <p className="lead mt-7 max-w-xl">Cartons, rigid boxes, mailers, paper bags and labels, printed on Heidelberg offset presses and finished under one roof. For more than 25 years, pharmaceutical, food and retail brands across Pakistan have relied on ALL PACK for accurate colour and on-time delivery.</p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-primary"><WhatsAppIcon size={18} /> Request a quote on WhatsApp</a>
+              <Link href="/products" className="btn-outline">View the product range</Link>
             </div>
-            <div className="mt-10 border-t border-ink/[.08] pt-6">
-              <p className="text-[13px] font-medium uppercase tracking-[.12em] text-muted">Trusted by</p>
-              <ul className="mt-4 flex flex-wrap items-center gap-x-7 gap-y-4">
-                {heroClients.map(c => (
-                  <li key={c.name}><img src={c.logo} alt={c.name} className="h-9 w-auto max-w-[120px] object-contain opacity-80 grayscale transition duration-200 hover:opacity-100 hover:grayscale-0" /></li>
-                ))}
-              </ul>
-            </div>
+            <p className="meta mt-6">We reply to every enquiry within 24 hours</p>
           </div>
-          <div className="anim-up d2 relative mx-auto w-full max-w-[640px] lg:max-w-none">
-            <div className="relative overflow-hidden rounded-[28px] border-[6px] border-white bg-soft shadow-[0_40px_80px_-30px_rgba(11,31,77,.45)]">
-              <img src={unsplash(STOCK.pressSheets, 1600)} alt="Printed sheets running through an offset printing press" width={1600} height={1200} fetchPriority="high" className="aspect-[4/3] w-full object-cover" />
-              <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-navy/35 via-transparent to-transparent" />
-            </div>
-            <div className="absolute -bottom-6 left-4 flex items-center gap-4 rounded-2xl border border-ink/[.06] bg-white px-5 py-4 shadow-[0_20px_40px_-20px_rgba(11,31,77,.4)] sm:-left-6">
-              <span className="text-[36px] font-semibold leading-none tracking-[-.03em] text-brand">25+</span>
-              <span className="text-[14px] leading-snug text-secondary">years printing<br />packaging in Lahore</span>
-            </div>
-            <div className="absolute -right-3 -top-5 hidden items-center gap-3 rounded-2xl border border-ink/[.06] bg-white px-4 py-3 shadow-[0_20px_40px_-20px_rgba(11,31,77,.4)] sm:flex lg:-right-6">
-              <CertBadge id="iso" size={42} />
-              <CertBadge id="halal" size={42} />
-              <span className="text-[14px] font-medium leading-snug text-ink">Certified<br /><span className="font-normal text-secondary">quality and Halal</span></span>
-            </div>
+          <div className="anim-up d2">
+            <img src="/renders/packaging-range.webp" alt="ALL PACK printed packaging: a paper bag, folding carton, rigid gift box, pharmaceutical carton and corrugated shipping boxes" width={1100} height={841} fetchPriority="high" className="mx-auto w-full max-w-[620px]" />
           </div>
         </div>
-      </section>
-
-      {/* 2 · Points, sliding right to left */}
-      <section className="ticker overflow-hidden bg-navy" aria-label="Why ALL PACK">
-        <div className="marquee-track flex w-max">
-          {[0, 1].map(half => (
-            <ul key={half} aria-hidden={half === 1 || undefined} className="flex shrink-0">
-              {[...tickerPoints, ...tickerPoints].map((t, i) => (
-                <li key={`${t}-${i}`} className="flex h-[60px] items-center whitespace-nowrap text-[15px] font-medium text-cream">
-                  <span aria-hidden="true" className="mx-8 h-1.5 w-1.5 rotate-45 bg-brand-light" />{t}
-                </li>
-              ))}
-            </ul>
+        <ul className="grid grid-cols-2 border-t border-line bg-white lg:grid-cols-4">
+          {trust.map(({ icon: Icon, text }, i) => (
+            <li key={text} className={`flex items-center justify-center gap-3 px-4 py-5 text-[14px] font-semibold sm:text-[15px] ${i % 2 === 0 ? 'border-r' : 'lg:border-r'} ${i < 2 ? 'border-b lg:border-b-0' : ''} border-line last:border-r-0`}>
+              <Icon size={18} strokeWidth={1.75} className="shrink-0 text-brand" /> {text}
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
-      {/* 3 · Clients, as proof right after the promise */}
-      <section className="bg-white py-20 sm:py-24" id="clients">
+      {/* Product range */}
+      <section className="section">
         <div className="container-x">
-          <Head title="Our Clients" sub="Printing for pharmaceutical, food and cosmetic brands across Pakistan." />
-        </div>
-        <ClientLogos />
-      </section>
-
-      {/* 3b · Who we are, with the figures that back it up */}
-      <section className="section border-t border-ink/[.08] bg-[#F5F7FA]" id="about">
-        <div className="container-x">
-          <Head title="About ALL PACK" sub="A Lahore print house trusted by pharmaceutical, food and consumer brands for more than 25 years." />
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-            <div className="overflow-hidden rounded-2xl bg-soft">
-              <img src={unsplash(STOCK.cleanPlant, 1400)} alt="A pallet of printed cartons ready for dispatch in a clean, modern plant" loading="lazy" className="aspect-[4/3] w-full object-cover" />
-            </div>
-            <div>
-              <p className="text-[18px] leading-[1.7] text-secondary">ALL PACK prints and finishes packaging in its own plant in Lahore. Folding cartons, labels, rigid boxes and corrugated shippers are printed on Heidelberg offset presses, then go through die-cutting, lamination, foil and gluing under the same roof.</p>
-              <p className="mt-5 text-[18px] leading-[1.7] text-secondary">Pharmaceutical companies, bakeries, restaurants and cosmetic brands across Pakistan rely on us for packaging printed to approved artwork, in consistent colour, run after run. We are ISO 9001 and Halal certified.</p>
-              <Link href="/about" className="btn-dark mt-8">Read more about us <ArrowRight size={16} /></Link>
-            </div>
-          </div>
-          <dl className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-ink/[.08] bg-ink/[.08] sm:mt-16 sm:grid-cols-3">
-            {([[25, '+', 'Years in printing'], [CLIENTS.length, '+', 'Brands served'], [2, '', 'Certifications: ISO 9001 and Halal']] as const).map(([n, suf, l]) => (
-              <div key={l} className="bg-white px-6 py-8 text-center sm:py-10">
-                <dt className="sr-only">{l}</dt>
-                <dd className="text-[clamp(2.5rem,5vw,3.5rem)] font-medium leading-none tracking-[-.03em] text-ink"><CountUp value={n} suffix={suf} /></dd>
-                <dd className="mt-3 text-[15px] text-secondary">{l}</dd>
-              </div>
+          <SectionHead kicker="Product range" title="Eight formats. One production standard." sub="Each format is made to your dimensions, board and artwork, then printed, finished and inspected in our Lahore facility." />
+          <ul className="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-4">
+            {families.map((f, i) => (
+              <li key={f.slug}>
+                <Link href={`/products#${f.slug}`} className="group block">
+                  <div className="flex aspect-square items-center justify-center rounded-2xl bg-card p-5 transition-colors group-hover:bg-soft sm:p-8">
+                    <img src={f.image} alt={f.alt} loading="lazy" className="max-h-full w-auto object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]" />
+                  </div>
+                  <div className="mt-4 flex items-baseline justify-between gap-3">
+                    <h3 className="text-[17px] leading-snug sm:text-[19px]">{f.name}</h3>
+                    <span className="meta hidden sm:inline">{String(i + 1).padStart(2, '0')}</span>
+                  </div>
+                  <p className="mt-1 text-[14px] text-muted">{f.short}</p>
+                </Link>
+              </li>
             ))}
-          </dl>
-        </div>
-      </section>
-
-      {/* 4 · What we print, by sector */}
-      <section className="section bg-white" id="products">
-        <div className="container-x">
-          <Head title="Packaging We Print" sub="Packaging for the industries we know best, from medicine cartons to bakery boxes." link={{ text: `All ${products.length} products`, href: '/products' }} />
-          <div className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-1 sm:mx-0 sm:grid sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 md:grid-cols-2 lg:grid-cols-[1.25fr_1fr_1fr]">
-            {sectors.map((s, i) => (
-              <article key={s.name} className="flex w-[86%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-ink/[.08] bg-white sm:w-auto">
-                <div className={`overflow-hidden ${s.contain ? 'bg-white' : 'bg-soft'}`}>
-                  <img src={s.img} alt="" loading="lazy" className={`w-full aspect-[16/10] ${i === 0 ? '' : 'lg:aspect-[4/3]'} ${s.contain ? 'object-contain p-8' : 'object-cover'}`} />
-                </div>
-                <div className="flex flex-1 flex-col p-5 sm:p-7">
-                  <h3 className="text-[22px] font-medium tracking-[-.02em]">{s.name}</h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-secondary">{s.d}</p>
-                  <ul className="mt-5 border-t border-ink/[.08]">
-                    {s.formats.map(([t, href]) => (
-                      <li key={href} className="border-b border-ink/[.08]">
-                        <Link href={href} className="group flex h-11 items-center justify-between text-[15px] text-ink transition-colors hover:text-brand">{t}<ArrowRight size={16} strokeWidth={1.75} className="text-muted transition-colors group-hover:text-brand" /></Link>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href={s.href} className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-medium text-brand hover:text-brand-dark">{s.name} packaging <ArrowRight size={16} strokeWidth={1.75} /></Link>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5 · Manufacturing capabilities, with the numbers that matter */}
-      <section className="section bg-navy-deep text-white" id="capabilities">
-        <div className="container-x">
-          <div className="mx-auto mb-10 flex max-w-3xl flex-col items-center gap-8 text-center sm:mb-12 sm:gap-10">
-            <div>
-              <h2 className="text-[clamp(2.25rem,4.4vw,3.4rem)] font-medium leading-[1.08] tracking-[-.03em]">Our Printing Machinery</h2>
-              <span aria-hidden="true" className="mx-auto mt-5 block h-[3px] w-12 rounded-full bg-brand-light" />
-              <p className="mx-auto mt-5 max-w-2xl text-[18px] leading-relaxed text-cyan">Offset printing and a full finishing line, under one roof in Lahore.</p>
-            </div>
-          </div>
-          <div className="mach-row no-scrollbar">
-            {machines.map(m => (
-              <article key={m.name} tabIndex={0} className="mach-panel relative flex sm:min-h-[500px] flex-col overflow-hidden rounded-2xl border border-white/[.08] bg-graphite-card outline-none focus-visible:ring-2 focus-visible:ring-brand-light lg:min-h-[540px]">
-                <div className="relative h-[190px] shrink-0 overflow-hidden sm:h-[240px]">
-                  <img src={unsplash(m.img, 1100)} alt="" loading="lazy" className="h-full w-full object-cover" />
-                  <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-graphite-card/0 to-graphite-card" />
-                </div>
-                <span aria-hidden="true" className="bar absolute left-7 top-7 h-[3px] w-9 bg-brand" />
-                <div className="flex flex-1 flex-col px-7 pb-7">
-                  <p className="text-[14px] text-brand-light">{m.type}</p>
-                  <h3 className="mt-2 text-[24px] font-medium tracking-[-.02em]">{m.name}</h3>
-                  <p className="mt-3 max-w-[26rem] text-[15px] leading-relaxed text-cyan">{m.d}</p>
-                  <ul className="mt-auto grid gap-2 border-t border-white/[.08] pt-4 text-[14px] text-cream">
-                    {m.best.map(b => <li key={b}>{b}</li>)}
-                  </ul>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6 · Formats and finishes */}
-      <section className="section bg-white" id="work">
-        <div className="container-x">
-          <Head title="Our Printing Work" sub="Folding cartons, rigid boxes, bakery packs and printed shippers, finished in-house with foil, lamination and die-cutting." link={{ text: 'Browse all products', href: '/products' }} />
-          <ClientWork />
-        </div>
-      </section>
-
-      {/* 7 · Why choose us: four equal reasons, then certifications */}
-      <section className="section border-t border-ink/[.08] bg-[#F5F7FA]" id="why-us">
-        <div className="container-x">
-          <Head title="Why Choose ALL PACK" sub="A print house first, so the details get done right." />
-          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {reasons.map((r, i) => {
-              const Icon = reasonIcons[i % reasonIcons.length];
-              return (
-                <li key={r.t} className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-ink/[.08] bg-white p-7 transition-shadow duration-200 hover:shadow-[0_18px_40px_-24px_rgba(11,31,77,.35)]">
-                  <span aria-hidden="true" className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-brand transition-transform duration-300 group-hover:scale-x-100" />
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand/[.08] text-brand"><Icon size={24} strokeWidth={1.6} /></span>
-                  <h3 className="mt-6 text-[19px] font-medium leading-snug tracking-[-.01em]">{r.t}</h3>
-                  <p className="mt-2.5 text-[15px] leading-relaxed text-secondary">{r.d}</p>
-                </li>
-              );
-            })}
           </ul>
-          <div className="mx-auto mt-12 max-w-2xl sm:mt-14">
-            <p className="mb-5 text-center text-[15px] font-medium text-brand-dark">Certified for quality and food safety</p>
-            <Certifications />
-          </div>
+          <div className="mt-14 text-center"><Link href="/products" className="btn-outline">See specifications for every format <ArrowRight size={16} strokeWidth={1.75} /></Link></div>
         </div>
       </section>
 
-      {/* 7b · How an order runs: four steps on a timeline */}
-      <section className="section bg-white" id="process">
+      {/* Manufacturing */}
+      <section id="capabilities" className="section dark-section">
         <div className="container-x">
-          <Head title="How an Order Runs" sub="Four clear steps from your first message to boxes at your door." />
-          <ol className="relative grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-            <span aria-hidden="true" className="absolute left-[12.5%] right-[12.5%] top-7 hidden h-px bg-ink/[.12] lg:block" />
-            {steps.map((st, i) => (
-              <li key={st.t} className="relative flex gap-5 lg:flex-col lg:items-center lg:gap-0 lg:text-center">
-                <span className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-[6px] border-white bg-brand text-[17px] font-semibold tabular-nums text-white shadow-[0_0_0_1px_rgba(11,31,77,.08)]">{i + 1}</span>
-                <div className="lg:mt-6">
-                  <h3 className="text-[19px] font-medium tracking-[-.01em]">{st.t}</h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-secondary lg:mx-auto lg:max-w-[16rem]">{st.d}</p>
-                </div>
+          <SectionHead light kicker="Manufacturing" title="From approved artwork to delivered packaging." sub="Prepress, printing, finishing and inspection take place under one roof, so colour, cut and delivery date remain under our control." />
+          <ol className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+            {process.map((p, i) => (
+              <li key={p.step} className="border-t border-white/15 pt-7">
+                <p className="font-mono text-[12.5px] text-brand-light">{String(i + 1).padStart(2, '0')} / {p.step}</p>
+                <h3 className="mt-4 text-[21px] !text-white">{p.title}</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-cyan">{p.text}</p>
               </li>
             ))}
           </ol>
-          <div className="mt-12 flex flex-wrap justify-center gap-3 sm:mt-14">
-            <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-brand"><WhatsAppIcon size={18} /> Start with step 1 on WhatsApp</a>
-            <Link href="/about" className="btn-light">More about ALL PACK</Link>
+          <div className="mt-16 grid gap-8 border-t border-white/15 pt-8 sm:grid-cols-3">
+            {presses.map(m => (
+              <div key={m.name}>
+                <p className="font-display text-[20px] font-semibold text-white">{m.name}</p>
+                <p className="mt-1 text-[14px] text-cyan">{m.use}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 8 · Start your project */}
-      <section className="bg-navy text-white" id="contact">
-        <div className="container-x grid items-center gap-12 py-20 lg:grid-cols-[1.2fr_1fr] lg:py-24">
+      {/* Industries */}
+      <section className="section">
+        <div className="container-x">
+          <SectionHead kicker="Industries" title="Packaging for sectors where accuracy matters." sub="Each sector asks something different of its packaging: approved regulatory text, consistent colour across frequent reorders, or impact on a crowded shelf." />
+          <div className="grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">
+            {homeSectors.map((s, i) => (
+              <Link key={s.slug} href={`/industries#${s.slug}`} className={`group border-b border-line py-8 sm:px-7 lg:border-b-0 ${i % 2 === 0 ? 'sm:pl-0' : ''} ${i < 3 ? 'lg:border-r' : ''} ${i === 0 ? 'lg:pl-0' : 'lg:pl-7'}`}>
+                <p className="meta">{String(i + 1).padStart(2, '0')}</p>
+                <h3 className="mt-4 text-[22px] group-hover:text-brand">{s.name}</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-secondary">{s.summary}</p>
+                {s.clients.length > 0 && <p className="mt-5 text-[13px] leading-relaxed text-muted">{s.clients.join(' · ')}</p>}
+              </Link>
+            ))}
+          </div>
+          <div className="mt-12 text-center"><ArrowLink href="/industries">All industries we serve</ArrowLink></div>
+        </div>
+      </section>
+
+      {/* Why ALL PACK */}
+      <section className="section border-t border-line bg-mist">
+        <div className="container-x">
+          <SectionHead kicker="Why ALL PACK" title="Why brands trust ALL PACK." sub="Certified processes, our own presses and a client list built over more than 25 years." />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {reasons.map(r => (
+              <div key={r.title} className="card p-7">
+                {r.badge === 'iso' || r.badge === 'halal' ? <CertBadge id={r.badge} size={56} /> : <span className="grid h-14 w-14 place-items-center rounded-full bg-navy font-display text-[16px] font-bold text-white">{r.badge === '25+' ? '25+' : <Factory size={22} strokeWidth={1.75} />}</span>}
+                <h3 className="mt-6 text-[19px]">{r.title}</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-secondary">{r.text}</p>
+              </div>
+            ))}
+          </div>
+          <p className="meta mt-16 text-center">Brands that print with ALL PACK</p>
+          <ClientLogos className="mt-6" />
+        </div>
+      </section>
+
+      {/* Quote */}
+      <section className="section border-t border-line">
+        <div className="container-x grid items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
           <div>
-            <p className="text-[15px] font-medium text-brand-light">Start your project</p>
-            <h2 className="mt-3 text-[clamp(2.25rem,4.2vw,3.5rem)] font-medium leading-[1.06] tracking-[-.03em]">Let&rsquo;s package what you make</h2>
-            <p className="mt-5 max-w-xl text-[18px] leading-relaxed text-cyan">Send your product, size and quantity. We&rsquo;ll suggest the right board and finish, with a clear price within one business day.</p>
-            <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-white mt-9"><WhatsAppIcon size={18} /> Request a quote on WhatsApp</a>
+            <Eyebrow>Request a quotation</Eyebrow>
+            <h2 className="h-section mt-5">Tell us what you need to pack.</h2>
+            <p className="lead mt-5 max-w-lg">Share the product dimensions, quantity and artwork. We reply within 24 hours with a specification and price.</p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-primary"><WhatsAppIcon size={18} /> Chat on WhatsApp</a>
+              <a href={emailLink()} className="btn-outline"><Mail size={17} strokeWidth={1.75} /> Email your brief</a>
+            </div>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-navy-deep px-7 py-2 sm:px-9">
+          <ul className="grid gap-3 sm:grid-cols-2">
             {[
-              { icon: Phone, k: 'Call or WhatsApp', v: COMPANY.phone, href: call || quote },
-              { icon: Mail, k: 'Email', v: COMPANY.email, href: emailLink() },
-              { icon: MapPin, k: 'Head office', v: COMPANY.address, href: undefined },
-            ].map(c => {
-              const body = (
-                <>
-                  <c.icon size={18} strokeWidth={1.5} className="shrink-0 text-cyan" />
-                  <span><span className="block text-[13px] text-cyan">{c.k}</span><span className="mt-0.5 block break-words text-[17px] font-medium [overflow-wrap:anywhere]">{c.v}</span></span>
-                </>
-              );
-              return c.href
-                ? <a key={c.k} href={c.href} className="flex items-center gap-4 border-b border-white/10 py-5 transition-colors last:border-0 hover:text-brand-light">{body}</a>
-                : <div key={c.k} className="flex items-center gap-4 border-b border-white/10 py-5 last:border-0">{body}</div>;
-            })}
-          </div>
+              { label: 'WhatsApp', value: COMPANY.phone, href: quote, ext: true, icon: WhatsAppIcon },
+              { label: 'Call', value: COMPANY.phone, href: call || undefined, icon: Phone },
+              { label: 'Email', value: COMPANY.email, href: `mailto:${COMPANY.email}`, icon: Mail },
+              { label: 'Visit', value: COMPANY.address, href: mapsLink, ext: true, icon: MapPin },
+            ].map(c => (
+              <li key={c.label}>
+                <a href={c.href} {...(c.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="card flex h-full flex-col p-6 transition-colors hover:border-[#C9CFDC]">
+                  <span className="meta flex items-center gap-2"><c.icon size={14} strokeWidth={1.75} /> {c.label}</span>
+                  <span className={`mt-3 font-semibold leading-snug ${c.label === 'Email' ? 'text-[15px]' : 'text-[16px]'}`}>{c.value}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
     </main>

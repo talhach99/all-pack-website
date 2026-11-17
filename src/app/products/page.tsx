@@ -1,56 +1,83 @@
+/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
+import { Mail } from 'lucide-react';
 import { PAGE_SEO, seoTitle } from '@/data/seo';
-import { Ruler, Palette, Truck } from 'lucide-react';
+import { families } from '@/data/catalog';
+import { COMPANY, emailLink, quoteLink } from '@/lib/company';
 import { PageHero } from '@/components/PageHero';
-import { ProductCatalog } from '@/components/ProductCatalog';
-import { SectionHead } from '@/components/Section';
+import { Eyebrow } from '@/components/Section';
 import { WhatsAppIcon } from '@/components/FloatingContact';
-import { categoryFromSlug, products } from '@/lib/products';
-import { quoteLink, whatsappLink } from '@/lib/company';
 
 export const metadata: Metadata = {
   title: seoTitle(PAGE_SEO.products),
   description: PAGE_SEO.products.description,
   alternates: { canonical: '/products' },
+  openGraph: { images: [{ url: '/renders/packaging-range.webp', alt: 'ALL PACK printed packaging range' }] },
 };
 
-const custom = [
-  { icon: Ruler, t: 'Any size', d: 'Every format can be made to your exact dimensions, so the pack fits the product.' },
-  { icon: Palette, t: 'Your print and finish', d: 'Full colour, foil, soft-touch or natural kraft, matched to your brand.' },
-  { icon: Truck, t: 'Delivered nationwide', d: 'Packed and delivered on the agreed date, anywhere in Pakistan.' },
-];
-
-export default async function ProductsPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
-  const { category } = await searchParams;
-  const initial = categoryFromSlug(Array.isArray(category) ? category[0] : category);
+export default function ProductsPage() {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'ALL PACK packaging range',
+    itemListElement: families.map((f, i) => ({
+      '@type': 'ListItem', position: i + 1,
+      item: { '@type': 'Product', name: f.name, description: f.description, image: `${COMPANY.siteUrl}${f.image}`, url: `${COMPANY.siteUrl}/products#${f.slug}`, brand: { '@type': 'Brand', name: COMPANY.name } },
+    })),
+  };
   return (
     <main>
-      <PageHero kicker="Products" title={<>Packaging for every product you sell</>} description="Every format is printed and finished in our Lahore plant, made to your size. Tap + on any product to add it to one combined quote." crumbs={[{ text: 'Products' }]}>
-        <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="btn-dark"><WhatsAppIcon size={18} /> Get a quote on WhatsApp</a>
-      </PageHero>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
+      <PageHero
+        kicker="Products"
+        title="Custom packaging, specified and printed in Lahore."
+        description="Eight packaging formats, each made to your dimensions, board grade and artwork. Choose a format below, send your requirements and receive a specification and price within 24 hours."
+      />
 
-      <section className="section bg-white">
-        <div className="container-x">
-          <SectionHead kicker="Catalogue" title={`All ${products.length} packaging formats`} className="mb-8" />
-          <ProductCatalog initialCategory={initial} />
-        </div>
-      </section>
+      <nav aria-label="Product formats" className="sticky top-[76px] z-30 border-b border-line bg-white/95 backdrop-blur sm:top-[84px]">
+        <ul className="container-x no-scrollbar flex gap-2 overflow-x-auto py-3 lg:justify-center">
+          {families.map(f => <li key={f.slug} className="shrink-0"><a href={`#${f.slug}`} className="inline-flex h-9 items-center rounded-full border border-line px-4 text-[13.5px] font-medium text-ink-soft transition-colors hover:border-navy hover:text-navy">{f.name}</a></li>)}
+        </ul>
+      </nav>
 
-      <section className="section bg-mist">
-        <div className="container-x">
-          <SectionHead kicker="Made for you" title="Don't see the exact pack you need?" sub="Most of what we make is custom. Send a size, a photo or a sketch and we will engineer the right structure for it." />
-          <div className="grid gap-x-8 gap-y-10 md:grid-cols-3">
-            {custom.map(c => (
-              <div key={c.t} className="border-t border-ink/10 pt-6">
-                <c.icon size={18} strokeWidth={1.5} className="text-muted" aria-hidden="true" />
-                <h3 className="mt-4 text-[17px] font-medium">{c.t}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-secondary">{c.d}</p>
+      <div className="container-x">
+        {families.map((f, i) => {
+          const msg = `Hello ALL PACK, I would like a quotation for ${f.name.toLowerCase()}.\nSize:\nQuantity:\nPrint and finish:`;
+          return (
+            <section key={f.slug} id={f.slug} aria-labelledby={`${f.slug}-h`} className="grid items-center gap-10 border-b border-line py-16 last:border-0 sm:py-20 lg:grid-cols-2 lg:gap-16">
+              <div className={`relative flex aspect-[5/4] items-center justify-center rounded-3xl bg-card p-8 sm:p-12 ${i % 2 ? 'lg:order-2' : ''}`}>
+                <span className="meta absolute left-5 top-5 rounded-full bg-white px-3 py-1 text-brand">{String(i + 1).padStart(2, '0')} / {String(families.length).padStart(2, '0')}</span>
+                <img src={f.image} alt={f.alt} loading={i < 2 ? 'eager' : 'lazy'} className="max-h-full w-auto object-contain" />
               </div>
-            ))}
+              <div>
+                <Eyebrow>{f.label}</Eyebrow>
+                <h2 id={`${f.slug}-h`} className="mt-4 text-[clamp(2rem,3.2vw,2.6rem)] leading-[1.08]">{f.name}</h2>
+                <p className="lead mt-5">{f.description}</p>
+                <dl className="mt-8 divide-y divide-line border-y border-line">
+                  {f.specs.map(s => (
+                    <div key={s.title} className="grid gap-3 py-4 sm:grid-cols-[130px_1fr]">
+                      <dt className="pt-1 text-[14px] font-semibold">{s.title}</dt>
+                      <dd><ul className="flex flex-wrap gap-2">{s.items.map(it => <li key={it} className="chip">{it}</li>)}</ul></dd>
+                    </div>
+                  ))}
+                </dl>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <a href={quoteLink(msg)} target="_blank" rel="noopener noreferrer" className="btn-primary"><WhatsAppIcon size={18} /> Quote on WhatsApp</a>
+                  <a href={emailLink(`Quotation: ${f.name}`, msg)} className="btn-outline"><Mail size={17} strokeWidth={1.75} /> Email your artwork</a>
+                </div>
+              </div>
+            </section>
+          );
+        })}
+      </div>
+
+      <section className="container-x pb-24">
+        <div className="flex flex-col items-start justify-between gap-8 rounded-3xl bg-navy p-8 sm:p-12 lg:flex-row lg:items-center">
+          <div>
+            <h2 className="text-[clamp(1.75rem,3vw,2.4rem)] !text-white">Unsure which format suits your product?</h2>
+            <p className="mt-3 max-w-xl text-[17px] text-cyan">Send a photograph and the product dimensions. We will recommend a structure, board grade and finish, and quote for it.</p>
           </div>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <a href={whatsappLink('Hello ALL PACK, I need a custom packaging size.') || quoteLink()} target="_blank" rel="noopener noreferrer" className="btn-dark"><WhatsAppIcon size={18} /> Send a photo on WhatsApp</a>
-          </div>
+          <a href={quoteLink('Hello ALL PACK, I would like advice on packaging for my product.')} target="_blank" rel="noopener noreferrer" className="btn-white shrink-0"><WhatsAppIcon size={18} /> Ask on WhatsApp</a>
         </div>
       </section>
     </main>

@@ -11,12 +11,12 @@ export function CertBadge({ id, size = 72 }: { id: 'iso' | 'halal'; size?: numbe
   if (id === 'iso') {
     return (
       <svg width={size} height={size} viewBox="0 0 80 80" role="img" aria-label="ISO 9001 certified">
-        <circle cx="40" cy="40" r="38" fill="#0B1F4D" />
-        <circle cx="40" cy="40" r="31" fill="none" stroke="#A9B8FF" strokeWidth="1.2" />
+        <circle cx="40" cy="40" r="38" fill="#141B4D" />
+        <circle cx="40" cy="40" r="31" fill="none" stroke="#9FB3E8" strokeWidth="1.2" />
         <text x="40" y="37" textAnchor="middle" fontFamily="Inter Variable, Inter, sans-serif" fontWeight="700" fontSize="15" fill="#fff" letterSpacing=".5">ISO</text>
         <text x="40" y="53" textAnchor="middle" fontFamily="Inter Variable, Inter, sans-serif" fontWeight="600" fontSize="14" fill="#fff">9001</text>
-        <text x="40" y="20" textAnchor="middle" fontFamily="Inter Variable, Inter, sans-serif" fontWeight="600" fontSize="5.6" fill="#A9B8FF" letterSpacing="1">CERTIFIED</text>
-        <text x="40" y="65" textAnchor="middle" fontFamily="Inter Variable, Inter, sans-serif" fontWeight="600" fontSize="5.6" fill="#A9B8FF" letterSpacing="1">2015</text>
+        <text x="40" y="20" textAnchor="middle" fontFamily="Inter Variable, Inter, sans-serif" fontWeight="600" fontSize="5.6" fill="#9FB3E8" letterSpacing="1">CERTIFIED</text>
+        <text x="40" y="65" textAnchor="middle" fontFamily="Inter Variable, Inter, sans-serif" fontWeight="600" fontSize="5.6" fill="#9FB3E8" letterSpacing="1">2015</text>
       </svg>
     );
   }

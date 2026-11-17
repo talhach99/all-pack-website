@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import '@fontsource-variable/inter/wght.css';
+import '@fontsource-variable/inter-tight/wght.css';
 import '@fontsource-variable/jetbrains-mono/wght.css';
 import './globals.css';
-import { Providers } from '@/components/Providers';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { FloatingContact } from '@/components/FloatingContact';
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description: PAGE_SEO.home.description,
   applicationName: 'ALL PACK',
   alternates: { canonical: '/' },
-  openGraph: { title: 'ALL PACK — The Packaging Experts', description: 'Packaging that sells before it’s opened. Custom boxes, bags, labels and print from Lahore.', type: 'website', locale: 'en_PK', siteName: 'ALL PACK', images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'ALL PACK — The Packaging Experts' }] },
+  openGraph: { title: 'ALL PACK | Packaging & Printing Company in Lahore', description: 'Custom printed cartons, rigid boxes, mailer boxes, paper bags and labels, produced on Heidelberg offset presses in Lahore.', type: 'website', locale: 'en_PK', siteName: 'ALL PACK', images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'ALL PACK printed packaging range' }] },
   twitter: { card: 'summary_large_image', images: ['/og-image.png'] },
   robots: { index: true, follow: true },
   formatDetection: { telephone: false },
@@ -31,7 +31,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     '@type': 'LocalBusiness',
     name: COMPANY.name,
     slogan: COMPANY.tagline,
-    description: 'Custom packaging and printing company in Lahore, Pakistan.',
+    description: 'Packaging and printing company in Lahore producing custom printed cartons, rigid boxes, mailer boxes, paper bags and labels.',
+    areaServed: 'Pakistan',
     email: COMPANY.email,
     telephone: phoneLink()?.slice(4),
     url: COMPANY.siteUrl,
@@ -44,13 +45,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en-PK">
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
-        <Providers>
-          <Header />
-          <div id="main">{children}</div>
-          <Footer />
-          <FloatingContact />
-          <Motion />
-        </Providers>
+        <Header />
+        <div id="main">{children}</div>
+        <Footer />
+        <FloatingContact />
+        <Motion />
         <Analytics />
       </body>
     </html>
