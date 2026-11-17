@@ -28,23 +28,24 @@ export default function Home() {
   const homeSectors = sectors.filter(s => ['pharmaceutical', 'food-and-bakery', 'confectionery', 'restaurants'].includes(s.slug));
   return (
     <main>
-      {/* Hero: navy stage, glass card, products at the bottom right */}
-      <section className="hero-stage relative isolate overflow-hidden">
-        <div className="container-x grid items-center gap-10 py-10 sm:py-14 lg:min-h-[640px] lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)] lg:gap-12 lg:py-16">
-          <div className="hero-card hero-in rounded-[28px] p-7 sm:p-11">
-            <p className="eyebrow eyebrow-light">Packaging printers · Lahore</p>
-            <h1 className="h-display mt-6 !text-white">Custom printed packaging, <span className="text-[#8FC2F2]">made to your specification.</span></h1>
-            <p className="mt-6 text-[17px] leading-[1.7] text-cyan sm:text-[18px]">Cartons, rigid boxes, mailers, paper bags and labels, printed on Heidelberg offset presses and finished under one roof for pharmaceutical, food and retail brands across Pakistan.</p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-white"><WhatsAppIcon size={18} /> Request a quote</a>
-              <Link href="/products" className="btn-outline-light">View products <ArrowRight size={16} strokeWidth={1.75} /></Link>
-            </div>
-            <ul className="mt-9 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/10 pt-6 text-[13.5px] font-semibold text-cream">
-              {trust.map(({ icon: Icon, text }) => <li key={text} className="flex items-center gap-2"><Icon size={15} strokeWidth={1.75} className="text-rule" /> {text}</li>)}
-            </ul>
+      {/* Hero: spotlight stage on deep teal-blue, products centred with print-proof annotations */}
+      <section className="hero-spot relative isolate overflow-hidden">
+        <div className="hero-in container-x relative z-10 pt-12 text-center sm:pt-14">
+          <p className="eyebrow justify-center !text-[#7FD3F0]">Packaging printers · Lahore · 25+ years</p>
+          <h1 className="mx-auto mt-6 max-w-[920px] font-display text-[clamp(2.5rem,5.6vw,4.9rem)] font-semibold leading-[.98] tracking-[-.04em] !text-white">Packaging that sells <span className="hero-grad">before it&rsquo;s opened.</span></h1>
+          <p className="mx-auto mt-5 max-w-[620px] text-[17px] leading-[1.6] text-cyan sm:text-[18px]">Custom printed cartons, rigid boxes, mailers, paper bags and labels, printed on Heidelberg offset presses and finished under one roof in Lahore.</p>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <a href={quote} target="_blank" rel="noopener noreferrer" className="btn bg-rule text-white hover:bg-[#1793C6]"><WhatsAppIcon size={18} /> Request a quote</a>
+            <Link href="/products" className="btn-outline-light">View products <ArrowRight size={16} strokeWidth={1.75} /></Link>
           </div>
+        </div>
+        <div className="relative mx-auto mt-8 w-full max-w-[820px] px-5 sm:mt-2 lg:mt-0 lg:-mb-10 min-[1150px]:max-w-[700px] min-[1400px]:max-w-[820px]">
+          <span aria-hidden="true" className="hero-ring absolute bottom-[4%] left-1/2 h-[24%] w-[105%] -translate-x-1/2 rounded-[50%]" />
           <HeroVisual />
         </div>
+        <ul className="container-x relative z-10 flex flex-wrap justify-center gap-x-7 gap-y-2 pb-10 pt-6 text-[13.5px] font-semibold text-cream min-[1150px]:hidden">
+          {trust.map(({ icon: Icon, text }) => <li key={text} className="flex items-center gap-2"><Icon size={15} strokeWidth={1.75} className="text-rule" /> {text}</li>)}
+        </ul>
       </section>
 
       {/* Clients */}
