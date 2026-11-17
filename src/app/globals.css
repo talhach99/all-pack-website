@@ -67,3 +67,9 @@
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* Client logos: two rows sliding in opposite directions; hover pauses */
+@keyframes logo-scroll { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
+.logo-track { animation: logo-scroll 40s linear infinite; will-change: transform; }
+.logo-marquee:hover .logo-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .logo-track { animation: none !important; } }
