@@ -30,7 +30,7 @@ export default function Home() {
     <main>
       {/* Hero: navy stage, glass card, products at the bottom right */}
       <section className="hero-stage relative isolate overflow-hidden">
-        <div className="container-x grid items-center gap-10 py-10 sm:py-14 lg:min-h-[640px] lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)] lg:gap-16 lg:py-16">
+        <div className="container-x grid items-center gap-10 py-10 sm:py-14 lg:min-h-[640px] lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)] lg:gap-12 lg:py-16">
           <div className="hero-card hero-in rounded-[28px] p-7 sm:p-11">
             <p className="eyebrow eyebrow-light">Packaging printers · Lahore</p>
             <h1 className="h-display mt-6 !text-white">Custom printed packaging, <span className="text-[#8FC2F2]">made to your specification.</span></h1>

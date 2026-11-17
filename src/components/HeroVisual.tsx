@@ -28,9 +28,9 @@ export function HeroVisual() {
     <div className="hero-visual anim-up d3 [perspective:1200px]">
       <div ref={wrap} className="will-change-transform">
         <img
-          src="/renders/packaging-range.webp" alt="ALL PACK printed packaging: a paper bag, folding carton, rigid gift box, pharmaceutical carton and corrugated shipping boxes"
-          width={1500} height={1026} fetchPriority="high"
-          className="float mx-auto w-full max-w-[680px] lg:max-w-none lg:scale-[1.12]"
+          src="/renders/packaging-range.webp" alt="ALL PACK printed cosmetic packaging: lipstick carton, serum boxes, drawer box and rigid gift boxes"
+          width={1600} height={986} fetchPriority="high"
+          className="float mx-auto w-full max-w-[720px] lg:max-w-none lg:origin-left lg:scale-[1.28]"
         />
       </div>
     </div>
