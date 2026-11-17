@@ -32,30 +32,27 @@ export default function Home() {
   const homeSectors = sectors.filter(s => ['pharmaceutical', 'food-and-bakery', 'confectionery', 'restaurants'].includes(s.slug));
   return (
     <main>
-      {/* Hero */}
-      <section className="border-b border-line bg-mist">
-        <div className="container-x grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-[1fr_1.1fr] lg:gap-10 lg:py-20">
-          <div className="anim-up">
-            <Eyebrow>Packaging printers · Lahore</Eyebrow>
-            <h1 className="h-display mt-6">Custom printed packaging, produced in Lahore <span className="text-brand">to your specification.</span></h1>
-            <p className="lead mt-7 max-w-xl">Cartons, rigid boxes, mailers, paper bags and labels, printed on Heidelberg offset presses and finished under one roof. For more than 25 years, pharmaceutical, food and retail brands across Pakistan have relied on ALL PACK for accurate colour and on-time delivery.</p>
+      {/* Hero: navy stage, glass card, products at the bottom right */}
+      <section className="hero-stage relative isolate overflow-hidden">
+        <div className="container-x relative z-10 pb-[min(70vw,420px)] pt-10 sm:pt-14 lg:min-h-[680px] lg:pb-20 lg:pt-16">
+          <div className="hero-card anim-up max-w-[580px] rounded-[28px] p-7 sm:p-11">
+            <p className="eyebrow eyebrow-light">Packaging printers · Lahore</p>
+            <h1 className="h-display mt-6 !text-white">Custom printed packaging, <span className="text-[#8FC2F2]">made to your specification.</span></h1>
+            <p className="mt-6 text-[17px] leading-[1.7] text-cyan sm:text-[18px]">Cartons, rigid boxes, mailers, paper bags and labels, printed on Heidelberg offset presses and finished under one roof for pharmaceutical, food and retail brands across Pakistan.</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-primary"><WhatsAppIcon size={18} /> Request a quote on WhatsApp</a>
-              <Link href="/products" className="btn-outline">View the product range</Link>
+              <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-white"><WhatsAppIcon size={18} /> Request a quote</a>
+              <Link href="/products" className="btn-outline-light">View products <ArrowRight size={16} strokeWidth={1.75} /></Link>
             </div>
-            <p className="meta mt-6">We reply to every enquiry within 24 hours</p>
-          </div>
-          <div className="anim-up d2">
-            <img src="/renders/packaging-range.webp" alt="ALL PACK printed packaging: a paper bag, folding carton, rigid gift box, pharmaceutical carton and corrugated shipping boxes" width={1400} height={958} fetchPriority="high" className="mx-auto w-full max-w-[720px] lg:max-w-none lg:scale-[1.06]" />
+            <ul className="mt-9 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/10 pt-6 text-[13.5px] font-semibold text-cream">
+              {trust.map(({ icon: Icon, text }) => <li key={text} className="flex items-center gap-2"><Icon size={15} strokeWidth={1.75} className="text-rule" /> {text}</li>)}
+            </ul>
           </div>
         </div>
-        <ul className="grid grid-cols-2 border-t border-line bg-white lg:grid-cols-4">
-          {trust.map(({ icon: Icon, text }, i) => (
-            <li key={text} className={`flex items-center justify-center gap-3 px-4 py-5 text-[14px] font-semibold sm:text-[15px] ${i % 2 === 0 ? 'border-r' : 'lg:border-r'} ${i < 2 ? 'border-b lg:border-b-0' : ''} border-line last:border-r-0`}>
-              <Icon size={18} strokeWidth={1.75} className="shrink-0 text-brand" /> {text}
-            </li>
-          ))}
-        </ul>
+        <img
+          src="/renders/packaging-range.webp" alt="ALL PACK printed packaging: a paper bag, folding carton, rigid gift box, pharmaceutical carton and corrugated shipping boxes"
+          width={1500} height={1026} fetchPriority="high"
+          className="anim-up d2 pointer-events-none absolute bottom-[-4%] right-[-14%] w-[110%] max-w-none sm:right-[-8%] sm:w-[85%] lg:bottom-[-20px] lg:right-[max(-220px,calc(50vw-890px))] lg:w-[min(56vw,840px)]"
+        />
       </section>
 
       {/* Clients */}

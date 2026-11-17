@@ -34,8 +34,8 @@ export function Header() {
     <>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">Skip to content</a>
 
-      <div className="hidden bg-navy text-[13px] text-cyan md:block">
-        <div className="container-x flex h-10 items-center justify-between">
+      <div className="hidden border-b border-white/[.06] bg-[#0A0F33] text-[12.5px] tracking-[.01em] text-[#9AA5CC] md:block">
+        <div className="container-x flex h-9 items-center justify-between">
           <span>Printing and packaging in Lahore for over 25 years · ISO 9001 and Halal certified</span>
           <span className="flex items-center gap-5">
             {call && <a href={call} className="flex items-center gap-2 tabular-nums hover:text-white"><Phone size={14} strokeWidth={1.75} /> {COMPANY.phone}</a>}
@@ -44,17 +44,17 @@ export function Header() {
         </div>
       </div>
 
-      <header className="site-header sticky top-0 z-50 border-b border-line bg-white">
+      <header className="site-header sticky top-0 z-50 border-b border-white/10 bg-[#0E1440]/95 backdrop-blur-md">
         <div className="container-x flex h-[76px] items-center gap-10 sm:h-[84px]">
-          <Logo />
-          <nav aria-label="Primary" className="hidden flex-1 items-center gap-8 lg:flex">
+          <Logo light />
+          <nav aria-label="Primary" className="hidden flex-1 items-center gap-9 lg:flex">
             {NAV.map(n => (
-              <Link key={n.href} href={n.href} aria-current={active(n.href) ? 'page' : undefined} className={`text-[15px] font-medium transition-colors ${active(n.href) ? 'text-brand' : 'text-ink-soft hover:text-brand'}`}>{n.text}</Link>
+              <Link key={n.href} href={n.href} aria-current={active(n.href) ? 'page' : undefined} className={`relative py-2 text-[14.5px] font-medium tracking-[.01em] transition-colors after:absolute after:inset-x-0 after:-bottom-[2px] after:h-[2px] after:rounded-full after:bg-rule after:transition-transform after:duration-200 ${active(n.href) ? 'text-white after:scale-x-100' : 'text-white/70 after:scale-x-0 hover:text-white hover:after:scale-x-100'}`}>{n.text}</Link>
             ))}
           </nav>
           <div className="ml-auto flex items-center gap-2">
-            <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-primary btn-sm hidden sm:inline-flex">Request a quote <ArrowRight size={16} strokeWidth={1.75} /></a>
-            <button className="grid h-10 w-10 place-items-center rounded-lg text-ink hover:bg-soft lg:hidden" onClick={() => setMenu(v => !v)} aria-label={menu ? 'Close menu' : 'Open menu'} aria-expanded={menu}>{menu ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}</button>
+            <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-white btn-sm hidden sm:inline-flex">Request a quote <ArrowRight size={16} strokeWidth={1.75} /></a>
+            <button className="grid h-10 w-10 place-items-center rounded-lg text-white hover:bg-white/10 lg:hidden" onClick={() => setMenu(v => !v)} aria-label={menu ? 'Close menu' : 'Open menu'} aria-expanded={menu}>{menu ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}</button>
           </div>
         </div>
       </header>

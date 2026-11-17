@@ -44,6 +44,8 @@
   .label { @apply mb-2 block text-sm font-medium text-ink; }
   .kicker { @apply eyebrow; }
 
+  .hero-stage { background: radial-gradient(900px 620px at 80% 72%, #2A3A8C 0%, rgba(42,58,140,0) 70%), radial-gradient(700px 500px at 8% 0%, #1C2560 0%, rgba(28,37,96,0) 70%), #0E1440; }
+  .hero-card { background: linear-gradient(160deg, rgba(255,255,255,.10), rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
   .page-hero { @apply border-b border-line bg-mist; }
   .dark-section { @apply bg-navy text-white; }
 
@@ -60,7 +62,7 @@
 .d1 { animation-delay: 60ms } .d2 { animation-delay: 120ms } .d3 { animation-delay: 180ms }
 
 .site-header { transition: box-shadow .2s cubic-bezier(.22,1,.36,1); }
-.scrolled .site-header { box-shadow: 0 1px 0 rgba(20,27,77,.06), 0 10px 28px rgba(20,27,77,.06); }
+.scrolled .site-header { box-shadow: 0 10px 30px rgba(10,15,51,.25); }
 .no-scrollbar { scrollbar-width: none; } .no-scrollbar::-webkit-scrollbar { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
