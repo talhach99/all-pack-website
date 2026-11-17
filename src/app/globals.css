@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  html { -webkit-text-size-adjust: 100%; scroll-padding-top: 160px; scroll-behavior: smooth; }
+  html { -webkit-text-size-adjust: 100%; scroll-padding-top: 120px; scroll-behavior: smooth; }
   body { @apply bg-white font-sans text-ink antialiased; text-rendering: optimizeLegibility; overflow-x: hidden; }
   ::selection { background: #343B82; color: #fff; }
   :focus-visible { outline: 2px solid #343B82; outline-offset: 2px; border-radius: 6px; }
@@ -63,6 +63,7 @@
 
 .site-header { transition: box-shadow .2s cubic-bezier(.22,1,.36,1); }
 .scrolled .site-header { box-shadow: 0 10px 30px rgba(10,15,51,.25); }
+@media (min-width: 1024px) { .scrolled .site-header { box-shadow: none; } }
 .no-scrollbar { scrollbar-width: none; } .no-scrollbar::-webkit-scrollbar { display: none; }
 
 @media (prefers-reduced-motion: reduce) {

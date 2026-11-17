@@ -62,10 +62,17 @@ function ProductSearch({ className = '', id }: { className?: string; id: string 
 export function Header() {
   const path = usePathname();
   const [menu, setMenu] = useState(false);
+  const [stuck, setStuck] = useState(false);
   const call = phoneLink();
   const quote = quoteLink();
 
   useEffect(() => { setMenu(false); }, [path]);
+  // Once the top row has scrolled away, the menu bar turns white.
+  useEffect(() => {
+    const f = () => setStuck(window.scrollY > 88);
+    f(); window.addEventListener('scroll', f, { passive: true });
+    return () => window.removeEventListener('scroll', f);
+  }, []);
   useEffect(() => { document.documentElement.style.overflow = menu ? 'hidden' : ''; return () => { document.documentElement.style.overflow = ''; }; }, [menu]);
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMenu(false); };
@@ -78,28 +85,30 @@ export function Header() {
     <>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">Skip to content</a>
 
-      <header className="site-header sticky top-0 z-50 bg-[#0E1440] text-white">
-        <div className="border-b border-white/10">
-          <div className="container-x flex h-[76px] items-center gap-6 sm:h-[88px] lg:gap-10">
-            <Logo light />
-            <ProductSearch id="site-search" className="mx-auto hidden w-full max-w-[520px] md:block" />
-            <div className="ml-auto flex shrink-0 items-center gap-3 md:ml-0">
-              <Link href="/contact" className="btn-outline-light btn-sm hidden xl:inline-flex">Contact us</Link>
-              <a href={quote} target="_blank" rel="noopener noreferrer" className="btn btn-sm hidden bg-rule text-white hover:bg-[#1793C6] sm:inline-flex">Request a quote <ArrowRight size={16} strokeWidth={1.75} /></a>
-              <button className="grid h-10 w-10 place-items-center rounded-lg text-white hover:bg-white/10 lg:hidden" onClick={() => setMenu(v => !v)} aria-label={menu ? 'Close menu' : 'Open menu'} aria-expanded={menu}>{menu ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}</button>
-            </div>
+      <header className="site-header sticky top-0 z-50 border-b border-white/10 bg-[#0E1440] text-white lg:relative lg:top-auto">
+        <div className="container-x flex h-[76px] items-center gap-6 sm:h-[88px] lg:gap-10">
+          <Logo light />
+          <ProductSearch id="site-search" className="mx-auto hidden w-full max-w-[520px] md:block" />
+          <div className="ml-auto flex shrink-0 items-center gap-3 md:ml-0">
+            <Link href="/contact" className="btn-outline-light btn-sm hidden xl:inline-flex">Contact us</Link>
+            <a href={quote} target="_blank" rel="noopener noreferrer" className="btn btn-sm hidden bg-rule text-white hover:bg-[#1793C6] sm:inline-flex">Request a quote <ArrowRight size={16} strokeWidth={1.75} /></a>
+            <button className="grid h-10 w-10 place-items-center rounded-lg text-white hover:bg-white/10 lg:hidden" onClick={() => setMenu(v => !v)} aria-label={menu ? 'Close menu' : 'Open menu'} aria-expanded={menu}>{menu ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}</button>
           </div>
         </div>
-        <nav aria-label="Primary" className="hidden border-b border-white/10 lg:block">
-          <ul className="container-x flex h-14 items-center justify-center gap-10">
-            {NAV.map(n => (
-              <li key={n.href} className="h-full">
-                <Link href={n.href} aria-current={active(n.href) ? 'page' : undefined} className={`relative flex h-full items-center text-[15px] font-medium transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] after:rounded-t-full after:bg-rule after:transition-transform after:duration-200 ${active(n.href) ? 'text-white after:scale-x-100' : 'text-white/70 after:scale-x-0 hover:text-white'}`}>{n.text}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
       </header>
+      <nav aria-label="Primary" className={`sticky top-0 z-50 hidden border-b transition-[background-color,box-shadow,border-color] duration-200 lg:block ${stuck ? 'border-line bg-white shadow-[0_8px_24px_rgba(20,27,77,.08)]' : 'border-white/10 bg-[#0E1440]'}`}>
+        <ul className="container-x flex h-14 items-center justify-center gap-10">
+          {NAV.map(n => {
+            const on = active(n.href);
+            const tone = stuck ? (on ? 'text-ink' : 'text-ink-soft hover:text-ink') : (on ? 'text-white' : 'text-white/70 hover:text-white');
+            return (
+              <li key={n.href} className="h-full">
+                <Link href={n.href} aria-current={on ? 'page' : undefined} className={`relative flex h-full items-center text-[15px] font-medium transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] after:rounded-t-full after:bg-rule after:transition-transform after:duration-200 ${tone} ${on ? 'after:scale-x-100' : 'after:scale-x-0'}`}>{n.text}</Link>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
 
       {menu && (
         <div className="fixed inset-0 top-[76px] z-40 overflow-y-auto bg-white sm:top-[88px] lg:hidden">
