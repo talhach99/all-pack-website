@@ -1,8 +1,5 @@
 'use client';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { Mail, Phone } from 'lucide-react';
-import { emailLink, phoneLink, whatsappLink } from '@/lib/company';
+import { whatsappLink } from '@/lib/company';
 
 export function WhatsAppIcon({ size = 22 }: { size?: number }) {
   return (
@@ -12,34 +9,16 @@ export function WhatsAppIcon({ size = 22 }: { size?: number }) {
   );
 }
 
-/** WhatsApp bubble on desktop; sticky action bar on mobile. */
+/** Round WhatsApp button, always visible in the bottom-right corner on every screen size. */
 export function FloatingContact() {
-  const [visible, setVisible] = useState(false);
-  const path = usePathname();
   const wa = whatsappLink();
-  const call = phoneLink();
-  useEffect(() => {
-    const f = () => setVisible(window.scrollY > 400);
-    f(); window.addEventListener('scroll', f, { passive: true });
-    return () => window.removeEventListener('scroll', f);
-  }, []);
   if (!wa) return null;
   return (
-    <>
-      <a
-        href={wa} target="_blank" rel="noopener noreferrer" aria-label="Chat with ALL PACK on WhatsApp"
-        className={`fixed bottom-6 right-6 z-40 hidden h-12 items-center gap-2 rounded-full bg-[#1F8F4E] pl-4 pr-5 text-white shadow-lift transition-[background-color,opacity] duration-200 hover:bg-[#1A7A43] sm:flex ${visible ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
-      >
-        <WhatsAppIcon size={20} />
-        <span className="whitespace-nowrap text-sm font-medium">WhatsApp us</span>
-      </a>
-      <div className={`fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white p-3 transition-transform duration-300 ease-out sm:hidden ${visible ? 'translate-y-0' : 'translate-y-full'}`} style={{ paddingBottom: 'max(.75rem, env(safe-area-inset-bottom))' }}>
-        <div className="grid grid-cols-[auto_auto_1fr] gap-2">
-          {call && <a href={call} aria-label="Call ALL PACK" className="grid h-12 w-12 place-items-center rounded-[10px] border border-line text-ink"><Phone size={18} strokeWidth={1.5} /></a>}
-          <a href={emailLink()} aria-label="Email ALL PACK" className="grid h-12 w-12 place-items-center rounded-[10px] border border-line text-ink"><Mail size={18} strokeWidth={1.5} /></a>
-          <a href={wa} target="_blank" rel="noopener noreferrer" className="btn-dark"><WhatsAppIcon size={18} /> Get a quote</a>
-        </div>
-      </div>
-    </>
+    <a
+      href={wa} target="_blank" rel="noopener noreferrer" aria-label="Chat with ALL PACK on WhatsApp" title="Chat on WhatsApp"
+      className="wa-float fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_12px_28px_-8px_rgba(0,0,0,.35)] transition-[transform,background-color] duration-200 hover:scale-110 hover:bg-[#1FBE5A] sm:bottom-6 sm:right-6 sm:h-16 sm:w-16"
+    >
+      <WhatsAppIcon size={30} />
+    </a>
   );
 }
