@@ -32,7 +32,7 @@ export default function Home() {
       <section className="hero-spot relative isolate overflow-hidden">
         <div className="hero-in container-x relative z-10 pt-12 text-center sm:pt-14">
           <p className="eyebrow justify-center !text-[#7FD3F0]">Packaging printers · Lahore · 25+ years</p>
-          <h1 className="mx-auto mt-6 max-w-[920px] font-display text-[clamp(2.5rem,5.6vw,4.9rem)] font-semibold leading-[.98] tracking-[-.04em] !text-white">Packaging that sells <span className="hero-grad">before it&rsquo;s opened.</span></h1>
+          <h1 className="mx-auto mt-6 max-w-[920px] font-display text-[clamp(2.5rem,5.6vw,4.9rem)] font-semibold leading-[.98] tracking-[-.04em] !text-white">Packaging that sells <span className="text-[#8FC2F2]">before it&rsquo;s opened</span></h1>
           <p className="mx-auto mt-5 max-w-[620px] text-[17px] leading-[1.6] text-cyan sm:text-[18px]">Custom printed cartons, rigid boxes, mailers, paper bags and labels, printed on Heidelberg offset presses and finished under one roof in Lahore.</p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <a href={quote} target="_blank" rel="noopener noreferrer" className="btn bg-rule text-white hover:bg-[#1793C6]"><WhatsAppIcon size={18} /> Request a quote</a>
