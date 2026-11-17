@@ -34,7 +34,7 @@ export default function ProductsPage() {
         description="Eight packaging formats, each made to your dimensions, board grade and artwork. Choose a format below, send your requirements and receive a specification and price within 24 hours."
       />
 
-      <nav aria-label="Product formats" className="sticky top-[76px] z-30 border-b border-line bg-white/95 backdrop-blur sm:top-[84px]">
+      <nav aria-label="Product formats" className="sticky top-[76px] z-30 border-b border-line bg-white/95 backdrop-blur sm:top-[88px] lg:top-[144px]">
         <ul className="container-x no-scrollbar flex gap-2 overflow-x-auto py-3 lg:justify-center">
           {families.map(f => <li key={f.slug} className="shrink-0"><a href={`#${f.slug}`} className="inline-flex h-9 items-center rounded-full border border-line px-4 text-[13.5px] font-medium text-ink-soft transition-colors hover:border-navy hover:text-navy">{f.name}</a></li>)}
         </ul>

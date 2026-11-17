@@ -34,8 +34,8 @@ export default function Home() {
     <main>
       {/* Hero: navy stage, glass card, products at the bottom right */}
       <section className="hero-stage relative isolate overflow-hidden">
-        <div className="container-x relative z-10 pb-[min(70vw,420px)] pt-10 sm:pt-14 lg:min-h-[680px] lg:pb-20 lg:pt-16">
-          <div className="hero-card anim-up max-w-[580px] rounded-[28px] p-7 sm:p-11">
+        <div className="container-x grid items-center gap-10 py-10 sm:py-14 lg:min-h-[640px] lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)] lg:gap-16 lg:py-16">
+          <div className="hero-card anim-up rounded-[28px] p-7 sm:p-11">
             <p className="eyebrow eyebrow-light">Packaging printers · Lahore</p>
             <h1 className="h-display mt-6 !text-white">Custom printed packaging, <span className="text-[#8FC2F2]">made to your specification.</span></h1>
             <p className="mt-6 text-[17px] leading-[1.7] text-cyan sm:text-[18px]">Cartons, rigid boxes, mailers, paper bags and labels, printed on Heidelberg offset presses and finished under one roof for pharmaceutical, food and retail brands across Pakistan.</p>
@@ -47,12 +47,12 @@ export default function Home() {
               {trust.map(({ icon: Icon, text }) => <li key={text} className="flex items-center gap-2"><Icon size={15} strokeWidth={1.75} className="text-rule" /> {text}</li>)}
             </ul>
           </div>
+          <img
+            src="/renders/packaging-range.webp" alt="ALL PACK printed packaging: a paper bag, folding carton, rigid gift box, pharmaceutical carton and corrugated shipping boxes"
+            width={1500} height={1026} fetchPriority="high"
+            className="anim-up d2 mx-auto w-full max-w-[680px] lg:max-w-none lg:scale-[1.12]"
+          />
         </div>
-        <img
-          src="/renders/packaging-range.webp" alt="ALL PACK printed packaging: a paper bag, folding carton, rigid gift box, pharmaceutical carton and corrugated shipping boxes"
-          width={1500} height={1026} fetchPriority="high"
-          className="anim-up d2 pointer-events-none absolute bottom-[-4%] right-[-14%] w-[110%] max-w-none sm:right-[-8%] sm:w-[85%] lg:bottom-[-20px] lg:right-[max(-220px,calc(50vw-890px))] lg:w-[min(56vw,840px)]"
-        />
       </section>
 
       {/* Clients */}
@@ -128,7 +128,7 @@ export default function Home() {
       </section>
 
       {/* Why ALL PACK */}
-      <section className="section border-t border-line bg-mist">
+      <section id="why" className="section border-t border-line bg-mist">
         <div className="container-x">
           <SectionHead kicker="Why ALL PACK" title="Why brands trust ALL PACK." sub="Certified processes, our own presses and a client list built over more than 25 years." />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

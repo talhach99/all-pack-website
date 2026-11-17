@@ -1,19 +1,63 @@
 'use client';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { ArrowRight, Mail, Menu, Phone, X } from 'lucide-react';
-import { COMPANY, emailLink, phoneLink, quoteLink } from '@/lib/company';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { ArrowRight, Mail, Menu, Phone, Search, X } from 'lucide-react';
+import { emailLink, phoneLink, quoteLink } from '@/lib/company';
+import { families } from '@/data/catalog';
 import { Logo } from './Logo';
 import { WhatsAppIcon } from './FloatingContact';
 
 const NAV = [
+  { text: 'Home', href: '/' },
   { text: 'Products', href: '/products' },
   { text: 'Industries', href: '/industries' },
-  { text: 'About', href: '/about' },
+  { text: 'Why ALL PACK', href: '/#why' },
   { text: 'Guides', href: '/insights' },
+  { text: 'FAQs', href: '/faq' },
+  { text: 'About', href: '/about' },
   { text: 'Contact', href: '/contact' },
 ];
+
+/** Search across the product range; a pick jumps to that format on the Products page. */
+function ProductSearch({ className = '', id }: { className?: string; id: string }) {
+  const router = useRouter();
+  const [q, setQ] = useState('');
+  const [open, setOpen] = useState(false);
+  const box = useRef<HTMLDivElement>(null);
+  const hits = useMemo(() => {
+    const t = q.trim().toLowerCase();
+    if (!t) return families;
+    return families.filter(f => [f.name, f.short, f.label, ...f.specs.flatMap(s => s.items)].join(' ').toLowerCase().includes(t));
+  }, [q]);
+  useEffect(() => {
+    const off = (e: MouseEvent) => { if (box.current && !box.current.contains(e.target as Node)) setOpen(false); };
+    document.addEventListener('mousedown', off);
+    return () => document.removeEventListener('mousedown', off);
+  }, []);
+  const go = (slug: string) => { setOpen(false); setQ(''); router.push(`/products#${slug}`); };
+  return (
+    <div ref={box} className={`relative ${className}`}>
+      <form role="search" onSubmit={e => { e.preventDefault(); if (hits[0]) go(hits[0].slug); }} className="flex h-12 items-center gap-3 rounded-full border border-white/15 bg-white/[.04] px-5 transition-colors focus-within:border-white/35 hover:border-white/25">
+        <Search size={18} strokeWidth={1.75} className="shrink-0 text-white/60" aria-hidden="true" />
+        <label htmlFor={id} className="sr-only">Search packaging</label>
+        <input id={id} value={q} onChange={e => { setQ(e.target.value); setOpen(true); }} onFocus={() => setOpen(true)} onKeyDown={e => { if (e.key === 'Escape') setOpen(false); }} placeholder="Search cartons, boxes, bags or labels" autoComplete="off" className="w-full bg-transparent text-[15px] text-white outline-none placeholder:text-white/50" />
+      </form>
+      {open && (
+        <ul className="absolute inset-x-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-2xl border border-line bg-white py-2 text-ink shadow-lift">
+          {hits.length ? hits.map(f => (
+            <li key={f.slug}>
+              <button type="button" onClick={() => go(f.slug)} className="flex w-full items-center justify-between gap-4 px-5 py-2.5 text-left hover:bg-mist">
+                <span><span className="block text-[15px] font-semibold">{f.name}</span><span className="block text-[13px] text-muted">{f.short}</span></span>
+                <ArrowRight size={16} strokeWidth={1.75} className="shrink-0 text-muted" />
+              </button>
+            </li>
+          )) : <li className="px-5 py-3 text-[14px] text-muted">No match. <Link href="/contact" className="font-semibold text-brand">Ask us about it</Link>.</li>}
+        </ul>
+      )}
+    </div>
+  );
+}
 
 export function Header() {
   const path = usePathname();
@@ -28,41 +72,40 @@ export function Header() {
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, []);
-  const active = (href: string) => path === href || path.startsWith(`${href}/`);
+  const active = (href: string) => (href === '/' ? path === '/' : !href.includes('#') && (path === href || path.startsWith(`${href}/`)));
 
   return (
     <>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">Skip to content</a>
 
-      <div className="hidden border-b border-white/[.06] bg-[#0A0F33] text-[12.5px] tracking-[.01em] text-[#9AA5CC] md:block">
-        <div className="container-x flex h-9 items-center justify-between">
-          <span>Printing and packaging in Lahore for over 25 years · ISO 9001 and Halal certified</span>
-          <span className="flex items-center gap-5">
-            {call && <a href={call} className="flex items-center gap-2 tabular-nums hover:text-white"><Phone size={14} strokeWidth={1.75} /> {COMPANY.phone}</a>}
-            <a href={emailLink()} className="flex items-center gap-2 hover:text-white"><Mail size={14} strokeWidth={1.75} /> {COMPANY.email}</a>
-          </span>
-        </div>
-      </div>
-
-      <header className="site-header sticky top-0 z-50 border-b border-white/10 bg-[#0E1440]/95 backdrop-blur-md">
-        <div className="container-x flex h-[76px] items-center gap-10 sm:h-[84px]">
-          <Logo light />
-          <nav aria-label="Primary" className="hidden flex-1 items-center gap-9 lg:flex">
-            {NAV.map(n => (
-              <Link key={n.href} href={n.href} aria-current={active(n.href) ? 'page' : undefined} className={`relative py-2 text-[14.5px] font-medium tracking-[.01em] transition-colors after:absolute after:inset-x-0 after:-bottom-[2px] after:h-[2px] after:rounded-full after:bg-rule after:transition-transform after:duration-200 ${active(n.href) ? 'text-white after:scale-x-100' : 'text-white/70 after:scale-x-0 hover:text-white hover:after:scale-x-100'}`}>{n.text}</Link>
-            ))}
-          </nav>
-          <div className="ml-auto flex items-center gap-2">
-            <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-white btn-sm hidden sm:inline-flex">Request a quote <ArrowRight size={16} strokeWidth={1.75} /></a>
-            <button className="grid h-10 w-10 place-items-center rounded-lg text-white hover:bg-white/10 lg:hidden" onClick={() => setMenu(v => !v)} aria-label={menu ? 'Close menu' : 'Open menu'} aria-expanded={menu}>{menu ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}</button>
+      <header className="site-header sticky top-0 z-50 bg-[#0E1440] text-white">
+        <div className="border-b border-white/10">
+          <div className="container-x flex h-[76px] items-center gap-6 sm:h-[88px] lg:gap-10">
+            <Logo light />
+            <ProductSearch id="site-search" className="mx-auto hidden w-full max-w-[520px] md:block" />
+            <div className="ml-auto flex shrink-0 items-center gap-3 md:ml-0">
+              <Link href="/contact" className="btn-outline-light btn-sm hidden xl:inline-flex">Contact us</Link>
+              <a href={quote} target="_blank" rel="noopener noreferrer" className="btn btn-sm hidden bg-rule text-white hover:bg-[#1793C6] sm:inline-flex">Request a quote <ArrowRight size={16} strokeWidth={1.75} /></a>
+              <button className="grid h-10 w-10 place-items-center rounded-lg text-white hover:bg-white/10 lg:hidden" onClick={() => setMenu(v => !v)} aria-label={menu ? 'Close menu' : 'Open menu'} aria-expanded={menu}>{menu ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}</button>
+            </div>
           </div>
         </div>
+        <nav aria-label="Primary" className="hidden border-b border-white/10 lg:block">
+          <ul className="container-x flex h-14 items-center justify-center gap-10">
+            {NAV.map(n => (
+              <li key={n.href} className="h-full">
+                <Link href={n.href} aria-current={active(n.href) ? 'page' : undefined} className={`relative flex h-full items-center text-[15px] font-medium transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] after:rounded-t-full after:bg-rule after:transition-transform after:duration-200 ${active(n.href) ? 'text-white after:scale-x-100' : 'text-white/70 after:scale-x-0 hover:text-white'}`}>{n.text}</Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </header>
 
       {menu && (
-        <div className="fixed inset-0 top-[76px] z-40 overflow-y-auto bg-white sm:top-[84px] lg:hidden">
+        <div className="fixed inset-0 top-[76px] z-40 overflow-y-auto bg-white sm:top-[88px] lg:hidden">
           <nav aria-label="Mobile" className="container-x flex min-h-full flex-col py-4">
-            {[{ text: 'Home', href: '/' }, ...NAV, { text: 'FAQ', href: '/faq' }].map(n => (
+            <div className="rounded-[28px] bg-navy p-1 md:hidden"><ProductSearch id="mobile-search" /></div>
+            {NAV.map(n => (
               <Link key={n.href} href={n.href} className="flex items-center justify-between border-b border-line py-4 text-[20px] font-medium">{n.text} <ArrowRight size={18} strokeWidth={1.5} className="text-muted" /></Link>
             ))}
             <div className="mt-auto grid gap-3 pt-8">
