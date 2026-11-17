@@ -29,7 +29,6 @@ export const CLIENTS: Client[] = [
   { name: 'Don Valley Pharmaceuticals', logo: '/clients/don-valley.webp', wide: true },
   { name: 'Citi Bread', logo: '/clients/citi-bread.webp' },
   { name: 'Sun Bread', logo: '/clients/sun-bread.webp' },
-  { name: 'Gipsy Cosmetics' },
   { name: "Bunny's", logo: '/clients/bunnys.webp' },
   { name: 'Amson', logo: '/clients/amson.svg' },
   { name: 'Citi Pharma', logo: '/clients/citi-pharma.webp' },

@@ -162,7 +162,7 @@ export const sectors: Sector[] = [
     summary: 'Premium cartons and rigid boxes for beauty and personal care.',
     detail: 'Beauty packaging is judged on touch as much as print. Soft-touch lamination, foil stamping and fitted inserts give cosmetic and fragrance ranges a finish worthy of the product.',
     formats: ['Folding cartons', 'Rigid gift boxes', 'Labels'],
-    clients: ['Gipsy Cosmetics'],
+    clients: [],
   },
   {
     slug: 'restaurants',
