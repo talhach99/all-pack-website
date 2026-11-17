@@ -45,7 +45,7 @@ export default function ProductsPage() {
           const msg = `Hello ALL PACK, I would like a quotation for ${f.name.toLowerCase()}.\nSize:\nQuantity:\nPrint and finish:`;
           return (
             <section key={f.slug} id={f.slug} aria-labelledby={`${f.slug}-h`} className="grid items-center gap-10 border-b border-line py-16 last:border-0 sm:py-20 lg:grid-cols-2 lg:gap-16">
-              <div className={`relative flex aspect-[5/4] items-center justify-center rounded-3xl bg-card p-8 sm:p-12 ${i % 2 ? 'lg:order-2' : ''}`}>
+              <div className={`relative flex aspect-[5/4] items-center justify-center rounded-3xl bg-card p-6 sm:p-8 ${i % 2 ? 'lg:order-2' : ''}`}>
                 <span className="meta absolute left-5 top-5 rounded-full bg-white px-3 py-1 text-brand">{String(i + 1).padStart(2, '0')} / {String(families.length).padStart(2, '0')}</span>
                 <img src={f.image} alt={f.alt} loading={i < 2 ? 'eager' : 'lazy'} className="max-h-full w-auto object-contain" />
               </div>

@@ -34,7 +34,7 @@ export default function Home() {
     <main>
       {/* Hero */}
       <section className="border-b border-line bg-mist">
-        <div className="container-x grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-[1.15fr_.85fr] lg:gap-14 lg:py-24">
+        <div className="container-x grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-[1fr_1.1fr] lg:gap-10 lg:py-20">
           <div className="anim-up">
             <Eyebrow>Packaging printers · Lahore</Eyebrow>
             <h1 className="h-display mt-6">Custom printed packaging, produced in Lahore <span className="text-brand">to your specification.</span></h1>
@@ -46,7 +46,7 @@ export default function Home() {
             <p className="meta mt-6">We reply to every enquiry within 24 hours</p>
           </div>
           <div className="anim-up d2">
-            <img src="/renders/packaging-range.webp" alt="ALL PACK printed packaging: a paper bag, folding carton, rigid gift box, pharmaceutical carton and corrugated shipping boxes" width={1100} height={841} fetchPriority="high" className="mx-auto w-full max-w-[620px]" />
+            <img src="/renders/packaging-range.webp" alt="ALL PACK printed packaging: a paper bag, folding carton, rigid gift box, pharmaceutical carton and corrugated shipping boxes" width={1400} height={958} fetchPriority="high" className="mx-auto w-full max-w-[720px] lg:max-w-none lg:scale-[1.06]" />
           </div>
         </div>
         <ul className="grid grid-cols-2 border-t border-line bg-white lg:grid-cols-4">
@@ -72,8 +72,8 @@ export default function Home() {
             {families.map((f, i) => (
               <li key={f.slug}>
                 <Link href={`/products#${f.slug}`} className="group block">
-                  <div className="flex aspect-square items-center justify-center rounded-2xl bg-card p-5 transition-colors group-hover:bg-soft sm:p-8">
-                    <img src={f.image} alt={f.alt} loading="lazy" className="max-h-full w-auto object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]" />
+                  <div className="flex aspect-square items-center justify-center rounded-2xl bg-card p-3 transition-colors group-hover:bg-soft sm:p-4">
+                    <img src={f.image} alt={f.alt} loading="lazy" className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]" />
                   </div>
                   <div className="mt-4 flex items-baseline justify-between gap-3">
                     <h3 className="text-[17px] leading-snug sm:text-[19px]">{f.name}</h3>

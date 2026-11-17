@@ -21,7 +21,7 @@
   .eyebrow::before { content: ""; width: 18px; height: 1.5px; background: #1FA8E0; }
   .eyebrow-light { @apply text-brand-light; }
 
-  .h-display { font-size: clamp(2.5rem, 4.8vw, 3.9rem); line-height: 1.04; }
+  .h-display { font-size: clamp(2.4rem, 4.4vw, 3.6rem); line-height: 1.05; }
   .h-section { font-size: clamp(2.1rem, 3.8vw, 3.25rem); line-height: 1.06; }
   .h-page { font-size: clamp(2.4rem, 4.6vw, 3.75rem); line-height: 1.04; }
   .lead { @apply text-[17px] leading-[1.65] text-secondary sm:text-[18px]; }

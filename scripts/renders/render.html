@@ -63,7 +63,8 @@ function plain(color, r = .6) { return new THREE.MeshStandardMaterial({ color, r
 function box(w, h, d, mats, r = .012) {
   const m = new THREE.Mesh(r>0.0099 && P.get('round') ? new RoundedBoxGeometry(w, h, d, 4, r) : new THREE.BoxGeometry(w, h, d), mats); m.castShadow = true; m.receiveShadow = true; return m;
 }
-const add = (m, x = 0, y = 0, z = 0, ry = 0) => { m.position.set(x, y, z); m.rotation.y = -ry; scene.add(m); return m; };
+const ROT = -0.34; // one shared turn: front face to camera, a sliver of the right side for depth
+const add = (m, x = 0, y = 0, z = 0) => { m.position.set(x, y, z); m.rotation.y = ROT; scene.add(m); return m; };
 
 // ---------- products ----------
 const B = {};
@@ -137,7 +138,7 @@ B.mailer = () => {
   // tissue/insert
   const ins = box(W - .1, .08, D - .1, plain('#EDEFF5', .9), .02); ins.position.y = .06; g.add(ins);
   g.traverse(o => { if (o.isMesh) { o.castShadow = o.receiveShadow = true; } });
-  g.rotation.y = .5; scene.add(g);
+  g.rotation.y = ROT; scene.add(g);
   contact(2.4, 1.8, 0, -.1);
   return { cam: [2.0, 2.2, 2.7], look: [0, .35, -.15], fov: 32 };
 };
@@ -148,21 +149,21 @@ B.shipping = () => {
   const top = tex(1024, 1024, (c, w, h) => { kraft(c, w, h, '#B48C62'); c.fillStyle = 'rgba(80,55,30,.35)'; c.fillRect(0, h / 2 - 2, w, 4); c.fillStyle = 'rgba(205,185,155,.6)'; c.fillRect(0, h / 2 - 90, w, 180); });
   const k = mat(side, { r: .9 });
   const m = [k, k, mat(top, { r: .9 }), k, k, k];
-  add(box(S, S * .82, S, m, .015), -.15, S * .41, 0, -.6);
-  const s2 = box(.8, .55, .8, m, .012); add(s2, .95, .275, .55, -.35);
+  add(box(S, S * .82, S, m, .015), -.45, S * .41, -.25);
+  add(box(.8, .55, .8, m, .012), .62, .275, .25);
   contact(2.8, 2.2, .3, .2);
   return { cam: [2.6, 2.2, 3.4], look: [.3, .45, .1], fov: 32 };
 };
-// 6 Food box: white pizza/bakery box with print
+// 6 Food box: printed bakery box, artwork on the front
 B.food = () => {
-  const S = 1.5, H = .22;
-  const top = tex(1500, 1500, (c, w, h) => { c.fillStyle = '#FBFAF7'; c.fillRect(0, 0, w, h); c.strokeStyle = BRAND; c.lineWidth = 10; c.beginPath(); c.arc(w / 2, h / 2, 420, 0, Math.PI * 2); c.stroke(); c.fillStyle = BRAND; c.font = '600 120px IT'; c.textAlign = 'center'; c.fillText('Fornaio', w / 2, h / 2 + 10); c.font = '500 50px IT'; c.fillStyle = SKY; c.fillText('WOOD-FIRED · LAHORE', w / 2, h / 2 + 100); c.fillStyle = CYAN; c.fillRect(w / 2 - 60, h / 2 - 150, 120, 8); });
-  const side = tex(1500, 220, (c, w, h) => { c.fillStyle = '#FBFAF7'; c.fillRect(0, 0, w, h); c.fillStyle = BRAND; c.fillRect(0, h - 30, w, 30); });
-  const m = [mat(side), mat(side), mat(top, { r: .7 }), plain('#eee'), mat(side), mat(side)];
-  add(box(S, H, S, m, .01), 0, H / 2, 0, -.5);
-  add(box(S, H, S, m, .01), .05, H * 1.5 + .004, -.02, -.42);
-  contact(2.4, 2.4);
-  return { cam: [2.2, 2.4, 2.6], look: [0, .2, 0], fov: 32 };
+  const W = 1.25, H = .78, D = 1.0;
+  const front = tex(1250, 780, (c, w, h) => { c.fillStyle = '#FBFAF7'; c.fillRect(0, 0, w, h); c.fillStyle = BRAND; c.fillRect(0, h - 90, w, 90); c.strokeStyle = BRAND; c.lineWidth = 8; c.beginPath(); c.arc(w / 2, h * .43, 230, 0, Math.PI * 2); c.stroke(); c.fillStyle = BRAND; c.font = '600 104px IT'; c.textAlign = 'center'; c.fillText('Fornaio', w / 2, h * .46); c.font = '500 40px IT'; c.fillStyle = SKY; c.fillText('BAKERY · LAHORE', w / 2, h * .46 + 70); c.fillStyle = CYAN; c.fillRect(w / 2 - 50, h * .46 - 130, 100, 7); });
+  const side = tex(1000, 780, (c, w, h) => { c.fillStyle = '#F6F5F1'; c.fillRect(0, 0, w, h); c.fillStyle = BRAND; c.fillRect(0, h - 90, w, 90); });
+  const top = tex(1250, 1000, (c, w, h) => { c.fillStyle = '#FBFAF7'; c.fillRect(0, 0, w, h); c.fillStyle = 'rgba(52,59,130,.08)'; c.fillRect(w * .2, h * .2, w * .6, h * .6); c.strokeStyle = 'rgba(52,59,130,.35)'; c.lineWidth = 4; c.strokeRect(w * .2, h * .2, w * .6, h * .6); });
+  const m = [mat(side), mat(side), mat(top, { r: .6 }), plain('#eee'), mat(front, { r: .5 }), mat(side)];
+  add(box(W, H, D, m, .01), 0, H / 2, 0);
+  contact(2.0, 1.7);
+  return { cam: [0, 1, 3], look: [0, .4, 0], fov: 32 };
 };
 // 7 Paper bag: white bag with rope handles
 B.bag = () => {
@@ -175,7 +176,7 @@ B.bag = () => {
   const rope = (z) => { const curve = new THREE.CatmullRomCurve3([new THREE.Vector3(-.22, H - .05, z), new THREE.Vector3(-.2, H + .3, z), new THREE.Vector3(0, H + .42, z), new THREE.Vector3(.2, H + .3, z), new THREE.Vector3(.22, H - .05, z)]); const m = new THREE.Mesh(new THREE.TubeGeometry(curve, 60, .016, 10), plain(NAVY, .7)); m.castShadow = true; g.add(m); };
   rope(D / 2 + .005); rope(-D / 2 - .005);
   g.traverse(o => { if (o.isMesh) { o.castShadow = o.receiveShadow = true; } });
-  g.rotation.y = .3; scene.add(g);
+  g.rotation.y = ROT; scene.add(g);
   contact(2.0, 1.4);
   return { cam: [2.2, 1.9, 2.9], look: [0, .8, 0], fov: 32 };
 };
@@ -183,12 +184,12 @@ B.bag = () => {
 B.labels = () => {
   const lab = tex(2048, 512, (c, w, h) => { c.fillStyle = '#fff'; c.fillRect(0, 0, w, h); c.fillStyle = NAVY; c.fillRect(0, 0, w, 70); c.fillRect(0, h - 70, w, 70); c.fillStyle = NAVY; c.font = '600 120px IT'; c.fillText('Wild honey', 120, 290); c.fillText('Wild honey', 1144, 290); c.fillStyle = SKY; c.font = '500 50px IT'; c.fillText('RAW · 500 g', 124, 370); c.fillText('RAW · 500 g', 1148, 370); });
   const jar = new THREE.Mesh(new THREE.CylinderGeometry(.42, .42, 1.0, 96), [new THREE.MeshPhysicalMaterial({ color: 0xC98A2B, roughness: .15, clearcoat: 1 }), plain('#222', .4), plain('#222')]);
-  jar.position.set(-.25, .5, 0); jar.castShadow = true; scene.add(jar);
-  const lbl = new THREE.Mesh(new THREE.CylinderGeometry(.425, .425, .5, 96, 1, true), mat(lab, { r: .45 })); lbl.position.set(-.25, .5, 0); lbl.rotation.y = 2.2; scene.add(lbl);
-  const cap = new THREE.Mesh(new THREE.CylinderGeometry(.43, .43, .16, 96), plain(NAVY, .35)); cap.position.set(-.25, 1.08, 0); cap.castShadow = true; scene.add(cap);
+  jar.position.set(-.3, .5, -.15); jar.castShadow = true; scene.add(jar);
+  const lbl = new THREE.Mesh(new THREE.CylinderGeometry(.425, .425, .5, 96, 1, true), mat(lab, { r: .45 })); lbl.position.set(-.3, .5, -.15); lbl.rotation.y = -1.25; scene.add(lbl);
+  const cap = new THREE.Mesh(new THREE.CylinderGeometry(.43, .43, .16, 96), plain(NAVY, .35)); cap.position.set(-.3, 1.08, -.15); cap.castShadow = true; scene.add(cap);
   // label roll
   const roll = new THREE.Mesh(new THREE.CylinderGeometry(.42, .42, .3, 96), [mat(tex(2048, 300, (c, w, h) => { c.fillStyle = '#fff'; c.fillRect(0, 0, w, h); for (let i = 0; i < 12; i++) { c.fillStyle = NAVY; c.fillRect(i * 170 + 10, 20, 150, 260); c.fillStyle = '#fff'; c.font = '600 28px IT'; c.fillText('honey', i * 170 + 40, 160); } })), plain('#F2F2F2', .8), plain('#F2F2F2', .8)]);
-  roll.position.set(.75, .15, .45); roll.castShadow = true; scene.add(roll);
+  roll.position.set(.62, .15, .42); roll.castShadow = true; scene.add(roll);
   const core = new THREE.Mesh(new THREE.CylinderGeometry(.16, .16, .302, 48), plain('#B98F62', .9)); core.position.copy(roll.position); scene.add(core);
   contact(2.6, 2.0, .2, .2);
   return { cam: [2.0, 1.7, 2.8], look: [.15, .45, .1], fov: 32 };
@@ -199,8 +200,9 @@ const cam = new THREE.PerspectiveCamera(cfg.fov, 1, .1, 100);
 const bb = new THREE.Box3(); scene.updateMatrixWorld(true);
 scene.traverse(o => { if (o.isMesh && !o.userData.skip) bb.expandByObject(o); });
 const sph = bb.getBoundingSphere(new THREE.Sphere());
-const dir = new THREE.Vector3(...cfg.cam).sub(new THREE.Vector3(...cfg.look)).normalize();
-const dist = sph.radius / Math.sin(THREE.MathUtils.degToRad(cfg.fov / 2)) * (+P.get('m') || 0.9);
+const EL = THREE.MathUtils.degToRad(+(P.get('el') || 21));
+const dir = new THREE.Vector3(0, Math.sin(EL), Math.cos(EL));
+const dist = sph.radius / Math.sin(THREE.MathUtils.degToRad(cfg.fov / 2)) * (+P.get('m') || 1.05);
 const tgt = sph.center.clone(); tgt.y -= sph.radius * .04;
 cam.position.copy(tgt).addScaledVector(dir, dist); cam.lookAt(tgt);
 renderer.render(scene, cam);
