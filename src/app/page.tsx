@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { ArrowRight, BadgeCheck, Factory, Mail, MapPin, Phone, ShieldCheck, Truck } from 'lucide-react';
 import { PAGE_SEO, seoTitle } from '@/data/seo';
 import { families, presses, process, sectors } from '@/data/catalog';
+import { Reasons } from '@/components/Reasons';
 import { COMPANY, emailLink, mapsLink, phoneLink, quoteLink } from '@/lib/company';
 import { ArrowLink, Eyebrow, SectionHead } from '@/components/Section';
 import { ClientLogos } from '@/components/ClientStrip';
-import { CertBadge } from '@/components/Certifications';
 import { WhatsAppIcon } from '@/components/FloatingContact';
 
 export const metadata: Metadata = { title: seoTitle(PAGE_SEO.home), description: PAGE_SEO.home.description, alternates: { canonical: '/' } };
@@ -19,12 +19,6 @@ const trust = [
   { icon: Truck, text: 'Delivery across Pakistan' },
 ];
 
-const reasons = [
-  { badge: 'iso' as const, title: 'Certified quality management', text: 'ISO 9001:2015 certified. Every order follows a documented process, from the artwork check to final inspection.' },
-  { badge: 'halal' as const, title: 'Halal certified', text: 'Certified for food and consumer packaging, as food, bakery and FMCG brands require of their suppliers.' },
-  { badge: '25+', title: '25+ years in production', text: 'More than a quarter of a century producing packaging in Lahore for pharmaceutical, food and retail brands.' },
-  { badge: 'factory', title: 'One facility, no outsourcing', text: 'Printing, finishing and converting take place under one roof, so quality and delivery dates stay in our hands.' },
-];
 
 export default function Home() {
   const quote = quoteLink();
@@ -128,18 +122,11 @@ export default function Home() {
       </section>
 
       {/* Why ALL PACK */}
-      <section id="why" className="section border-t border-line bg-mist">
+      <section className="section border-t border-line bg-mist">
         <div className="container-x">
           <SectionHead kicker="Why ALL PACK" title="Why brands trust ALL PACK." sub="Certified processes, our own presses and a client list built over more than 25 years." />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {reasons.map(r => (
-              <div key={r.title} className="card p-7">
-                {r.badge === 'iso' || r.badge === 'halal' ? <CertBadge id={r.badge} size={56} /> : <span className="grid h-14 w-14 place-items-center rounded-full bg-navy font-display text-[16px] font-bold text-white">{r.badge === '25+' ? '25+' : <Factory size={22} strokeWidth={1.75} />}</span>}
-                <h3 className="mt-6 text-[19px]">{r.title}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-secondary">{r.text}</p>
-              </div>
-            ))}
-          </div>
+          <Reasons />
+          <div className="mt-12 text-center"><ArrowLink href="/why-all-pack">Read why brands choose ALL PACK</ArrowLink></div>
         </div>
       </section>
 

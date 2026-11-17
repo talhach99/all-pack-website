@@ -31,6 +31,10 @@ export const PAGE_SEO = {
     title: 'About ALL PACK | Packaging Printers in Lahore',
     description: 'For over 25 years ALL PACK has printed packaging for Pakistani brands, with Heidelberg offset printing and in-house finishing. ISO 9001 and Halal certified.',
   },
+  why: {
+    title: 'Why ALL PACK: Certified Packaging Printers',
+    description: 'ISO 9001:2015 and Halal certified, with Heidelberg offset printing and finishing in one Lahore facility. How ALL PACK keeps colour and delivery on target.',
+  },
   contact: {
     absolute: true,
     title: 'Contact ALL PACK | Request a Packaging Quote',

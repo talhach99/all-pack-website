@@ -5,7 +5,7 @@ import { families } from '@/data/catalog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = COMPANY.siteUrl;
-  const pages: [string, number][] = [['', 1], ['/products', .9], ['/industries', .8], ['/about', .7], ['/contact', .7], ['/insights', .6], ['/faq', .6], ['/privacy', .2], ['/terms', .2]];
+  const pages: [string, number][] = [['', 1], ['/products', .9], ['/industries', .8], ['/why-all-pack', .8], ['/about', .7], ['/contact', .7], ['/insights', .6], ['/faq', .6], ['/privacy', .2], ['/terms', .2]];
   return [
     ...pages.map(([path, priority]) => ({
       url: `${base}${path}`, changeFrequency: 'monthly' as const, priority,

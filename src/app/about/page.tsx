@@ -2,7 +2,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PAGE_SEO, seoTitle } from '@/data/seo';
-import { presses, process, sectors } from '@/data/catalog';
+import { presses, principles, process, sectors } from '@/data/catalog';
 import { quoteLink } from '@/lib/company';
 import { Eyebrow, SectionHead } from '@/components/Section';
 import { ClientLogos } from '@/components/ClientStrip';
@@ -11,12 +11,6 @@ import { WhatsAppIcon } from '@/components/FloatingContact';
 
 export const metadata: Metadata = { title: seoTitle(PAGE_SEO.about), description: PAGE_SEO.about.description, alternates: { canonical: '/about' } };
 
-const principles = [
-  { title: 'Specification before production', text: 'Board, structure, print and finish are agreed in writing before an order is scheduled, so there are no surprises at delivery.' },
-  { title: 'Colour that holds across reorders', text: 'Approved proofs become the reference for every reprint. A carton ordered next year should match the one delivered today.' },
-  { title: 'Delivery dates we can keep', text: 'Lead times are confirmed with the quotation and planned against our own press schedule, not a subcontractor’s.' },
-  { title: 'Straight answers', text: 'If a format, finish or deadline will not work for your product, we say so at the quotation stage and propose an alternative.' },
-];
 
 export default function AboutPage() {
   return (

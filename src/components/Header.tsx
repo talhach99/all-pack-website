@@ -12,7 +12,7 @@ const NAV = [
   { text: 'Home', href: '/' },
   { text: 'Products', href: '/products' },
   { text: 'Industries', href: '/industries' },
-  { text: 'Why ALL PACK', href: '/#why' },
+  { text: 'Why ALL PACK', href: '/why-all-pack' },
   { text: 'Guides', href: '/insights' },
   { text: 'FAQs', href: '/faq' },
   { text: 'About', href: '/about' },

@@ -203,3 +203,18 @@ export const presses = [
   { name: 'Heidelberg GTO 52', use: 'Labels, leaflets and shorter runs' },
   { name: 'Solna 125', use: 'Additional capacity for volume orders' },
 ];
+
+/** Why brands choose ALL PACK (home preview and /why-all-pack). */
+export const reasons = [
+  { badge: 'iso' as const, title: 'Certified quality management', text: 'ISO 9001:2015 certified. Every order follows a documented process, from the artwork check to final inspection.' },
+  { badge: 'halal' as const, title: 'Halal certified', text: 'Certified for food and consumer packaging, as food, bakery and FMCG brands require of their suppliers.' },
+  { badge: '25+' as const, title: '25+ years in production', text: 'More than a quarter of a century producing packaging in Lahore for pharmaceutical, food and retail brands.' },
+  { badge: 'factory' as const, title: 'One facility, no outsourcing', text: 'Printing, finishing and converting take place under one roof, so quality and delivery dates stay in our hands.' },
+];
+
+export const principles = [
+  { title: 'Specification before production', text: 'Board, structure, print and finish are agreed in writing before an order is scheduled, so there are no surprises at delivery.' },
+  { title: 'Colour that holds across reorders', text: 'Approved proofs become the reference for every reprint. A carton ordered next year should match the one delivered today.' },
+  { title: 'Delivery dates we can keep', text: 'Lead times are confirmed with the quotation and planned against our own press schedule, not a subcontractor’s.' },
+  { title: 'Straight answers', text: 'If a format, finish or deadline will not work for your product, we say so at the quotation stage and propose an alternative.' },
+];

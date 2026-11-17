@@ -5,7 +5,7 @@ import { CertBadge } from './Certifications';
 import { COMPANY, mapsLink, phoneLink, whatsappLink } from '@/lib/company';
 import { families } from '@/data/catalog';
 
-const company: [string, string][] = [['About ALL PACK', '/about'], ['Industries', '/industries'], ['Packaging guides', '/insights'], ['FAQ', '/faq'], ['Contact', '/contact']];
+const company: [string, string][] = [['About ALL PACK', '/about'], ['Why ALL PACK', '/why-all-pack'], ['Industries', '/industries'], ['Packaging guides', '/insights'], ['FAQ', '/faq'], ['Contact', '/contact']];
 
 export function Footer() {
   const call = phoneLink();
