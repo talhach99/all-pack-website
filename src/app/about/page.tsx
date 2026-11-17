@@ -2,7 +2,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PAGE_SEO, seoTitle } from '@/data/seo';
-import { presses, principles, process, sectors } from '@/data/catalog';
+import { principles, process, sectors } from '@/data/catalog';
+import { Machines } from '@/components/Machines';
 import { quoteLink } from '@/lib/company';
 import { Eyebrow, SectionHead } from '@/components/Section';
 import { ClientLogos } from '@/components/ClientStrip';
@@ -63,15 +64,8 @@ export default function AboutPage() {
       <section className="section dark-section">
         <div className="container-x">
           <SectionHead light kicker="Our facility" title="Printing, finishing and converting under one roof." />
-          <div className="grid gap-8 border-b border-white/15 pb-12 sm:grid-cols-3">
-            {presses.map(m => (
-              <div key={m.name} className="border-t border-white/15 pt-7">
-                <p className="font-display text-[21px] font-semibold text-white">{m.name}</p>
-                <p className="mt-2 text-[15px] text-cyan">{m.use}</p>
-              </div>
-            ))}
-          </div>
-          <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <Machines />
+          <ol className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {process.map((p, i) => (
               <li key={p.step}>
                 <p className="font-mono text-[12.5px] text-brand-light">{String(i + 1).padStart(2, '0')} / {p.step}</p>

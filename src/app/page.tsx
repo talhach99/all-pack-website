@@ -3,7 +3,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, BadgeCheck, Factory, Mail, MapPin, Phone, ShieldCheck, Truck } from 'lucide-react';
 import { PAGE_SEO, seoTitle } from '@/data/seo';
-import { families, presses, process, sectors } from '@/data/catalog';
+import { families, process, sectors } from '@/data/catalog';
+import { Machines } from '@/components/Machines';
 import { Reasons } from '@/components/Reasons';
 import { COMPANY, emailLink, mapsLink, phoneLink, quoteLink } from '@/lib/company';
 import { ArrowLink, Eyebrow, SectionHead } from '@/components/Section';
@@ -82,8 +83,9 @@ export default function Home() {
       {/* Manufacturing */}
       <section id="capabilities" className="section dark-section">
         <div className="container-x">
-          <SectionHead light kicker="Manufacturing" title="From approved artwork to delivered packaging." sub="Prepress, printing, finishing and inspection take place under one roof, so colour, cut and delivery date remain under our control." />
-          <ol className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          <SectionHead light kicker="Manufacturing capabilities" title="Our presses and finishing line." sub="Offset printing and a complete finishing line under one roof in Lahore, so colour, cut and delivery date remain under our control." />
+          <Machines />
+          <ol className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {process.map((p, i) => (
               <li key={p.step} className="border-t border-white/15 pt-7">
                 <p className="font-mono text-[12.5px] text-brand-light">{String(i + 1).padStart(2, '0')} / {p.step}</p>
@@ -92,14 +94,6 @@ export default function Home() {
               </li>
             ))}
           </ol>
-          <div className="mt-16 grid gap-8 border-t border-white/15 pt-8 sm:grid-cols-3">
-            {presses.map(m => (
-              <div key={m.name}>
-                <p className="font-display text-[20px] font-semibold text-white">{m.name}</p>
-                <p className="mt-1 text-[14px] text-cyan">{m.use}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 

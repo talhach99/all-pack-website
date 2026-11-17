@@ -218,3 +218,16 @@ export const principles = [
   { title: 'Delivery dates we can keep', text: 'Lead times are confirmed with the quotation and planned against our own press schedule, not a subcontractor’s.' },
   { title: 'Straight answers', text: 'If a format, finish or deadline will not work for your product, we say so at the quotation stage and propose an alternative.' },
 ];
+
+/**
+ * Manufacturing capabilities (restored from the previous site). Photos are the same free stock images used before
+ * (Pexels and Unsplash, hotlinked); replace with the owner's own machine photos when available.
+ */
+const px = (ref: string) => `https://images.pexels.com/photos/${ref}?auto=compress&cs=tinysrgb&w=1100`;
+const us = (ref: string) => `https://images.unsplash.com/${ref}?auto=format&fit=crop&w=1100&q=80`;
+export const machines = [
+  { name: 'Heidelberg 4-colour offset', type: 'Four-colour sheetfed offset', text: 'All four process colours in a single pass, for sharp, consistent colour across long carton runs.', best: ['Pharmaceutical cartons', 'Food cartons', 'Retail packaging'], image: px('19316517/pexels-photo-19316517/free-photo-of-machinery-in-factory.png') },
+  { name: 'Heidelberg GTO 52', type: 'Small-format offset', text: 'A precise small-format press for labels, inserts, leaflets and shorter runs that still need offset quality.', best: ['Labels', 'Leaflets and inserts', 'Short runs'], image: us('photo-1729944950511-e9c71556cfd4') },
+  { name: 'Solna 125', type: 'Offset press', text: 'Additional offset capacity for larger orders, keeping delivery dates on schedule when volumes rise.', best: ['Volume runs', 'Wrappers', 'Cartons'], image: px('19837529/pexels-photo-19837529/free-photo-of-gray-industrial-wall.jpeg') },
+  { name: 'Finishing line', type: 'Post-press', text: 'Die-cutting, creasing, lamination, varnish and gluing, so every printed sheet leaves as a finished box.', best: ['Die-cutting and creasing', 'Lamination and varnish', 'Folding and gluing'], image: us('photo-1676474508989-40ddb421e426') },
+];

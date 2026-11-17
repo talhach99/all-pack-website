@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Mail } from 'lucide-react';
 import { PAGE_SEO, seoTitle } from '@/data/seo';
-import { presses, principles, process, sectors } from '@/data/catalog';
+import { principles, process, sectors } from '@/data/catalog';
+import { Machines } from '@/components/Machines';
 import { faqs } from '@/data/faqs';
 import { emailLink, quoteLink } from '@/lib/company';
 import { PageHero } from '@/components/PageHero';
@@ -54,14 +55,7 @@ export default function WhyPage() {
               </div>
             ))}
           </div>
-          <div className="mt-16 grid gap-8 border-t border-white/15 pt-8 sm:grid-cols-3">
-            {presses.map(m => (
-              <div key={m.name}>
-                <p className="font-display text-[20px] font-semibold text-white">{m.name}</p>
-                <p className="mt-1 text-[14px] text-cyan">{m.use}</p>
-              </div>
-            ))}
-          </div>
+          <div className="mt-16"><Machines /></div>
         </div>
       </section>
 
