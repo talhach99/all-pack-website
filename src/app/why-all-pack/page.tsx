@@ -48,7 +48,7 @@ export default function WhyPage() {
           <SectionHead light kicker="In-house production" title="What one facility means for your order." sub="Printing, finishing and converting take place under one roof in Lahore. Nothing is handed to a subcontractor." />
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {inHouse.map((x, i) => (
-              <div key={x.title} className="border-t border-white/15 pt-7">
+              <div key={x.title} className="draw-line relative pt-7">
                 <p className="font-mono text-[12.5px] text-brand-light">{String(i + 1).padStart(2, '0')}</p>
                 <h3 className="mt-4 text-[20px] !text-white">{x.title}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-cyan">{x.text}</p>

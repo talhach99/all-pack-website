@@ -5,6 +5,7 @@ import { ArrowRight, BadgeCheck, Factory, Mail, MapPin, Phone, ShieldCheck, Truc
 import { PAGE_SEO, seoTitle } from '@/data/seo';
 import { families, process, sectors } from '@/data/catalog';
 import { Machines } from '@/components/Machines';
+import { HeroVisual } from '@/components/HeroVisual';
 import { Reasons } from '@/components/Reasons';
 import { COMPANY, emailLink, mapsLink, phoneLink, quoteLink } from '@/lib/company';
 import { ArrowLink, Eyebrow, SectionHead } from '@/components/Section';
@@ -30,7 +31,7 @@ export default function Home() {
       {/* Hero: navy stage, glass card, products at the bottom right */}
       <section className="hero-stage relative isolate overflow-hidden">
         <div className="container-x grid items-center gap-10 py-10 sm:py-14 lg:min-h-[640px] lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)] lg:gap-16 lg:py-16">
-          <div className="hero-card anim-up rounded-[28px] p-7 sm:p-11">
+          <div className="hero-card hero-in rounded-[28px] p-7 sm:p-11">
             <p className="eyebrow eyebrow-light">Packaging printers · Lahore</p>
             <h1 className="h-display mt-6 !text-white">Custom printed packaging, <span className="text-[#8FC2F2]">made to your specification.</span></h1>
             <p className="mt-6 text-[17px] leading-[1.7] text-cyan sm:text-[18px]">Cartons, rigid boxes, mailers, paper bags and labels, printed on Heidelberg offset presses and finished under one roof for pharmaceutical, food and retail brands across Pakistan.</p>
@@ -42,11 +43,7 @@ export default function Home() {
               {trust.map(({ icon: Icon, text }) => <li key={text} className="flex items-center gap-2"><Icon size={15} strokeWidth={1.75} className="text-rule" /> {text}</li>)}
             </ul>
           </div>
-          <img
-            src="/renders/packaging-range.webp" alt="ALL PACK printed packaging: a paper bag, folding carton, rigid gift box, pharmaceutical carton and corrugated shipping boxes"
-            width={1500} height={1026} fetchPriority="high"
-            className="anim-up d2 mx-auto w-full max-w-[680px] lg:max-w-none lg:scale-[1.12]"
-          />
+          <HeroVisual />
         </div>
       </section>
 
@@ -63,7 +60,7 @@ export default function Home() {
           <ul className="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-4">
             {families.map((f, i) => (
               <li key={f.slug}>
-                <Link href={`/products#${f.slug}`} className="group block">
+                <Link href={`/products#${f.slug}`} className="lift-card group block">
                   <div className="flex aspect-square items-center justify-center rounded-2xl bg-card p-3 transition-colors group-hover:bg-soft sm:p-4">
                     <img src={f.image} alt={f.alt} loading="lazy" className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]" />
                   </div>
@@ -87,7 +84,7 @@ export default function Home() {
           <Machines />
           <ol className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {process.map((p, i) => (
-              <li key={p.step} className="border-t border-white/15 pt-7">
+              <li key={p.step} className="draw-line relative pt-7">
                 <p className="font-mono text-[12.5px] text-brand-light">{String(i + 1).padStart(2, '0')} / {p.step}</p>
                 <h3 className="mt-4 text-[21px] !text-white">{p.title}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-cyan">{p.text}</p>

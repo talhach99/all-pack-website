@@ -30,17 +30,38 @@ export function Motion() {
     }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
     targets.forEach(t => io.observe(t));
 
-    return () => { io.disconnect(); };
+    // Count-up numbers: <span data-count="25" data-suffix="+">25+</span>
+    const counters = Array.from(document.querySelectorAll<HTMLElement>('[data-count]'));
+    const cio = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target as HTMLElement; cio.unobserve(el);
+        const end = Number(el.dataset.count), suffix = el.dataset.suffix || '', t0 = performance.now(), dur = 1400;
+        const step = (t: number) => {
+          const k = Math.min(1, (t - t0) / dur), v = Math.round(end * (1 - Math.pow(1 - k, 3)));
+          el.textContent = `${v}${suffix}`;
+          if (k < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+    }, { threshold: .6 });
+    counters.forEach(c => cio.observe(c));
+
+    return () => { io.disconnect(); cio.disconnect(); };
   }, [path]);
 
   useEffect(() => {
-    const onScroll = () => document.documentElement.classList.toggle('scrolled', scrollY > 12);
+    const bar = document.getElementById('scroll-progress');
+    const onScroll = () => {
+      document.documentElement.classList.toggle('scrolled', scrollY > 12);
+      if (bar) { const max = document.documentElement.scrollHeight - innerHeight; bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`; }
+    };
     onScroll();
     addEventListener('scroll', onScroll, { passive: true });
     return () => removeEventListener('scroll', onScroll);
   }, []);
 
-  return null;
+  return <div id="scroll-progress" aria-hidden="true" className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[3px] origin-left scale-x-0 bg-rule" />;
 }
 
 /** Infinite horizontal ticker. Pure CSS, works without JS. */

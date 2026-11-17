@@ -25,7 +25,7 @@ export default function AboutPage() {
             <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="btn-primary mt-9"><WhatsAppIcon size={18} /> Request a quote</a>
           </div>
           <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-line bg-line">
-            <div className="col-span-2 bg-white p-8"><dd className="font-display text-[72px] font-semibold leading-none tracking-[-.04em] text-navy sm:text-[88px]">25+</dd><dt className="mt-3 text-[14px] text-muted">Years in packaging and print</dt></div>
+            <div className="col-span-2 bg-white p-8"><dd className="font-display text-[72px] font-semibold leading-none tracking-[-.04em] text-navy sm:text-[88px]"><span data-count="25" data-suffix="+">25+</span></dd><dt className="mt-3 text-[14px] text-muted">Years in packaging and print</dt></div>
             <div className="bg-white p-6"><dd className="font-display text-[34px] font-semibold leading-none text-navy">ISO</dd><dt className="mt-2 text-[13px] text-muted">9001:2015 certified</dt></div>
             <div className="bg-white p-6"><dd className="font-display text-[34px] font-semibold leading-none text-navy">Halal</dd><dt className="mt-2 text-[13px] text-muted">Certified packaging</dt></div>
           </dl>
