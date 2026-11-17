@@ -16,9 +16,25 @@ export default function IndustriesPage() {
     <main>
       <PageHero
         kicker="Industries"
-        title="Packaging produced for the sectors we know best"
-        description="Each industry asks something different of its packaging: regulated text, food-grade board, shelf impact or courier strength. These are the sectors ALL PACK produces for every week."
-      />
+        title={<>Packaging for the sectors <span className="text-[#8FC2F2]">we know best</span></>}
+        description="Regulated text, food-grade board, shelf impact or courier strength. Each sector asks something different of its packaging, and we produce for all of them every week."
+        aside={
+          <ol className="border-b border-white/10">
+            {sectors.map((s, i) => (
+              <li key={s.slug}>
+                <a href={`#${s.slug}`} className="group grid grid-cols-[40px_1fr_auto] items-center gap-4 border-t border-white/10 py-3.5 transition-colors hover:bg-white/[.03]">
+                  <span className="font-mono text-[12px] text-[#7FD3F0]">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="font-display text-[20px] font-medium tracking-[-.01em] text-white">{s.name}</span>
+                  <span className="hidden max-w-[220px] text-right text-[13px] leading-relaxed text-[#9AA5CC] sm:block">{s.clients.join(' · ')}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        }
+      >
+        <a href={quoteLink('Hello ALL PACK, I would like to discuss packaging for my industry.')} target="_blank" rel="noopener noreferrer" className="btn-primary"><WhatsAppIcon size={18} /> Discuss your packaging</a>
+        <Link href="/products" className="btn-outline">View products</Link>
+      </PageHero>
       <div className="container-x pb-8">
         {sectors.map((s, i) => {
           const hero = formatLink(s.formats[0]);

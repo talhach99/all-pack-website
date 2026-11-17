@@ -24,13 +24,13 @@ export default function ContactPage() {
   return (
     <main>
       <section className="page-hero">
-        <div className="container-x pb-16 pt-14 sm:pb-20 sm:pt-20">
-          <div className="anim-up mx-auto max-w-3xl text-center">
-            <Eyebrow>Contact</Eyebrow>
+        <div className="container-x pb-12 pt-10 sm:pb-16 sm:pt-14">
+          <div className="hero-in mx-auto max-w-3xl text-center">
+            <Eyebrow light>Contact</Eyebrow>
             <h1 className="h-page mt-5">Request a packaging quotation</h1>
             <p className="lead mx-auto mt-6 max-w-2xl">Send your product dimensions, quantity and artwork by WhatsApp, email or the form below. We reply within 24 hours with a specification and price.</p>
           </div>
-          <div className="mx-auto mt-12 grid max-w-5xl gap-4 md:grid-cols-3">
+          <div className="mx-auto mt-10 grid max-w-5xl gap-4 md:grid-cols-3">
             {methods.map(m => (
               <a key={m.label} href={m.href} {...(m.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="group card p-6 transition-colors hover:border-[#C9CFDC]">
                 <span className="flex items-center justify-between">

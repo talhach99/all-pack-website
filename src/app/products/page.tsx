@@ -30,9 +30,13 @@ export default function ProductsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
       <PageHero
         kicker="Products"
-        title="Custom packaging, specified and printed in Lahore"
-        description="Eight packaging formats, each made to your dimensions, board grade and artwork. Choose a format below, send your requirements and receive a specification and price within 24 hours."
-      />
+        title={<>Custom packaging, specified and <span className="text-[#8FC2F2]">printed in Lahore</span></>}
+        description="Eight formats, each made to your dimensions, board grade and artwork, then printed and finished in our own facility. Choose a format below for its styles, board and finishes."
+        aside={<img src="/renders/packaging-range.webp" alt="ALL PACK printed packaging: cartons, rigid and drawer boxes" width={2000} height={1245} className="float mx-auto w-full max-w-[640px] lg:max-w-none lg:origin-left lg:scale-[1.18]" />}
+      >
+        <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="btn-primary"><WhatsAppIcon size={18} /> Request a quote</a>
+        <a href="#pharmaceutical-cartons" className="btn-outline">See the formats</a>
+      </PageHero>
 
       <nav aria-label="Product formats" className="sticky top-[76px] z-30 border-b border-line bg-white/95 backdrop-blur sm:top-[88px] lg:top-[56px]">
         <ul className="container-x no-scrollbar flex gap-2 overflow-x-auto py-3 lg:justify-center">

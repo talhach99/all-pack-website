@@ -29,8 +29,23 @@ export default function WhyPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
       <PageHero
         kicker="Why ALL PACK"
-        title="Why brands keep their packaging with ALL PACK"
-        description="Certified processes, our own presses and more than 25 years of production experience. Here is what that means for the cartons, boxes and labels you put in front of your customers."
+        title={<>Why brands keep their packaging <span className="text-[#8FC2F2]">with ALL PACK</span></>}
+        description="Certified processes, our own presses and more than 25 years in production. Every order runs against a written specification and a signed proof."
+        aside={
+          <dl className="border-b border-white/10">
+            {[
+              [<><span data-count="25" data-suffix="+">25+</span> years</>, 'Producing packaging in Lahore'],
+              ['ISO 9001:2015', 'Certified quality system'],
+              ['Halal', 'Certified for food and consumer packaging'],
+              ['In-house', 'Heidelberg printing through to die-cutting and gluing'],
+            ].map(([k, v], i) => (
+              <div key={i} className="grid grid-cols-[1fr_auto] items-baseline gap-6 border-t border-white/10 py-5 sm:py-6">
+                <dt className={`font-display text-[clamp(2rem,3.6vw,3rem)] font-medium leading-none tracking-[-.03em] ${i === 3 ? 'text-[#8FC2F2]' : 'text-white'}`}>{k}</dt>
+                <dd className="max-w-[220px] text-right text-[14px] leading-relaxed text-cyan">{v}</dd>
+              </div>
+            ))}
+          </dl>
+        }
       >
         <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="btn-primary"><WhatsAppIcon size={18} /> Request a quote</a>
         <Link href="/products" className="btn-outline">View the product range</Link>

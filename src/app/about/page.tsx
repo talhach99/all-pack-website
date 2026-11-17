@@ -17,9 +17,9 @@ export default function AboutPage() {
   return (
     <main>
       <section className="page-hero">
-        <div className="container-x grid items-center gap-12 pb-16 pt-14 sm:pb-20 sm:pt-20 lg:grid-cols-[1.2fr_.8fr] lg:gap-16">
+        <div className="container-x grid items-center gap-12 pb-14 pt-10 sm:pb-16 sm:pt-14 lg:grid-cols-[1.2fr_.8fr] lg:gap-16">
           <div className="anim-up">
-            <Eyebrow>About ALL PACK</Eyebrow>
+            <Eyebrow light>About ALL PACK</Eyebrow>
             <h1 className="h-page mt-5">Over 25 years of printing packaging in Lahore</h1>
             <p className="lead mt-6 max-w-2xl">ALL PACK is a packaging and printing company producing cartons, rigid boxes, corrugated packaging, paper bags and labels for brands across Pakistan. Printing, finishing and converting are carried out in our own facility, under an ISO 9001:2015 certified quality system.</p>
             <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="btn-primary mt-9"><WhatsAppIcon size={18} /> Request a quote</a>
