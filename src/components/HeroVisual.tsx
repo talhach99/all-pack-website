@@ -48,9 +48,9 @@ export function HeroVisual() {
                   <span className={`proof-line ${left ? 'origin-right' : 'origin-left'}`} aria-hidden="true"
                     style={{ top: `${n.y}%`, left: left ? '-6%' : `calc(${n.x}% + 12px)`, width: left ? `calc(${n.x + 6}% - 12px)` : `calc(${106 - n.x}% - 12px)` }} />
                   <span className={`proof-text ${left ? 'text-right' : 'text-left'}`} style={{ top: `${n.y}%`, ...(left ? { right: '107%' } : { left: '107%' }) }}>
-                    <span className="block font-mono text-[11.5px] uppercase tracking-[.1em] text-[#7FD3F0]">{n.step}</span>
+                    <span className="block font-mono text-[12px] tracking-[.02em] text-[#7FD3F0]">{n.step}</span>
                     <span className="mt-1.5 block whitespace-nowrap font-display text-[17px] font-semibold tracking-[-.01em] text-white min-[1400px]:text-[19px]">{n.title}</span>
-                    <span className="mt-0.5 block whitespace-nowrap text-[13.5px] text-cyan">{n.sub}</span>
+                    <span className="mt-0.5 block whitespace-nowrap text-[14px] text-cyan">{n.sub}</span>
                   </span>
                 </li>
               );

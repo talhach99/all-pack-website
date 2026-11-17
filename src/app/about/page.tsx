@@ -20,7 +20,7 @@ export default function AboutPage() {
         <div className="container-x grid items-center gap-12 pb-16 pt-14 sm:pb-20 sm:pt-20 lg:grid-cols-[1.2fr_.8fr] lg:gap-16">
           <div className="anim-up">
             <Eyebrow>About ALL PACK</Eyebrow>
-            <h1 className="h-page mt-5">Over 25 years of printing packaging in Lahore.</h1>
+            <h1 className="h-page mt-5">Over 25 years of printing packaging in Lahore</h1>
             <p className="lead mt-6 max-w-2xl">ALL PACK is a packaging and printing company producing cartons, rigid boxes, corrugated packaging, paper bags and labels for brands across Pakistan. Printing, finishing and converting are carried out in our own facility, under an ISO 9001:2015 certified quality system.</p>
             <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="btn-primary mt-9"><WhatsAppIcon size={18} /> Request a quote</a>
           </div>
@@ -36,7 +36,7 @@ export default function AboutPage() {
         <div className="container-x grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-20">
           <div>
             <Eyebrow>Who we are</Eyebrow>
-            <h2 className="h-section mt-5">A production partner, not a print broker.</h2>
+            <h2 className="h-section mt-5">A production partner, not a print broker</h2>
           </div>
           <div className="space-y-5 text-[17px] leading-[1.8] text-secondary">
             <p>For more than 25 years ALL PACK has produced the packaging that Pakistani brands put in front of their customers: medicine cartons that must carry approved text without error, bakery wrappers that are reordered every week, and gift boxes that have to look right the moment they are opened.</p>
@@ -48,7 +48,7 @@ export default function AboutPage() {
 
       <section className="section border-y border-line bg-mist">
         <div className="container-x">
-          <SectionHead kicker="How we work" title="Four principles behind every order." />
+          <SectionHead kicker="How we work" title="Four principles behind every order" />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {principles.map((p, i) => (
               <div key={p.title} className="card p-7">
@@ -63,12 +63,12 @@ export default function AboutPage() {
 
       <section className="section dark-section">
         <div className="container-x">
-          <SectionHead light kicker="Our facility" title="Printing, finishing and converting under one roof." />
+          <SectionHead light kicker="Our facility" title="Printing, finishing and converting under one roof" />
           <Machines />
           <ol className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {process.map((p, i) => (
               <li key={p.step}>
-                <p className="font-mono text-[12.5px] text-brand-light">{String(i + 1).padStart(2, '0')} / {p.step}</p>
+                <p className="font-mono text-[12px] text-brand-light">{String(i + 1).padStart(2, '0')} / {p.step}</p>
                 <h3 className="mt-3 text-[19px] !text-white">{p.title}</h3>
                 <p className="mt-2 text-[15px] leading-relaxed text-cyan">{p.text}</p>
               </li>
@@ -79,7 +79,7 @@ export default function AboutPage() {
 
       <section className="section">
         <div className="container-x">
-          <SectionHead kicker="Certifications and clients" title="Certified, and trusted by the brands we print for." sub="Our certifications cover the documented quality process and food-contact packaging that our clients’ own audits require." />
+          <SectionHead kicker="Certifications and clients" title="Certified, and trusted by the brands we print for" sub="Our certifications cover the documented quality process and food-contact packaging that our clients’ own audits require." />
           <div className="mx-auto max-w-3xl"><Certifications /></div>
           <p className="meta mt-16 text-center">Brands that print with ALL PACK</p>
           <ClientLogos className="mt-6" />

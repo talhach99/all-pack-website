@@ -23,7 +23,7 @@ const sections = [
 export default function TermsPage() {
   return (
     <main>
-      <PageHero kicker="Terms" title="Terms of service." description="The terms that apply to this website and to packaging orders placed with ALL PACK." />
+      <PageHero kicker="Terms" title="Terms of service" description="The terms that apply to this website and to packaging orders placed with ALL PACK." />
       <section className="container-x pb-28 pt-16">
         <div className="mx-auto max-w-3xl divide-y divide-line border-y border-line">
           {sections.map(([h, b]) => (

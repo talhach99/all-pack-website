@@ -16,7 +16,7 @@ export function FloatingContact() {
   return (
     <a
       href={wa} target="_blank" rel="noopener noreferrer" aria-label="Chat with ALL PACK on WhatsApp" title="Chat on WhatsApp"
-      className="wa-float fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_12px_28px_-8px_rgba(0,0,0,.35)] transition-[transform,background-color] duration-200 hover:scale-110 hover:bg-[#1FBE5A] sm:bottom-6 sm:right-6 sm:h-16 sm:w-16"
+      className="wa-float fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_12px_28px_-8px_rgba(0,0,0,.35)] transition-colors duration-150 hover:bg-[#1FBE5A] active:scale-[.97] sm:bottom-6 sm:right-6 sm:h-16 sm:w-16"
     >
       <WhatsAppIcon size={30} />
     </a>

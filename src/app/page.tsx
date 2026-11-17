@@ -43,7 +43,7 @@ export default function Home() {
           <span aria-hidden="true" className="hero-ring absolute bottom-[4%] left-1/2 h-[24%] w-[105%] -translate-x-1/2 rounded-[50%]" />
           <HeroVisual />
         </div>
-        <ul className="container-x relative z-10 flex flex-wrap justify-center gap-x-7 gap-y-2 pb-10 pt-6 text-[13.5px] font-semibold text-cream min-[1150px]:hidden">
+        <ul className="container-x relative z-10 flex flex-wrap justify-center gap-x-7 gap-y-2 pb-10 pt-6 text-[14px] font-semibold text-cream min-[1150px]:hidden">
           {trust.map(({ icon: Icon, text }) => <li key={text} className="flex items-center gap-2"><Icon size={15} strokeWidth={1.75} className="text-rule" /> {text}</li>)}
         </ul>
       </section>
@@ -57,13 +57,13 @@ export default function Home() {
       {/* Product range */}
       <section className="section">
         <div className="container-x">
-          <SectionHead kicker="Product range" title="Eight formats. One production standard." sub="Each format is made to your dimensions, board and artwork, then printed, finished and inspected in our Lahore facility." />
+          <SectionHead kicker="Product range" title="Eight formats, one production standard" sub="Each format is made to your dimensions, board and artwork, then printed, finished and inspected in our Lahore facility." />
           <ul className="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-4">
             {families.map((f, i) => (
               <li key={f.slug}>
                 <Link href={`/products#${f.slug}`} className="lift-card group block">
                   <div className="flex aspect-square items-center justify-center rounded-2xl bg-card p-3 transition-colors group-hover:bg-soft sm:p-4">
-                    <img src={f.image} alt={f.alt} loading="lazy" className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]" />
+                    <img src={f.image} alt={f.alt} loading="lazy" className="max-h-full max-w-full object-contain" />
                   </div>
                   <div className="mt-4 flex items-baseline justify-between gap-3">
                     <h3 className="text-[17px] leading-snug sm:text-[19px]">{f.name}</h3>
@@ -81,12 +81,12 @@ export default function Home() {
       {/* Manufacturing */}
       <section id="capabilities" className="section dark-section">
         <div className="container-x">
-          <SectionHead light kicker="Manufacturing capabilities" title="Our presses and finishing line." sub="Offset printing and a complete finishing line under one roof in Lahore, so colour, cut and delivery date remain under our control." />
+          <SectionHead light kicker="Manufacturing capabilities" title="Our presses and finishing line" sub="Offset printing and a complete finishing line under one roof in Lahore, so colour, cut and delivery date remain under our control." />
           <Machines />
           <ol className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {process.map((p, i) => (
               <li key={p.step} className="draw-line relative pt-7">
-                <p className="font-mono text-[12.5px] text-brand-light">{String(i + 1).padStart(2, '0')} / {p.step}</p>
+                <p className="font-mono text-[12px] text-brand-light">{String(i + 1).padStart(2, '0')} / {p.step}</p>
                 <h3 className="mt-4 text-[21px] !text-white">{p.title}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-cyan">{p.text}</p>
               </li>
@@ -98,7 +98,7 @@ export default function Home() {
       {/* Industries */}
       <section className="section">
         <div className="container-x">
-          <SectionHead kicker="Industries" title="Packaging for sectors where accuracy matters." sub="Each sector asks something different of its packaging: approved regulatory text, consistent colour across frequent reorders, or impact on a crowded shelf." />
+          <SectionHead kicker="Industries" title="Packaging for sectors where accuracy matters" sub="Each sector asks something different of its packaging: approved regulatory text, consistent colour across frequent reorders, or impact on a crowded shelf." />
           <div className="grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">
             {homeSectors.map((s, i) => (
               <Link key={s.slug} href={`/industries#${s.slug}`} className={`group border-b border-line py-8 sm:px-7 lg:border-b-0 ${i % 2 === 0 ? 'sm:pl-0' : ''} ${i < 3 ? 'lg:border-r' : ''} ${i === 0 ? 'lg:pl-0' : 'lg:pl-7'}`}>
@@ -116,7 +116,7 @@ export default function Home() {
       {/* Why ALL PACK */}
       <section className="section border-t border-line bg-mist">
         <div className="container-x">
-          <SectionHead kicker="Why ALL PACK" title="Why brands trust ALL PACK." sub="Certified processes, our own presses and a client list built over more than 25 years." />
+          <SectionHead kicker="Why ALL PACK" title="Why brands trust ALL PACK" sub="Certified processes, our own presses and a client list built over more than 25 years." />
           <Reasons />
           <div className="mt-12 text-center"><ArrowLink href="/why-all-pack">Read why brands choose ALL PACK</ArrowLink></div>
         </div>
@@ -127,7 +127,7 @@ export default function Home() {
         <div className="container-x grid items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
           <div>
             <Eyebrow>Request a quotation</Eyebrow>
-            <h2 className="h-section mt-5">Tell us what you need to pack.</h2>
+            <h2 className="h-section mt-5">Tell us what you need to pack</h2>
             <p className="lead mt-5 max-w-lg">Share the product dimensions, quantity and artwork. We reply within 24 hours with a specification and price.</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-primary"><WhatsAppIcon size={18} /> Chat on WhatsApp</a>

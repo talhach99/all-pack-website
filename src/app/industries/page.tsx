@@ -16,7 +16,7 @@ export default function IndustriesPage() {
     <main>
       <PageHero
         kicker="Industries"
-        title="Packaging produced for the sectors we know best."
+        title="Packaging produced for the sectors we know best"
         description="Each industry asks something different of its packaging: regulated text, food-grade board, shelf impact or courier strength. These are the sectors ALL PACK produces for every week."
       />
       <div className="container-x pb-8">

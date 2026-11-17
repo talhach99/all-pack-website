@@ -27,7 +27,7 @@ export default function ContactPage() {
         <div className="container-x pb-16 pt-14 sm:pb-20 sm:pt-20">
           <div className="anim-up mx-auto max-w-3xl text-center">
             <Eyebrow>Contact</Eyebrow>
-            <h1 className="h-page mt-5">Request a packaging quotation.</h1>
+            <h1 className="h-page mt-5">Request a packaging quotation</h1>
             <p className="lead mx-auto mt-6 max-w-2xl">Send your product dimensions, quantity and artwork by WhatsApp, email or the form below. We reply within 24 hours with a specification and price.</p>
           </div>
           <div className="mx-auto mt-12 grid max-w-5xl gap-4 md:grid-cols-3">
@@ -38,7 +38,7 @@ export default function ContactPage() {
                   <ArrowUpRight size={16} strokeWidth={1.5} className="text-muted transition-colors group-hover:text-navy" />
                 </span>
                 <span className="mt-4 block text-[17px] font-semibold leading-snug [overflow-wrap:anywhere]">{m.value}</span>
-                <span className="mt-1 block text-[13.5px] text-muted">{m.note}</span>
+                <span className="mt-1 block text-[14px] text-muted">{m.note}</span>
               </a>
             ))}
           </div>
@@ -50,7 +50,7 @@ export default function ContactPage() {
         <div className="container-x grid gap-12 lg:grid-cols-[1.25fr_.75fr] lg:gap-16">
           <div>
             <Eyebrow>Your brief</Eyebrow>
-            <h2 className="mt-5 text-[clamp(1.9rem,3vw,2.5rem)] leading-[1.1]">Prepare your brief here.</h2>
+            <h2 className="mt-5 text-[clamp(1.9rem,3vw,2.5rem)] leading-[1.1]">Prepare your brief here</h2>
             <p className="mt-3 text-[16px] text-secondary">Complete the details below and send them to us on WhatsApp or by email. An approximate size and quantity is enough to start.</p>
             <div className="mt-8"><QuoteForm compact /></div>
           </div>

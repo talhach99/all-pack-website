@@ -12,7 +12,7 @@ export const metadata: Metadata = { title: seoTitle(PAGE_SEO.insights),
 export default function InsightsPage() {
   return (
     <main>
-      <PageHero kicker="Guides" title="Packaging guides from the press floor." description="Practical advice on choosing a box structure, selecting board and preparing artwork that prints correctly first time." />
+      <PageHero kicker="Guides" title="Packaging guides from the press floor" description="Practical advice on choosing a box structure, selecting board and preparing artwork that prints correctly first time." />
       <section className="container-x pb-28 pt-16">
         <div className="grid gap-6 md:grid-cols-3">
           {articles.map((a, i) => (

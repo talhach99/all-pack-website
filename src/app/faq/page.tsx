@@ -15,7 +15,7 @@ export default function FAQPage() {
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
-      <PageHero kicker="FAQ" title="Ordering custom packaging, explained." description="Order quantities, sizes, artwork, proofs, finishes and delivery: the questions we are asked most often before an order is placed." />
+      <PageHero kicker="FAQ" title="Ordering custom packaging, explained" description="Order quantities, sizes, artwork, proofs, finishes and delivery: the questions we are asked most often before an order is placed." />
       <section className="container-x pb-28 pt-16">
         <div className="mx-auto max-w-4xl">
           <FaqAccordion />
