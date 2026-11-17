@@ -2,13 +2,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Mail } from 'lucide-react';
 import { PAGE_SEO, seoTitle } from '@/data/seo';
-import { principles, process, sectors } from '@/data/catalog';
+import { principles, process } from '@/data/catalog';
 import { Machines } from '@/components/Machines';
 import { faqs } from '@/data/faqs';
 import { emailLink, quoteLink } from '@/lib/company';
 import { PageHero } from '@/components/PageHero';
 import { Eyebrow, SectionHead } from '@/components/Section';
-import { Reasons } from '@/components/Reasons';
 import { ClientLogos } from '@/components/ClientStrip';
 import { WhatsAppIcon } from '@/components/FloatingContact';
 
@@ -51,12 +50,6 @@ export default function WhyPage() {
         <Link href="/products" className="btn-outline">View the product range</Link>
       </PageHero>
 
-      <section className="section">
-        <div className="container-x">
-          <SectionHead kicker="Credentials" title="Proof, not promises" sub="The certifications and experience our clients’ own quality audits look for." />
-          <Reasons />
-        </div>
-      </section>
 
       <section className="section dark-section">
         <div className="container-x">
@@ -100,7 +93,7 @@ export default function WhyPage() {
 
       <section className="section border-y border-line bg-mist">
         <div className="container-x">
-          <SectionHead kicker="Our clients" title="Trusted by pharmaceutical, food and healthcare brands" sub={`We produce for ${sectors.slice(0, 4).map(s => s.name.toLowerCase()).join(', ')} and more.`} className="mb-12" />
+          <SectionHead kicker="Our clients" title="Trusted by pharmaceutical, food and healthcare brands" sub="Pharmaceutical manufacturers, national food and confectionery brands, hospitals and restaurant groups print their packaging with us." className="mb-12" />
         </div>
         <ClientLogos />
         <div className="mt-12 text-center"><Link href="/industries" className="btn-outline">See the industries we serve</Link></div>

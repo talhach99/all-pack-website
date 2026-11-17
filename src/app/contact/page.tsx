@@ -50,7 +50,7 @@ export default function ContactPage() {
         <div className="container-x grid gap-12 lg:grid-cols-[1.25fr_.75fr] lg:gap-16">
           <div>
             <Eyebrow>Your brief</Eyebrow>
-            <h2 className="mt-5 text-[clamp(1.9rem,3vw,2.5rem)] leading-[1.1]">Prepare your brief here</h2>
+            <h2 className="mt-5 text-[clamp(1.9rem,3vw,2.5rem)] leading-[1.1]">Prepare your brief</h2>
             <p className="mt-3 text-[16px] text-secondary">Complete the details below and send them to us on WhatsApp or by email. An approximate size and quantity is enough to start.</p>
             <div className="mt-8"><QuoteForm compact /></div>
           </div>

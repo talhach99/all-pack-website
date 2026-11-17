@@ -105,7 +105,7 @@ export default function Home() {
                 <p className="meta">{String(i + 1).padStart(2, '0')}</p>
                 <h3 className="mt-4 text-[22px] group-hover:text-brand">{s.name}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-secondary">{s.summary}</p>
-                {s.clients.length > 0 && <p className="mt-5 text-[13px] leading-relaxed text-muted">{s.clients.join(' · ')}</p>}
+                <p className="mt-5 text-[13px] leading-relaxed text-muted">{s.formats.join(' · ')}</p>
               </Link>
             ))}
           </div>

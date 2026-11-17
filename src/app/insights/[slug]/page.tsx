@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { ARTICLE_SEO, seoTitle } from '@/data/seo';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { articles, getArticle } from '@/data/articles';
 import { COMPANY, quoteLink } from '@/lib/company';
 import { WhatsAppIcon } from '@/components/FloatingContact';

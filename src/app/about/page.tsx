@@ -1,8 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PAGE_SEO, seoTitle } from '@/data/seo';
-import { principles, process, sectors } from '@/data/catalog';
 import { Machines } from '@/components/Machines';
 import { quoteLink } from '@/lib/company';
 import { Eyebrow, SectionHead } from '@/components/Section';
@@ -46,34 +44,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section border-y border-line bg-mist">
-        <div className="container-x">
-          <SectionHead kicker="How we work" title="Four principles behind every order" />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {principles.map((p, i) => (
-              <div key={p.title} className="card p-7">
-                <p className="meta">{String(i + 1).padStart(2, '0')}</p>
-                <h3 className="mt-5 text-[19px]">{p.title}</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-secondary">{p.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="section dark-section">
         <div className="container-x">
-          <SectionHead light kicker="Our facility" title="Printing, finishing and converting under one roof" />
+          <SectionHead light kicker="Our facility" title="Printing, finishing and converting under one roof" sub="Our own presses and finishing line, so colour, cut and delivery date stay under our control." />
           <Machines />
-          <ol className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {process.map((p, i) => (
-              <li key={p.step}>
-                <p className="font-mono text-[12px] text-brand-light">{String(i + 1).padStart(2, '0')} / {p.step}</p>
-                <h3 className="mt-3 text-[19px] !text-white">{p.title}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-cyan">{p.text}</p>
-              </li>
-            ))}
-          </ol>
         </div>
       </section>
 
@@ -83,7 +58,7 @@ export default function AboutPage() {
           <div className="mx-auto max-w-3xl"><Certifications /></div>
           <p className="meta mt-16 text-center">Brands that print with ALL PACK</p>
           <ClientLogos className="mt-6" />
-          <p className="mx-auto mt-14 max-w-2xl text-center text-[15px] text-secondary">We serve {sectors.slice(0, -1).map(s => s.name.toLowerCase()).join(', ')} and {sectors.at(-1)?.name.toLowerCase()} brands. <Link href="/industries" className="font-semibold text-brand hover:underline">See the industries we serve</Link>.</p>
+          <p className="mx-auto mt-14 max-w-2xl text-center text-[15px] text-secondary">We print for pharmaceutical, food and bakery, confectionery, cosmetics, food service, healthcare and e-commerce brands. <Link href="/industries" className="font-semibold text-brand hover:underline">See the industries we serve</Link>.</p>
         </div>
       </section>
     </main>
