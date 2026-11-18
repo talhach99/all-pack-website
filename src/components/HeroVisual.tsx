@@ -37,7 +37,7 @@ export function HeroVisual() {
         <div className="float relative">
           <img
             src="/renders/packaging-range.webp" alt="ALL PACK printed cosmetic packaging: lipstick carton, serum boxes, drawer box and rigid gift boxes"
-            width={2000} height={1245} fetchPriority="high" decoding="async" className="relative z-10 w-full"
+            width={2400} height={1494} fetchPriority="high" decoding="async" className="relative z-10 w-full"
           />
           <ul aria-label="Finishes and structures shown" className="pointer-events-none absolute inset-0 z-20 hidden min-[1150px]:block">
             {NOTES.map((n, i) => {
