@@ -40,6 +40,18 @@ export function Footer() {
           </address>
         </div>
       </div>
+      {/* Powered by GetServices.ai badge */}
+      <div className="py-3 text-center lg:mt-10">
+        <a
+          href="https://getservices.ai/?utm_source=client-site&utm_medium=footer-badge"
+          title="AI automation and AEO by GetServices.ai"
+          className="inline-flex items-center gap-2 rounded-lg border border-[#1a73e8] bg-white px-3 py-[3px] font-[Arial,sans-serif] text-[13px] font-semibold text-[#1a73e8] no-underline"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="https://getservices.ai/airo-assets/images/logo/molecular-icon" alt="GetServices.ai logo" width={28} height={28} className="block h-7 w-7" />
+          <span>Powered by <strong>GetServices.ai</strong></span>
+        </a>
+      </div>
       <div className="container-x">
         <div className="flex flex-col justify-between gap-3 border-t border-white/10 py-7 pb-20 text-[13px] sm:flex-row sm:pb-7">
           <p>© {new Date().getFullYear()} ALL PACK. The Packaging Experts, Lahore.</p>
