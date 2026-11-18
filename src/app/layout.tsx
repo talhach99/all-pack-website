@@ -7,7 +7,6 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { FloatingContact } from '@/components/FloatingContact';
 import { Motion } from '@/components/Motion';
-import { SmoothScroll } from '@/components/SmoothScroll';
 import { COMPANY, phoneLink } from '@/lib/company';
 import { PAGE_SEO } from '@/data/seo';
 import { Analytics } from '@/components/Analytics';
@@ -51,7 +50,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <FloatingContact />
         <Motion />
-        <SmoothScroll />
         <Analytics />
       </body>
     </html>

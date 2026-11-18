@@ -44,7 +44,7 @@ function ProductSearch({ className = '', id }: { className?: string; id: string 
         <input id={id} value={q} onChange={e => { setQ(e.target.value); setOpen(true); }} onFocus={() => setOpen(true)} onKeyDown={e => { if (e.key === 'Escape') setOpen(false); }} placeholder="Search cartons, boxes, bags or labels" autoComplete="off" className="w-full bg-transparent text-[15px] text-white outline-none placeholder:text-white/50" />
       </form>
       {open && (
-        <ul data-lenis-prevent className="absolute inset-x-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-2xl border border-line bg-white py-2 text-ink shadow-lift">
+        <ul className="absolute inset-x-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-2xl border border-line bg-white py-2 text-ink shadow-lift">
           {hits.length ? hits.map(f => (
             <li key={f.slug}>
               <button type="button" onClick={() => go(f.slug)} className="flex w-full items-center justify-between gap-4 px-5 py-2.5 text-left hover:bg-mist">
@@ -121,7 +121,7 @@ export function Header() {
       </nav>
 
       {menu && (
-        <div data-lenis-prevent className="fixed inset-0 top-[76px] z-40 overflow-y-auto bg-white sm:top-[88px] lg:hidden">
+        <div className="fixed inset-0 top-[76px] z-40 overflow-y-auto bg-white sm:top-[88px] lg:hidden">
           <nav aria-label="Mobile" className="container-x flex min-h-full flex-col py-4">
             <div className="rounded-[28px] bg-navy p-1 md:hidden"><ProductSearch id="mobile-search" /></div>
             {NAV.map(n => (
