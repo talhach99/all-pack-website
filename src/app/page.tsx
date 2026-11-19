@@ -114,11 +114,11 @@ export default function Home() {
       </section>
 
       {/* Why ALL PACK */}
-      <section className="section border-t border-line bg-mist">
+      <section className="section bg-navy">
         <div className="container-x">
-          <SectionHead kicker="Why ALL PACK" title="Why brands trust ALL PACK" sub="Certified processes, our own presses and a client list built over more than 25 years." />
+          <SectionHead light kicker="Why ALL PACK" title="Why brands trust ALL PACK" sub="Certified processes, our own presses and a client list built over more than 25 years." />
           <Reasons />
-          <div className="mt-12 text-center"><ArrowLink href="/why-all-pack">Read why brands choose ALL PACK</ArrowLink></div>
+          <div className="mt-12 text-center"><ArrowLink href="/why-all-pack" className="!text-white hover:!text-brand-light">Read why brands choose ALL PACK</ArrowLink></div>
         </div>
       </section>
 
