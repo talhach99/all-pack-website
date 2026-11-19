@@ -18,11 +18,22 @@ export const metadata: Metadata = {
 export default function ProductsPage() {
   const schema = {
     '@context': 'https://schema.org',
+    // Custom, quote-only manufacturing: described as Services, not Products. Product markup
+    // without a real price (offers) or genuine reviews fails Google's Product snippet checks.
     '@type': 'ItemList',
     name: 'ALL PACK packaging range',
     itemListElement: families.map((f, i) => ({
       '@type': 'ListItem', position: i + 1,
-      item: { '@type': 'Product', name: f.name, description: f.description, image: `${COMPANY.siteUrl}${f.image}`, url: `${COMPANY.siteUrl}/products#${f.slug}`, brand: { '@type': 'Brand', name: COMPANY.name } },
+      item: {
+        '@type': 'Service',
+        name: f.name,
+        serviceType: 'Custom printed packaging manufacturing',
+        description: f.description,
+        image: `${COMPANY.siteUrl}${f.image}`,
+        url: `${COMPANY.siteUrl}/products#${f.slug}`,
+        provider: { '@type': 'LocalBusiness', name: COMPANY.name, url: COMPANY.siteUrl },
+        areaServed: { '@type': 'Country', name: 'Pakistan' },
+      },
     })),
   };
   return (
