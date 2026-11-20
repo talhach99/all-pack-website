@@ -17,7 +17,7 @@ const sections = [
   ['Your artwork and our tooling', 'Your designs remain yours. We may keep printing plates, dies and files to make repeat orders easier, and we will not use your artwork for anyone else. We may show finished packaging in our portfolio unless you ask us not to.'],
   ['Liability', 'Our responsibility for a faulty order is limited to reprinting the affected packaging or refunding the price paid for it. We are not liable for indirect losses such as lost sales or profit.'],
   ['Law', 'These terms are governed by the laws of Pakistan, and the courts of Lahore have jurisdiction.'],
-  ['Questions', `Email ${COMPANY.email} or call ${COMPANY.phone} if anything here is unclear.`],
+  ['Questions', `Email ${COMPANY.email} or WhatsApp ${COMPANY.phone} if anything here is unclear.`],
 ];
 
 export default function TermsPage() {

@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { PAGE_SEO, seoTitle } from '@/data/seo';
-import { ArrowUpRight, Clock, FileText, Mail, MapPin, Phone } from 'lucide-react';
+import { ArrowUpRight, Clock, FileText, Mail, MapPin } from 'lucide-react';
 import { QuoteForm } from '@/components/QuoteForm';
 import { WhatsAppIcon } from '@/components/FloatingContact';
 import { Eyebrow } from '@/components/Section';
-import { COMPANY, mapsLink, phoneLink, whatsappLink } from '@/lib/company';
+import { COMPANY, mapsLink, whatsappLink } from '@/lib/company';
 
 export const metadata: Metadata = {
   title: seoTitle(PAGE_SEO.contact),
@@ -13,11 +13,9 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  const call = phoneLink();
   const wa = whatsappLink();
   const methods = [
     { icon: WhatsAppIcon, label: 'WhatsApp', value: COMPANY.phone, note: 'The quickest route to a quotation', href: wa || '#', ext: true },
-    ...(call ? [{ icon: Phone, label: 'Call', value: COMPANY.phone, note: 'Speak to our sales team', href: call, ext: false }] : []),
     { icon: Mail, label: 'Email', value: COMPANY.email, note: 'For artwork files and detailed briefs', href: `mailto:${COMPANY.email}`, ext: false },
   ];
 
@@ -30,14 +28,14 @@ export default function ContactPage() {
             <h1 className="h-page mt-5">Request a packaging quotation</h1>
             <p className="lead mx-auto mt-6 max-w-2xl">Send your product dimensions, quantity and artwork by WhatsApp, email or the form below. We reply within 24 hours with a specification and price.</p>
           </div>
-          <div className="mx-auto mt-10 grid max-w-5xl gap-4 md:grid-cols-3">
+          <div className="mx-auto mt-8 grid max-w-3xl gap-3 sm:mt-10 sm:grid-cols-2 sm:gap-4">
             {methods.map(m => (
-              <a key={m.label} href={m.href} {...(m.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="group card p-6 transition-colors hover:border-[#C9CFDC]">
+              <a key={m.label} href={m.href} {...(m.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="group card p-5 transition-colors hover:border-[#C9CFDC] sm:p-6">
                 <span className="flex items-center justify-between">
                   <span className="meta flex items-center gap-2"><m.icon size={16} strokeWidth={1.75} /> {m.label}</span>
                   <ArrowUpRight size={16} strokeWidth={1.5} className="text-muted transition-colors group-hover:text-navy" />
                 </span>
-                <span className="mt-4 block text-[17px] font-semibold leading-snug [overflow-wrap:anywhere]">{m.value}</span>
+                <span className="mt-3 block text-[16px] font-semibold sm:mt-4 sm:text-[17px] leading-snug [overflow-wrap:anywhere]">{m.value}</span>
                 <span className="mt-1 block text-[14px] text-muted">{m.note}</span>
               </a>
             ))}
@@ -60,7 +58,7 @@ export default function ContactPage() {
               <p className="meta flex items-center gap-2"><MapPin size={15} strokeWidth={1.75} /> Head office</p>
               <address className="mt-3 text-[16px] not-italic leading-relaxed text-ink">{COMPANY.address}</address>
               <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-1.5 text-[15px] font-medium text-brand hover:underline">Open in Google Maps <ArrowUpRight size={16} strokeWidth={1.5} /></a>
-              <p className="mt-4 border-t border-line pt-4 text-[14px] leading-relaxed text-secondary">Visits are welcome by appointment. Call or message ahead so the right person is available to meet you.</p>
+              <p className="mt-4 border-t border-line pt-4 text-[14px] leading-relaxed text-secondary">Visits are welcome by appointment. Message us on WhatsApp ahead so the right person is available to meet you.</p>
             </div>
 
             <div className="card p-6">

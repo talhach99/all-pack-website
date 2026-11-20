@@ -1,13 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, BadgeCheck, Factory, Mail, MapPin, Phone, ShieldCheck, Truck } from 'lucide-react';
+import { ArrowRight, BadgeCheck, Factory, Mail, MapPin, ShieldCheck, Truck } from 'lucide-react';
 import { PAGE_SEO, seoTitle } from '@/data/seo';
 import { families, process, sectors } from '@/data/catalog';
 import { Machines } from '@/components/Machines';
 import { HeroVisual } from '@/components/HeroVisual';
 import { Reasons } from '@/components/Reasons';
-import { COMPANY, emailLink, mapsLink, phoneLink, quoteLink } from '@/lib/company';
+import { COMPANY, emailLink, mapsLink, quoteLink } from '@/lib/company';
 import { ArrowLink, Eyebrow, SectionHead } from '@/components/Section';
 import { ClientLogos } from '@/components/ClientStrip';
 import { WhatsAppIcon } from '@/components/FloatingContact';
@@ -24,7 +24,6 @@ const trust = [
 
 export default function Home() {
   const quote = quoteLink();
-  const call = phoneLink();
   const homeSectors = sectors.filter(s => ['pharmaceutical', 'food-and-bakery', 'confectionery', 'restaurants'].includes(s.slug));
   return (
     <main>
@@ -129,7 +128,7 @@ export default function Home() {
             <Eyebrow>Request a quotation</Eyebrow>
             <h2 className="h-section mt-5">Tell us what you need to pack</h2>
             <p className="lead mt-5 max-w-lg">Share the product dimensions, quantity and artwork. We reply within 24 hours with a specification and price.</p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 grid gap-3 sm:mt-9 sm:flex sm:flex-row">
               <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-primary"><WhatsAppIcon size={18} /> Chat on WhatsApp</a>
               <a href={emailLink()} className="btn-outline"><Mail size={17} strokeWidth={1.75} /> Email your brief</a>
             </div>
@@ -137,14 +136,13 @@ export default function Home() {
           <ul className="grid gap-3 sm:grid-cols-2">
             {[
               { label: 'WhatsApp', value: COMPANY.phone, href: quote, ext: true, icon: WhatsAppIcon },
-              { label: 'Call', value: COMPANY.phone, href: call || undefined, icon: Phone },
               { label: 'Email', value: COMPANY.email, href: `mailto:${COMPANY.email}`, icon: Mail },
               { label: 'Visit', value: COMPANY.address, href: mapsLink, ext: true, icon: MapPin },
             ].map(c => (
-              <li key={c.label}>
-                <a href={c.href} {...(c.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="card flex h-full flex-col p-6 transition-colors hover:border-[#C9CFDC]">
+              <li key={c.label} className={c.label === 'Visit' ? 'sm:col-span-2' : undefined}>
+                <a href={c.href} {...(c.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="card flex h-full min-w-0 flex-col p-5 transition-colors sm:p-6 hover:border-[#C9CFDC]">
                   <span className="meta flex items-center gap-2"><c.icon size={14} strokeWidth={1.75} /> {c.label}</span>
-                  <span className={`mt-3 font-semibold leading-snug ${c.label === 'Email' ? 'text-[15px]' : 'text-[16px]'}`}>{c.value}</span>
+                  <span className={`mt-2 font-semibold leading-snug [overflow-wrap:anywhere] sm:mt-3 ${c.label === 'Email' ? 'text-[15px]' : 'text-[16px]'}`}>{c.value}</span>
                 </a>
               </li>
             ))}

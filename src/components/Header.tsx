@@ -2,8 +2,8 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowRight, Mail, Menu, Phone, Search, X } from 'lucide-react';
-import { emailLink, phoneLink, quoteLink } from '@/lib/company';
+import { ArrowRight, Mail, Menu, Search, X } from 'lucide-react';
+import { emailLink, quoteLink } from '@/lib/company';
 import { families } from '@/data/catalog';
 import { Logo } from './Logo';
 import { WhatsAppIcon } from './FloatingContact';
@@ -64,7 +64,6 @@ export function Header() {
   const [menu, setMenu] = useState(false);
   const [stuck, setStuck] = useState(false);
   const [hash, setHash] = useState('');
-  const call = phoneLink();
   const quote = quoteLink();
 
   useEffect(() => { setMenu(false); setHash(window.location.hash); }, [path]);
@@ -129,10 +128,7 @@ export function Header() {
             ))}
             <div className="mt-auto grid gap-3 pt-8">
               <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-primary"><WhatsAppIcon size={18} /> Request a quote on WhatsApp</a>
-              <div className="grid grid-cols-2 gap-3">
-                {call && <a href={call} className="btn-outline"><Phone size={18} strokeWidth={1.5} /> Call</a>}
-                <a href={emailLink()} className="btn-outline"><Mail size={18} strokeWidth={1.5} /> Email</a>
-              </div>
+              <a href={emailLink()} className="btn-outline"><Mail size={18} strokeWidth={1.5} /> Email your brief</a>
             </div>
           </nav>
         </div>

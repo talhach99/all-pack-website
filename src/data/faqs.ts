@@ -9,5 +9,5 @@ export const faqs = [
   { q: 'Do you produce food-grade and pharmaceutical packaging?', a: 'Yes. We print food boxes, bakery cartons and wrappers on food-grade board, and pharmaceutical cartons and leaflets to approved artwork. ALL PACK is ISO 9001:2015 and Halal certified.' },
   { q: 'Which finishes are available?', a: 'Gloss and matte lamination, soft-touch lamination, spot UV, varnish, foil stamping, embossing and debossing, and window patching. We will recommend the finish that suits the product and the budget.' },
   { q: 'Do you deliver outside Lahore?', a: 'Yes, we deliver across Pakistan. Share your delivery city with your enquiry and the delivery arrangement will be included in your quotation.' },
-  { q: 'Where is your office?', a: `Our head office is at ${COMPANY.address}. Visits are welcome by appointment; please call or WhatsApp ${COMPANY.phone} beforehand.` },
+  { q: 'Where is your office?', a: `Our head office is at ${COMPANY.address}. Visits are welcome by appointment; please message us on WhatsApp at ${COMPANY.phone} beforehand.` },
 ];

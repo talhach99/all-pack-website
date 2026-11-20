@@ -1,14 +1,14 @@
 import Link from 'next/link';
-import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react';
+import { ArrowUpRight, Mail, MapPin } from 'lucide-react';
 import { Logo } from './Logo';
 import { CertBadge } from './Certifications';
-import { COMPANY, mapsLink, phoneLink, whatsappLink } from '@/lib/company';
+import { COMPANY, mapsLink, whatsappLink } from '@/lib/company';
+import { WhatsAppIcon } from './FloatingContact';
 import { families } from '@/data/catalog';
 
 const company: [string, string][] = [['About ALL PACK', '/about'], ['Why ALL PACK', '/why-all-pack'], ['Industries', '/industries'], ['Packaging guides', '/insights'], ['FAQ', '/faq'], ['Contact', '/contact']];
 
 export function Footer() {
-  const call = phoneLink();
   const wa = whatsappLink();
   const socials = ([['Instagram', COMPANY.instagram], ['Facebook', COMPANY.facebook], ['LinkedIn', COMPANY.linkedin]] as const).filter(([, l]) => l);
   const head = 'mb-5 font-display text-[15px] font-semibold text-white';
@@ -34,7 +34,7 @@ export function Footer() {
           <h2 className={head}>Head office</h2>
           <address className="grid gap-3.5 not-italic">
             <a href={mapsLink} target="_blank" rel="noopener noreferrer" className={`${item} flex gap-3 leading-relaxed`}><MapPin size={18} strokeWidth={1.6} className="mt-0.5 shrink-0" /><span>{COMPANY.address}</span></a>
-            {call && <a href={call} className={`${item} flex items-center gap-3 tabular-nums`}><Phone size={18} strokeWidth={1.6} className="shrink-0" /> {COMPANY.phone}</a>}
+            {wa && <a href={wa} target="_blank" rel="noopener noreferrer" className={`${item} flex items-center gap-3 tabular-nums`}><WhatsAppIcon size={18} /> {COMPANY.phone}</a>}
             <a href={`mailto:${COMPANY.email}`} className={`${item} flex items-center gap-3 [overflow-wrap:anywhere]`}><Mail size={18} strokeWidth={1.6} className="shrink-0" /> {COMPANY.email}</a>
             {wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex w-fit items-center gap-2 text-[15px] font-semibold text-white hover:text-brand-light">Chat on WhatsApp <ArrowUpRight size={16} strokeWidth={1.6} /></a>}
           </address>
