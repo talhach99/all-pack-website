@@ -20,7 +20,7 @@ export const families: Family[] = [
     label: 'Pharmaceutical',
     short: 'Unit cartons, leaflets and inserts',
     description: 'Unit cartons, leaflets and inserts printed to approved artwork. Every reprint is matched to the signed proof, so text stays legible and colour stays consistent from one batch to the next, as regulated products require.',
-    image: '/renders/pharmaceutical-cartons.webp',
+    image: '/renders/pharmaceutical-cartons-v2.webp',
     alt: 'Printed pharmaceutical tablet carton in white and navy',
     specs: [
       { title: 'Styles', items: ['Tuck-end', 'Crash-lock bottom', 'Sleeve', 'Leaflets and inserts'] },
@@ -34,7 +34,7 @@ export const families: Family[] = [
     label: 'Food and retail',
     short: 'Food, confectionery and cosmetic cartons',
     description: 'Printed cartons for biscuits, bakery, confectionery and cosmetics, made to your dimensions. Lamination, spot UV and foil are applied in-house, so the finish on the shelf matches the proof you approved.',
-    image: '/renders/folding-cartons.webp',
+    image: '/renders/folding-cartons-v2.webp',
     alt: 'Printed folding carton for a biscuit brand',
     specs: [
       { title: 'Styles', items: ['Tuck-end', 'Window', 'Display', 'Sleeve'] },

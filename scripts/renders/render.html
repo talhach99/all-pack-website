@@ -75,13 +75,13 @@ B.pharma = () => {
     g.fillStyle = '#fff'; g.fillRect(0, 0, w, h);
     g.fillStyle = NAVY; g.beginPath(); g.moveTo(w * .62, 0); g.lineTo(w, 0); g.lineTo(w, h); g.lineTo(w * .48, h); g.closePath(); g.fill();
     g.fillStyle = SKY; g.beginPath(); g.moveTo(w * .58, 0); g.lineTo(w * .62, 0); g.lineTo(w * .48, h); g.lineTo(w * .44, h); g.closePath(); g.fill();
-    g.fillStyle = NAVY; g.font = '600 120px IT'; g.fillText('Pharmacarton', 80, 230);
+    logo(g, 80, 60, 560);
     g.fillStyle = '#5A6180'; g.font = '500 54px IT'; g.fillText('500 mg · 3 × 10 Tablets', 84, 320);
     g.fillStyle = CYAN; g.fillRect(84, 380, 120, 10);
     g.fillStyle = '#8A90A6'; g.font = '400 34px IT'; g.fillText('Store below 30°C. Protect from light.', 84, 470);
     tri(g, w * .78, h * .3, 230, 'rgba(255,255,255,.12)');
   });
-  const side = tex(460, 620, (g, w, h) => { g.fillStyle = '#fff'; g.fillRect(0, 0, w, h); g.fillStyle = NAVY; g.fillRect(0, h * .72, w, h * .28); g.save(); g.translate(w / 2 + 30, h * .62); g.rotate(-Math.PI / 2); g.fillStyle = NAVY; g.font = '600 64px IT'; g.fillText('Pharmacarton', 0, 0); g.restore(); });
+  const side = tex(460, 620, (g, w, h) => { g.fillStyle = '#fff'; g.fillRect(0, 0, w, h); g.fillStyle = NAVY; g.fillRect(0, h * .72, w, h * .28); g.save(); g.translate(w / 2 + 30, h * .62); g.rotate(-Math.PI / 2); logo(g, -10, -95, 330); g.restore(); });
   const top = tex(1900, 460, (g, w, h) => { g.fillStyle = '#fff'; g.fillRect(0, 0, w, h); g.fillStyle = NAVY; g.beginPath(); g.moveTo(w * .62, 0); g.lineTo(w, 0); g.lineTo(w, h); g.lineTo(w * .55, h); g.fill(); g.fillStyle = '#9097AE'; g.font = '400 40px IT'; g.fillText('Batch  ·  Mfg  ·  Exp', 80, h / 2 + 14); });
   const m = [mat(side, { r: .4 }), mat(side, { r: .4 }), mat(top, { r: .4 }), plain('#eee'), mat(front, { r: .38 }), mat(front, { r: .38 })];
   add(box(W, H, D, m, .008), 0, H / 2, 0, -.28);
@@ -95,9 +95,9 @@ B.folding = () => {
     g.fillStyle = '#F4F1EA'; g.fillRect(0, 0, w, h);
     g.fillStyle = BRAND; g.fillRect(0, h * .62, w, h * .38);
     tri(g, w * .08, h * .18, 520, SKY); tri(g, w * .38, h * .3, 360, NAVY); tri(g, w * .6, h * .1, 260, CYAN);
-    g.fillStyle = '#fff'; g.font = '600 92px IT'; g.fillText('Daybreak', 70, h * .74);
-    g.font = '500 44px IT'; g.fillStyle = 'rgba(255,255,255,.8)'; g.fillText('Oat & honey biscuits', 72, h * .8);
-    g.fillStyle = '#fff'; g.font = '600 40px IT'; g.fillText('NET WT 250 g', 72, h * .93);
+    logo(g, 70, h * .65, 520, true);
+    g.font = '500 44px IT'; g.fillStyle = 'rgba(255,255,255,.8)'; g.fillText('Oat & honey biscuits', 72, h * .86);
+    g.fillStyle = '#fff'; g.font = '600 40px IT'; g.fillText('NET WT 250 g', 72, h * .94);
   });
   const side = tex(500, 1350, (g, w, h) => { g.fillStyle = '#F4F1EA'; g.fillRect(0, 0, w, h); g.fillStyle = BRAND; g.fillRect(0, h * .62, w, h * .38); tri(g, -60, h * .3, 300, SKY); g.fillStyle = '#fff'; g.font = '500 30px IT'; g.fillText('Ingredients: oats, wheat', 40, h * .72); g.fillText('flour, honey, butter.', 40, h * .76); g.fillStyle = '#fff'; g.fillRect(40, h * .84, 220, 90); g.fillStyle = '#222'; for (let i = 0; i < 40; i++) g.fillRect(50 + i * 5, h * .85, Math.random() > .5 ? 3 : 1.5, 70); });
   const top = tex(1000, 500, (g, w, h) => { g.fillStyle = '#F4F1EA'; g.fillRect(0, 0, w, h); tri(g, w * .1, h * .1, 300, SKY); });
