@@ -138,7 +138,7 @@ export const sectors: Sector[] = [
     summary: 'Cartons, leaflets and labels printed to approved artwork, batch after batch.',
     detail: 'Regulated packaging leaves no room for drift. Artwork is checked against the approved file, proofed before production and matched on every reprint, so dosage text, batch panels and brand colours stay exactly as signed off.',
     formats: ['Pharmaceutical cartons', 'Leaflets and inserts', 'Labels'],
-    clients: ['Global Pharmaceuticals', 'Don Valley Pharmaceuticals', 'Citi Pharma'],
+    clients: ['Global Pharmaceuticals', 'Don Valley Pharmaceuticals', 'Citi Pharma', 'Bio-Labs', 'Dyson', 'McOlson Research Laboratories'],
   },
   {
     slug: 'food-and-bakery',
