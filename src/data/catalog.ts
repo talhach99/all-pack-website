@@ -90,7 +90,7 @@ export const families: Family[] = [
     label: 'Food service',
     short: 'Pizza, cake, burger and bakery boxes',
     description: 'Pizza, cake, burger and bakery boxes in food-grade board, sized to the product and printed with your brand. Made for restaurants, bakeries and caterers who need a box that carries well and presents better.',
-    image: '/renders/food-boxes.webp',
+    image: '/renders/food-boxes-v2.webp',
     alt: 'Stacked white food boxes printed with a restaurant brand',
     specs: [
       { title: 'Styles', items: ['Pizza box', 'Cake box', 'Burger box', 'Bakery box'] },
@@ -118,7 +118,7 @@ export const families: Family[] = [
     label: 'Labelling',
     short: 'Product labels, wrappers and seals',
     description: 'Product labels, wrappers and seals printed in sheets or rolls. Colour is matched to the rest of your packaging, so the label on the jar and the carton around it read as one brand.',
-    image: '/renders/labels-stickers.webp',
+    image: '/renders/labels-stickers-v2.webp',
     alt: 'Jar with a printed product label beside a roll of labels',
     specs: [
       { title: 'Formats', items: ['Product labels', 'Wrappers', 'Seals', 'Roll labels'] },

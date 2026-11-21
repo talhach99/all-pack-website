@@ -157,7 +157,7 @@ B.shipping = () => {
 // 6 Food box: printed bakery box, artwork on the front
 B.food = () => {
   const W = 1.25, H = .78, D = 1.0;
-  const front = tex(1250, 780, (c, w, h) => { c.fillStyle = '#FBFAF7'; c.fillRect(0, 0, w, h); c.fillStyle = BRAND; c.fillRect(0, h - 90, w, 90); c.strokeStyle = BRAND; c.lineWidth = 8; c.beginPath(); c.arc(w / 2, h * .43, 230, 0, Math.PI * 2); c.stroke(); c.fillStyle = BRAND; c.font = '600 104px IT'; c.textAlign = 'center'; c.fillText('Fornaio', w / 2, h * .46); c.font = '500 40px IT'; c.fillStyle = SKY; c.fillText('BAKERY · LAHORE', w / 2, h * .46 + 70); c.fillStyle = CYAN; c.fillRect(w / 2 - 50, h * .46 - 130, 100, 7); });
+  const front = tex(1250, 780, (c, w, h) => { c.fillStyle = '#FBFAF7'; c.fillRect(0, 0, w, h); c.fillStyle = BRAND; c.fillRect(0, h - 90, w, 90); logo(c, w / 2 - 330, h * .36, 660); });
   const side = tex(1000, 780, (c, w, h) => { c.fillStyle = '#F6F5F1'; c.fillRect(0, 0, w, h); c.fillStyle = BRAND; c.fillRect(0, h - 90, w, 90); });
   const top = tex(1250, 1000, (c, w, h) => { c.fillStyle = '#FBFAF7'; c.fillRect(0, 0, w, h); c.fillStyle = 'rgba(52,59,130,.08)'; c.fillRect(w * .2, h * .2, w * .6, h * .6); c.strokeStyle = 'rgba(52,59,130,.35)'; c.lineWidth = 4; c.strokeRect(w * .2, h * .2, w * .6, h * .6); });
   const m = [mat(side), mat(side), mat(top, { r: .6 }), plain('#eee'), mat(front, { r: .5 }), mat(side)];
@@ -182,13 +182,13 @@ B.bag = () => {
 };
 // 8 Labels: jar with printed label + label roll
 B.labels = () => {
-  const lab = tex(2048, 512, (c, w, h) => { c.fillStyle = '#fff'; c.fillRect(0, 0, w, h); c.fillStyle = NAVY; c.fillRect(0, 0, w, 70); c.fillRect(0, h - 70, w, 70); c.fillStyle = NAVY; c.font = '600 120px IT'; c.fillText('Wild honey', 120, 290); c.fillText('Wild honey', 1144, 290); c.fillStyle = SKY; c.font = '500 50px IT'; c.fillText('RAW · 500 g', 124, 370); c.fillText('RAW · 500 g', 1148, 370); });
+  const lab = tex(2048, 512, (c, w, h) => { c.fillStyle = '#fff'; c.fillRect(0, 0, w, h); c.fillStyle = NAVY; c.fillRect(0, 0, w, 70); c.fillRect(0, h - 70, w, 70); logo(c, 100, 150, 420); logo(c, 1124, 150, 420); });
   const jar = new THREE.Mesh(new THREE.CylinderGeometry(.42, .42, 1.0, 96), [new THREE.MeshPhysicalMaterial({ color: 0xC98A2B, roughness: .15, clearcoat: 1 }), plain('#222', .4), plain('#222')]);
   jar.position.set(-.3, .5, -.15); jar.castShadow = true; scene.add(jar);
   const lbl = new THREE.Mesh(new THREE.CylinderGeometry(.425, .425, .5, 96, 1, true), mat(lab, { r: .45 })); lbl.position.set(-.3, .5, -.15); lbl.rotation.y = -1.25; scene.add(lbl);
   const cap = new THREE.Mesh(new THREE.CylinderGeometry(.43, .43, .16, 96), plain(NAVY, .35)); cap.position.set(-.3, 1.08, -.15); cap.castShadow = true; scene.add(cap);
   // label roll
-  const roll = new THREE.Mesh(new THREE.CylinderGeometry(.42, .42, .3, 96), [mat(tex(2048, 300, (c, w, h) => { c.fillStyle = '#fff'; c.fillRect(0, 0, w, h); for (let i = 0; i < 12; i++) { c.fillStyle = NAVY; c.fillRect(i * 170 + 10, 20, 150, 260); c.fillStyle = '#fff'; c.font = '600 28px IT'; c.fillText('honey', i * 170 + 40, 160); } })), plain('#F2F2F2', .8), plain('#F2F2F2', .8)]);
+  const roll = new THREE.Mesh(new THREE.CylinderGeometry(.42, .42, .3, 96), [mat(tex(2048, 300, (c, w, h) => { c.fillStyle = '#fff'; c.fillRect(0, 0, w, h); for (let i = 0; i < 12; i++) { c.fillStyle = NAVY; c.fillRect(i * 170 + 10, 20, 150, 260); logo(c, i * 170 + 28, 110, 114, true); } })), plain('#F2F2F2', .8), plain('#F2F2F2', .8)]);
   roll.position.set(.62, .15, .42); roll.castShadow = true; scene.add(roll);
   const core = new THREE.Mesh(new THREE.CylinderGeometry(.16, .16, .302, 48), plain('#B98F62', .9)); core.position.copy(roll.position); scene.add(core);
   contact(2.6, 2.0, .2, .2);
