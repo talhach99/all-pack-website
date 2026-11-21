@@ -51,17 +51,13 @@ export function Motion() {
   }, [path]);
 
   useEffect(() => {
-    const bar = document.getElementById('scroll-progress');
-    const onScroll = () => {
-      document.documentElement.classList.toggle('scrolled', scrollY > 12);
-      if (bar) { const max = document.documentElement.scrollHeight - innerHeight; bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`; }
-    };
+    const onScroll = () => { document.documentElement.classList.toggle('scrolled', scrollY > 12); };
     onScroll();
     addEventListener('scroll', onScroll, { passive: true });
     return () => removeEventListener('scroll', onScroll);
   }, []);
 
-  return <div id="scroll-progress" aria-hidden="true" className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[3px] origin-left scale-x-0 bg-rule" />;
+  return null;
 }
 
 /** Infinite horizontal ticker. Pure CSS, works without JS. */
