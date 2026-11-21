@@ -49,8 +49,8 @@ export default function ProductsPage() {
               <li key={f.slug}>
                 <a href={`#${f.slug}`} className="group flex h-full flex-col rounded-xl border border-white/10 bg-white/[.04] p-3 transition-colors hover:border-white/30 hover:bg-white/[.07]">
                   <span className="font-mono text-[11px] text-[#7FD3F0]">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="flex aspect-square items-center justify-center p-1">
-                    <img src={f.image} alt={f.alt} loading="eager" className="max-h-full w-full object-contain transition-transform duration-300 group-hover:-translate-y-1" />
+                  <span className="relative block aspect-square">
+                    <img src={f.image} alt={f.alt} loading="eager" className="absolute inset-0 h-full w-full object-contain p-1 transition-transform duration-300 group-hover:-translate-y-1" />
                   </span>
                   <span className="mt-1 text-[13px] font-medium leading-snug text-white">{f.name}</span>
                 </a>
@@ -74,9 +74,9 @@ export default function ProductsPage() {
           const msg = `Hello ALL PACK, I would like a quotation for ${f.name.toLowerCase()}.\nSize:\nQuantity:\nPrint and finish:`;
           return (
             <section key={f.slug} id={f.slug} aria-labelledby={`${f.slug}-h`} className="grid items-center gap-10 border-b border-line py-16 last:border-0 sm:py-20 lg:grid-cols-2 lg:gap-16">
-              <div className={`relative flex aspect-[5/4] items-center justify-center rounded-3xl bg-card p-6 sm:p-8 ${i % 2 ? 'lg:order-2' : ''}`}>
+              <div className={`relative aspect-[5/4] overflow-hidden rounded-3xl bg-card ${i % 2 ? 'lg:order-2' : ''}`}>
                 <span className="meta absolute left-5 top-5 rounded-full bg-white px-3 py-1 text-brand">{String(i + 1).padStart(2, '0')} / {String(families.length).padStart(2, '0')}</span>
-                <img src={f.image} alt={f.alt} loading={i < 2 ? 'eager' : 'lazy'} className="max-h-full w-auto object-contain" />
+                <img src={f.image} alt={f.alt} loading={i < 2 ? 'eager' : 'lazy'} className="absolute inset-0 h-full w-full object-contain p-6 sm:p-8" />
               </div>
               <div>
                 <Eyebrow>{f.label}</Eyebrow>

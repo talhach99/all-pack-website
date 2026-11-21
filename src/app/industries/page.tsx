@@ -44,15 +44,15 @@ export default function IndustriesPage() {
           const hero = formatLink(s.formats[0]);
           return (
             <section key={s.slug} id={s.slug} aria-labelledby={`${s.slug}-h`} className="grid gap-10 border-b border-line py-16 last:border-0 sm:py-20 lg:grid-cols-[1.15fr_.85fr] lg:gap-16">
-              <div>
+              <div className="min-w-0">
                 <p className="meta">{String(i + 1).padStart(2, '0')}</p>
                 <h2 id={`${s.slug}-h`} className="mt-4 text-[clamp(2rem,3.2vw,2.6rem)] leading-[1.08]">{s.name}</h2>
                 <p className="mt-4 text-[19px] font-medium leading-snug text-ink-soft">{s.summary}</p>
                 <p className="lead mt-4">{s.detail}</p>
                 <a href={quoteLink(`Hello ALL PACK, I would like a quotation for ${s.name.toLowerCase()} packaging.`)} target="_blank" rel="noopener noreferrer" className="btn-primary mt-8"><WhatsAppIcon size={18} /> Discuss your packaging</a>
               </div>
-              <div className="flex flex-col gap-4">
-                {hero && <div className="flex aspect-[16/10] items-center justify-center rounded-3xl bg-card p-8"><img src={hero.image} alt={hero.alt} loading="lazy" className="max-h-full w-auto object-contain" /></div>}
+              <div className="flex min-w-0 flex-col gap-4">
+                {hero && <div className="relative aspect-[16/10] overflow-hidden rounded-3xl bg-card"><img src={hero.image} alt={hero.alt} loading="lazy" className="absolute inset-0 h-full w-full object-contain p-6 sm:p-8" /></div>}
                 <div className="card p-6">
                   <p className="text-[14px] font-semibold">Formats we produce</p>
                   <ul className="mt-3 flex flex-wrap gap-2">

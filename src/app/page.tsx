@@ -61,8 +61,8 @@ export default function Home() {
             {families.map((f, i) => (
               <li key={f.slug}>
                 <Link href={`/products#${f.slug}`} className="lift-card group block">
-                  <div className="flex aspect-square items-center justify-center rounded-2xl bg-card p-3 transition-colors group-hover:bg-soft sm:p-4">
-                    <img src={f.image} alt={f.alt} loading="lazy" className="max-h-full max-w-full object-contain" />
+                  <div className="relative aspect-square overflow-hidden rounded-2xl bg-card transition-colors group-hover:bg-soft">
+                    <img src={f.image} alt={f.alt} loading="lazy" className="absolute inset-0 h-full w-full object-contain p-3 sm:p-4" />
                   </div>
                   <div className="mt-4 flex items-baseline justify-between gap-3">
                     <h3 className="text-[17px] leading-snug sm:text-[19px]">{f.name}</h3>
