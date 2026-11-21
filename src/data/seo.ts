@@ -46,7 +46,7 @@ export const PAGE_SEO = {
   },
   insights: {
     title: 'Packaging Guides: Box Styles, Board & Artwork',
-    description: 'Practical guides from a Lahore packaging printer on choosing a box structure, kraft versus white board, and preparing artwork that prints correctly first time.',
+    description: 'Packaging guides from a Lahore printer: custom box types and ordering, what printed boxes cost in Pakistan, and pharmaceutical carton printing explained.',
   },
   privacy: {
     title: 'Privacy Policy',
@@ -59,17 +59,17 @@ export const PAGE_SEO = {
 } satisfies Record<string, Seo>;
 
 export const ARTICLE_SEO: Record<string, Seo> = {
-  'choose-the-right-shipping-box': {
-    title: 'How to Choose the Right Shipping Box',
-    description: 'Single wall or double wall? How to size, specify and brand a shipping box so your product arrives intact, explained by a packaging manufacturer in Lahore.',
+  'custom-packaging-boxes-lahore': {
+    title: "Custom Packaging Boxes in Lahore: Buyer's Guide",
+    description: 'Compare folding cartons, rigid, mailer and corrugated boxes, choose the right board and finish, and learn how to order custom packaging in Lahore.',
   },
-  'kraft-vs-white-cardboard': {
-    title: 'Kraft vs White Board: Which Suits Your Brand?',
-    description: 'How kraft and white paperboard change print colour, texture and finish, and how to choose between them for your cartons, mailers and bags. A practical guide.',
+  'custom-box-printing-cost-pakistan': {
+    title: 'Custom Box Printing Cost in Pakistan Explained',
+    description: 'What decides the price of custom printed boxes in Pakistan: size, board, print, finishes and quantity, plus how to get an accurate quotation fast.',
   },
-  'prepare-packaging-artwork': {
-    title: 'Packaging Artwork Checklist Before Printing',
-    description: 'Dielines, bleed, safe areas, barcodes, fonts and proofs: a print-side checklist that gets your packaging artwork ready for press without costly corrections.',
+  'pharmaceutical-carton-printing-pakistan': {
+    title: 'Pharmaceutical Carton Printing in Pakistan',
+    description: 'How to specify medicine cartons: SBS board, structures, batch-coding areas, leaflets and the quality checks that keep every batch matching approved artwork.',
   },
 };
 

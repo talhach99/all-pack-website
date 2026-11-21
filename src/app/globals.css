@@ -68,6 +68,35 @@
   .prose-ap h2 { @apply mb-4 mt-12 text-2xl sm:text-[28px]; }
   .prose-ap p { @apply mb-5; }
   .prose-ap > :first-child { margin-top: 0; }
+  .prose-ap h2 { @apply scroll-mt-28; }
+  .prose-ap ul, .prose-ap ol { @apply mb-6 ml-1 space-y-2.5 pl-6; }
+  .prose-ap ul { list-style: disc; } .prose-ap ol { list-style: decimal; }
+  .prose-ap li::marker { color: #1FA8E0; font-weight: 600; }
+  .prose-ap strong { @apply font-semibold text-ink; }
+  .prose-ap .table-wrap { @apply my-8 overflow-x-auto rounded-2xl border border-line; -webkit-overflow-scrolling: touch; }
+  .prose-ap table { @apply w-full min-w-[34rem] border-collapse text-left text-[15px] leading-snug; }
+  .prose-ap caption { @apply border-b border-line bg-mist px-4 py-3 text-left text-[13px] font-semibold uppercase tracking-wide text-muted; }
+  .prose-ap th, .prose-ap td { @apply border-b border-line px-4 py-3 align-top; }
+  .prose-ap thead th { @apply bg-white text-[13px] font-semibold text-ink; }
+  .prose-ap tbody th { @apply font-semibold text-ink; }
+  .prose-ap tbody tr:last-child th, .prose-ap tbody tr:last-child td { border-bottom: 0; }
+  @media (max-width: 639px) {
+    .prose-ap .table-wrap { overflow: visible; border: 0; border-radius: 0; }
+    .prose-ap table { display: block; min-width: 0; }
+    .prose-ap caption { display: block; border: 1px solid #E4E7EF; border-radius: 16px 16px 0 0; }
+    .prose-ap thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .prose-ap tbody { display: block; }
+    .prose-ap tbody tr { display: block; margin-top: 12px; border: 1px solid #E4E7EF; border-radius: 16px; overflow: hidden; background: #fff; }
+    .prose-ap tbody tr:first-child { margin-top: 0; border-top-left-radius: 0; border-top-right-radius: 0; border-top: 0; }
+    .prose-ap tbody th { display: block; border-bottom: 1px solid #E4E7EF; background: #F6F8FC; font-size: 16px; }
+    .prose-ap tbody td { display: grid; grid-template-columns: 7.5rem 1fr; gap: 12px; padding: 10px 16px; }
+    .prose-ap tbody td::before { content: attr(data-label); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: #6B7391; padding-top: 2px; }
+    .prose-ap tbody tr:last-child td { border-bottom: 1px solid #E4E7EF; }
+    .prose-ap tbody td:last-child { border-bottom: 0 !important; }
+  }
+  .prose-ap .faq-list > div { @apply border-b border-line py-5 first:pt-0 last:border-0; }
+  .prose-ap .faq-list dt { @apply mb-2 text-[18px] font-semibold leading-snug text-ink; }
+  .prose-ap .faq-list dd { @apply m-0; }
 }
 
 /* Motion: one short rise on scroll. Content stays visible without JS. */

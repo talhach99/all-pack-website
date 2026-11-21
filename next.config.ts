@@ -37,6 +37,10 @@ const nextConfig: NextConfig = {
   async redirects() {
     const to = (from: string, dest: string) => ({ source: from, destination: dest, permanent: true });
     return [
+      // Original three guides were replaced (Nov 2026); send their old URLs to the closest new guide.
+      to('/insights/choose-the-right-shipping-box', '/insights/custom-packaging-boxes-lahore'),
+      to('/insights/kraft-vs-white-cardboard', '/insights/custom-packaging-boxes-lahore'),
+      to('/insights/prepare-packaging-artwork', '/insights/custom-box-printing-cost-pakistan'),
       to('/journal', '/insights'),
       to('/journal/:slug', '/insights/:slug'),
       to('/home', '/'),
