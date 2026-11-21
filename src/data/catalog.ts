@@ -178,7 +178,7 @@ export const sectors: Sector[] = [
     summary: 'Printed packaging and stationery for hospitals and clinics.',
     detail: 'Hospitals and teaching institutions rely on consistent printed material for pharmacy, patient and administrative use, delivered on schedule.',
     formats: ['Paper bags', 'Labels', 'Cartons'],
-    clients: ['National Hospital & Medical Centre', 'Pak Red Crescent Teaching Hospital'],
+    clients: ['National Hospital & Medical Centre', 'Doctors Hospital & Medical Centre', 'Pak Red Crescent Teaching Hospital'],
   },
   {
     slug: 'e-commerce',

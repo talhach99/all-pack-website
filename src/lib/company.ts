@@ -37,6 +37,7 @@ export const CLIENTS: Client[] = [
   { name: 'McOlson Research Laboratories', logo: '/clients/mcolson.webp', wide: true },
   { name: 'Pak Red Crescent Teaching Hospital', logo: '/clients/red-crescent.webp' },
   { name: 'National Hospital & Medical Centre', logo: '/clients/national-hospital.webp' },
+  { name: 'Doctors Hospital & Medical Centre', logo: '/clients/doctors-hospital.webp', wide: true },
   { name: 'Hoest', logo: '/clients/hoest.webp' },
   { name: 'Meatler', logo: '/clients/meatler.webp' },
   { name: "Max's Chicken & Burgers", logo: '/clients/maxs.webp' },
