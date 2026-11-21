@@ -4,7 +4,7 @@
 
 @layer base {
   html { -webkit-text-size-adjust: 100%; scroll-padding-top: 120px; }
-  body { @apply bg-white font-sans text-ink antialiased; text-rendering: optimizeLegibility; overflow-x: hidden; }
+  body { @apply bg-white font-sans text-ink antialiased; text-rendering: optimizeLegibility; overflow-x: hidden; overflow-x: clip; }
   ::selection { background: #343B82; color: #fff; }
   :focus-visible { outline: 2px solid #343B82; outline-offset: 2px; border-radius: 6px; }
   h1, h2, h3, h4 { @apply font-display text-ink; font-weight: 600; letter-spacing: -.025em; text-wrap: balance; }
@@ -67,6 +67,7 @@
   .prose-ap { @apply text-[17px] leading-[1.75] text-secondary; }
   .prose-ap h2 { @apply mb-4 mt-12 text-2xl sm:text-[28px]; }
   .prose-ap p { @apply mb-5; }
+  .prose-ap > :first-child { margin-top: 0; }
 }
 
 /* Motion: one short rise on scroll. Content stays visible without JS. */
@@ -84,6 +85,12 @@
 /* WhatsApp button: arrives once after the page loads */
 @keyframes waIn { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
 .wa-float { animation: waIn .5s cubic-bezier(.22,1,.36,1) .8s both; }
+
+/* Mobile menu: full-screen sheet; the page behind it is locked and the WhatsApp button steps aside */
+html.menu-open, html.menu-open body { overflow: hidden; }
+html.menu-open .wa-float { display: none; }
+@keyframes menuIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+.menu-sheet { animation: menuIn .22s cubic-bezier(.22,1,.36,1) both; height: 100dvh; }
 
 /* Hero print-proof annotations: crosshair pulses, leader draws in, note fades in, one after another */
 .proof-x { position: absolute; width: 22px; height: 22px; margin: -11px 0 0 -11px; }
@@ -132,7 +139,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .float, .hero-in, .hero-in > *, .page-in, .wa-float, .wa-float::after, .proof-x, .proof-x i, .proof-line, .proof-text { animation: none !important; }
+  .float, .hero-in, .hero-in > *, .page-in, .wa-float, .menu-sheet, .wa-float::after, .proof-x, .proof-x i, .proof-line, .proof-text { animation: none !important; }
   .card:hover, .machine-card:hover, .lift-card:hover > div:first-child { transform: none; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }

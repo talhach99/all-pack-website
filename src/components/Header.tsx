@@ -41,7 +41,7 @@ function ProductSearch({ className = '', id }: { className?: string; id: string 
       <form role="search" onSubmit={e => { e.preventDefault(); if (hits[0]) go(hits[0].slug); }} className="flex h-12 items-center gap-3 rounded-full border border-white/15 bg-white/[.04] px-5 transition-colors focus-within:border-white/35 hover:border-white/25">
         <Search size={18} strokeWidth={1.75} className="shrink-0 text-white/60" aria-hidden="true" />
         <label htmlFor={id} className="sr-only">Search packaging</label>
-        <input id={id} value={q} onChange={e => { setQ(e.target.value); setOpen(true); }} onFocus={() => setOpen(true)} onKeyDown={e => { if (e.key === 'Escape') setOpen(false); }} placeholder="Search cartons, boxes, bags or labels" autoComplete="off" className="w-full bg-transparent text-[15px] text-white outline-none placeholder:text-white/50" />
+        <input id={id} value={q} onChange={e => { setQ(e.target.value); setOpen(true); }} onFocus={() => setOpen(true)} onKeyDown={e => { if (e.key === 'Escape') setOpen(false); }} placeholder="Search boxes, cartons or labels" autoComplete="off" className="w-full bg-transparent text-[15px] text-white outline-none placeholder:text-white/50" />
       </form>
       {open && (
         <ul className="absolute inset-x-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-2xl border border-line bg-white py-2 text-ink shadow-lift">
@@ -78,7 +78,19 @@ export function Header() {
     f(); window.addEventListener('scroll', f, { passive: true });
     return () => window.removeEventListener('scroll', f);
   }, []);
-  useEffect(() => { document.documentElement.style.overflow = menu ? 'hidden' : ''; return () => { document.documentElement.style.overflow = ''; }; }, [menu]);
+  // Lock the page behind the open menu and hide the floating WhatsApp button so it can't cover the menu's own buttons.
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle('menu-open', menu);
+    return () => root.classList.remove('menu-open');
+  }, [menu]);
+  // Close the menu if the screen grows past the mobile breakpoint (e.g. rotating a tablet).
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const f = () => { if (mq.matches) setMenu(false); };
+    mq.addEventListener('change', f);
+    return () => mq.removeEventListener('change', f);
+  }, []);
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMenu(false); };
     document.addEventListener('keydown', onKey);
@@ -101,7 +113,7 @@ export function Header() {
           <div className="ml-auto flex shrink-0 items-center gap-3 md:ml-0">
             <Link href="/contact" className="btn-outline-light btn-sm hidden xl:inline-flex">Contact us</Link>
             <a href={quote} target="_blank" rel="noopener noreferrer" className="btn btn-sm hidden bg-rule text-white hover:bg-[#1793C6] sm:inline-flex">Request a quote <ArrowRight size={16} strokeWidth={1.75} /></a>
-            <button className="grid h-10 w-10 place-items-center rounded-lg text-white hover:bg-white/10 lg:hidden" onClick={() => setMenu(v => !v)} aria-label={menu ? 'Close menu' : 'Open menu'} aria-expanded={menu}>{menu ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}</button>
+            <button className="-mr-2 grid h-11 w-11 place-items-center rounded-lg text-white hover:bg-white/10 lg:hidden" onClick={() => setMenu(v => !v)} aria-label="Open menu" aria-expanded={menu} aria-controls="mobile-menu"><Menu size={24} strokeWidth={1.5} /></button>
           </div>
         </div>
       </header>
@@ -128,17 +140,35 @@ export function Header() {
       </nav>
 
       {menu && (
-        <div className="fixed inset-0 top-[76px] z-40 overflow-y-auto bg-white sm:top-[88px] lg:hidden">
-          <nav aria-label="Mobile" className="container-x flex min-h-full flex-col py-4">
-            <div className="rounded-[28px] bg-navy p-1 md:hidden"><ProductSearch id="mobile-search" /></div>
-            {NAV.map(n => (
-              <Link key={n.href} href={n.href} className="flex items-center justify-between border-b border-line py-4 text-[20px] font-medium">{n.text} <ArrowRight size={18} strokeWidth={1.5} className="text-muted" /></Link>
-            ))}
-            <div className="mt-auto grid gap-3 pt-8">
-              <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-primary"><WhatsAppIcon size={18} /> Request a quote on WhatsApp</a>
-              <a href={emailLink()} className="btn-outline"><Mail size={18} strokeWidth={1.5} /> Email your brief</a>
+        <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Site menu" className="menu-sheet fixed inset-0 z-[80] flex flex-col bg-white lg:hidden">
+          <div className="shrink-0 bg-[#0E1440] text-white">
+            <div className="container-x flex h-[76px] items-center justify-between sm:h-[88px]">
+              <Logo light />
+              <button className="grid h-11 w-11 place-items-center rounded-lg text-white hover:bg-white/10" onClick={() => setMenu(false)} aria-label="Close menu"><X size={24} strokeWidth={1.5} /></button>
             </div>
+            <div className="container-x pb-5 md:hidden"><ProductSearch id="mobile-search" /></div>
+          </div>
+          <nav aria-label="Mobile" className="flex-1 overflow-y-auto overscroll-contain">
+            <ul className="container-x py-2">
+              {NAV.map(n => {
+                const on = active(n.href);
+                return (
+                  <li key={n.href} className="border-b border-line last:border-b-0">
+                    <Link href={n.href} onClick={() => setMenu(false)} aria-current={on ? 'page' : undefined} className={`flex min-h-[56px] items-center justify-between gap-4 text-[17px] font-semibold ${on ? 'text-brand' : 'text-ink'}`}>
+                      <span className="flex items-center gap-3">{on && <span className="h-5 w-[3px] rounded-full bg-rule" aria-hidden="true" />}{n.text}</span>
+                      <ArrowRight size={18} strokeWidth={1.5} className={on ? 'text-brand' : 'text-muted'} />
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
           </nav>
+          <div className="shrink-0 border-t border-line bg-white pb-[max(1rem,env(safe-area-inset-bottom))] pt-4">
+            <div className="container-x grid gap-3">
+              <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-primary w-full"><WhatsAppIcon size={18} /> Request a quote on WhatsApp</a>
+              <a href={emailLink()} className="btn-outline w-full"><Mail size={18} strokeWidth={1.5} /> Email your brief</a>
+            </div>
+          </div>
         </div>
       )}
     </>
