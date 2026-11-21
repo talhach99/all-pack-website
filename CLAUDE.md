@@ -15,3 +15,7 @@
 - One Products page (`/products#slug`) and one Industries page; no per-product or per-industry pages. Product data lives in `src/data/catalog.ts`.
 - Meta titles and descriptions live in `src/data/seo.ts`; run `npm run seo:check` after editing them.
 - Copy must be formal and specific: no invented figures, no counts of presses.
+
+## Images and caching
+- Never hotlink third-party images (the GetServices.ai badge icon is inlined in `Footer.tsx`). Keep images in `public/` as WebP, sized for display.
+- Cache headers for files in `public/` live in `public/_headers` (Cloudflare static assets); `next.config.ts` headers do not apply to them. If you replace an image's content, give it a new filename so cached copies don't linger.

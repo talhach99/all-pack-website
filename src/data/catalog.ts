@@ -223,8 +223,8 @@ export const principles = [
  * Manufacturing capabilities (restored from the previous site). Photos are the same free stock images used before
  * (Pexels and Unsplash, hotlinked); replace with the owner's own machine photos when available.
  */
-const px = (ref: string) => `https://images.pexels.com/photos/${ref}?auto=compress&cs=tinysrgb&w=1100`;
-const us = (ref: string) => `https://images.unsplash.com/${ref}?auto=format&fit=crop&w=1100&q=80`;
+const px = (ref: string) => `https://images.pexels.com/photos/${ref}?auto=compress&cs=tinysrgb&w=720&fm=webp`;
+const us = (ref: string) => `https://images.unsplash.com/${ref}?auto=format&fit=crop&w=720&q=75`;
 export const machines = [
   { name: 'Heidelberg 4-colour offset', type: 'Four-colour sheetfed offset', text: 'All four process colours in a single pass, for sharp, consistent colour across long carton runs.', best: ['Pharmaceutical cartons', 'Food cartons', 'Retail packaging'], image: px('19316517/pexels-photo-19316517/free-photo-of-machinery-in-factory.png') },
   { name: 'Heidelberg GTO 52', type: 'Small-format offset', text: 'A precise small-format press for labels, inserts, leaflets and shorter runs that still need offset quality.', best: ['Labels', 'Leaflets and inserts', 'Short runs'], image: us('photo-1729944950511-e9c71556cfd4') },

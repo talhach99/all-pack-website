@@ -36,7 +36,10 @@ export function HeroVisual() {
       <div ref={wrap} className="will-change-transform">
         <div className="float relative">
           <img
-            src="/renders/packaging-range.webp" alt="ALL PACK printed cosmetic packaging: lipstick carton, serum boxes, drawer box and rigid gift boxes"
+            src="/renders/packaging-range-1400.webp"
+            srcSet="/renders/packaging-range-800.webp 800w, /renders/packaging-range-1400.webp 1400w, /renders/packaging-range.webp 2400w"
+            sizes="(min-width: 1024px) 60vw, 100vw"
+            alt="ALL PACK printed cosmetic packaging: lipstick carton, serum boxes, drawer box and rigid gift boxes"
             width={2400} height={1494} fetchPriority="high" decoding="async" className="relative z-10 w-full"
           />
           <ul aria-label="Finishes and structures shown" className="pointer-events-none absolute inset-0 z-20 hidden min-[1150px]:block">

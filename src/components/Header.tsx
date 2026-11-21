@@ -72,7 +72,7 @@ export function Header() {
     window.addEventListener('hashchange', f);
     return () => window.removeEventListener('hashchange', f);
   }, []);
-  // Once the top row has scrolled away, the menu bar turns white.
+  // Once the top row has scrolled away, the menu bar picks up the logo and a quote button.
   useEffect(() => {
     const f = () => setStuck(window.scrollY > 88);
     f(); window.addEventListener('scroll', f, { passive: true });
@@ -96,7 +96,7 @@ export function Header() {
 
       <header className="site-header sticky top-0 z-50 border-b border-white/10 bg-[#0E1440] text-white lg:relative lg:top-auto">
         <div className="container-x flex h-[76px] items-center gap-6 sm:h-[88px] lg:gap-10">
-          <Logo light />
+          <Logo light priority />
           <ProductSearch id="site-search" className="mx-auto hidden w-full max-w-[520px] md:block" />
           <div className="ml-auto flex shrink-0 items-center gap-3 md:ml-0">
             <Link href="/contact" className="btn-outline-light btn-sm hidden xl:inline-flex">Contact us</Link>
@@ -105,18 +105,26 @@ export function Header() {
           </div>
         </div>
       </header>
-      <nav aria-label="Primary" className={`sticky top-0 z-50 hidden border-b transition-[background-color,box-shadow,border-color] duration-200 lg:block ${stuck ? 'border-line bg-white shadow-[0_8px_24px_rgba(20,27,77,.08)]' : 'border-white/10 bg-[#0E1440]'}`}>
-        <ul className="container-x flex h-14 items-center justify-center gap-10">
-          {NAV.map(n => {
-            const on = active(n.href);
-            const tone = stuck ? (on ? 'text-ink' : 'text-ink-soft hover:text-ink') : (on ? 'text-white' : 'text-white/70 hover:text-white');
-            return (
-              <li key={n.href} className="h-full">
-                <Link href={n.href} onClick={() => setHash(n.href.includes('#') ? `#${n.href.split('#')[1]}` : '')} aria-current={on ? 'page' : undefined} className={`relative flex h-full items-center text-[15px] font-medium transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] after:rounded-t-full after:bg-rule after:transition-transform after:duration-200 ${tone} ${on ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}>{n.text}</Link>
-              </li>
-            );
-          })}
-        </ul>
+      <nav aria-label="Primary" className={`sticky top-0 z-50 hidden border-b border-white/10 bg-[#0E1440] transition-shadow duration-200 lg:block ${stuck ? 'shadow-[0_8px_24px_rgba(8,12,40,.35)]' : ''}`}>
+        <div className="container-x grid h-14 grid-cols-[1fr_auto_1fr] items-center gap-6">
+          <div className={`transition-[opacity,transform] duration-200 ${stuck ? 'translate-y-0 opacity-100' : 'pointer-events-none -translate-y-1 opacity-0'}`} aria-hidden={!stuck}>
+            <Logo light tabIndex={stuck ? undefined : -1} imgClassName="h-8 w-auto" />
+          </div>
+          <ul className={`flex h-full items-center justify-center ${stuck ? 'gap-6 xl:gap-9' : 'gap-10'}`}>
+            {NAV.map(n => {
+              const on = active(n.href);
+              const tone = on ? 'text-white' : 'text-white/70 hover:text-white';
+              return (
+                <li key={n.href} className="h-full">
+                  <Link href={n.href} onClick={() => setHash(n.href.includes('#') ? `#${n.href.split('#')[1]}` : '')} aria-current={on ? 'page' : undefined} className={`relative flex h-full items-center whitespace-nowrap text-[15px] font-medium transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] after:rounded-t-full after:bg-rule after:transition-transform after:duration-200 ${tone} ${on ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}>{n.text}</Link>
+                </li>
+              );
+            })}
+          </ul>
+          <div className={`flex justify-end transition-opacity duration-200 ${stuck ? 'opacity-100' : 'pointer-events-none opacity-0'}`} aria-hidden={!stuck}>
+            <a href={quote} target="_blank" rel="noopener noreferrer" tabIndex={stuck ? undefined : -1} className="btn btn-sm hidden bg-rule text-white hover:bg-[#1793C6] xl:inline-flex">Request a quote <ArrowRight size={16} strokeWidth={1.75} /></a>
+          </div>
+        </div>
       </nav>
 
       {menu && (
