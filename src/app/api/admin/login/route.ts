@@ -1,10 +1,9 @@
-import { authConfigured, checkCredentials, clientIp, COOKIE, hashIp, makeSession, throttle } from '@/lib/auth';
+import { sameOrigin, authConfigured, checkCredentials, clientIp, COOKIE, hashIp, makeSession, throttle } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: Request) {
-  const origin = req.headers.get('origin');
-  if (!origin || new URL(origin).host !== new URL(req.url).host) return Response.json({ error: 'Blocked' }, { status: 403 });
+  if (!sameOrigin(req)) return Response.json({ error: 'Blocked' }, { status: 403 });
   if (!authConfigured()) return Response.json({ error: 'The admin ID and password have not been set in Cloudflare yet.' }, { status: 503 });
   const who = await hashIp(clientIp(req));
   if (!(await throttle('login', who, 8, 900, false))) return Response.json({ error: 'Too many attempts. Please wait 15 minutes and try again.' }, { status: 429 });

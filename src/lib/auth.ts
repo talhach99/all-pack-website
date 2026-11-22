@@ -54,8 +54,7 @@ export async function isAdmin(): Promise<boolean> {
 export async function guard(req: Request): Promise<Response | null> {
   if (!(await isAdmin())) return Response.json({ error: 'Not signed in' }, { status: 401 });
   if (req.method !== 'GET') {
-    const origin = req.headers.get('origin');
-    if (!origin || new URL(origin).host !== new URL(req.url).host || req.headers.get('x-admin') !== '1') return Response.json({ error: 'Blocked' }, { status: 403 });
+    if (!sameOrigin(req) || req.headers.get('x-admin') !== '1') return Response.json({ error: 'Blocked' }, { status: 403 });
   }
   return null;
 }
@@ -72,6 +71,16 @@ export async function throttle(kind: string, who: string, limit: number, windowS
   if (record) await db.prepare('INSERT INTO attempts (kind, who, at) VALUES (?, ?, ?)').bind(kind, who, Date.now()).run();
   if (Math.random() < 0.05) await db.prepare('DELETE FROM attempts WHERE at < ?').bind(Date.now() - 86400000).run();
   return true;
+}
+
+/** True when the browser's Origin header names this same site. Next on Workers can report an internal URL, so the Host headers are checked too. */
+export function sameOrigin(req: Request): boolean {
+  const origin = req.headers.get('origin');
+  if (!origin) return false;
+  let host: string;
+  try { host = new URL(origin).host; } catch { return false; }
+  const allowed = [req.headers.get('host'), req.headers.get('x-forwarded-host')?.split(',')[0]?.trim(), new URL(req.url).host];
+  return allowed.some(h => h && h.toLowerCase() === host.toLowerCase());
 }
 
 export function clientIp(req: Request): string { return req.headers.get('cf-connecting-ip') || req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'; }

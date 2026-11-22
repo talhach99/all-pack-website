@@ -1,4 +1,4 @@
-import { clientIp, hashIp, throttle } from '@/lib/auth';
+import { sameOrigin, clientIp, hashIp, throttle } from '@/lib/auth';
 import { getDb } from '@/lib/db';
 
 export const dynamic = 'force-dynamic';
@@ -6,8 +6,7 @@ export const dynamic = 'force-dynamic';
 const clip = (v: unknown, n: number) => (typeof v === 'string' ? v.trim().slice(0, n) : '');
 
 export async function POST(req: Request) {
-  const origin = req.headers.get('origin');
-  if (!origin || new URL(origin).host !== new URL(req.url).host) return Response.json({ error: 'Blocked' }, { status: 403 });
+  if (!sameOrigin(req)) return Response.json({ error: 'Blocked' }, { status: 403 });
   let b: Record<string, unknown> = {};
   try { b = await req.json(); } catch { return Response.json({ error: 'Invalid request' }, { status: 400 }); }
   // Hidden field a person never fills in, and a minimum time on the page: bots fail one of the two. They get a normal-looking success.
