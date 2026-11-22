@@ -4,6 +4,8 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-10-18",
   "compatibility_flags": ["nodejs_compat"],
+  // Keep variables and secrets added in the Cloudflare dashboard (admin ID and password) when a new version deploys.
+  "keep_vars": true,
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
