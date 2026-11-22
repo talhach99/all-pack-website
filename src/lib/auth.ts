@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers';
 import { envVar, getDb } from './db';
+import { COMPANY } from './company';
 
 export const COOKIE = 'ap_admin';
 const MAX_AGE = 60 * 60 * 12;
@@ -73,14 +74,20 @@ export async function throttle(kind: string, who: string, limit: number, windowS
   return true;
 }
 
-/** True when the browser's Origin header names this same site. Next on Workers can report an internal URL, so the Host headers are checked too. */
+/**
+ * True when the request comes from a page on this website. Browsers set Sec-Fetch-Site themselves
+ * (page scripts cannot change it), so it is the main check; the Origin header is the fallback.
+ */
 export function sameOrigin(req: Request): boolean {
+  const site = req.headers.get('sec-fetch-site');
+  if (site) return site === 'same-origin';
   const origin = req.headers.get('origin');
   if (!origin) return false;
   let host: string;
-  try { host = new URL(origin).host; } catch { return false; }
-  const allowed = [req.headers.get('host'), req.headers.get('x-forwarded-host')?.split(',')[0]?.trim(), new URL(req.url).host];
-  return allowed.some(h => h && h.toLowerCase() === host.toLowerCase());
+  try { host = new URL(origin).host.toLowerCase(); } catch { return false; }
+  const own = new URL(COMPANY.siteUrl).host.toLowerCase();
+  const allowed = [own, `www.${own}`, req.headers.get('host'), req.headers.get('x-forwarded-host')?.split(',')[0]?.trim(), new URL(req.url).host];
+  return allowed.some(h => h && h.toLowerCase() === host);
 }
 
 export function clientIp(req: Request): string { return req.headers.get('cf-connecting-ip') || req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'; }
