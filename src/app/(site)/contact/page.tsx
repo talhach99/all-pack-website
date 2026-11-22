@@ -46,7 +46,7 @@ export default async function ContactPage() {
         <div className="container-x grid gap-12 lg:grid-cols-[1.25fr_.75fr] lg:gap-16">
           <div>
             <Eyebrow>Enquiry</Eyebrow>
-            <h2 id="enquiry" className="mt-5 text-[clamp(1.9rem,3vw,2.5rem)] leading-[1.1]">{t['contact.form.title']}</h2>
+            <h2 id="enquiry" className="scroll-mt-32 mt-5 text-[clamp(1.9rem,3vw,2.5rem)] leading-[1.1]">{t['contact.form.title']}</h2>
             <p className="mt-3 text-[16px] text-secondary">{t['contact.form.text']}</p>
             <div className="mt-8"><EnquiryForm /></div>
 

@@ -42,6 +42,8 @@ export const COPY: CopyField[] = [
   f('Home: sections', 'home.quote.title', 'Quote block: heading', 'Tell us what you need to pack'),
   f('Home: sections', 'home.quote.lead', 'Quote block: text', 'Share the product dimensions, quantity and artwork. We reply within 24 hours with a specification and price.', 'long'),
 
+  f('Home: sections', 'home.quote.enquiry', 'Quote block: enquiry button text', 'Send an enquiry'),
+
   f('About page', 'about.title', 'Heading', 'Over 25 years of printing packaging in Lahore'),
   f('About page', 'about.lead', 'Introduction', 'ALL PACK is a packaging and printing company producing cartons, rigid boxes, corrugated packaging, paper bags and labels for brands across Pakistan. Printing, finishing and converting are carried out in our own facility, under an ISO 9001:2015 certified quality system.', 'long'),
   f('About page', 'about.stat.label', 'Large figure caption', 'Years in packaging and print'),

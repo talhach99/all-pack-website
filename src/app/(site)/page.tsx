@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, BadgeCheck, Factory, Mail, MapPin, ShieldCheck, Truck } from 'lucide-react';
+import { ArrowRight, BadgeCheck, Factory, Mail, MapPin, MessageSquareText, ShieldCheck, Truck } from 'lucide-react';
 import { getSite, pageMeta } from '@/lib/site';
 import { Machines } from '@/components/Machines';
 import { HeroVisual } from '@/components/HeroVisual';
@@ -126,9 +126,10 @@ export default async function Home() {
             <Eyebrow>{t['home.quote.kicker']}</Eyebrow>
             <h2 className="h-section mt-5">{t['home.quote.title']}</h2>
             <p className="lead mt-5 max-w-lg">{t['home.quote.lead']}</p>
-            <div className="mt-8 grid gap-3 sm:mt-9 sm:flex sm:flex-row">
+            <div className="mt-8 grid gap-3 sm:mt-9 sm:flex sm:flex-row sm:flex-wrap">
               <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-primary"><WhatsAppIcon size={18} /> Chat on WhatsApp</a>
               <a href={emailLink()} className="btn-outline"><Mail size={17} strokeWidth={1.75} /> Email your brief</a>
+              <Link href="/contact#enquiry" className="btn-outline"><MessageSquareText size={17} strokeWidth={1.75} /> {t['home.quote.enquiry']}</Link>
             </div>
           </div>
           <ul className="grid gap-3 sm:grid-cols-2">
