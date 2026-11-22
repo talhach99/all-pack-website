@@ -1,9 +1,10 @@
 import { Factory } from 'lucide-react';
-import { reasons } from '@/data/catalog';
+import { getSite } from '@/lib/site';
 import { CertBadge } from './Certifications';
 
 /** The four proof points: certifications, years in production and in-house manufacturing. */
-export function Reasons() {
+export async function Reasons() {
+  const { reasons } = await getSite();
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {reasons.map(r => (

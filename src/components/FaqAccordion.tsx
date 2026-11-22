@@ -2,10 +2,10 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
-import { faqs } from '@/data/faqs';
+import type { Faq } from '@/lib/site';
 
 /** Numbered FAQ list. `dark` renders for navy sections. */
-export function FaqAccordion({ limit, dark = false }: { limit?: number; dark?: boolean }) {
+export function FaqAccordion({ faqs, limit, dark = false }: { faqs: Faq[]; limit?: number; dark?: boolean }) {
   const [open, setOpen] = useState<number | null>(0);
   const list = limit ? faqs.slice(0, limit) : faqs;
   return (

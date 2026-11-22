@@ -1,6 +1,4 @@
 'use client';
-import { whatsappLink } from '@/lib/company';
-
 export function WhatsAppIcon({ size = 22 }: { size?: number }) {
   return (
     <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" aria-hidden="true">
@@ -10,8 +8,7 @@ export function WhatsAppIcon({ size = 22 }: { size?: number }) {
 }
 
 /** Round WhatsApp button, always visible in the bottom-right corner on every screen size. */
-export function FloatingContact() {
-  const wa = whatsappLink();
+export function FloatingContact({ href: wa }: { href: string | null }) {
   if (!wa) return null;
   return (
     <a

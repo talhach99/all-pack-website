@@ -18,6 +18,6 @@ for(const file of walk(path.join(root,'src')).filter(f=>/\.tsx?$/.test(f))){
 const catalog=fs.readFileSync(path.join(root,'src/data/catalog.ts'),'utf8');
 const images=[...catalog.matchAll(/image: '([^']+)'/g)].map(m=>m[1]).concat(['/renders/packaging-range.webp']);
 for(const img of images)if(!fs.existsSync(path.join(root,'public',img)))errors.push(`Missing image: ${img}`);
-for(const route of ['contact','faq','about','insights','products','privacy','terms','industries'])if(!fs.existsSync(path.join(root,'src/app',route,'page.tsx')))errors.push(`Missing route: ${route}`);
+for(const route of ['contact','faq','about','insights','products','privacy','terms','industries'])if(!fs.existsSync(path.join(root,'src/app/(site)',route,'page.tsx')))errors.push(`Missing route: ${route}`);
 console.log(`Source files: ${checked}, images: ${images.length}, errors: ${errors.length}`);
 if(errors.length){for(const e of errors)console.error(e);process.exitCode=1;}

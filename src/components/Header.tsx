@@ -3,8 +3,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowRight, Mail, Menu, Search, X } from 'lucide-react';
-import { emailLink, quoteLink } from '@/lib/company';
-import { families } from '@/data/catalog';
+import type { Family } from '@/data/catalog';
 import { Logo } from './Logo';
 import { WhatsAppIcon } from './FloatingContact';
 
@@ -20,7 +19,10 @@ const NAV = [
 ];
 
 /** Search across the product range; a pick jumps to that format on the Products page. */
-function ProductSearch({ className = '', id }: { className?: string; id: string }) {
+type Fam = Pick<Family, 'slug' | 'name' | 'short' | 'label' | 'specs'>;
+export type HeaderProps = { quote: string; email: string; families: Fam[]; logo: string };
+
+function ProductSearch({ className = '', id, families }: { className?: string; id: string; families: Fam[] }) {
   const router = useRouter();
   const [q, setQ] = useState('');
   const [open, setOpen] = useState(false);
@@ -29,7 +31,7 @@ function ProductSearch({ className = '', id }: { className?: string; id: string 
     const t = q.trim().toLowerCase();
     if (!t) return families;
     return families.filter(f => [f.name, f.short, f.label, ...f.specs.flatMap(s => s.items)].join(' ').toLowerCase().includes(t));
-  }, [q]);
+  }, [q, families]);
   useEffect(() => {
     const off = (e: MouseEvent) => { if (box.current && !box.current.contains(e.target as Node)) setOpen(false); };
     document.addEventListener('mousedown', off);
@@ -59,12 +61,11 @@ function ProductSearch({ className = '', id }: { className?: string; id: string 
   );
 }
 
-export function Header() {
+export function Header({ quote, email, families, logo }: HeaderProps) {
   const path = usePathname();
   const [menu, setMenu] = useState(false);
   const [stuck, setStuck] = useState(false);
   const [hash, setHash] = useState('');
-  const quote = quoteLink();
 
   useEffect(() => { setMenu(false); setHash(window.location.hash); }, [path]);
   useEffect(() => {
@@ -108,8 +109,8 @@ export function Header() {
 
       <header className="site-header sticky top-0 z-50 border-b border-white/10 bg-[#0E1440] text-white lg:relative lg:top-auto">
         <div className="container-x flex h-[76px] items-center gap-6 sm:h-[88px] lg:gap-10">
-          <Logo light priority />
-          <ProductSearch id="site-search" className="mx-auto hidden w-full max-w-[520px] md:block" />
+          <Logo light priority src={logo} />
+          <ProductSearch families={families} id="site-search" className="mx-auto hidden w-full max-w-[520px] md:block" />
           <div className="ml-auto flex shrink-0 items-center gap-3 md:ml-0">
             <Link href="/contact" className="btn-outline-light btn-sm hidden xl:inline-flex">Contact us</Link>
             <a href={quote} target="_blank" rel="noopener noreferrer" className="btn btn-sm hidden bg-rule text-white hover:bg-[#1793C6] sm:inline-flex">Request a quote <ArrowRight size={16} strokeWidth={1.75} /></a>
@@ -120,7 +121,7 @@ export function Header() {
       <nav aria-label="Primary" className={`sticky top-0 z-50 hidden border-b border-white/10 bg-[#0E1440] transition-shadow duration-200 lg:block ${stuck ? 'shadow-[0_8px_24px_rgba(8,12,40,.35)]' : ''}`}>
         <div className="container-x grid h-14 grid-cols-[1fr_auto_1fr] items-center gap-6">
           <div className={`transition-[opacity,transform] duration-200 ${stuck ? 'translate-y-0 opacity-100' : 'pointer-events-none -translate-y-1 opacity-0'}`} aria-hidden={!stuck}>
-            <Logo light tabIndex={stuck ? undefined : -1} imgClassName="h-8 w-auto" />
+            <Logo light src={logo} tabIndex={stuck ? undefined : -1} imgClassName="h-8 w-auto" />
           </div>
           <ul className={`flex h-full items-center justify-center ${stuck ? 'gap-6 xl:gap-9' : 'gap-10'}`}>
             {NAV.map(n => {
@@ -143,10 +144,10 @@ export function Header() {
         <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Site menu" className="menu-sheet fixed inset-0 z-[80] flex flex-col bg-white lg:hidden">
           <div className="shrink-0 bg-[#0E1440] text-white">
             <div className="container-x flex h-[76px] items-center justify-between sm:h-[88px]">
-              <Logo light />
+              <Logo light src={logo} />
               <button className="grid h-11 w-11 place-items-center rounded-lg text-white hover:bg-white/10" onClick={() => setMenu(false)} aria-label="Close menu"><X size={24} strokeWidth={1.5} /></button>
             </div>
-            <div className="container-x pb-5 md:hidden"><ProductSearch id="mobile-search" /></div>
+            <div className="container-x pb-5 md:hidden"><ProductSearch families={families} id="mobile-search" /></div>
           </div>
           <nav aria-label="Mobile" className="flex-1 overflow-y-auto overscroll-contain">
             <ul className="container-x py-2">
@@ -166,7 +167,7 @@ export function Header() {
           <div className="shrink-0 border-t border-line bg-white pb-[max(1rem,env(safe-area-inset-bottom))] pt-4">
             <div className="container-x grid gap-3">
               <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-primary w-full"><WhatsAppIcon size={18} /> Request a quote on WhatsApp</a>
-              <a href={emailLink()} className="btn-outline w-full"><Mail size={18} strokeWidth={1.5} /> Email your brief</a>
+              <a href={email} className="btn-outline w-full"><Mail size={18} strokeWidth={1.5} /> Email your brief</a>
             </div>
           </div>
         </div>

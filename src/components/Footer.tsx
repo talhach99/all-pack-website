@@ -2,14 +2,15 @@ import Link from 'next/link';
 import { ArrowUpRight, Mail, MapPin } from 'lucide-react';
 import { Logo } from './Logo';
 import { CertBadge } from './Certifications';
-import { COMPANY, mapsLink, whatsappLink } from '@/lib/company';
+import { getSite } from '@/lib/site';
 import { WhatsAppIcon } from './FloatingContact';
-import { families } from '@/data/catalog';
 
 const company: [string, string][] = [['About ALL PACK', '/about'], ['Why ALL PACK', '/why-all-pack'], ['Industries', '/industries'], ['Packaging guides', '/insights'], ['FAQ', '/faq'], ['Contact', '/contact']];
 
-export function Footer() {
-  const wa = whatsappLink();
+export async function Footer() {
+  const { company: COMPANY, links, families, copy } = await getSite();
+  const mapsLink = links.mapsLink;
+  const wa = links.whatsappLink();
   const socials = ([['Instagram', COMPANY.instagram], ['Facebook', COMPANY.facebook], ['LinkedIn', COMPANY.linkedin]] as const).filter(([, l]) => l);
   const head = 'mb-5 font-display text-[15px] font-semibold text-white';
   const item = 'text-[15px] text-cyan transition-colors hover:text-white';
@@ -17,8 +18,8 @@ export function Footer() {
     <footer className="bg-navy text-cyan">
       <div className="container-x grid grid-cols-2 gap-x-6 gap-y-12 py-16 sm:gap-12 sm:py-20 lg:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
         <div className="col-span-2 sm:col-span-1">
-          <Logo light />
-          <p className="mt-6 max-w-xs text-[15px] leading-relaxed">Custom printed packaging for pharmaceutical, food and retail brands, produced in Lahore and delivered across Pakistan.</p>
+          <Logo light src={copy['site.logo']} />
+          <p className="mt-6 max-w-xs text-[15px] leading-relaxed">{copy['footer.blurb']}</p>
           <div className="mt-7 flex items-center gap-3"><CertBadge id="iso" size={46} /><CertBadge id="halal" size={46} /><span className="text-[13px] leading-snug">ISO 9001:2015<br />Halal certified</span></div>
           {socials.length > 0 && <div className="mt-6 flex gap-5 text-sm">{socials.map(([n, l]) => <a key={n} href={l} target="_blank" rel="noopener noreferrer" className={item}>{n}</a>)}</div>}
         </div>
@@ -54,7 +55,7 @@ export function Footer() {
       </div>
       <div className="container-x">
         <div className="flex flex-col justify-between gap-3 border-t border-white/10 py-7 pb-20 text-[13px] sm:flex-row sm:pb-7">
-          <p>© {new Date().getFullYear()} ALL PACK. The Packaging Experts, Lahore.</p>
+          <p>© {new Date().getFullYear()} {copy['footer.copyright']}</p>
           <div className="flex gap-5"><Link href="/privacy" className="hover:text-white">Privacy</Link><Link href="/terms" className="hover:text-white">Terms</Link><Link href="/sitemap.xml" className="hover:text-white">Sitemap</Link></div>
         </div>
       </div>

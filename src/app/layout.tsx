@@ -3,55 +3,33 @@ import '@fontsource-variable/inter/wght.css';
 import '@fontsource-variable/inter-tight/wght.css';
 import '@fontsource-variable/jetbrains-mono/wght.css';
 import './globals.css';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
-import { FloatingContact } from '@/components/FloatingContact';
-import { Motion } from '@/components/Motion';
-import { COMPANY, phoneLink } from '@/lib/company';
-import { PAGE_SEO } from '@/data/seo';
-import { Analytics } from '@/components/Analytics';
+import { getSite } from '@/lib/site';
 
-export const metadata: Metadata = {
-  metadataBase: new URL(COMPANY.siteUrl),
-  title: { default: PAGE_SEO.home.title, template: '%s | ALL PACK' },
-  description: PAGE_SEO.home.description,
-  applicationName: 'ALL PACK',
-  alternates: { canonical: '/' },
-  openGraph: { title: 'ALL PACK | Packaging & Printing Company in Lahore', description: 'Custom printed cartons, rigid boxes, mailer boxes, paper bags and labels, produced on Heidelberg offset presses in Lahore.', type: 'website', locale: 'en_PK', siteName: 'ALL PACK', images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'ALL PACK printed packaging range' }] },
-  twitter: { card: 'summary_large_image', images: ['/og-image.png'] },
-  robots: { index: true, follow: true },
-  formatDetection: { telephone: false },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { company, copy, seoFor } = await getSite();
+  const home = seoFor('home');
+  const og = copy['site.ogImage'];
+  return {
+    metadataBase: new URL(company.siteUrl),
+    title: { default: home.title, template: '%s | ' + company.name },
+    description: home.description,
+    applicationName: company.name,
+    alternates: { canonical: '/' },
+    openGraph: { title: home.title, description: home.description, type: 'website', locale: 'en_PK', siteName: company.name, images: [{ url: og, alt: company.name }] },
+    twitter: { card: 'summary_large_image', images: [og] },
+    robots: { index: true, follow: true },
+    formatDetection: { telephone: false },
+  };
+}
+
+export const dynamic = 'force-dynamic';
 
 export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#FFFFFF' };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: COMPANY.name,
-    slogan: COMPANY.tagline,
-    description: 'Packaging and printing company in Lahore producing custom printed cartons, rigid boxes, mailer boxes, paper bags and labels.',
-    areaServed: 'Pakistan',
-    email: COMPANY.email,
-    telephone: phoneLink()?.slice(4),
-    url: COMPANY.siteUrl,
-    image: `${COMPANY.siteUrl}/og-image.png`,
-    logo: `${COMPANY.siteUrl}/brand/allpack-logo.png`,
-    address: { '@type': 'PostalAddress', streetAddress: COMPANY.street, addressLocality: 'Lahore', addressRegion: 'Punjab', addressCountry: 'PK' },
-    sameAs: [COMPANY.instagram, COMPANY.facebook, COMPANY.linkedin].filter(Boolean),
-  };
   return (
     <html lang="en-PK">
-      <body>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
-        <Header />
-        <div id="main">{children}</div>
-        <Footer />
-        <FloatingContact />
-        <Motion />
-        <Analytics />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

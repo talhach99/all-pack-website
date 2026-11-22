@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { CLIENTS, type Client } from '@/lib/company';
+import type { Client } from '@/lib/company';
+import { getSite } from '@/lib/site';
 
 function Tile({ c }: { c: Client }) {
   return (
@@ -28,7 +29,9 @@ function Row({ items, reverse = false, duration = 40 }: { items: Client[]; rever
 }
 
 /** Client logos in two sliding rows: the top row moves left, the bottom row moves right. Hover pauses; reduced motion keeps them still. */
-export function ClientLogos({ className = '' }: { className?: string }) {
+export async function ClientLogos({ className = '' }: { className?: string }) {
+  const CLIENTS = (await getSite()).clients;
+  if (!CLIENTS.length) return null;
   const mid = Math.ceil(CLIENTS.length / 2);
   return (
     <div className={`grid gap-3 ${className}`}>

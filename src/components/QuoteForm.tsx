@@ -1,19 +1,19 @@
 'use client';
 import { useMemo, useRef, useState } from 'react';
 import { ArrowRight, Mail, Paperclip, X } from 'lucide-react';
-import { COMPANY, whatsappLink } from '@/lib/company';
-import { families } from '@/data/catalog';
+import type { Family } from '@/data/catalog';
 
 /**
  * The brief is not sent through the website. It is written up as a plain message and
  * opened in WhatsApp or the visitor's email app, so it reaches ALL PACK directly.
  */
-export function QuoteForm({ compact = false }: { compact?: boolean }) {
+export function QuoteForm({ compact = false, families, whatsapp, email }: { compact?: boolean; families: Pick<Family, 'slug' | 'name'>[]; whatsapp: string; email: string }) {
+  const whatsappLink = (text: string) => (whatsapp ? `https://wa.me/${whatsapp}?text=${encodeURIComponent(text)}` : null);
   const formRef = useRef<HTMLFormElement>(null);
   const [sent, setSent] = useState(false);
   const [items, setItems] = useState<string[]>([]);
 
-  const selected = useMemo(() => items.map(s => families.find(p => p.slug === s)).filter(Boolean) as typeof families, [items]);
+  const selected = useMemo(() => items.map(s => families.find(p => p.slug === s)).filter(Boolean) as typeof families, [items, families]);
   const productSpec = selected.map(p => p.name).join(', ');
 
   function summary(form: HTMLFormElement) {
@@ -36,7 +36,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
     const text = summary(form);
     const url = channel === 'whatsapp'
       ? whatsappLink(text)
-      : `mailto:${COMPANY.email}?subject=${encodeURIComponent('Packaging quote request')}&body=${encodeURIComponent(text)}`;
+      : `mailto:${email}?subject=${encodeURIComponent('Packaging quote request')}&body=${encodeURIComponent(text)}`;
     if (!url) return;
     if (channel === 'whatsapp') window.open(url, '_blank', 'noopener,noreferrer');
     else window.location.href = url;

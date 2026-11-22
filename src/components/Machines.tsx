@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import { machines } from '@/data/catalog';
+import { getSite } from '@/lib/site';
 
 /** Manufacturing capabilities: one photo card per press or line. Scrolls sideways on small screens. */
-export function Machines() {
+export async function Machines() {
+  const { machines } = await getSite();
   return (
     <ul className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-4">
       {machines.map((m, i) => (

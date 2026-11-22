@@ -44,31 +44,28 @@ export const CLIENTS: Client[] = [
 ];
 
 export const QUOTE_MESSAGE = 'Hello ALL PACK, I would like a quotation for custom packaging.';
-
-export function whatsappLink(message: string = QUOTE_MESSAGE): string | null {
-  if (!COMPANY.whatsapp) return null;
-  return `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(message)}`;
-}
-
-/** Normalise Pakistan local mobile numbers into international tel: links. */
-export function phoneLink(): string | null {
-  if (!COMPANY.phone) return null;
-  const raw = COMPANY.phone.trim();
-  const digits = raw.replace(/\D/g, '');
-  if (raw.startsWith('+')) return `tel:+${digits}`;
-  if (/^0\d{10}$/.test(digits)) return `tel:+92${digits.slice(1)}`;
-  if (/^92\d{10}$/.test(digits)) return `tel:+${digits}`;
-  return `tel:${digits}`;
-}
-
-/** Quotes go to WhatsApp first, email as the fallback. There is no quote form in the main flow. */
 export const QUOTE_SUBJECT = 'Packaging quote request';
-export function emailLink(subject: string = QUOTE_SUBJECT, body = ''): string {
-  return `mailto:${COMPANY.email}?subject=${encodeURIComponent(subject)}${body ? `&body=${encodeURIComponent(body)}` : ''}`;
-}
-export function quoteLink(message?: string): string {
-  return whatsappLink(message) || emailLink();
-}
 
-export const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(COMPANY.address)}`;
-export const mapsEmbed = `https://www.google.com/maps?q=${encodeURIComponent(COMPANY.address)}&output=embed`;
+export type Company = typeof COMPANY;
+
+/** Contact links built from the company details, so changes made in the admin panel reach every button. */
+export function makeLinks(company: Company) {
+  const whatsappLink = (message: string = QUOTE_MESSAGE): string | null =>
+    company.whatsapp ? `https://wa.me/${company.whatsapp}?text=${encodeURIComponent(message)}` : null;
+  const phoneLink = (): string | null => {
+    if (!company.phone) return null;
+    const raw = company.phone.trim();
+    const digits = raw.replace(/\D/g, '');
+    if (raw.startsWith('+')) return `tel:+${digits}`;
+    if (/^0\d{10}$/.test(digits)) return `tel:+92${digits.slice(1)}`;
+    if (/^92\d{10}$/.test(digits)) return `tel:+${digits}`;
+    return `tel:${digits}`;
+  };
+  const emailLink = (subject: string = QUOTE_SUBJECT, body = ''): string =>
+    `mailto:${company.email}?subject=${encodeURIComponent(subject)}${body ? `&body=${encodeURIComponent(body)}` : ''}`;
+  const quoteLink = (message?: string): string => whatsappLink(message) || emailLink();
+  const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(company.address)}`;
+  const mapsEmbed = `https://www.google.com/maps?q=${encodeURIComponent(company.address)}&output=embed`;
+  return { whatsappLink, phoneLink, emailLink, quoteLink, mapsLink, mapsEmbed };
+}
+export type Links = ReturnType<typeof makeLinks>;

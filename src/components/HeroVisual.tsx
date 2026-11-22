@@ -2,15 +2,18 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef } from 'react';
 
-/** Print-proof annotations: a registration crosshair on the product, a dashed leader and a note at the side. */
-const NOTES = [
-  { side: 'left' as const, x: 30.6, y: 47, step: '01 / Structure', title: 'Drawer and rigid boxes', sub: 'Built to your product size' },
-  { side: 'left' as const, x: 19.9, y: 79, step: '02 / Finish', title: 'Foil stamping', sub: 'Gold, silver and holographic' },
-  { side: 'right' as const, x: 82, y: 66, step: '03 / Finish', title: 'Soft-touch lamination', sub: 'Velvet matte surface' },
+/** Print-proof annotations: a registration crosshair on the product, a dashed leader and a note at the side. Positions belong to the default picture. */
+export type HeroNote = { step: string; title: string; sub: string };
+const POS = [
+  { side: 'left' as const, x: 30.6, y: 47 },
+  { side: 'left' as const, x: 19.9, y: 79 },
+  { side: 'right' as const, x: 82, y: 66 },
 ];
 
 /** Hero product group: floats gently, leans towards the pointer on desktop, carries spec annotations on wide screens. */
-export function HeroVisual() {
+export function HeroVisual({ image, alt, notes }: { image: string; alt: string; notes: HeroNote[] }) {
+  const isDefault = image.startsWith('/renders/packaging-range');
+  const NOTES = isDefault ? POS.map((p, i) => ({ ...p, ...notes[i] })) : [];
   const wrap = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = wrap.current;
@@ -36,11 +39,10 @@ export function HeroVisual() {
       <div ref={wrap} className="will-change-transform">
         <div className="float relative">
           <img
-            src="/renders/packaging-range-1400.webp"
-            srcSet="/renders/packaging-range-800.webp 800w, /renders/packaging-range-1400.webp 1400w, /renders/packaging-range.webp 2400w"
-            sizes="(min-width: 1024px) 60vw, 100vw"
-            alt="ALL PACK printed cosmetic packaging: lipstick carton, serum boxes, drawer box and rigid gift boxes"
-            width={2400} height={1494} fetchPriority="high" decoding="async" className="relative z-10 w-full"
+            src={isDefault ? '/renders/packaging-range-1400.webp' : image}
+            {...(isDefault ? { srcSet: '/renders/packaging-range-800.webp 800w, /renders/packaging-range-1400.webp 1400w, /renders/packaging-range.webp 2400w', sizes: '(min-width: 1024px) 60vw, 100vw', width: 2400, height: 1494 } : {})}
+            alt={alt}
+            fetchPriority="high" decoding="async" className="relative z-10 w-full"
           />
           <ul aria-label="Finishes and structures shown" className="pointer-events-none absolute inset-0 z-20 hidden min-[1150px]:block">
             {NOTES.map((n, i) => {
