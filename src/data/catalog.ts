@@ -128,12 +128,14 @@ export const families: Family[] = [
   },
 ];
 
-export type Sector = { slug: string; name: string; summary: string; detail: string; formats: string[]; clients: string[] };
+export type Sector = { slug: string; name: string; summary: string; detail: string; formats: string[]; clients: string[]; image?: string; alt?: string };
 
 /** Sectors ALL PACK serves. Client names are the owner's own client list. */
 export const sectors: Sector[] = [
   {
     slug: 'pharmaceutical',
+    image: '/renders/pharmaceutical-cartons-v2.webp',
+    alt: 'ALL PACK printed pharmaceutical carton',
     name: 'Pharmaceutical',
     summary: 'Cartons, leaflets and labels printed to approved artwork, batch after batch.',
     detail: 'Regulated packaging leaves no room for drift. Artwork is checked against the approved file, proofed before production and matched on every reprint, so dosage text, batch panels and brand colours stay exactly as signed off.',
@@ -142,6 +144,8 @@ export const sectors: Sector[] = [
   },
   {
     slug: 'food-and-bakery',
+    image: '/renders/food-boxes-v2.webp',
+    alt: 'ALL PACK printed food and bakery box',
     name: 'Food and bakery',
     summary: 'Cartons, wrappers and boxes for bread, cakes, biscuits and snacks.',
     detail: 'Bakery and snack brands reorder often and in volume. We hold colour across repeat runs and plan production around your dispatch schedule, from rusk wrappers to cake cartons.',
@@ -150,6 +154,8 @@ export const sectors: Sector[] = [
   },
   {
     slug: 'confectionery',
+    image: '/renders/folding-cartons-v2.webp',
+    alt: 'ALL PACK printed confectionery folding carton',
     name: 'Confectionery',
     summary: 'Shelf-ready cartons with foil, UV and window finishes.',
     detail: 'Confectionery competes on the shelf. Bright four-colour print, foil and spot UV give cartons the finish they need, and display styles let retailers stock them straight from the box.',
@@ -158,6 +164,8 @@ export const sectors: Sector[] = [
   },
   {
     slug: 'cosmetics',
+    image: '/renders/packaging-range-1400.webp',
+    alt: 'ALL PACK printed cosmetic cartons and rigid gift boxes',
     name: 'Cosmetics and personal care',
     summary: 'Premium cartons and rigid boxes for beauty and personal care.',
     detail: 'Beauty packaging is judged on touch as much as print. Soft-touch lamination, foil stamping and fitted inserts give cosmetic and fragrance ranges a finish worthy of the product.',
@@ -166,6 +174,8 @@ export const sectors: Sector[] = [
   },
   {
     slug: 'restaurants',
+    image: '/renders/paper-bags.webp',
+    alt: 'ALL PACK printed takeaway paper bag',
     name: 'Restaurants and food service',
     summary: 'Branded takeaway boxes and bags for daily service.',
     detail: 'Takeaway packaging is used every day and seen in every delivery. We supply printed food boxes and carry bags in quantities that keep pace with service.',
@@ -174,6 +184,8 @@ export const sectors: Sector[] = [
   },
   {
     slug: 'healthcare',
+    image: '/renders/labels-stickers-v2.webp',
+    alt: 'ALL PACK printed labels and stickers',
     name: 'Hospitals and healthcare',
     summary: 'Printed packaging and stationery for hospitals and clinics.',
     detail: 'Hospitals and teaching institutions rely on consistent printed material for pharmacy, patient and administrative use, delivered on schedule.',
@@ -182,6 +194,8 @@ export const sectors: Sector[] = [
   },
   {
     slug: 'e-commerce',
+    image: '/renders/mailer-boxes.webp',
+    alt: 'ALL PACK printed e-commerce mailer box',
     name: 'E-commerce and retail',
     summary: 'Mailers, shipping cartons and bags for brands that deliver.',
     detail: 'For online and retail brands the box is the first physical contact with the customer. Printed mailers and shipping cartons protect the order and present the brand when it is opened.',

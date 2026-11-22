@@ -52,7 +52,7 @@ export default async function IndustriesPage() {
                 <a href={quoteLink(`Hello ALL PACK, I would like a quotation for ${s.name.toLowerCase()} packaging.`)} target="_blank" rel="noopener noreferrer" className="btn-primary mt-8"><WhatsAppIcon size={18} /> Discuss your packaging</a>
               </div>
               <div className="flex min-w-0 flex-col gap-4">
-                {hero && <div className="relative aspect-[16/10] overflow-hidden rounded-3xl bg-card"><img src={hero.image} alt={hero.alt} loading="lazy" className="absolute inset-0 h-full w-full object-contain p-6 sm:p-8" /></div>}
+                {(s.image || hero) && <div className="relative aspect-[16/10] overflow-hidden rounded-3xl bg-card"><img src={s.image || hero!.image} alt={s.image ? (s.alt || s.name) : hero!.alt} loading="lazy" className="absolute inset-0 h-full w-full object-contain p-6 sm:p-8" /></div>}
                 <div className="card p-6">
                   <p className="text-[14px] font-semibold">Formats we produce</p>
                   <ul className="mt-3 flex flex-wrap gap-2">

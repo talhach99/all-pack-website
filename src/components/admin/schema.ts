@@ -28,6 +28,8 @@ export const COLLECTIONS: CollectionDef[] = [
       { k: 'name', label: 'Industry name', t: 'text' },
       { k: 'summary', label: 'Short summary', t: 'long' },
       { k: 'detail', label: 'Detail paragraph', t: 'long' },
+      { k: 'image', label: 'Picture', t: 'image', hint: imageHint },
+      { k: 'alt', label: 'Picture description', t: 'text' },
       { k: 'formats', label: 'Formats we produce (one per line)', t: 'lines', hint: 'Use product names exactly as written in Products so they link and show the right picture.' },
       { k: 'clients', label: 'Clients in this industry (one per line)', t: 'lines' },
     ],
