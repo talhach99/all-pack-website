@@ -5,7 +5,7 @@ export type HeroImage = { src: string; alt: string; label?: string; cover?: bool
 
 /**
  * Inner page hero (Nov 2026 redesign).
- * Ivory band with ink headline (an italic serif accent via .ap-accent), and a floating three-photo collage or a custom aside.
+ * Ivory band with ink headline (navy accent words via .ap-accent), and a floating three-photo collage or a custom aside.
  */
 export function PageHero({ kicker, title, description, children, crumbs, images, aside, stats }: {
   kicker: string; title: React.ReactNode; description?: React.ReactNode; children?: React.ReactNode;
