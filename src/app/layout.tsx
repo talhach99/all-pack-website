@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import '@fontsource-variable/plus-jakarta-sans/wght.css';
 import '@fontsource-variable/inter/wght.css';
 import '@fontsource-variable/inter-tight/wght.css';
 import '@fontsource-variable/jetbrains-mono/wght.css';
@@ -15,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: home.description,
     applicationName: company.name,
     alternates: { canonical: '/' },
-    openGraph: { title: home.title, description: home.description, type: 'website', locale: 'en_PK', siteName: company.name, images: [{ url: og, alt: company.name }] },
+    openGraph: { title: home.title, description: home.description, type: 'website', locale: 'en_US', siteName: company.name, images: [{ url: og, alt: company.name }] },
     twitter: { card: 'summary_large_image', images: [og] },
     robots: { index: true, follow: true },
     formatDetection: { telephone: false },
@@ -28,7 +29,7 @@ export const viewport: Viewport = { width: 'device-width', initialScale: 1, them
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-PK">
+    <html lang="en">
       <body>{children}</body>
     </html>
   );

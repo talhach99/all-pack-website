@@ -8,6 +8,9 @@
 /clients/*
   Cache-Control: public, max-age=2592000, stale-while-revalidate=604800
 
+/photos/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=604800
+
 /renders/*
   Cache-Control: public, max-age=2592000, stale-while-revalidate=604800
 

@@ -1,73 +1,63 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { getSite, pageMeta } from '@/lib/site';
-import type { Family } from '@/data/catalog';
+import { pageMeta } from '@/lib/site';
+import { INDUSTRIES } from '@/data/home';
 import { PageHero } from '@/components/PageHero';
-import { WhatsAppIcon } from '@/components/FloatingContact';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('industries', '/industries'); }
 
-export default async function IndustriesPage() {
-  const { families, sectors, links, copy: t } = await getSite();
-  const { quoteLink } = links;
-  const formatLink = (name: string): Family | undefined => families.find(f => f.name === name || name.startsWith(f.name.split(' ')[0]));
+export default function IndustriesPage() {
   return (
-    <main>
-      <PageHero
-        kicker="Industries"
-        title={<>{t['industries.title']} <span className="text-[#8FC2F2]">{t['industries.title2']}</span></>}
-        description={t['industries.lead']}
-        aside={
-          <ol className="border-b border-white/10">
-            {sectors.map((s, i) => (
-              <li key={s.slug}>
-                <a href={`#${s.slug}`} className="group grid grid-cols-[40px_1fr_auto] items-center gap-4 border-t border-white/10 py-3 transition-colors hover:bg-white/[.03]">
-                  <span className="font-mono text-[12px] text-[#7FD3F0]">{String(i + 1).padStart(2, '0')}</span>
-                  <span>
-                    <span className="block font-display text-[18px] font-medium tracking-[-.01em] text-white">{s.name}</span>
-                    <span className="mt-0.5 block text-[13px] text-[#9AA5CC]">{s.formats.join(' · ')}</span>
-                  </span>
-                  <ArrowRight size={16} strokeWidth={1.5} className="text-white/40 transition-transform group-hover:translate-x-1 group-hover:text-white" />
-                </a>
-              </li>
-            ))}
-          </ol>
-        }
-      >
-        <a href={quoteLink('Hello ALL PACK, I would like to discuss packaging for my industry.')} target="_blank" rel="noopener noreferrer" className="btn-primary"><WhatsAppIcon size={18} /> Discuss your packaging</a>
-        <Link href="/products" className="btn-outline">View products</Link>
+    <main className="ap">
+      <PageHero kicker="Industries" title="Packaging for every industry we serve." description="From regulated pharmaceutical lines to e-commerce brands, we build each category's requirements into your packaging, from the first sample to the full run.">
+        {INDUSTRIES.map(i => <a key={i.id} href={`#${i.id}`} className="rounded-full border border-[#E0E3EA] bg-white px-4 py-2.5 text-[14px] font-bold">{i.name}</a>)}
       </PageHero>
-      <div className="container-x pb-8">
-        {sectors.map((s, i) => {
-          const hero = formatLink(s.formats[0]);
-          return (
-            <section key={s.slug} id={s.slug} aria-labelledby={`${s.slug}-h`} className="grid gap-10 border-b border-line py-16 last:border-0 sm:py-20 lg:grid-cols-[1.15fr_.85fr] lg:gap-16">
-              <div className="min-w-0">
-                <p className="meta">{String(i + 1).padStart(2, '0')}</p>
-                <h2 id={`${s.slug}-h`} className="mt-4 text-[clamp(2rem,3.2vw,2.6rem)] leading-[1.08]">{s.name}</h2>
-                <p className="mt-4 text-[19px] font-medium leading-snug text-ink-soft">{s.summary}</p>
-                <p className="lead mt-4">{s.detail}</p>
-                <a href={quoteLink(`Hello ALL PACK, I would like a quotation for ${s.name.toLowerCase()} packaging.`)} target="_blank" rel="noopener noreferrer" className="btn-primary mt-8"><WhatsAppIcon size={18} /> Discuss your packaging</a>
-              </div>
-              <div className="flex min-w-0 flex-col gap-4">
-                {(s.image || hero) && <div className="relative aspect-[16/10] overflow-hidden rounded-3xl bg-card"><img src={s.image || hero!.image} alt={s.image ? (s.alt || s.name) : hero!.alt} loading="lazy" className="absolute inset-0 h-full w-full object-contain p-6 sm:p-8" /></div>}
-                <div className="card p-6">
-                  <p className="text-[14px] font-semibold">Formats we produce</p>
-                  <ul className="mt-3 flex flex-wrap gap-2">
-                    {s.formats.map(f => { const fam = formatLink(f); return <li key={f}>{fam ? <Link href={`/products#${fam.slug}`} className="chip hover:border-navy hover:text-navy">{f}</Link> : <span className="chip">{f}</span>}</li>; })}
-                  </ul>
-                  {s.clients.length > 0 && <>
-                    <p className="mt-6 text-[14px] font-semibold">Clients in this sector</p>
-                    <p className="mt-2 text-[15px] leading-relaxed text-secondary">{s.clients.join(' · ')}</p>
-                  </>}
+
+      <section className="px-5 pb-10 pt-24">
+        <div className="mx-auto max-w-[1200px]">
+          <div className="mb-11 flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-[600px]"><span className="ap-kicker">Industries</span><h2 className="mt-3 text-[36px] leading-[1.05] sm:text-[48px]">Built for the industry you&apos;re in</h2></div>
+            <p className="max-w-[380px] text-[16px] leading-[1.65] text-[#5C6272]">Every category has its own requirements. We design them into your packaging from the first sample.</p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {INDUSTRIES.map(i => (
+              <a key={i.id} href={`#${i.id}`} className="ap-card ap-lift ap-rv flex flex-col overflow-hidden rounded-[20px] border border-[#E6E8EE] bg-white">
+                <div className="h-[230px] overflow-hidden" style={{ background: i.bg }}><img src={i.src} alt={`${i.name} packaging by ALL PACK`} width={600} height={460} loading="lazy" className={`ap-img h-full w-full ${i.fit === 'contain' ? 'object-contain p-6' : 'object-cover'}`} /></div>
+                <div className="flex flex-col gap-2 p-6">
+                  <div className="flex items-center justify-between gap-3"><h3 className="text-[20px]">{i.name}</h3><span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#F4F5F8] text-[#2B43F0]">→</span></div>
+                  <p className="text-[14px] leading-[1.6] text-[#5C6272]">{i.desc}</p>
                 </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 pb-28 pt-10">
+        <div className="mx-auto flex max-w-[1200px] flex-col gap-6">
+          {INDUSTRIES.map((i, k) => (
+            <div key={i.id} id={i.id} className={`ap-rv flex scroll-mt-28 flex-wrap overflow-hidden rounded-[28px] bg-[#F4F5F8] ${k % 2 ? 'flex-row-reverse' : ''}`}>
+              <div className="flex min-h-[340px] flex-[1_1_420px] items-center justify-center overflow-hidden" style={{ background: i.bg }}><img src={i.src} alt={`${i.name} packaging by ALL PACK`} width={700} height={520} loading="lazy" className={`h-full max-h-[460px] w-full ${i.fit === 'contain' ? 'object-contain p-8' : 'object-cover'}`} /></div>
+              <div className="flex flex-[1_1_420px] flex-col justify-center gap-4 p-8 sm:p-14">
+                <span className="ap-kicker">{i.kicker}</span>
+                <h2 className="text-[34px] leading-[1.05] sm:text-[40px]">{i.name}</h2>
+                <p className="text-[16px] leading-[1.65] text-[#4A5060]">{i.long}</p>
+                <ul className="flex flex-col gap-2.5">{i.points.map(p => <li key={p} className="flex gap-2.5 text-[15px] font-semibold"><span className="text-[#2B43F0]">✓</span>{p}</li>)}</ul>
+                <div className="flex flex-wrap gap-2">{i.products.map(p => <span key={p} className="rounded-full border border-[#E0E3EA] bg-white px-3 py-1.5 text-[13px] font-bold">{p}</span>)}</div>
+                <Link href="/contact" className="ap-btn ap-dark mt-1 self-start">Get a quote for {i.short} <span className="ap-go">›</span></Link>
               </div>
-            </section>
-          );
-        })}
-      </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="px-5 pb-28">
+        <div className="ap-rv mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-7 rounded-[28px] bg-[#0A208C] p-10 text-white sm:p-16">
+          <div className="max-w-[620px]"><h2 className="text-[36px] leading-[1.05] !text-white sm:text-[44px]">Don&apos;t see your industry?</h2><p className="mt-3 text-[17px] leading-[1.6] text-[#C8D0F5]">Tell us what you make. We will recommend a structure and material that fits.</p></div>
+          <Link href="/contact" className="ap-btn ap-white font-extrabold text-[#0A208C]">Talk to our team</Link>
+        </div>
+      </section>
     </main>
   );
 }

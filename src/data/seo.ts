@@ -15,8 +15,8 @@ export type Seo = { title: string; description: string; absolute?: boolean };
 export const PAGE_SEO = {
   home: {
     absolute: true,
-    title: 'ALL PACK | Packaging & Printing Company in Lahore',
-    description: 'Custom printed cartons, rigid boxes, mailer boxes, paper bags and labels, produced on Heidelberg offset presses in Lahore. ISO 9001 and Halal certified.',
+    title: 'ALL PACK | Custom Packaging for the USA & Pakistan',
+    description: 'Custom packaging for brands in the USA and Pakistan: printed cartons, mailer and shipping boxes, pouches, labels and DTF apparel. ISO 9001 and Halal certified.',
   },
   products: {
     title: 'Custom Printed Boxes, Cartons, Bags & Labels',
@@ -28,8 +28,8 @@ export const PAGE_SEO = {
   },
   about: {
     absolute: true,
-    title: 'About ALL PACK | Packaging Printers in Lahore',
-    description: 'For over 25 years ALL PACK has printed packaging for Pakistani brands, with Heidelberg offset printing and in-house finishing. ISO 9001 and Halal certified.',
+    title: 'About ALL PACK | Packaging in Boston and Lahore',
+    description: 'For 25+ years ALL PACK has printed packaging for leading brands, with offices in Boston and Lahore serving the USA and Pakistan. ISO 9001 and Halal certified.',
   },
   why: {
     title: 'Why ALL PACK: Certified Packaging Printers',
@@ -38,15 +38,27 @@ export const PAGE_SEO = {
   contact: {
     absolute: true,
     title: 'Contact ALL PACK | Request a Packaging Quote',
-    description: 'Send your product size, quantity and artwork on WhatsApp or by email and receive a specification and price within 24 hours. Royal Park, Lakshmi Chowk, Lahore.',
+    description: 'Send your product size, quantity and artwork by form, WhatsApp or email, and our Boston or Lahore team will reply with a clear quote within one business day.',
   },
   faq: {
     title: 'Packaging FAQ: Quantities, Lead Times, Artwork',
     description: 'How ALL PACK quotes, proofs and produces custom packaging: order quantities, custom sizes, artwork files, lead times, food-grade board and delivery in Pakistan.',
   },
   insights: {
-    title: 'Packaging Guides: Box Styles, Board & Artwork',
+    title: 'Packaging Blog: Guides, Ideas and Know-How',
     description: 'Packaging guides from a Lahore printer: custom box types and ordering, what printed boxes cost in Pakistan, and pharmaceutical carton printing explained.',
+  },
+  finishes: {
+    title: 'Packaging Finishes: Foil, Spot UV & Embossing',
+    description: 'Compare matte, gloss and soft-touch lamination, spot UV, foil stamping, embossing and window cut-outs, plus the boards and films we print on for your brand.',
+  },
+  how: {
+    title: 'How Ordering Custom Packaging Works',
+    description: 'From specs to delivery in four steps: quotes in USD or PKR, digital proofs, sizing and artwork guides, lead times and payment for the USA and Pakistan.',
+  },
+  shipping: {
+    title: 'Shipping Policy',
+    description: 'How ALL PACK ships custom packaging to customers in the USA and Pakistan: delivery times, shipping costs, tracking, and what to do if an order arrives damaged.',
   },
   privacy: {
     title: 'Privacy Policy',

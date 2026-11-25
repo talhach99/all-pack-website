@@ -14,10 +14,11 @@ export async function POST(req: Request) {
   const name = clip(b.name, 120), email = clip(b.email, 200), message = clip(b.message, 4000);
   const whatsapp = clip(b.whatsapp, 40);
   const digits = whatsapp.replace(/\D/g, '');
-  if (name.length < 2) return Response.json({ error: 'Please enter your name.', field: 'name' }, { status: 400 });
+  const newsletter = clip(b.source, 100) === 'newsletter';
+  if (!newsletter && name.length < 2) return Response.json({ error: 'Please enter your name.', field: 'name' }, { status: 400 });
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return Response.json({ error: 'Please enter a valid email address.', field: 'email' }, { status: 400 });
-  if (digits.length < 10 || digits.length > 15 || !/^[+\d\s()-]+$/.test(whatsapp)) return Response.json({ error: 'Please enter a valid WhatsApp number, for example 0321 1234567.', field: 'whatsapp' }, { status: 400 });
-  if (message.length < 5) return Response.json({ error: 'Please tell us what you need.', field: 'message' }, { status: 400 });
+  if (!newsletter && (digits.length < 10 || digits.length > 15 || !/^[+\d\s()-]+$/.test(whatsapp))) return Response.json({ error: 'Please enter a valid WhatsApp number, for example 0321 1234567.', field: 'whatsapp' }, { status: 400 });
+  if (!newsletter && message.length < 5) return Response.json({ error: 'Please tell us what you need.', field: 'message' }, { status: 400 });
   const db = await getDb();
   if (!db) return Response.json({ error: 'We could not save your enquiry just now. Please message us on WhatsApp instead.' }, { status: 503 });
   const who = await hashIp(clientIp(req));

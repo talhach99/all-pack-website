@@ -1,112 +1,80 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
-import { Mail } from 'lucide-react';
-import { getSite, seoTitleOf } from '@/lib/site';
-import { PageHero } from '@/components/PageHero';
-import { Eyebrow } from '@/components/Section';
-import { WhatsAppIcon } from '@/components/FloatingContact';
+import Link from 'next/link';
+import { pageMeta } from '@/lib/site';
+import { CATALOG, NEW_ARRIVALS, type CatalogItem } from '@/data/home';
+import { Arrivals } from '@/components/ap/Arrivals';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { seoFor, copy } = await getSite(); const s = seoFor('products');
-  return { title: seoTitleOf(s), description: s.description, alternates: { canonical: '/products' }, openGraph: { images: [{ url: copy['home.heroImage'], alt: 'ALL PACK printed packaging range' }] } };
+export async function generateMetadata(): Promise<Metadata> { return pageMeta('products', '/products'); }
+
+function Thumb({ item, eager }: { item: CatalogItem; eager?: boolean }) {
+  if (!item.src) return null;
+  const contain = item.fit === 'contain';
+  return (
+    <div className={`aspect-square overflow-hidden rounded-[20px] border border-[#ECEEF3] ${contain ? 'bg-[#F7F8FA]' : 'bg-white'}`}>
+      <img src={item.src} alt={`ALL PACK ${item.name}`} width={480} height={480} loading={eager ? 'eager' : 'lazy'} className={`ap-img h-full w-full ${contain ? 'object-contain p-4' : 'object-cover'}`} />
+    </div>
+  );
 }
 
-export default async function ProductsPage() {
-  const { families, company: COMPANY, links, copy: t } = await getSite();
-  const { emailLink, quoteLink } = links;
-  const schema = {
-    '@context': 'https://schema.org',
-    // Custom, quote-only manufacturing: described as Services, not Products. Product markup
-    // without a real price (offers) or genuine reviews fails Google's Product snippet checks.
-    '@type': 'ItemList',
-    name: 'ALL PACK packaging range',
-    itemListElement: families.map((f, i) => ({
-      '@type': 'ListItem', position: i + 1,
-      item: {
-        '@type': 'Service',
-        name: f.name,
-        serviceType: 'Custom printed packaging manufacturing',
-        description: f.description,
-        image: `${COMPANY.siteUrl}${f.image}`,
-        url: `${COMPANY.siteUrl}/products#${f.slug}`,
-        provider: { '@type': 'LocalBusiness', name: COMPANY.name, url: COMPANY.siteUrl },
-        areaServed: { '@type': 'Country', name: 'Pakistan' },
-      },
-    })),
-  };
+export default function ProductsPage() {
   return (
-    <main>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
-      <PageHero
-        kicker="Products"
-        title={<>{t['products.title']} <span className="text-[#8FC2F2]">{t['products.title2']}</span></>}
-        description={t['products.lead']}
-        aside={
-          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {families.map((f, i) => (
-              <li key={f.slug}>
-                <a href={`#${f.slug}`} className="group flex h-full flex-col rounded-xl border border-white/10 bg-white/[.04] p-3 transition-colors hover:border-white/30 hover:bg-white/[.07]">
-                  <span className="font-mono text-[11px] text-[#7FD3F0]">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="relative block aspect-square">
-                    <img src={f.image} alt={f.alt} loading="eager" className="absolute inset-0 h-full w-full object-contain p-1 transition-transform duration-300 group-hover:-translate-y-1" />
-                  </span>
-                  <span className="mt-1 text-[13px] font-medium leading-snug text-white">{f.name}</span>
+    <main className="ap px-5 pb-28 pt-12">
+      <div className="mx-auto flex max-w-[1320px] flex-wrap items-start gap-14">
+        <aside className="sticky top-24 hidden max-w-[250px] flex-[1_1_220px] flex-col lg:flex">
+          <a href="#shopby" className="py-2 text-[15px] font-bold transition-colors hover:text-[#2B43F0]">Shop by category</a>
+          <a href="#new" className="py-2 text-[15px] font-bold transition-colors hover:text-[#2B43F0]">New products</a>
+          <div className="my-4 h-px bg-[#E6E9F2]" />
+          <span className="py-2 text-[15px] font-extrabold">All products</span>
+          {CATALOG.map(s => <a key={s.id} href={`#${s.id}`} className="py-2 text-[15px] font-semibold text-[#3B4256] transition-[color,padding] hover:pl-1.5 hover:text-[#2B43F0]">{s.title}</a>)}
+        </aside>
+
+        <div className="min-w-0 flex-[999_1_640px]">
+          <h1 id="shopby" className="ap-rise scroll-mt-28 text-[32px]">Shop by</h1>
+          <nav aria-label="Categories" className="mt-3 flex flex-wrap gap-2 lg:hidden">
+            {CATALOG.map(s => <a key={s.id} href={`#${s.id}`} className="rounded-full border border-[#DADDE4] px-3.5 py-2 text-[14px] font-semibold">{s.title}</a>)}
+          </nav>
+          <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3 xl:grid-cols-4">
+            {CATALOG.map((s, i) => {
+              const first = s.items.find(x => x.src)!;
+              return (
+                <a key={s.id} href={`#${s.id}`} className="ap-card ap-rise flex flex-col gap-3" style={{ animationDelay: `${i * .04}s` }}>
+                  <Thumb item={first} eager={i < 8} />
+                  <span className="px-1 text-[15px] font-extrabold">{s.title}</span>
                 </a>
-              </li>
-            ))}
-          </ul>
-        }
-      >
-        <a href={quoteLink()} target="_blank" rel="noopener noreferrer" className="btn-primary"><WhatsAppIcon size={18} /> Request a quote</a>
-        <a href="#pharmaceutical-cartons" className="btn-outline">See the formats</a>
-      </PageHero>
+              );
+            })}
+          </div>
 
-      <nav aria-label="Product formats" className="sticky top-[76px] z-30 border-b border-line bg-white/95 backdrop-blur sm:top-[88px] lg:top-[56px]">
-        <ul className="container-x no-scrollbar flex gap-2 overflow-x-auto py-3 lg:justify-center">
-          {families.map(f => <li key={f.slug} className="shrink-0"><a href={`#${f.slug}`} className="inline-flex h-9 items-center rounded-full border border-line px-4 text-[14px] font-medium text-ink-soft transition-colors hover:border-navy hover:text-navy">{f.name}</a></li>)}
-        </ul>
-      </nav>
+          <Arrivals items={NEW_ARRIVALS} />
 
-      <div className="container-x">
-        {families.map((f, i) => {
-          const msg = `Hello ALL PACK, I would like a quotation for ${f.name.toLowerCase()}.\nSize:\nQuantity:\nPrint and finish:`;
-          return (
-            <section key={f.slug} id={f.slug} aria-labelledby={`${f.slug}-h`} className="grid items-center gap-10 border-b border-line py-16 last:border-0 sm:py-20 lg:grid-cols-2 lg:gap-16">
-              <div className={`relative aspect-[5/4] overflow-hidden rounded-3xl bg-card ${i % 2 ? 'lg:order-2' : ''}`}>
-                <span className="meta absolute left-5 top-5 rounded-full bg-white px-3 py-1 text-brand">{String(i + 1).padStart(2, '0')} / {String(families.length).padStart(2, '0')}</span>
-                <img src={f.image} alt={f.alt} loading={i < 2 ? 'eager' : 'lazy'} className="absolute inset-0 h-full w-full object-contain p-6 sm:p-8" />
-              </div>
-              <div>
-                <Eyebrow>{f.label}</Eyebrow>
-                <h2 id={`${f.slug}-h`} className="mt-4 text-[clamp(2rem,3.2vw,2.6rem)] leading-[1.08]">{f.name}</h2>
-                <p className="lead mt-5">{f.description}</p>
-                <dl className="mt-8 divide-y divide-line border-y border-line">
-                  {f.specs.map(s => (
-                    <div key={s.title} className="grid gap-3 py-4 sm:grid-cols-[130px_1fr]">
-                      <dt className="pt-1 text-[14px] font-semibold">{s.title}</dt>
-                      <dd><ul className="flex flex-wrap gap-2">{s.items.map(it => <li key={it} className="chip">{it}</li>)}</ul></dd>
-                    </div>
-                  ))}
-                </dl>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <a href={quoteLink(msg)} target="_blank" rel="noopener noreferrer" className="btn-primary"><WhatsAppIcon size={18} /> Quote on WhatsApp</a>
-                  <a href={emailLink(`Quotation: ${f.name}`, msg)} className="btn-outline"><Mail size={17} strokeWidth={1.75} /> Email your artwork</a>
+          {CATALOG.map(s => (
+            <section key={s.id} id={s.id} className="mt-24 scroll-mt-28" aria-labelledby={`h-${s.id}`}>
+              {s.banner ? (
+                <div className="ap-rv relative mb-7 h-[240px] overflow-hidden rounded-3xl">
+                  <img src={s.banner} alt="" width={1400} height={480} loading="lazy" className="h-full w-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[rgba(7,11,31,.72)] to-transparent" />
+                  <div className="absolute bottom-8 left-9 max-w-[420px] text-white"><h2 id={`h-${s.id}`} className="text-[32px] !text-white">{s.title}</h2><p className="mt-1.5 text-[15px] text-[#DDE3F5]">{s.desc}</p></div>
                 </div>
+              ) : (
+                <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+                  <div className="max-w-[560px]"><h2 id={`h-${s.id}`} className="text-[30px]">{s.title}</h2><p className="mt-2 text-[15px] leading-[1.55] text-[#3B4256]">{s.desc}</p></div>
+                  <Link href="/contact" className="text-[15px] font-bold text-[#2B43F0]">Get a quote →</Link>
+                </div>
+              )}
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
+                {s.items.filter(it => it.src).map(it => (
+                  <Link key={it.name} href={`/contact?product=${encodeURIComponent(it.name)}`} className="ap-card flex flex-col gap-2">
+                    <Thumb item={it} />
+                    <span className="px-1 pt-1 text-[15px] font-extrabold">{it.name}</span>
+                    <span className="px-1 text-[13px] font-semibold text-[#2B43F0]">Request a quote →</span>
+                  </Link>
+                ))}
               </div>
             </section>
-          );
-        })}
-      </div>
-
-      <section className="container-x pb-24">
-        <div className="flex flex-col items-start justify-between gap-8 rounded-3xl bg-navy p-8 sm:p-12 lg:flex-row lg:items-center">
-          <div>
-            <h2 className="text-[clamp(1.75rem,3vw,2.4rem)] !text-white">{t['products.advice.title']}</h2>
-            <p className="mt-3 max-w-xl text-[17px] text-cyan">{t['products.advice.text']}</p>
-          </div>
-          <a href={quoteLink('Hello ALL PACK, I would like advice on packaging for my product.')} target="_blank" rel="noopener noreferrer" className="btn-white shrink-0"><WhatsAppIcon size={18} /> Ask on WhatsApp</a>
+          ))}
         </div>
-      </section>
+      </div>
     </main>
   );
 }

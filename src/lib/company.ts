@@ -10,7 +10,7 @@ export const COMPANY = {
   name: 'ALL PACK',
   tagline: 'The Packaging Experts',
   email: 'allpackprinters@gmail.com',
-  address: 'Royal Park, Lakshmi Chowk, Lahore',
+  address: 'Lahore, Pakistan',
   street: 'Royal Park, Lakshmi Chowk',
   city: 'Lahore',
   country: 'Pakistan',

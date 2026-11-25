@@ -7,7 +7,7 @@ import { PageHero } from '@/components/PageHero';
 import { Reveal } from '@/components/Reveal';
 import { readMinutes } from '@/data/articles';
 
-export async function generateMetadata(): Promise<Metadata> { return pageMeta('insights', '/insights'); }
+export async function generateMetadata(): Promise<Metadata> { return pageMeta('insights', '/blog'); }
 
 export default async function InsightsPage() {
   const { articles, copy: t } = await getSite();
@@ -18,7 +18,7 @@ export default async function InsightsPage() {
         <div className="grid gap-6 md:grid-cols-3">
           {articles.map((a, i) => (
             <Reveal key={a.slug} delay={i * .06}>
-              <Link href={`/insights/${a.slug}`} className="group card flex h-full flex-col transition-colors hover:border-[#C9CFDC]">
+              <Link href={`/blog/${a.slug}`} className="group card flex h-full flex-col transition-colors hover:border-[#C9CFDC]">
                 <div className="relative aspect-[16/10] border-b border-line bg-card"><img src={a.hero.src} alt={a.hero.alt} width={a.hero.width} height={a.hero.height} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-contain p-5" /></div>
                 <div className="flex flex-1 flex-col p-7">
                   <p className="meta">{String(i + 1).padStart(2, '0')} · {a.category} · {readMinutes(a)} min read</p>

@@ -29,6 +29,7 @@ const config: Config = {
         kraft: '#B48C62',
       },
       fontFamily: {
+        jakarta: ['"Plus Jakarta Sans Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         sans: ['"Inter Variable"', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         display: ['"Inter Tight Variable"', '"Inter Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono Variable"', 'ui-monospace', 'SFMono-Regular', 'monospace'],

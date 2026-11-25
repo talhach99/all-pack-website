@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params; const { articles, company: COMPANY, seoFor } = await getSite(); const a = articles.find(x => x.slug === slug);
   if (!a) return {};
   const s0 = seoFor(`article:${slug}`); const seo = s0.title ? s0 : { title: a.title, description: a.excerpt };
-  const url = `/insights/${slug}`;
+  const url = `/blog/${slug}`;
   return {
     title: seoTitleOf(seo), description: seo.description, keywords: a.keywords,
     authors: [{ name: COMPANY.name, url: COMPANY.siteUrl }],
@@ -63,7 +63,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const { slug } = await params; const { articles, company: COMPANY, links, seoFor } = await getSite(); const getArticle = (s: string) => articles.find(x => x.slug === s); const { quoteLink } = links; const a = getArticle(slug);
   if (!a) notFound();
   const s0 = seoFor(`article:${slug}`); const seo = s0.title ? s0 : { title: a.title, description: a.excerpt };
-  const url = `${COMPANY.siteUrl}/insights/${a.slug}`;
+  const url = `${COMPANY.siteUrl}/blog/${a.slug}`;
   const mins = readMinutes(a);
   const related = a.related.map(getArticle).filter((x): x is NonNullable<typeof x> => !!x);
   const org = { '@type': 'Organization', '@id': `${COMPANY.siteUrl}/#organization`, name: COMPANY.name, url: COMPANY.siteUrl, logo: { '@type': 'ImageObject', url: `${COMPANY.siteUrl}/brand/allpack-logo.png` } };
@@ -76,13 +76,13 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         articleSection: a.category, inLanguage: 'en-PK', wordCount: wordCount(a),
         datePublished: a.publishedAt, dateModified: a.updatedAt,
         image: { '@type': 'ImageObject', url: `${COMPANY.siteUrl}${a.hero.src}`, width: a.hero.width, height: a.hero.height },
-        author: org, publisher: org, isPartOf: { '@type': 'Blog', name: 'ALL PACK packaging guides', url: `${COMPANY.siteUrl}/insights` },
+        author: org, publisher: org, isPartOf: { '@type': 'Blog', name: 'ALL PACK packaging guides', url: `${COMPANY.siteUrl}/blog` },
       },
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: COMPANY.siteUrl },
-          { '@type': 'ListItem', position: 2, name: 'Guides', item: `${COMPANY.siteUrl}/insights` },
+          { '@type': 'ListItem', position: 2, name: 'Guides', item: `${COMPANY.siteUrl}/blog` },
           { '@type': 'ListItem', position: 3, name: a.title, item: url },
         ],
       },
@@ -95,7 +95,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       <header className="page-hero pb-12 pt-8 sm:pb-14">
         <div className="container-x max-w-3xl">
           <nav aria-label="Breadcrumb">
-            <Link href="/insights" className="inline-flex items-center gap-2 text-[14px] text-white/70 hover:text-white"><ArrowLeft size={16} strokeWidth={1.5} /> All guides</Link>
+            <Link href="/blog" className="inline-flex items-center gap-2 text-[14px] text-white/70 hover:text-white"><ArrowLeft size={16} strokeWidth={1.5} /> All guides</Link>
           </nav>
           <p className="meta mt-10">{a.category} · {mins} min read</p>
           <h1 className="mt-3 text-[clamp(2rem,4.2vw,3.1rem)] font-medium leading-[1.1] tracking-[-.03em] text-ink">{a.title}</h1>
@@ -148,7 +148,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <ul className="mt-5 grid gap-4 sm:grid-cols-2">
               {related.map(r => (
                 <li key={r.slug}>
-                  <Link href={`/insights/${r.slug}`} className="group card flex h-full flex-col p-6 transition-colors hover:border-[#C9CFDC]">
+                  <Link href={`/blog/${r.slug}`} className="group card flex h-full flex-col p-6 transition-colors hover:border-[#C9CFDC]">
                     <p className="meta">{r.category}</p>
                     <p className="mt-2 text-[18px] font-medium leading-snug group-hover:text-brand">{r.title}</p>
                     <span className="mt-4 inline-flex items-center gap-1 text-[14px] font-semibold text-brand">Read the guide <ArrowUpRight size={15} /></span>

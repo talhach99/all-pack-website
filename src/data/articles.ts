@@ -121,7 +121,7 @@ export const articles: Article[] = [
               'Track record with regulated and repeat-order customers. ALL PACK has printed for pharmaceutical, bakery and hospital clients for more than 25 years.',
             ],
           },
-          'Our office is at Royal Park, Lakshmi Chowk, Lahore, and visits are welcome by appointment. See [why brands choose ALL PACK](/why-all-pack).',
+          'Our production office is in Lahore, and visits are welcome by appointment. See [why brands choose ALL PACK](/why-all-pack).',
         ],
       },
     ],

@@ -1,153 +1,150 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, BadgeCheck, Factory, Mail, MapPin, MessageSquareText, ShieldCheck, Truck } from 'lucide-react';
 import { getSite, pageMeta } from '@/lib/site';
-import { Machines } from '@/components/Machines';
-import { HeroVisual } from '@/components/HeroVisual';
-import { Reasons } from '@/components/Reasons';
-import { ArrowLink, Eyebrow, SectionHead } from '@/components/Section';
-import { ClientLogos } from '@/components/ClientStrip';
-import { WhatsAppIcon } from '@/components/FloatingContact';
+import { MOSAIC, PRINT_ROWS, HOME_FAQ, P } from '@/data/home';
+import { HeroSlider, MarketSection, Offices, Newsletter } from '@/components/ap/HomeClient';
+import { FaqAccordion } from '@/components/FaqAccordion';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('home', '/'); }
 
-const TRUST_ICONS = [ShieldCheck, BadgeCheck, Factory, Truck];
-
-
 export default async function Home() {
-  const { company: COMPANY, links, copy: t, families, process, sectors } = await getSite();
-  const { emailLink, mapsLink, quoteLink } = links;
-  const trust = [1, 2, 3, 4].map(n => ({ icon: TRUST_ICONS[n - 1], text: t[`home.trust${n}`] }));
-  const notes = [1, 2, 3].map(n => ({ step: t[`home.note${n}.step`], title: t[`home.note${n}.title`], sub: t[`home.note${n}.sub`] }));
-  const quote = quoteLink();
-  const picked = sectors.filter(s => ['pharmaceutical', 'food-and-bakery', 'confectionery', 'restaurants'].includes(s.slug));
-  const homeSectors = picked.length === 4 ? picked : sectors.slice(0, 4);
+  const { clients, links } = await getSite();
+  const logos = clients.filter(c => c.logo);
+  const wa = links.whatsappLink();
   return (
-    <main>
-      {/* Hero: spotlight stage on deep teal-blue, products centred with print-proof annotations */}
-      <section className="hero-spot relative isolate overflow-hidden">
-        <div className="hero-in container-x relative z-10 pt-12 text-center sm:pt-14">
-          <p className="eyebrow justify-center !text-[#7FD3F0]">{t['home.eyebrow']}</p>
-          <h1 className="mx-auto mt-6 max-w-[920px] font-display text-[clamp(2.5rem,5.6vw,4.9rem)] font-semibold leading-[.98] tracking-[-.04em] !text-white">{t['home.title']} <span className="text-[#8FC2F2]">{t['home.title2']}</span></h1>
-          <p className="mx-auto mt-5 max-w-[620px] text-[17px] leading-[1.6] text-cyan sm:text-[18px]">{t['home.lead']}</p>
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <a href={quote} target="_blank" rel="noopener noreferrer" className="btn bg-rule text-white hover:bg-[#1793C6]"><WhatsAppIcon size={18} /> {t['home.cta1']}</a>
-            <Link href="/products" className="btn-outline-light">{t['home.cta2']} <ArrowRight size={16} strokeWidth={1.75} /></Link>
+    <main className="ap">
+      <HeroSlider />
+
+      {/* Client logos */}
+      <section className="border-b border-[#EDEEF1] bg-white px-5 py-7">
+        <div className="mx-auto flex max-w-[1392px] items-center gap-8">
+          <div className="hidden shrink-0 border-r border-[#0B0D12] pr-8 sm:block">
+            <p className="text-[15px] font-extrabold">Trusted by {logos.length}+ brands</p>
+            <p className="text-[13px] text-[#5C6272]">across the USA and Pakistan</p>
           </div>
-        </div>
-        <div className="relative mx-auto mt-8 w-full max-w-[820px] px-5 sm:mt-2 lg:mt-0 lg:-mb-10 min-[1150px]:max-w-[700px] min-[1400px]:max-w-[820px]">
-          <span aria-hidden="true" className="hero-ring absolute bottom-[4%] left-1/2 h-[24%] w-[105%] -translate-x-1/2 rounded-[50%]" />
-          <HeroVisual image={t['home.heroImage']} alt={t['home.heroAlt']} notes={notes} />
-        </div>
-        <ul className="container-x relative z-10 flex flex-wrap justify-center gap-x-7 gap-y-2 pb-10 pt-6 text-[14px] font-semibold text-cream min-[1150px]:hidden">
-          {trust.map(({ icon: Icon, text }) => <li key={text} className="flex items-center gap-2"><Icon size={15} strokeWidth={1.75} className="text-rule" /> {text}</li>)}
-        </ul>
-      </section>
-
-      {/* Clients */}
-      <section aria-label="Our clients" className="border-b border-line py-12 sm:py-14">
-        <p className="meta mb-7 text-center">{t['home.clients.label']}</p>
-        <ClientLogos />
-      </section>
-
-      {/* Product range */}
-      <section className="section">
-        <div className="container-x">
-          <SectionHead kicker={t['home.products.kicker']} title={t['home.products.title']} sub={t['home.products.sub']} />
-          <ul className="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-4">
-            {families.map((f, i) => (
-              <li key={f.slug}>
-                <Link href={`/products#${f.slug}`} className="lift-card group block">
-                  <div className="relative aspect-square overflow-hidden rounded-2xl bg-card transition-colors group-hover:bg-soft">
-                    <img src={f.image} alt={f.alt} loading="lazy" className="absolute inset-0 h-full w-full object-contain p-3 sm:p-4" />
-                  </div>
-                  <div className="mt-4 flex items-baseline justify-between gap-3">
-                    <h3 className="text-[17px] leading-snug sm:text-[19px]">{f.name}</h3>
-                    <span className="meta hidden sm:inline">{String(i + 1).padStart(2, '0')}</span>
-                  </div>
-                  <p className="mt-1 text-[14px] text-muted">{f.short}</p>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-14 text-center"><Link href="/products" className="btn-outline">See specifications for every format <ArrowRight size={16} strokeWidth={1.75} /></Link></div>
-        </div>
-      </section>
-
-      {/* Manufacturing */}
-      <section id="capabilities" className="section dark-section">
-        <div className="container-x">
-          <SectionHead light kicker={t['home.mfg.kicker']} title={t['home.mfg.title']} sub={t['home.mfg.sub']} />
-          <Machines />
-          <ol className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-            {process.map((p, i) => (
-              <li key={p.step} className="draw-line relative pt-7">
-                <p className="font-mono text-[12px] text-brand-light">{String(i + 1).padStart(2, '0')} / {p.step}</p>
-                <h3 className="mt-4 text-[21px] !text-white">{p.title}</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-cyan">{p.text}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* Industries */}
-      <section className="section">
-        <div className="container-x">
-          <SectionHead kicker={t['home.ind.kicker']} title={t['home.ind.title']} sub={t['home.ind.sub']} />
-          <div className="grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">
-            {homeSectors.map((s, i) => (
-              <Link key={s.slug} href={`/industries#${s.slug}`} className={`group border-b border-line py-8 sm:px-7 lg:border-b-0 ${i % 2 === 0 ? 'sm:pl-0' : ''} ${i < 3 ? 'lg:border-r' : ''} ${i === 0 ? 'lg:pl-0' : 'lg:pl-7'}`}>
-                <p className="meta">{String(i + 1).padStart(2, '0')}</p>
-                <h3 className="mt-4 text-[22px] group-hover:text-brand">{s.name}</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-secondary">{s.summary}</p>
-                <p className="mt-5 text-[13px] leading-relaxed text-muted">{s.formats.join(' · ')}</p>
-              </Link>
-            ))}
-          </div>
-          <div className="mt-12 text-center"><ArrowLink href="/industries">All industries we serve</ArrowLink></div>
-        </div>
-      </section>
-
-      {/* Why ALL PACK */}
-      <section className="section bg-navy">
-        <div className="container-x">
-          <SectionHead light kicker={t['home.why.kicker']} title={t['home.why.title']} sub={t['home.why.sub']} />
-          <Reasons />
-          <div className="mt-12 text-center"><ArrowLink href="/why-all-pack" className="!text-white hover:!text-brand-light">Read why brands choose ALL PACK</ArrowLink></div>
-        </div>
-      </section>
-
-      {/* Quote */}
-      <section className="section border-t border-line">
-        <div className="container-x grid items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
-          <div>
-            <Eyebrow>{t['home.quote.kicker']}</Eyebrow>
-            <h2 className="h-section mt-5">{t['home.quote.title']}</h2>
-            <p className="lead mt-5 max-w-lg">{t['home.quote.lead']}</p>
-            <div className="mt-8 grid gap-3 sm:mt-9 sm:flex sm:flex-row sm:flex-wrap">
-              <a href={quote} target="_blank" rel="noopener noreferrer" className="btn-primary"><WhatsAppIcon size={18} /> Chat on WhatsApp</a>
-              <a href={emailLink()} className="btn-outline"><Mail size={17} strokeWidth={1.75} /> Email your brief</a>
-              <Link href="/contact#enquiry" className="btn-outline"><MessageSquareText size={17} strokeWidth={1.75} /> {t['home.quote.enquiry']}</Link>
+          <div className="ap-loopwrap ap-fade min-w-0 flex-1 overflow-hidden">
+            <div className="ap-loop items-center gap-14" style={{ animationDuration: '45s' }}>
+              {[...logos, ...logos].map((c, i) => <img key={i} src={c.logo} alt={i < logos.length ? c.name : ''} width={130} height={44} loading="lazy" className="ap-mono h-11 w-auto max-w-[130px] shrink-0 object-contain" />)}
             </div>
           </div>
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {[
-              { label: 'WhatsApp', value: COMPANY.phone, href: quote, ext: true, icon: WhatsAppIcon },
-              { label: 'Email', value: COMPANY.email, href: `mailto:${COMPANY.email}`, icon: Mail },
-              { label: 'Visit', value: COMPANY.address, href: mapsLink, ext: true, icon: MapPin },
-            ].map(c => (
-              <li key={c.label} className={c.label === 'Visit' ? 'sm:col-span-2' : undefined}>
-                <a href={c.href} {...(c.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="card flex h-full min-w-0 flex-col p-5 transition-colors sm:p-6 hover:border-[#C9CFDC]">
-                  <span className="meta flex items-center gap-2"><c.icon size={14} strokeWidth={1.75} /> {c.label}</span>
-                  <span className={`mt-2 font-semibold leading-snug [overflow-wrap:anywhere] sm:mt-3 ${c.label === 'Email' ? 'text-[15px]' : 'text-[16px]'}`}>{c.value}</span>
-                </a>
-              </li>
+        </div>
+      </section>
+
+      <MarketSection />
+
+      {/* Product mosaic */}
+      <section className="px-5 py-28">
+        <div className="mx-auto mb-10 flex max-w-[1100px] flex-wrap items-end justify-between gap-4">
+          <div><span className="ap-kicker">Products</span><h2 className="mt-2.5 text-[36px] leading-none sm:text-[48px]">Packaging for every product</h2></div>
+          <Link href="/products" className="ap-ul font-bold">View the full catalog</Link>
+        </div>
+        <div className="mx-auto grid max-w-[1100px] auto-rows-[200px] grid-cols-2 gap-4 sm:auto-rows-[260px] lg:grid-cols-4 lg:gap-5">
+          <div className="ap-rv relative col-span-2 flex flex-col justify-between overflow-hidden rounded-xl bg-[#0A208C] p-8 text-white sm:p-11">
+            <svg width="220" height="220" viewBox="0 0 46 46" aria-hidden="true" className="absolute -bottom-12 -right-10 opacity-20"><path d="M23 6 40 38H6Z" fill="#22C3EE" /></svg>
+            <div><h3 className="text-[28px] !text-white sm:text-[36px]">Turn every box into your brand</h3><p className="mt-3 text-[17px] text-[#C8D0F5]">Choose from our full range of packaging styles, printed to order.</p></div>
+            <Link href="/products" className="ap-btn relative self-start bg-[#22C3EE] font-extrabold text-[#0A208C]">Explore all products <span className="ap-go">›</span></Link>
+          </div>
+          {MOSAIC.map(t => (
+            <Link key={t.name} href="/products" className={`ap-card ap-rv relative overflow-hidden rounded-xl border ${t.white ? 'border-[#E6E8EE] bg-white' : 'border-transparent bg-[#F2F3F5]'}`}>
+              <img src={t.src} alt={t.name} width={520} height={520} loading="lazy" className={`ap-img absolute inset-0 h-full w-full ${t.fit === 'contain' ? 'object-contain px-5 pb-14 pt-6' : 'object-cover'}`} />
+              <span className="ap-chip absolute bottom-3.5 left-3.5 rounded-md bg-white px-2.5 py-1.5 text-[13px] font-extrabold">{t.name}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* What we print */}
+      <section className="px-5 pb-28">
+        <div className="mx-auto max-w-[1100px]">
+          <div className="ap-rv mb-10 text-center"><span className="ap-kicker">What we print</span><h2 className="mt-2.5 text-[36px] leading-none sm:text-[48px]">Three ways to print your brand</h2><p className="mx-auto mt-3.5 max-w-[560px] text-[17px] leading-[1.6] text-[#4A5060]">Flexible pouches, DTF transfers for apparel and offset printing for boxes and labels, all from one team.</p></div>
+          <div className="flex flex-col gap-5">
+            {PRINT_ROWS.map(row => (
+              <div key={row.title} className="ap-rv rounded-3xl p-7 sm:p-12" style={{ background: row.bg }}>
+                <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+                  <div className="max-w-[620px]"><span className="ap-kicker">{row.kicker}</span><h3 className="mt-2.5 text-[30px] leading-[1.05] sm:text-[38px]">{row.title}</h3><p className="mt-3 text-[16px] leading-[1.6] text-[#4A5060]">{row.text}</p></div>
+                  <Link href="/contact" className="ap-ul font-bold">{row.link}</Link>
+                </div>
+                <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+                  {row.cards.map((cd, k) => (
+                    <div key={cd.name} className="ap-card ap-lift flex flex-col gap-3.5 rounded-[20px] bg-white p-5">
+                      <span className="grid h-[38px] w-[38px] place-items-center rounded-full bg-[#ECEFFD] text-[14px] font-extrabold text-[#0A208C]">0{k + 1}</span>
+                      <div className="h-[200px] overflow-hidden rounded-[14px] sm:h-[240px]"><img src={cd.src} alt={`ALL PACK ${cd.name}`} width={480} height={480} loading="lazy" className={`ap-img h-full w-full ${cd.fit === 'contain' ? 'object-contain' : 'object-cover'}`} /></div>
+                      <h4 className="text-[17px]">{cd.name}</h4>
+                      {cd.desc && <p className="text-[14px] leading-[1.55] text-[#5C6272]">{cd.desc}</p>}
+                    </div>
+                  ))}
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section className="bg-[#F4F5F8] px-5 py-28">
+        <div className="ap-rv mx-auto max-w-[1200px]">
+          <div className="mx-auto mb-14 max-w-[640px] text-center"><span className="ap-kicker">How it works</span><h2 className="mt-3 text-[36px] leading-[1.05] sm:text-[48px]">From brief to doorstep in four steps</h2><p className="mt-4 text-[17px] leading-[1.6] text-[#5C6272]">One dedicated contact, clear pricing and a proof before anything prints.</p></div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <StepCard n="01" title="Share your specs" text="Send size, quantity and ship-to location by WhatsApp, email or our form." bg="#E7F7FC">
+              <div className="ap-img max-w-[85%] self-start rounded-[14px_14px_14px_4px] bg-white px-3 py-2.5 text-[12px] leading-[1.45] shadow">Hi! We need 2,000 mailer boxes, 10 × 8 × 4 in, shipping to Texas.</div>
+              <div className="max-w-[80%] self-end rounded-[14px_14px_4px_14px] bg-[#2B43F0] px-3 py-2.5 text-[12px] leading-[1.45] text-white">Great, sending options and pricing today.</div>
+            </StepCard>
+            <StepCard n="02" title="Get your quote" text="We recommend structure, material and finish, with a clear, itemized price." bg="#ECEFFD">
+              <div className="ap-img flex w-full flex-col gap-2 rounded-[14px] bg-white px-4 py-3.5 text-[12px] shadow">
+                <div className="flex justify-between font-extrabold"><span>Quote #1042</span><span className="text-[#2B43F0]">USD</span></div>
+                <div className="flex justify-between text-[#5C6272]"><span>Mailer box, E-flute</span><span>2,000</span></div>
+                <div className="flex justify-between text-[#5C6272]"><span>Matte lamination</span><span>✓</span></div>
+                <div className="h-px bg-[#EDEEF1]" /><div className="flex justify-between font-extrabold"><span>Unit price</span><span>Quoted</span></div>
+              </div>
+            </StepCard>
+            <StepCard n="03" title="Approve your proof" text="Review a digital proof, or a physical sample, before production starts." bg="#F3EEE6">
+              <div className="relative h-full w-full"><img src={P('off-food')} alt="Proof of an ALL PACK food box" width={400} height={300} loading="lazy" className="ap-img h-full w-full rounded-xl object-cover" /><span className="absolute right-2 top-2 rotate-[4deg] rounded-full bg-[#16A34A] px-3 py-1.5 text-[12px] font-extrabold text-white">Approved ✓</span></div>
+            </StepCard>
+            <StepCard n="04" title="Receive your order" text="Printed, inspected and delivered to your door in the USA or Pakistan." bg="#0A208C">
+              <div className="ap-img flex w-full flex-col gap-2.5 rounded-[14px] bg-white px-4 py-3.5 text-[12px]">
+                <div className="flex justify-between font-extrabold"><span>Order #1042</span><span className="text-[#16A34A]">Delivered</span></div>
+                <div className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-[#2B43F0]" /><span className="h-[3px] flex-1 rounded bg-[#2B43F0]" /><span className="h-2.5 w-2.5 rounded-full bg-[#2B43F0]" /><span className="h-[3px] flex-1 rounded bg-[#2B43F0]" /><span className="h-2.5 w-2.5 rounded-full bg-[#16A34A]" /></div>
+                <div className="flex justify-between text-[11px] text-[#5C6272]"><span>Printed</span><span>Shipped</span><span>At your door</span></div>
+              </div>
+            </StepCard>
+          </div>
+          <div className="mt-10 text-center"><Link href="/how-it-works" className="ap-btn ap-dark">See how ordering works <span className="ap-go">›</span></Link></div>
+        </div>
+      </section>
+
+      <section className="px-5 py-28"><div className="mx-auto max-w-[1200px]"><Newsletter /></div></section>
+
+      <Offices wa={wa} />
+
+      {/* FAQ */}
+      <section className="px-5 pt-28">
+        <div className="ap-rv mx-auto max-w-[860px]">
+          <div className="mb-10 text-center"><span className="ap-kicker">FAQ</span><h2 className="mt-2.5 text-[36px] leading-none sm:text-[48px]">Questions, answered</h2></div>
+          <FaqAccordion faqs={HOME_FAQ} />
+        </div>
+      </section>
+
+      {/* Closing CTA */}
+      <section className="px-5 py-32 text-center">
+        <div className="mx-auto flex max-w-[900px] flex-col items-center gap-7">
+          <h2 className="text-[48px] leading-[.95] sm:text-[80px]">Let’s make your box.</h2>
+          <p className="max-w-[520px] text-[19px] leading-[1.6] text-[#5C6272]">Share your product size and quantity. We will come back with a structure, a proof and a price.</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link href="/contact" className="ap-btn ap-blue">Get a quote</Link>
+            {wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="ap-btn ap-ghost">Message us on WhatsApp</a>}
+          </div>
         </div>
       </section>
     </main>
+  );
+}
+
+function StepCard({ n, title, text, bg, children }: { n: string; title: string; text: string; bg: string; children: React.ReactNode }) {
+  return (
+    <div className="ap-card ap-lift flex flex-col overflow-hidden rounded-[20px] bg-white">
+      <div className="flex h-[200px] flex-col justify-center gap-2 p-5" style={{ background: bg }}>{children}</div>
+      <div className="flex flex-col gap-2 p-6"><span className="text-[13px] font-extrabold text-[#2B43F0]">STEP {n}</span><h3 className="text-[20px]">{title}</h3><p className="text-[14px] leading-[1.6] text-[#5C6272]">{text}</p></div>
+    </div>
   );
 }
