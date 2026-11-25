@@ -24,8 +24,8 @@ export function HeroSlider({ slides: HERO_SLIDES }: { slides: HeroSlide[] }) {
             <Link href="/contact" className="ap-btn ap-white">Get a quote</Link>
           </div>
         </div>
-        <div className={`relative h-[280px] w-full flex-[1.4_1_520px] sm:h-[440px] lg:h-[540px] ${s.cutout ? '' : 'overflow-hidden rounded-[22px] shadow-[0_40px_80px_-40px_rgba(11,13,18,.45)] sm:rounded-[28px]'}`}>
-          <img key={`i${i}`} src={s.image} srcSet={s.srcSet || undefined} sizes="(max-width: 1024px) 100vw, 800px" alt={s.alt} width={1600} height={1100} fetchPriority={i === 0 ? 'high' : 'auto'} decoding="async" className={`ap-heroimg absolute inset-0 h-full w-full ${s.cutout ? 'object-contain drop-shadow-[0_30px_40px_rgba(60,45,20,.18)]' : 'object-cover'}`} />
+        <div className={`relative h-[280px] w-full flex-[1.4_1_520px] sm:h-[440px] lg:h-[540px] overflow-hidden rounded-[22px] shadow-[0_40px_80px_-40px_rgba(11,13,18,.45)] sm:rounded-[28px] ${s.cutout ? 'bg-[#F8F3EC]' : ''}`}>
+          <img key={`i${i}`} src={s.image} srcSet={s.srcSet || undefined} sizes="(max-width: 1024px) 100vw, 800px" alt={s.alt} width={1600} height={1100} fetchPriority={i === 0 ? 'high' : 'auto'} decoding="async" className={`ap-heroimg absolute inset-0 h-full w-full ${s.cutout ? 'object-contain p-5 drop-shadow-[0_24px_30px_rgba(60,45,20,.18)] sm:p-9' : 'object-cover'}`} />
         </div>
         <div className="absolute inset-x-0 bottom-6 grid grid-cols-3 gap-3 sm:bottom-8 sm:gap-5">
           {HERO_SLIDES.map((h, k) => (

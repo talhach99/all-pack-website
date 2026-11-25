@@ -20,7 +20,7 @@ export const COLLECTIONS: CollectionDef[] = [
       { k: 'image', label: 'Picture', t: 'image', hint: 'A wide photo, at least 1600 pixels across.' },
       { k: 'alt', label: 'Picture description (for search engines and screen readers)', t: 'text' },
       { k: 'tab', label: 'Short name under the slide (for example Premium packaging)', t: 'text' },
-      { k: 'cutout', label: 'Picture has a transparent background (show it without a card or frame)', t: 'bool' },
+      { k: 'cutout', label: 'Picture has a transparent background (show it on a light cream card)', t: 'bool' },
       { k: 'bg', label: 'Background color behind the slide', t: 'text', hint: 'A color code such as #EDE6DC. Leave empty for the default.' },
     ],
   },
