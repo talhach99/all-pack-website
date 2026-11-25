@@ -14,7 +14,7 @@ export default function IndustriesPage() {
         {INDUSTRIES.map(i => <a key={i.id} href={`#${i.id}`} className="rounded-full border border-[#E0E3EA] bg-white px-4 py-2.5 text-[14px] font-bold">{i.name}</a>)}
       </PageHero>
 
-      <section className="px-5 pb-10 pt-24">
+      <section className="px-5 pb-10 pt-16 sm:pt-24">
         <div className="mx-auto max-w-[1200px]">
           <div className="mb-11 flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-[600px]"><span className="ap-kicker">Industries</span><h2 className="mt-3 text-[36px] leading-[1.05] sm:text-[48px]">Built for the industry you&apos;re in</h2></div>
@@ -34,7 +34,7 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      <section className="px-5 pb-28 pt-10">
+      <section className="px-5 pb-20 sm:pb-28 pt-10">
         <div className="mx-auto flex max-w-[1200px] flex-col gap-6">
           {INDUSTRIES.map((i, k) => (
             <div key={i.id} id={i.id} className={`ap-rv flex scroll-mt-28 flex-wrap overflow-hidden rounded-[28px] bg-[#F4F5F8] ${k % 2 ? 'flex-row-reverse' : ''}`}>
@@ -52,8 +52,8 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      <section className="px-5 pb-28">
-        <div className="ap-rv mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-7 rounded-[28px] bg-[#0A208C] p-10 text-white sm:p-16">
+      <section className="px-5 pb-20 sm:pb-28">
+        <div className="ap-rv mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-7 rounded-[24px] bg-[#0A208C] p-7 text-white sm:rounded-[28px] sm:p-16">
           <div className="max-w-[620px]"><h2 className="text-[36px] leading-[1.05] !text-white sm:text-[44px]">Don&apos;t see your industry?</h2><p className="mt-3 text-[17px] leading-[1.6] text-[#C8D0F5]">Tell us what you make. We will recommend a structure and material that fits.</p></div>
           <Link href="/contact" className="ap-btn ap-white font-extrabold text-[#0A208C]">Talk to our team</Link>
         </div>

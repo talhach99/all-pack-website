@@ -1,8 +1,5 @@
 import type { Metadata, Viewport } from 'next';
 import '@fontsource-variable/plus-jakarta-sans/wght.css';
-import '@fontsource-variable/inter/wght.css';
-import '@fontsource-variable/inter-tight/wght.css';
-import '@fontsource-variable/jetbrains-mono/wght.css';
 import './globals.css';
 import { getSite } from '@/lib/site';
 

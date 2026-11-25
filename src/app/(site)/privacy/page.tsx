@@ -18,7 +18,7 @@ export default async function PrivacyPage() {
   return (
     <main>
       <PageHero kicker="Privacy" title="Privacy policy" description="A plain-language account of the information we receive through this website and how it is used." />
-      <section className="container-x pb-28 pt-16">
+      <section className="container-x pb-20 sm:pb-28 pt-16">
         <div className="mx-auto max-w-3xl divide-y divide-line border-y border-line">
           {sections.map(([h, b]) => (
             <div key={h} className="grid gap-3 py-8 sm:grid-cols-[200px_1fr]"><h2 className="text-[17px]">{h}</h2><p className="leading-relaxed text-secondary">{b}</p></div>

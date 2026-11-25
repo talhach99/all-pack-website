@@ -19,7 +19,7 @@ function Thumb({ item, eager }: { item: CatalogItem; eager?: boolean }) {
 
 export default function ProductsPage() {
   return (
-    <main className="ap px-5 pb-28 pt-12">
+    <main className="ap px-5 pb-20 sm:pb-28 pt-12">
       <div className="mx-auto flex max-w-[1320px] flex-wrap items-start gap-14">
         <aside className="sticky top-24 hidden max-w-[250px] flex-[1_1_220px] flex-col lg:flex">
           <a href="#shopby" className="py-2 text-[15px] font-bold transition-colors hover:text-[#2B43F0]">Shop by category</a>

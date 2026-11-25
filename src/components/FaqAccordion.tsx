@@ -1,40 +1,27 @@
 'use client';
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import type { Faq } from '@/lib/site';
 
-/** Numbered FAQ list. `dark` renders for navy sections. */
-export function FaqAccordion({ faqs, limit, dark = false }: { faqs: Faq[]; limit?: number; dark?: boolean }) {
+/** Lightweight FAQ list (CSS height transition, no animation library). */
+export function FaqAccordion({ faqs, limit }: { faqs: Faq[]; limit?: number; dark?: boolean }) {
   const [open, setOpen] = useState<number | null>(0);
   const list = limit ? faqs.slice(0, limit) : faqs;
   return (
-    <div className="grid gap-3">
+    <div className="border-t border-[#E6E8EE]">
       {list.map((item, i) => {
         const on = open === i;
-        const box = dark
-          ? on ? 'border-white/15 bg-graphite-raised' : 'border-white/10 bg-graphite-card hover:border-white/15'
-          : on ? 'border-ink/15 bg-white' : 'border-line bg-white hover:border-ink/15';
         return (
-          <div key={item.q} className={`rounded-xl border transition-colors ${box}`}>
+          <div key={item.q} className="border-b border-[#E6E8EE]">
             <h3>
-              <button
-                type="button" aria-expanded={on} aria-controls={`faq-${i}`} id={`faq-q-${i}`}
-                onClick={() => setOpen(v => (v === i ? null : i))}
-                className="flex w-full items-center gap-4 px-5 py-4 text-left sm:px-6 sm:py-5"
-              >
-                <span className={`w-6 shrink-0 font-mono text-[12px] tabular-nums ${dark ? 'text-cyan' : 'text-muted'}`}>{String(i + 1).padStart(2, '0')}</span>
-                <span className={`flex-1 text-[17px] font-medium leading-snug ${dark ? 'text-white' : 'text-ink'}`}>{item.q}</span>
-                <Plus size={18} strokeWidth={1.5} className={`shrink-0 transition-transform duration-200 ease-out ${on ? 'rotate-45' : ''} ${dark ? 'text-cyan' : 'text-muted'}`} />
+              <button type="button" aria-expanded={on} aria-controls={`faq-${i}`} id={`faq-q-${i}`} onClick={() => setOpen(v => (v === i ? null : i))} className="flex min-h-[68px] w-full items-center justify-between gap-4 py-4 text-left">
+                <span className="text-[17px] font-bold leading-snug sm:text-[18px]">{item.q}</span>
+                <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#F2F3F5] transition-transform duration-300 ${on ? 'rotate-45' : ''}`}><Plus size={18} strokeWidth={2} /></span>
               </button>
             </h3>
-            <AnimatePresence initial={false}>
-              {on && (
-                <motion.div id={`faq-${i}`} role="region" aria-labelledby={`faq-q-${i}`} initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: .3, ease: [.22, 1, .36, 1] }} className="overflow-hidden">
-                  <p className={`pb-5 pl-[60px] pr-8 text-[15px] leading-relaxed sm:pl-[64px] sm:pr-16 ${dark ? 'text-cyan' : 'text-secondary'}`}>{item.a}</p>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <div id={`faq-${i}`} role="region" aria-labelledby={`faq-q-${i}`} className={`grid transition-[grid-template-rows] duration-300 ease-out ${on ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+              <div className="overflow-hidden"><p className="max-w-[720px] pb-6 text-[16px] leading-[1.7] text-[#4A5060]">{item.a}</p></div>
+            </div>
           </div>
         );
       })}

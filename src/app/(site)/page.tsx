@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { preload } from 'react-dom';
 import { getSite, pageMeta } from '@/lib/site';
-import { MOSAIC, PRINT_ROWS, HOME_FAQ, P } from '@/data/home';
+import { MOSAIC, PRINT_ROWS, HOME_FAQ, HERO_SLIDES, P } from '@/data/home';
 import { HeroSlider, MarketSection, Offices, Newsletter } from '@/components/ap/HomeClient';
 import { FaqAccordion } from '@/components/FaqAccordion';
 
@@ -12,6 +13,7 @@ export default async function Home() {
   const { clients, links } = await getSite();
   const logos = clients.filter(c => c.logo);
   const wa = links.whatsappLink();
+  preload(HERO_SLIDES[0].image, { as: 'image', fetchPriority: 'high', imageSrcSet: HERO_SLIDES[0].srcSet, imageSizes: '(max-width: 1024px) 100vw, 800px' });
   return (
     <main className="ap">
       <HeroSlider />
@@ -34,44 +36,44 @@ export default async function Home() {
       <MarketSection />
 
       {/* Product mosaic */}
-      <section className="px-5 py-28">
-        <div className="mx-auto mb-10 flex max-w-[1100px] flex-wrap items-end justify-between gap-4">
+      <section className="px-4 py-20 sm:px-5 sm:py-28">
+        <div className="mx-auto mb-8 flex max-w-[1100px] flex-wrap items-end justify-between gap-4">
           <div><span className="ap-kicker">Products</span><h2 className="mt-2.5 text-[36px] leading-none sm:text-[48px]">Packaging for every product</h2></div>
           <Link href="/products" className="ap-ul font-bold">View the full catalog</Link>
         </div>
-        <div className="mx-auto grid max-w-[1100px] auto-rows-[200px] grid-cols-2 gap-4 sm:auto-rows-[260px] lg:grid-cols-4 lg:gap-5">
-          <div className="ap-rv relative col-span-2 flex flex-col justify-between overflow-hidden rounded-xl bg-[#0A208C] p-8 text-white sm:p-11">
+        <div className="mx-auto grid max-w-[1100px] auto-rows-[170px] grid-cols-2 gap-3 sm:auto-rows-[240px] sm:gap-4 lg:auto-rows-[260px] lg:grid-cols-4 lg:gap-5">
+          <div className="ap-rv relative col-span-2 row-span-2 flex flex-col justify-between gap-6 overflow-hidden rounded-xl bg-[#0A208C] p-7 text-white sm:row-span-1 sm:p-11">
             <svg width="220" height="220" viewBox="0 0 46 46" aria-hidden="true" className="absolute -bottom-12 -right-10 opacity-20"><path d="M23 6 40 38H6Z" fill="#22C3EE" /></svg>
             <div><h3 className="text-[28px] !text-white sm:text-[36px]">Turn every box into your brand</h3><p className="mt-3 text-[17px] text-[#C8D0F5]">Choose from our full range of packaging styles, printed to order.</p></div>
             <Link href="/products" className="ap-btn relative self-start bg-[#22C3EE] font-extrabold text-[#0A208C]">Explore all products <span className="ap-go">›</span></Link>
           </div>
           {MOSAIC.map(t => (
             <Link key={t.name} href="/products" className={`ap-card ap-rv relative overflow-hidden rounded-xl border ${t.white ? 'border-[#E6E8EE] bg-white' : 'border-transparent bg-[#F2F3F5]'}`}>
-              <img src={t.src} alt={t.name} width={520} height={520} loading="lazy" className={`ap-img absolute inset-0 h-full w-full ${t.fit === 'contain' ? 'object-contain px-5 pb-14 pt-6' : 'object-cover'}`} />
-              <span className="ap-chip absolute bottom-3.5 left-3.5 rounded-md bg-white px-2.5 py-1.5 text-[13px] font-extrabold">{t.name}</span>
+              <img src={t.src} alt={t.name} width={520} height={520} loading="lazy" className={`ap-img absolute inset-0 h-full w-full ${t.fit === 'contain' ? 'object-contain px-3 pb-10 pt-3 sm:px-5 sm:pb-14 sm:pt-6' : 'object-cover'}`} />
+              <span className="ap-chip absolute bottom-2.5 left-2.5 max-w-[calc(100%-20px)] rounded-md bg-white px-2 py-1 text-[12px] font-extrabold leading-tight sm:bottom-3.5 sm:left-3.5 sm:px-2.5 sm:py-1.5 sm:text-[13px]">{t.name}</span>
             </Link>
           ))}
         </div>
       </section>
 
       {/* What we print */}
-      <section className="px-5 pb-28">
+      <section className="px-4 pb-20 sm:px-5 sm:pb-28">
         <div className="mx-auto max-w-[1100px]">
           <div className="ap-rv mb-10 text-center"><span className="ap-kicker">What we print</span><h2 className="mt-2.5 text-[36px] leading-none sm:text-[48px]">Three ways to print your brand</h2><p className="mx-auto mt-3.5 max-w-[560px] text-[17px] leading-[1.6] text-[#4A5060]">Flexible pouches, DTF transfers for apparel and offset printing for boxes and labels, all from one team.</p></div>
           <div className="flex flex-col gap-5">
             {PRINT_ROWS.map(row => (
-              <div key={row.title} className="ap-rv rounded-3xl p-7 sm:p-12" style={{ background: row.bg }}>
+              <div key={row.title} className="ap-rv rounded-3xl p-5 sm:p-12" style={{ background: row.bg }}>
                 <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
                   <div className="max-w-[620px]"><span className="ap-kicker">{row.kicker}</span><h3 className="mt-2.5 text-[30px] leading-[1.05] sm:text-[38px]">{row.title}</h3><p className="mt-3 text-[16px] leading-[1.6] text-[#4A5060]">{row.text}</p></div>
                   <Link href="/contact" className="ap-ul font-bold">{row.link}</Link>
                 </div>
-                <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
                   {row.cards.map((cd, k) => (
-                    <div key={cd.name} className="ap-card ap-lift flex flex-col gap-3.5 rounded-[20px] bg-white p-5">
-                      <span className="grid h-[38px] w-[38px] place-items-center rounded-full bg-[#ECEFFD] text-[14px] font-extrabold text-[#0A208C]">0{k + 1}</span>
-                      <div className="h-[200px] overflow-hidden rounded-[14px] sm:h-[240px]"><img src={cd.src} alt={`ALL PACK ${cd.name}`} width={480} height={480} loading="lazy" className={`ap-img h-full w-full ${cd.fit === 'contain' ? 'object-contain' : 'object-cover'}`} /></div>
-                      <h4 className="text-[17px]">{cd.name}</h4>
-                      {cd.desc && <p className="text-[14px] leading-[1.55] text-[#5C6272]">{cd.desc}</p>}
+                    <div key={cd.name} className="ap-card ap-lift flex flex-col gap-3 rounded-[18px] bg-white p-3 sm:gap-3.5 sm:rounded-[20px] sm:p-5">
+                      <span className="hidden h-[38px] w-[38px] place-items-center rounded-full bg-[#ECEFFD] text-[14px] font-extrabold text-[#0A208C] sm:grid">0{k + 1}</span>
+                      <div className="h-[150px] overflow-hidden rounded-[12px] sm:h-[240px] sm:rounded-[14px]"><img src={cd.src} alt={`ALL PACK ${cd.name}`} width={480} height={480} loading="lazy" className={`ap-img h-full w-full ${cd.fit === 'contain' ? 'object-contain' : 'object-cover'}`} /></div>
+                      <h4 className="text-[15px] leading-tight sm:text-[17px]">{cd.name}</h4>
+                      {cd.desc && <p className="hidden text-[14px] leading-[1.55] text-[#5C6272] sm:block">{cd.desc}</p>}
                     </div>
                   ))}
                 </div>
@@ -82,7 +84,7 @@ export default async function Home() {
       </section>
 
       {/* How it works */}
-      <section className="bg-[#F4F5F8] px-5 py-28">
+      <section className="bg-[#F4F5F8] px-5 py-20 sm:py-28">
         <div className="ap-rv mx-auto max-w-[1200px]">
           <div className="mx-auto mb-14 max-w-[640px] text-center"><span className="ap-kicker">How it works</span><h2 className="mt-3 text-[36px] leading-[1.05] sm:text-[48px]">From brief to doorstep in four steps</h2><p className="mt-4 text-[17px] leading-[1.6] text-[#5C6272]">One dedicated contact, clear pricing and a proof before anything prints.</p></div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -113,12 +115,12 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="px-5 py-28"><div className="mx-auto max-w-[1200px]"><Newsletter /></div></section>
+      <section className="px-4 py-20 sm:px-5 sm:py-28"><div className="mx-auto max-w-[1200px]"><Newsletter /></div></section>
 
       <Offices wa={wa} />
 
       {/* FAQ */}
-      <section className="px-5 pt-28">
+      <section className="px-5 pt-20 sm:pt-28">
         <div className="ap-rv mx-auto max-w-[860px]">
           <div className="mb-10 text-center"><span className="ap-kicker">FAQ</span><h2 className="mt-2.5 text-[36px] leading-none sm:text-[48px]">Questions, answered</h2></div>
           <FaqAccordion faqs={HOME_FAQ} />
@@ -126,10 +128,10 @@ export default async function Home() {
       </section>
 
       {/* Closing CTA */}
-      <section className="px-5 py-32 text-center">
+      <section className="px-5 py-24 text-center sm:py-32">
         <div className="mx-auto flex max-w-[900px] flex-col items-center gap-7">
-          <h2 className="text-[48px] leading-[.95] sm:text-[80px]">Let’s make your box.</h2>
-          <p className="max-w-[520px] text-[19px] leading-[1.6] text-[#5C6272]">Share your product size and quantity. We will come back with a structure, a proof and a price.</p>
+          <h2 className="text-[44px] leading-[.98] sm:text-[80px]">Let’s make your box.</h2>
+          <p className="max-w-[520px] text-[17px] leading-[1.6] text-[#5C6272] sm:text-[19px]">Share your product size and quantity. We will come back with a structure, a proof and a price.</p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link href="/contact" className="ap-btn ap-blue">Get a quote</Link>
             {wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="ap-btn ap-ghost">Message us on WhatsApp</a>}

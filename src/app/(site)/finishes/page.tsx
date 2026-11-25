@@ -16,7 +16,7 @@ export default async function FinishesPage() {
       <PageHero kicker="Finishes" title="Finishes that make your packaging feel premium." description="Choose the coating, effect and material that suit your product, and see how each one changes the look and feel of your box." />
       <FinishPreview />
 
-      <section className="px-5 py-28">
+      <section className="px-5 py-20 sm:py-28">
         <div className="ap-rv mx-auto max-w-[1200px]">
           <div className="mb-10 max-w-[720px]"><span className="ap-kicker">All finishes</span><h2 className="mt-3 text-[36px] leading-[1.05] sm:text-[44px]">Coatings and effects</h2><p className="mt-3.5 text-[17px] leading-[1.6] text-[#5C6272]">Every finish is applied in-house and checked against your approved proof.</p></div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -30,7 +30,7 @@ export default async function FinishesPage() {
         </div>
       </section>
 
-      <section className="bg-[#F4F5F8] px-5 py-28">
+      <section className="bg-[#F4F5F8] px-5 py-20 sm:py-28">
         <div className="ap-rv mx-auto max-w-[1200px]">
           <div className="mb-10 max-w-[720px]"><span className="ap-kicker">Materials</span><h2 className="mt-3 text-[36px] leading-[1.05] sm:text-[44px]">Choose your board and film</h2><p className="mt-3.5 text-[17px] leading-[1.6] text-[#5C6272]">The right material protects your product and sets the tone for your brand.</p></div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
@@ -44,7 +44,7 @@ export default async function FinishesPage() {
         </div>
       </section>
 
-      <section className="px-5 py-28">
+      <section className="px-5 py-20 sm:py-28">
         <div className="ap-rv mx-auto flex max-w-[1200px] flex-wrap gap-12">
           <div className="flex-[1_1_440px]">
             <span className="ap-kicker">Print methods</span><h2 className="mb-8 mt-3 text-[36px] leading-[1.05] sm:text-[44px]">How we print</h2>
@@ -59,8 +59,8 @@ export default async function FinishesPage() {
         </div>
       </section>
 
-      <section className="px-5 pb-28">
-        <div className="ap-rv mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-7 rounded-[28px] bg-[#0A208C] p-10 text-white sm:p-16">
+      <section className="px-5 pb-20 sm:pb-28">
+        <div className="ap-rv mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-7 rounded-[24px] bg-[#0A208C] p-7 text-white sm:rounded-[28px] sm:p-16">
           <div className="max-w-[620px]"><h2 className="text-[36px] leading-[1.05] !text-white sm:text-[44px]">Not sure which finish fits?</h2><p className="mt-3 text-[17px] leading-[1.6] text-[#C8D0F5]">Tell us about your product and budget, and we will recommend a finish and send samples.</p></div>
           <div className="flex flex-wrap gap-2.5"><Link href="/contact" className="ap-btn ap-white font-extrabold text-[#0A208C]">Start your quote</Link>{wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="ap-btn ap-ghost-light">WhatsApp us</a>}</div>
         </div>

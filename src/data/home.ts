@@ -4,14 +4,18 @@
  * Copy is formal and specific: no invented figures. Placeholders in [brackets] await the owner's numbers.
  */
 
-export const P = (f: string) => `/photos/${f}.webp`;
-export const R = (f: string) => `/renders/${f}.webp`;
+/** Photos and renders, 640px versions for tiles and cards (full-size files are kept for the hero). */
+export const P = (f: string) => `/photos/${f}-sm.webp`;
+const SM_RENDERS = new Set(['folding-cartons-v2', 'mailer-boxes', 'corrugated-shipping-boxes', 'pharmaceutical-cartons-v2', 'food-boxes-v2', 'labels-stickers-v2', 'paper-bags', 'rigid-gift-boxes']);
+export const R = (f: string) => `/renders/${f}${SM_RENDERS.has(f) ? '-sm' : ''}.webp`;
+/** Hero photo: full size plus a 900px version for phones. */
+export const HERO = (f: string) => ({ src: `/photos/${f}.webp`, srcSet: `/photos/${f}-md.webp 900w, /photos/${f}.webp 1600w` });
 
-export type HeroSlide = { kicker: string; title: string; text: string; cta: string; href: string; image: string; alt: string; bg: string; tab: string };
+export type HeroSlide = { kicker: string; title: string; text: string; cta: string; href: string; image: string; srcSet: string; alt: string; bg: string; tab: string };
 export const HERO_SLIDES: HeroSlide[] = [
-  { kicker: 'Custom print · USA and Pakistan', title: 'Your brand, on every wall.', text: 'Posters, prints and wall art in rich, lasting colour, printed to order and packed to arrive perfect.', cta: 'Shop wall art', href: '/products#home', image: P('hero1'), alt: 'Woman hanging framed travel posters in a living room', bg: '#EFE6DC', tab: 'Wall art' },
-  { kicker: 'One design, every product', title: 'Make it once. Wear it, carry it, frame it.', text: 'Put your artwork on tees, sweatshirts, totes and prints, then ship it all in boxes made by ALL PACK.', cta: 'Explore products', href: '/products', image: P('hero2'), alt: 'Model with a printed tote beside a matching hoodie, tee, cap and poster', bg: '#CDBFEA', tab: 'Apparel and bags' },
-  { kicker: 'From sample to scale', title: 'Start with one. Scale to thousands.', text: 'Approve a sample first, then grow your run with the same quality, supported from Boston and Lahore.', cta: 'Start your order', href: '/contact', image: P('hero3'), alt: 'Man in a printed tee beside a rack of custom shirts', bg: '#EDCBB2', tab: 'Sample to scale' },
+  { kicker: 'Custom print · USA and Pakistan', title: 'Your brand, on every wall.', text: 'Posters, prints and wall art in rich, lasting colour, printed to order and packed to arrive perfect.', cta: 'Shop wall art', href: '/products#home', image: HERO('hero1').src, srcSet: HERO('hero1').srcSet, alt: 'Woman hanging framed travel posters in a living room', bg: '#EFE6DC', tab: 'Wall art' },
+  { kicker: 'One design, every product', title: 'Make it once. Wear it, carry it, frame it.', text: 'Put your artwork on tees, sweatshirts, totes and prints, then ship it all in boxes made by ALL PACK.', cta: 'Explore products', href: '/products', image: HERO('hero2').src, srcSet: HERO('hero2').srcSet, alt: 'Model with a printed tote beside a matching hoodie, tee, cap and poster', bg: '#CDBFEA', tab: 'Apparel and bags' },
+  { kicker: 'From sample to scale', title: 'Start with one. Scale to thousands.', text: 'Approve a sample first, then grow your run with the same quality, supported from Boston and Lahore.', cta: 'Start your order', href: '/contact', image: HERO('hero3').src, srcSet: HERO('hero3').srcSet, alt: 'Man in a printed tee beside a rack of custom shirts', bg: '#EDCBB2', tab: 'Sample to scale' },
 ];
 
 export const STRIP = [
@@ -80,8 +84,8 @@ export const CATALOG: CatalogSection[] = [
   { id: 'labels', title: 'Labels and stickers', desc: 'Product labels on rolls or sheets, in any shape.', items: [r('Roll labels', 'labels-stickers-v2'), { name: 'Sheet stickers' }, { name: 'Die-cut labels' }] },
   { id: 'bags', title: 'Paper bags', desc: 'Branded retail and gift bags.', items: [r('Retail paper bags', 'paper-bags')] },
   { id: 'stationery', title: 'Stationery and brand print', desc: 'The finishing touches that travel with your packaging.', items: [c('Notebooks and journals', 'notebook'), c('Business cards', 'bizcards'), w('Hang tags', 'hangtags'), c('Thank-you cards', 'thankyou')] },
-  { id: 'apparel', title: 'DTF apparel', desc: 'Full-colour DTF prints on tees, fleece and bags.', banner: P('hero3'), items: [c('T-shirts', 'tshirt'), c('Sweatshirts', 'sweat'), c('Tote bags', 'tote'), c('Team and brand apparel', 'tees'), { name: 'Hoodies' }, { name: 'Caps' }] },
-  { id: 'home', title: 'Home and gifts', desc: 'Printed homeware and gifts for your brand or store.', banner: P('hero1'), items: [c('Posters and wall art', 'poster'), c('Ceramic mugs', 'mug-leaves'), c('Colour mugs', 'mug-waves'), c('Cushions', 'pillow'), c('Blankets', 'blanket'), c('Phone cases', 'phonecase')] },
+  { id: 'apparel', title: 'DTF apparel', desc: 'Full-colour DTF prints on tees, fleece and bags.', banner: HERO('hero3').src, items: [c('T-shirts', 'tshirt'), c('Sweatshirts', 'sweat'), c('Tote bags', 'tote'), c('Team and brand apparel', 'tees'), { name: 'Hoodies' }, { name: 'Caps' }] },
+  { id: 'home', title: 'Home and gifts', desc: 'Printed homeware and gifts for your brand or store.', banner: HERO('hero1').src, items: [c('Posters and wall art', 'poster'), c('Ceramic mugs', 'mug-leaves'), c('Colour mugs', 'mug-waves'), c('Cushions', 'pillow'), c('Blankets', 'blanket'), c('Phone cases', 'phonecase')] },
 ];
 export const NEW_ARRIVALS: CatalogItem[] = [w('Stand-up pouch', 'pouch1'), w('Spout pouch with cap', 'pouch4'), w('Lift-off lid gift box', 'off-rigid'), c('Thank-you cards', 'thankyou'), w('Hang tags', 'hangtags'), c('Notebooks and journals', 'notebook'), w('Flat-bottom pouch', 'pouch3'), w('Takeaway boxes', 'off-food')];
 

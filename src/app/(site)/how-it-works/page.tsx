@@ -16,7 +16,7 @@ export default async function HowItWorksPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c') }} />
       <PageHero kicker="How it works" title="How ordering with ALL PACK works." description="From your first message to boxes at your door: here is exactly what happens, what we need from you and how long it takes." />
 
-      <section className="px-5 py-28">
+      <section className="px-5 py-20 sm:py-28">
         <div className="mx-auto max-w-[1200px]">
           <span className="ap-kicker">The process</span><h2 className="mb-10 mt-3 text-[36px] leading-[1.05] sm:text-[44px]">Four steps, one dedicated contact</h2>
           <div className="flex flex-col gap-4">
@@ -31,7 +31,7 @@ export default async function HowItWorksPage() {
         </div>
       </section>
 
-      <section id="artwork" className="scroll-mt-24 bg-[#F4F5F8] px-5 py-28">
+      <section id="artwork" className="scroll-mt-24 bg-[#F4F5F8] px-5 py-20 sm:py-28">
         <div className="ap-rv mx-auto grid max-w-[1200px] gap-5 lg:grid-cols-2">
           <div className="flex flex-col gap-4 rounded-3xl bg-white p-8 sm:p-10">
             <span className="ap-kicker">Sizing guide</span><h3 className="text-[30px]">How to measure your box</h3>
@@ -49,7 +49,7 @@ export default async function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="px-5 py-28">
+      <section className="px-5 py-20 sm:py-28">
         <div className="ap-rv mx-auto max-w-[1200px]">
           <span className="ap-kicker">Ordering details</span><h2 className="mb-10 mt-3 text-[36px] leading-[1.05] sm:text-[44px]">Lead times, minimums and payment</h2>
           <div className="grid gap-5 md:grid-cols-2">
@@ -64,12 +64,12 @@ export default async function HowItWorksPage() {
         </div>
       </section>
 
-      <section id="faq" className="scroll-mt-24 px-5 pb-28">
+      <section id="faq" className="scroll-mt-24 px-5 pb-20 sm:pb-28">
         <div className="ap-rv mx-auto max-w-[860px]"><h2 className="mb-8 text-center text-[36px] sm:text-[40px]">Frequently asked questions</h2><FaqAccordion faqs={HOW_FAQ} /></div>
       </section>
 
-      <section className="px-5 pb-28">
-        <div className="ap-rv mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-7 rounded-[28px] bg-[#0A208C] p-10 text-white sm:p-16">
+      <section className="px-5 pb-20 sm:pb-28">
+        <div className="ap-rv mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-7 rounded-[24px] bg-[#0A208C] p-7 text-white sm:rounded-[28px] sm:p-16">
           <div className="max-w-[620px]"><h2 className="text-[36px] leading-[1.05] !text-white sm:text-[44px]">Ready to start?</h2><p className="mt-3 text-[17px] leading-[1.6] text-[#C8D0F5]">Send your specs today and get a clear quote from our Boston or Lahore team.</p></div>
           <div className="flex flex-wrap gap-2.5"><Link href="/contact" className="ap-btn ap-white font-extrabold text-[#0A208C]">Start your quote</Link>{wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="ap-btn ap-ghost-light">WhatsApp us</a>}</div>
         </div>

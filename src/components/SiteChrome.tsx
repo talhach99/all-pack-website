@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { Header } from './ap/Header';
 import { Footer } from './ap/Footer';
 import { FloatingContact } from './FloatingContact';
-import { Motion } from './Motion';
 import { Analytics } from './Analytics';
 import { getSite } from '@/lib/site';
 
@@ -37,7 +36,6 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
       <div id="main">{children}</div>
       <Footer />
       <FloatingContact href={links.whatsappLink()} />
-      <Motion />
       <Analytics />
     </>
   );

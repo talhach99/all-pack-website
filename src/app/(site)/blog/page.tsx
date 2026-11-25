@@ -4,7 +4,6 @@ import { getSite, pageMeta } from '@/lib/site';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { PageHero } from '@/components/PageHero';
-import { Reveal } from '@/components/Reveal';
 import { readMinutes } from '@/data/articles';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('insights', '/blog'); }
@@ -14,10 +13,10 @@ export default async function InsightsPage() {
   return (
     <main>
       <PageHero kicker="Guides" title={t['insights.title']} description={t['insights.lead']} />
-      <section className="container-x pb-28 pt-16">
+      <section className="container-x pb-20 sm:pb-28 pt-16">
         <div className="grid gap-6 md:grid-cols-3">
           {articles.map((a, i) => (
-            <Reveal key={a.slug} delay={i * .06}>
+            <div key={a.slug}>
               <Link href={`/blog/${a.slug}`} className="group card flex h-full flex-col transition-colors hover:border-[#C9CFDC]">
                 <div className="relative aspect-[16/10] border-b border-line bg-card"><img src={a.hero.src} alt={a.hero.alt} width={a.hero.width} height={a.hero.height} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-contain p-5" /></div>
                 <div className="flex flex-1 flex-col p-7">
@@ -27,7 +26,7 @@ export default async function InsightsPage() {
                   <span className="mt-6 inline-flex items-center gap-1 text-[14px] font-semibold text-brand">Read the guide <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5" /></span>
                 </div>
               </Link>
-            </Reveal>
+            </div>
           ))}
         </div>
       </section>

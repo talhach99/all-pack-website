@@ -15,16 +15,16 @@ export type Seo = { title: string; description: string; absolute?: boolean };
 export const PAGE_SEO = {
   home: {
     absolute: true,
-    title: 'ALL PACK | Custom Packaging for the USA & Pakistan',
-    description: 'Custom packaging for brands in the USA and Pakistan: printed cartons, mailer and shipping boxes, pouches, labels and DTF apparel. ISO 9001 and Halal certified.',
+    title: 'Custom Packaging Boxes & Printing | ALL PACK USA & Pakistan',
+    description: 'Custom printed boxes, mailers, pouches, labels and DTF apparel for brands in the USA and Pakistan. Free digital proof, quotes in USD or PKR. ISO 9001 certified.',
   },
   products: {
-    title: 'Custom Printed Boxes, Cartons, Bags & Labels',
-    description: 'Pharmaceutical and folding cartons, rigid gift boxes, mailer and shipping boxes, food boxes, paper bags and labels, made to your size and printed in Lahore.',
+    title: 'Custom Boxes, Mailers, Pouches & Labels',
+    description: 'Custom folding cartons, rigid gift boxes, mailer and shipping boxes, pouches, labels, and DTF apparel, made to your size for brands in the USA and Pakistan.',
   },
   industries: {
-    title: 'Packaging for Pharma, Food & Retail Brands',
-    description: 'Printed packaging for pharmaceutical, food and bakery, confectionery, cosmetics, restaurant and healthcare brands across Pakistan, produced in Lahore.',
+    title: 'Packaging for Pharma, Food, Beauty & E-commerce',
+    description: 'Custom packaging built for your industry: pharmaceutical cartons, food-grade boxes, premium beauty boxes, e-commerce mailers and heavy-duty corrugated boxes.',
   },
   about: {
     absolute: true,
@@ -37,7 +37,7 @@ export const PAGE_SEO = {
   },
   contact: {
     absolute: true,
-    title: 'Contact ALL PACK | Request a Packaging Quote',
+    title: 'Get a Custom Packaging Quote | Contact ALL PACK',
     description: 'Send your product size, quantity and artwork by form, WhatsApp or email, and our Boston or Lahore team will reply with a clear quote within one business day.',
   },
   faq: {
@@ -45,7 +45,7 @@ export const PAGE_SEO = {
     description: 'How ALL PACK quotes, proofs and produces custom packaging: order quantities, custom sizes, artwork files, lead times, food-grade board and delivery in Pakistan.',
   },
   insights: {
-    title: 'Packaging Blog: Guides, Ideas and Know-How',
+    title: 'Packaging Blog: Guides, Costs and Ideas',
     description: 'Packaging guides from a Lahore printer: custom box types and ordering, what printed boxes cost in Pakistan, and pharmaceutical carton printing explained.',
   },
   finishes: {

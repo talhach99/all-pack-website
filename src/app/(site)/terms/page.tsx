@@ -25,7 +25,7 @@ export default async function TermsPage() {
   return (
     <main>
       <PageHero kicker="Terms" title="Terms of service" description="The terms that apply to this website and to packaging orders placed with ALL PACK." />
-      <section className="container-x pb-28 pt-16">
+      <section className="container-x pb-20 sm:pb-28 pt-16">
         <div className="mx-auto max-w-3xl divide-y divide-line border-y border-line">
           {sections.map(([h, b]) => (
             <div key={h} className="grid gap-3 py-8 sm:grid-cols-[200px_1fr]"><h2 className="text-[17px]">{h}</h2><p className="leading-relaxed text-secondary">{b}</p></div>
