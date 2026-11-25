@@ -60,8 +60,8 @@ export const PRINT_ROWS: { kicker: string; title: string; text: string; link: st
 ];
 
 export const HOME_FAQ = [
-  { q: 'Is there a minimum order?', a: 'Minimums depend on the box style and print method. Tell us your quantity and we will suggest the most cost-effective option.' },
-  { q: 'How long does an order take?', a: 'Production starts once you approve your proof. We confirm the exact lead time and delivery date with your quote.' },
+  { q: 'Is there a minimum order?', a: 'Most orders start from 500 units in the USA and 1,000 units in Pakistan, depending on the box style and print method. Tell us your quantity and we will suggest the most cost-effective option.' },
+  { q: 'How long does an order take?', a: 'Production usually takes 10 to 15 business days after you approve your proof, plus shipping. We confirm the exact lead time and delivery date with your quote.' },
   { q: 'Do you deliver in the USA and Pakistan?', a: 'Yes. Our Boston office handles US orders and our Lahore office handles orders across Pakistan, with delivery to your door.' },
   { q: 'Can I get a sample before ordering?', a: 'Every order starts with a free digital proof, and we can send a physical sample before your full run.' },
   { q: 'What files do I need to send?', a: 'A print-ready PDF or AI file on our dieline. No artwork yet? Our team can place your logo and colors for you.' },
@@ -77,7 +77,7 @@ export const CATALOG: CatalogSection[] = [
   { id: 'folding', title: 'Folding cartons', desc: 'Retail, cosmetic and supplement cartons in any size.', items: [r('Tuck-end cartons', 'folding-cartons-v2'), r('Cosmetic cartons', 'packaging-range-800'), { name: 'Window cartons' }, { name: 'Sleeve and drawer boxes' }] },
   { id: 'rigid', title: 'Rigid gift boxes', desc: 'Premium lift-off lid boxes for launches and gifting.', items: [w('Lift-off lid gift box', 'off-rigid'), r('Gift box with band', 'rigid-gift-boxes')] },
   { id: 'mailer', title: 'Mailer boxes', desc: 'E-commerce mailers that ship safely and open beautifully.', items: [r('Roll-end mailers', 'mailer-boxes'), { name: 'Subscription boxes' }] },
-  { id: 'shipping', title: 'Shipping boxes', desc: 'Corrugated cartons for storage, freight and fulfilment.', items: [w('3-ply and 5-ply cartons', 'off-corr'), r('Printed shipping boxes', 'corrugated-shipping-boxes'), { name: 'Industrial boxes' }] },
+  { id: 'shipping', title: 'Shipping boxes', desc: 'Corrugated cartons for storage, freight and fulfillment.', items: [w('3-ply and 5-ply cartons', 'off-corr'), r('Printed shipping boxes', 'corrugated-shipping-boxes'), { name: 'Industrial boxes' }] },
   { id: 'pharma', title: 'Pharmaceutical', desc: 'Compliant cartons and inserts for regulated lines.', items: [w('Pharma cartons', 'off-pharma'), r('Tablet cartons', 'pharmaceutical-cartons-v2'), { name: 'Inserts and leaflets' }] },
   { id: 'food', title: 'Food and bakery', desc: 'Food-grade boxes for bakery, snack and takeaway brands.', items: [w('Takeaway boxes', 'off-food'), r('Window food boxes', 'food-boxes-v2'), { name: 'Cake and cupcake boxes' }, { name: 'Burger boxes' }] },
   { id: 'pouches', title: 'Pouches', desc: 'Printed flexible pouches for food, powders and liquids.', items: [w('Stand-up pouch', 'pouch1'), w('Four-side seal pouch with handle', 'pouch2'), w('Flat-bottom pouch', 'pouch3'), w('Spout pouch with cap', 'pouch4')] },
@@ -103,7 +103,7 @@ export const INDUSTRIES: Industry[] = [
 /* ---------- Finishes ---------- */
 export const FINISHES = [
   { name: 'Matte lamination', short: 'Matte', desc: 'Soft, glare-free surface with a modern, understated look.', best: 'Cosmetics, retail cartons', cost: '$', face: '#1F2A44', ink: '#E8ECF6', shadow: 'none' },
-  { name: 'Gloss lamination', short: 'Gloss', desc: 'Bright, vivid color with a reflective shine that pops on shelf.', best: 'Food, consumer goods', cost: '$', face: 'linear-gradient(135deg,#2B43F0 0%,#7E8FF8 40%,#2B43F0 70%,#1E30B8 100%)', ink: '#FFFFFF', shadow: '0 1px 0 rgba(255,255,255,.4)' },
+  { name: 'Gloss lamination', short: 'Gloss', desc: 'Bright, vivid color with a reflective shine that pops on the shelf.', best: 'Food, consumer goods', cost: '$', face: 'linear-gradient(135deg,#2B43F0 0%,#7E8FF8 40%,#2B43F0 70%,#1E30B8 100%)', ink: '#FFFFFF', shadow: '0 1px 0 rgba(255,255,255,.4)' },
   { name: 'Soft-touch', short: 'Soft-touch', desc: 'Velvety, premium feel that invites customers to pick it up.', best: 'Beauty, gift boxes', cost: '$$', face: '#2A2F3A', ink: '#C9CEDA', shadow: 'none' },
   { name: 'Spot UV', short: 'Spot UV', desc: 'Raised gloss on selected areas like your logo or pattern.', best: 'Logos, premium cartons', cost: '$$', face: '#1A2133', ink: '#3E4B6E', shadow: '0 0 1px #9AA8D6, 0 2px 6px rgba(154,168,214,.6)' },
   { name: 'Foil stamping', short: 'Foil', desc: 'Metallic gold, silver or colored foil pressed into the board.', best: 'Gift boxes, launches', cost: '$$$', face: '#0A208C', ink: '#F3D58A', shadow: '0 1px 0 #B8892E, 0 0 12px rgba(243,213,138,.35)' },

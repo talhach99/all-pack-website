@@ -55,7 +55,7 @@ export default async function HowItWorksPage() {
               <polygon points="80,90 240,90 290,55 130,55" fill="#ECEFFD" stroke="#0A208C" strokeWidth="2" /><polygon points="240,90 290,55 290,165 240,200" fill="#D5DBFA" stroke="#0A208C" strokeWidth="2" /><rect x="80" y="90" width="160" height="110" fill="#FFFFFF" stroke="#0A208C" strokeWidth="2" />
               <text x="160" y="222" textAnchor="middle" fontSize="13" fontWeight="800" fill="#2B43F0">Length (L)</text><text x="298" y="78" fontSize="13" fontWeight="800" fill="#2B43F0">Width (W)</text><text x="72" y="150" textAnchor="end" fontSize="13" fontWeight="800" fill="#2B43F0">Height (H)</text>
             </svg>
-            <ul className="flex flex-col gap-2.5 text-[15px] leading-[1.6] text-[#4A5060]"><li>• Measure the <b>inside</b> of the box in inches (or millimetres in Pakistan): Length × Width × Height.</li><li>• Add a little space for inserts or padding.</li><li>• Not sure? Send us your product and we will size it for you.</li></ul>
+            <ul className="flex flex-col gap-2.5 text-[15px] leading-[1.6] text-[#4A5060]"><li>• Measure the <b>inside</b> of the box in inches (or millimeters in Pakistan): Length × Width × Height.</li><li>• Add a little space for inserts or padding.</li><li>• Not sure? Send us your product and we will size it for you.</li></ul>
           </div>
           <div className="flex flex-col gap-4 rounded-3xl bg-white p-8 sm:p-10">
             <span className="ap-kicker">Artwork guide</span><h3 className="text-[30px]">Getting your files print-ready</h3>

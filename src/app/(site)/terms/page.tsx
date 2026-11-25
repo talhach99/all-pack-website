@@ -5,11 +5,11 @@ import { PolicyCard } from '@/components/PolicyCard';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('terms', '/terms'); }
 
-const sectionsFor = (COMPANY: { email: string; phone: string; name: string; address: string }) => [
-  ['About these terms', `These terms cover the use of this website and orders placed with ${COMPANY.name}, ${COMPANY.address}, Pakistan. Anything agreed in writing in your quotation or order confirmation takes priority over these general terms.`],
-  ['Using this website', 'Product descriptions, images and guides are for general information. Product images are illustrative renders; your packaging is always made to the specification agreed with you.'],
+const sectionsFor = (COMPANY: { email: string; phone: string; usPhone: string; name: string; address: string }) => [
+  ['About these terms', `These terms cover the use of this website and orders placed with ${COMPANY.name}, which has offices in Boston, Massachusetts, USA and Lahore, Pakistan. Anything agreed in writing in your quotation or order confirmation takes priority over these general terms.`],
+  ['Using this website', 'Product descriptions, images and guides are for general information. Product images show sample designs; your packaging is always made to the specification agreed with you.'],
   ['Quotations', 'Prices depend on material, size, quantity, print and finish. A quotation is valid for the period stated on it. Board and paper prices can change, so a quotation that has expired may need to be re-confirmed before production.'],
-  ['Artwork and proofs', 'You are responsible for the content of your artwork, including spelling, barcodes, product and legal information, and for having the right to use any logos, images and trademarks you send us. Nothing goes to press until you approve a proof, and errors in an approved proof are not our responsibility.'],
+  ['Artwork and proofs', 'You are responsible for the content of your artwork, including spelling, barcodes, product and legal information, and for having the right to use any logos, images and trademarks you send us. Nothing is printed until you approve a proof, and errors in an approved proof are not our responsibility.'],
   ['Color and finish', 'Printed colors can vary slightly between screen and print, between materials, and from one production run to the next. If color matching is critical, ask for a physical proof or a reference standard before production.'],
   ['Quantities', 'Printing and converting involve some setup waste, so the delivered quantity can vary slightly from the quantity ordered. The accepted variation and how it is invoiced are confirmed in your quotation.'],
   ['Payment and lead times', 'Payment terms, any advance payment and the expected lead time are set out in your quotation. Lead times start once artwork is approved and any advance has been received.'],
@@ -17,7 +17,7 @@ const sectionsFor = (COMPANY: { email: string; phone: string; name: string; addr
   ['Your artwork and our tooling', 'Your designs remain yours. We may keep printing plates, dies and files to make repeat orders easier, and we will not use your artwork for anyone else. We may show finished packaging in our portfolio unless you ask us not to.'],
   ['Liability', 'Our responsibility for a faulty order is limited to reprinting the affected packaging or refunding the price paid for it. We are not liable for indirect losses such as lost sales or profit.'],
   ['Law', 'These terms are governed by the laws of Pakistan, and the courts of Lahore have jurisdiction.'],
-  ['Questions', `Email ${COMPANY.email} or WhatsApp ${COMPANY.phone} if anything here is unclear.`],
+  ['Questions', `Email ${COMPANY.email}, or WhatsApp ${COMPANY.usPhone} (USA) or ${COMPANY.phone} (Pakistan), if anything here is unclear.`],
 ];
 
 export default async function TermsPage() {

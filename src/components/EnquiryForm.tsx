@@ -50,14 +50,14 @@ export function EnquiryForm({ source = 'contact' }: { source?: string }) {
           {fieldErr.name && <span className="mt-1 block text-[13px] font-normal text-red-600">{fieldErr.name}</span>}
         </label>
         <label className="block text-[14px] font-semibold">WhatsApp number
-          <input name="whatsapp" required type="tel" inputMode="tel" autoComplete="tel" maxLength={40} placeholder="0321 1234567" className={input(fieldErr.whatsapp)} aria-invalid={!!fieldErr.whatsapp} />
+          <input name="whatsapp" required type="tel" inputMode="tel" autoComplete="tel" maxLength={40} placeholder="+1 or +92 number" className={input(fieldErr.whatsapp)} aria-invalid={!!fieldErr.whatsapp} />
           {fieldErr.whatsapp && <span className="mt-1 block text-[13px] font-normal text-red-600">{fieldErr.whatsapp}</span>}
         </label>
         <label className="block text-[14px] font-semibold sm:col-span-2">Email
           <input name="email" required type="email" autoComplete="email" maxLength={200} placeholder="you@company.com" className={input(fieldErr.email)} aria-invalid={!!fieldErr.email} />
           {fieldErr.email && <span className="mt-1 block text-[13px] font-normal text-red-600">{fieldErr.email}</span>}
         </label>
-        <label className="block text-[14px] font-semibold sm:col-span-2">Your query
+        <label className="block text-[14px] font-semibold sm:col-span-2">Your message
           <textarea name="message" required rows={5} maxLength={4000} placeholder="Tell us what you need: product, size, quantity, or any question." className={`${input(fieldErr.message)} resize-y`} aria-invalid={!!fieldErr.message} />
           {fieldErr.message && <span className="mt-1 block text-[13px] font-normal text-red-600">{fieldErr.message}</span>}
         </label>

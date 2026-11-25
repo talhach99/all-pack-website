@@ -6,10 +6,10 @@ import { PolicyCard } from '@/components/PolicyCard';
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('privacy', '/privacy'); }
 
 const sectionsFor = (COMPANY: { email: string; phone: string; name: string; address: string }) => [
-  ['What we receive', 'When you send the inquiry form on the contact page, we store your name, email address, WhatsApp number and message so that we can reply. When you contact us by WhatsApp, email or phone, or prepare a brief with the quotation brief form (which opens WhatsApp or your email app), we receive the details you choose to send: your name, company, contact details, product requirements and any artwork.'],
+  ['What we receive', 'When you send the inquiry form on the contact page, we store your name, email address, WhatsApp number and message so that we can reply. When you sign up for our newsletter, we store your email address. When you contact us by WhatsApp or email, we receive the details you choose to send: your name, company, contact details, product requirements and any artwork.'],
   ['How we use it', 'Only to answer your inquiry, prepare quotations and fulfill orders. Inquiries are visible only to ALL PACK staff who manage the website. We do not sell, rent or share your information for marketing.'],
   ['Analytics', 'We use Cloudflare Web Analytics to count visits and understand which pages are useful. It sets no cookies, does not track you across other websites and does not identify you personally. This website sets no advertising or tracking cookies.'],
-  ['Third-party services', 'Messages sent by WhatsApp or email are also subject to the privacy terms of those services. Links to Google Maps open Google’s own website.'],
+  ['Third-party services', 'Messages sent by WhatsApp or email are also subject to the privacy terms of those services.'],
   ['Your choices', `To see, correct or delete information you have sent us, email ${COMPANY.email}.`],
 ];
 

@@ -63,7 +63,7 @@ const PK_ARTICLES: Article[] = [
       {
         heading: 'Which type of custom box is right for your product?',
         body: [
-          'Choose the structure by how the product is sold and handled, not by price alone. A biscuit brand, a jeweller and an online clothing store each need a different box, even if the board is similar. The table summarises the six formats most Pakistani brands ask for.',
+          'Choose the structure by how the product is sold and handled, not by price alone. A biscuit brand, a jeweler and an online clothing store each need a different box, even if the board is similar. The table summarizes the six formats most Pakistani brands ask for.',
           {
             table: {
               caption: 'Custom box formats compared',
@@ -71,7 +71,7 @@ const PK_ARTICLES: Article[] = [
               rows: [
                 ['Folding carton', 'Biscuits, cosmetics, supplements, retail goods', 'SBS or duplex board', 'Economical in volume, ships flat'],
                 ['Pharmaceutical carton', 'Tablets, syrups, leaflets and inserts', 'SBS or duplex board', 'Exact text and consistent color'],
-                ['Rigid gift box', 'Jewellery, apparel, corporate gifts', 'Rigid board with printed wrap', 'Premium look and feel'],
+                ['Rigid gift box', 'Jewelry, apparel, corporate gifts', 'Rigid board with printed wrap', 'Premium look and feel'],
                 ['Mailer box', 'E-commerce orders, subscriptions', 'E-flute corrugated or kraft', 'Prints inside and out, self-locking'],
                 ['Corrugated shipping box', 'Dispatch cartons and bulk freight', 'Single or double wall corrugated', 'Protection in transit'],
                 ['Food box', 'Pizza, cake, burger and bakery', 'Food-grade board', 'Suitable for food contact'],
@@ -88,7 +88,7 @@ const PK_ARTICLES: Article[] = [
           'Board decides how the box looks, how much it protects and what it costs. Match it to the weight of the product and to the print quality you need.',
           {
             ul: [
-              'SBS (solid bleached sulphate) board has a clean white surface that prints sharp, saturated color. It suits pharmaceutical, cosmetic and retail cartons.',
+              'SBS (solid bleached sulfate) board has a clean white surface that prints sharp, saturated color. It suits pharmaceutical, cosmetic and retail cartons.',
               'Duplex board has a white printed face and a gray back. It is a cost-efficient choice for biscuits, tea, toys and other dry goods.',
               'Kraft board has a natural brown surface that gives an honest, earthy look. Colors print slightly darker and softer than on white board.',
               'E-flute corrugated board is thin enough to print well yet stiff enough to ship, which is why it is the usual choice for mailer boxes.',
@@ -134,7 +134,7 @@ const PK_ARTICLES: Article[] = [
               'Track record with regulated and repeat-order customers. ALL PACK has printed for pharmaceutical, bakery and hospital clients for more than 25 years.',
             ],
           },
-          'Our production office is in Lahore, and visits are welcome by appointment. See [why brands choose ALL PACK](/why-all-pack).',
+          'Our production office is in Lahore, and visits are welcome by appointment. See [why brands choose ALL PACK](/about).',
         ],
       },
     ],
@@ -169,7 +169,7 @@ const PK_ARTICLES: Article[] = [
       {
         heading: '1. Box size and structure',
         body: [
-          'Size sets how much board each box consumes, and structure sets how much work it takes to make. A plain tuck-end carton is quick to cut and fold. A rigid box is assembled in stages and costs more per unit. A box that is even a few millimetres larger than needed also wastes board across the whole run, so measure the product accurately.',
+          'Size sets how much board each box consumes, and structure sets how much work it takes to make. A plain tuck-end carton is quick to cut and fold. A rigid box is assembled in stages and costs more per unit. A box that is even a few millimeters larger than needed also wastes board across the whole run, so measure the product accurately.',
         ],
       },
       {
@@ -181,7 +181,7 @@ const PK_ARTICLES: Article[] = [
       {
         heading: '3. Print colors and coverage',
         body: [
-          'A one-color logo on kraft is far simpler than full-color artwork across every panel. Each additional spot color, and each panel printed inside as well as outside, adds ink and press time. Brand colors specified as Pantone references print consistently but may add a color to the job.',
+          'A one-color logo on kraft is far simpler than full-color artwork across every panel. Each additional spot color, and each panel printed inside as well as outside, adds ink and printing time. Brand colors specified as Pantone references print consistently but may add a color to the job.',
         ],
       },
       {
@@ -193,7 +193,7 @@ const PK_ARTICLES: Article[] = [
       {
         heading: '5. Quantity and setup cost',
         body: [
-          'Offset printing carries a fixed setup cost per design: plates, press make-ready and color matching. That cost is shared across the run, so unit price falls as quantity rises. Ordering a larger run of a stable design is usually cheaper per box than repeated small runs, provided you can store the stock.',
+          'Offset printing carries a fixed setup cost per design: plates, make-ready and color matching. That cost is shared across the run, so unit price falls as quantity rises. Ordering a larger run of a stable design is usually cheaper per box than repeated small runs, provided you can store the stock.',
         ],
       },
       {
@@ -205,13 +205,13 @@ const PK_ARTICLES: Article[] = [
       {
         heading: '7. Artwork preparation and changes',
         body: [
-          'Print-ready artwork, with fonts outlined, colors set up correctly and bleed added, avoids correction time. Changes after the proof is approved can mean new plates, so check text, spelling and barcodes before signing off. See the [artwork requirements](/faq) for the file formats we need.',
+          'Print-ready artwork, with fonts outlined, colors set up correctly and bleed added, avoids correction time. Changes after the proof is approved can mean new plates, so check text, spelling and barcodes before signing off. See the [artwork requirements](/how-it-works#artwork) for the file formats we need.',
         ],
       },
       {
         heading: '8. Lead time and delivery',
         body: [
-          'Urgent jobs can need overtime or re-planned press time, and delivery to another city adds freight. Lead time starts when the proof is approved, so approving promptly is the cheapest way to save time.',
+          'Urgent jobs can need overtime or re-planned production time, and delivery to another city adds freight. Lead time starts when the proof is approved, so approving promptly is the cheapest way to save time.',
         ],
       },
       {
@@ -252,7 +252,7 @@ const PK_ARTICLES: Article[] = [
         body: [
           {
             ul: [
-              'Standardise sizes across products so one die and one board serve several items.',
+              'Standardize sizes across products so one die and one board serve several items.',
               'Print fewer colors, or use one strong brand color with white space.',
               'Choose one meaningful finish instead of several.',
               'Order the quantity you will actually use over a season, not the smallest run.',
@@ -267,7 +267,7 @@ const PK_ARTICLES: Article[] = [
       { q: 'How much do custom printed boxes cost in Pakistan?', a: 'It depends on size, board, print, finish and quantity, so there is no single rate. The most reliable way to learn the price is to send dimensions, quantity and finishes and receive a written quotation.' },
       { q: 'Is a larger order cheaper per box?', a: 'Usually yes. Offset printing has a fixed setup cost per design, and a larger run spreads it across more boxes, so the unit price falls as quantity rises.' },
       { q: 'Which finish adds the most cost?', a: 'Foil stamping, embossing and soft-touch lamination are the more expensive finishes. Varnish is the lightest. A single targeted finish usually gives the best value.' },
-      { q: 'Does the quotation include delivery?', a: 'The delivery arrangement is included in the quotation. Share your delivery city when you enquire.' },
+      { q: 'Does the quotation include delivery?', a: 'The delivery arrangement is included in the quotation. Share your delivery city when you inquire.' },
       { q: 'Can I get a quotation before sending final artwork?', a: 'Yes. For a quotation, your logo or a photograph of existing packaging is enough. Final print-ready files are needed for production.' },
     ],
     related: ['custom-packaging-boxes-lahore', 'pharmaceutical-carton-printing-pakistan'],
@@ -325,7 +325,7 @@ const PK_ARTICLES: Article[] = [
               ],
             },
           },
-          'See the available styles on the [pharmaceutical cartons page](/products#pharmaceutical-cartons).',
+          'See the available styles on the [pharmaceutical cartons page](/products#pharma).',
         ],
       },
       {
@@ -339,7 +339,7 @@ const PK_ARTICLES: Article[] = [
         heading: 'Why leave a clean area for batch coding?',
         body: [
           'Batch number, manufacturing date and expiry date are normally applied after printing, by inkjet or hot-foil coding on your packing line. Ink and foil do not adhere well to a varnished or laminated surface, so the coding panel should be left uncoated or specified with the coding method in mind.',
-          'Agree the position and size of that area with your packing team before the artwork is finalised. It is a small decision that prevents smudged codes, rejected batches and costly reprints.',
+          'Agree the position and size of that area with your packing team before the artwork is finalized. It is a small decision that prevents smudged codes, rejected batches and costly reprints.',
         ],
       },
       {
@@ -352,7 +352,7 @@ const PK_ARTICLES: Article[] = [
       {
         heading: 'How should you prepare pharmaceutical carton artwork?',
         body: [
-          'Good preparation shortens approval and prevents errors reaching press. Send print-ready vector artwork, ideally a PDF or Adobe Illustrator file, with fonts outlined and colors set in CMYK or as Pantone references. Add the dieline supplied for your structure and keep all text inside the safe area so nothing is lost at the fold or cut.',
+          'Good preparation shortens approval and prevents errors reaching print. Send print-ready vector artwork, ideally a PDF or Adobe Illustrator file, with fonts outlined and colors set in CMYK or as Pantone references. Add the dieline supplied for your structure and keep all text inside the safe area so nothing is lost at the fold or cut.',
           'Barcodes need particular care. Keep them at the size and contrast your scanners require, print them in a dark color on a light background, and never scale them to fit a panel. Finally, have the artwork checked by the people responsible for regulatory approval before it is sent for proofing.',
         ],
       },
@@ -364,7 +364,7 @@ const PK_ARTICLES: Article[] = [
               'Approving a proof without proofreading every line against the registered text.',
               'Varnishing or laminating the area where batch and expiry codes are applied.',
               'Using type too small or too light to stay legible after printing.',
-              'Letting an older version of the artwork reach press after a change.',
+              'Letting an older version of the artwork be printed after a change.',
               'Changing board or supplier mid-product without checking the effect on print and packing-line performance.',
             ],
           },
@@ -378,18 +378,18 @@ const PK_ARTICLES: Article[] = [
           {
             ul: [
               'A documented quality system. ALL PACK is ISO 9001:2015 certified.',
-              'A proof and sign-off process, so nothing goes to press without your approval.',
+              'A proof and sign-off process, so nothing is printed without your approval.',
               'Color matching to the approved proof on every reprint.',
               'In-house printing and finishing, so no step is handed to an unknown subcontractor.',
               'Experience with regulated customers. ALL PACK has printed cartons and leaflets for pharmaceutical clients for more than 25 years.',
             ],
           },
-          'See how this fits the wider sector on our [pharmaceutical industry page](/industries#pharmaceutical), or [send your artwork or a sample carton](/contact) for a quotation.',
+          'See how this fits the wider sector on our [pharmaceutical industry page](/industries#pharma), or [send your artwork or a sample carton](/contact) for a quotation.',
         ],
       },
     ],
     faqs: [
-      { q: 'Do you print pharmaceutical cartons to approved artwork?', a: 'Yes. ALL PACK prints pharmaceutical cartons and leaflets to approved artwork. A dieline and a proof are prepared for your approval, and nothing goes to press until it is signed off.' },
+      { q: 'Do you print pharmaceutical cartons to approved artwork?', a: 'Yes. ALL PACK prints pharmaceutical cartons and leaflets to approved artwork. A dieline and a proof are prepared for your approval, and nothing is printed until it is signed off.' },
       { q: 'Which board is used for medicine cartons?', a: 'SBS board is the usual choice for its clean white surface and sharp print. Duplex board is an economical alternative. Your requirements and budget decide which is suitable.' },
       { q: 'Can leaflets and inserts be printed with the cartons?', a: 'Yes. Leaflets and inserts are part of the pharmaceutical range, so cartons and patient information can be produced together and kept in step.' },
       { q: 'How do you keep color consistent across reprints?', a: 'Every reprint is matched to the signed proof, so text and color stay consistent from one batch to the next. For color-critical work, a physical proof can be produced.' },

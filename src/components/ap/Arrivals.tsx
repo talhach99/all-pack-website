@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import type { CatalogItem } from '@/data/home';
 
-/** "New on the line" carousel, four products per page. */
+/** "New arrivals" carousel, four products per page. */
 export function Arrivals({ items }: { items: CatalogItem[] }) {
   const [pg, setPg] = useState(0);
   const pages = Math.ceil(items.length / 4);
@@ -12,7 +12,7 @@ export function Arrivals({ items }: { items: CatalogItem[] }) {
   return (
     <section id="new" className="mt-20 scroll-mt-28" aria-labelledby="h-new">
       <div className="flex flex-wrap items-end justify-between gap-4">
-        <div className="max-w-[520px]"><h2 id="h-new" className="text-[32px]">New on the line</h2><p className="mt-2 text-[15px] leading-[1.55] text-[#3B4256]">Fresh structures and products our team has added this season.</p></div>
+        <div className="max-w-[520px]"><h2 id="h-new" className="text-[32px]">New arrivals</h2><p className="mt-2 text-[15px] leading-[1.55] text-[#3B4256]">Fresh structures and products our team has added this season.</p></div>
         <div className="flex items-center gap-2">
           <span className="mr-1.5 text-[14px] text-[#5A6276]">{pg + 1} / {pages}</span>
           <button type="button" onClick={() => setPg(p => Math.max(0, p - 1))} disabled={pg === 0} aria-label="Previous products" className="grid h-11 w-11 place-items-center rounded-full border-[1.5px] border-[#E6E9F2] text-[18px] disabled:opacity-40">←</button>

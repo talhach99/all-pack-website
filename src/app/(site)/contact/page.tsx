@@ -12,7 +12,7 @@ export default async function ContactPage() {
   const waUS = links.whatsappUS();
   const lines = [
     { flag: 'USA', city: 'Boston, Massachusetts', tz: 'America/New_York', phone: company.usPhone, href: waUS },
-    { flag: 'Pakistan', city: 'Lahore, Pakistan', tz: 'Asia/Karachi', phone: company.phone, href: wa },
+    { flag: 'Pakistan', city: 'Lahore', tz: 'Asia/Karachi', phone: company.phone, href: wa },
   ];
   return (
     <main className="ap">

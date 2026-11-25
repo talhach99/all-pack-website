@@ -111,7 +111,7 @@ export function Offices({ wa, waUS, usPhone, pkPhone }: { wa: string | null; waU
       <div className="ap-rv relative mx-auto max-w-[1200px]">
         <div className="mx-auto max-w-[760px] text-center">
           <span className="ap-kicker !text-[#22C3EE]">Two offices · One standard</span>
-          <h2 className="mt-3.5 text-[34px] leading-[1.02] !text-white sm:text-[60px]">Close to your customers.<br /><span className="text-[#7F8CFF]">Close to the press.</span></h2>
+          <h2 className="mt-3.5 text-[34px] leading-[1.02] !text-white sm:text-[60px]">Close to your customers.<br /><span className="text-[#7F8CFF]">Close to every order.</span></h2>
           <p className="mx-auto mt-4 max-w-[560px] text-[17px] leading-[1.6] text-[#A9B1C7]">Our teams in Boston and Lahore work as one, so there is always someone moving your order forward.</p>
         </div>
         <div className="relative my-6 h-[140px] sm:my-8 sm:h-[200px]">
