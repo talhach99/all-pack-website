@@ -7,6 +7,7 @@ import { Menu, X } from 'lucide-react';
 import { Clock } from './Clock';
 
 export const NAV = [
+  { text: 'Home', href: '/' },
   { text: 'Products', href: '/products' },
   { text: 'Industries', href: '/industries' },
   { text: 'Finishes', href: '/finishes' },
