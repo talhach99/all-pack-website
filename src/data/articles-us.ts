@@ -25,7 +25,7 @@ export const US_ARTICLES: Article[] = [
     keywords: ['custom packaging manufacturer for US brands', 'overseas packaging supplier', 'custom boxes from Pakistan', 'packaging sourcing USA', 'wholesale custom packaging', 'offshore packaging manufacturer', 'custom printed boxes USA'],
     publishedAt: '2026-11-25',
     updatedAt: '2026-11-25',
-    hero: { src: '/renders/corrugated-shipping-boxes.webp', alt: 'ALL PACK branded corrugated shipping boxes ready for export to the USA', width: 1385, height: 884 },
+    hero: { src: '/photos/blog-us-sourcing-hero.webp', alt: 'ALL PACK custom cosmetic packaging: printed cartons, a drawer box and rigid gift boxes with gold foil', width: 1600, height: 900, cover: true },
     sections: [
       {
         heading: 'Why are US brands looking overseas for custom packaging?',

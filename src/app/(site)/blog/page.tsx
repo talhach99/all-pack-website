@@ -18,7 +18,7 @@ export default async function InsightsPage() {
           {articles.map((a, i) => (
             <div key={a.slug}>
               <Link href={`/blog/${a.slug}`} className="group card flex h-full flex-col transition-colors hover:border-[#C9CFDC]">
-                <div className="relative aspect-[16/10] border-b border-line bg-card"><img src={a.hero.src} alt={a.hero.alt} width={a.hero.width} height={a.hero.height} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-contain p-5" /></div>
+                <div className="relative aspect-[16/10] border-b border-line bg-card"><img src={a.hero.src} alt={a.hero.alt} width={a.hero.width} height={a.hero.height} loading="lazy" decoding="async" className={`absolute inset-0 h-full w-full ${a.hero.cover ? 'object-cover' : 'object-contain p-5'}`} /></div>
                 <div className="flex flex-1 flex-col p-7">
                   <p className="meta">{String(i + 1).padStart(2, '0')} · {a.category} · {readMinutes(a)} min read</p>
                   <h2 className="mt-4 text-[21px] leading-snug group-hover:text-brand">{a.title}</h2>

@@ -151,7 +151,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
       <div className="mx-auto max-w-[1200px] px-5">
         <figure className="mx-auto -mt-2 max-w-[1040px] overflow-hidden rounded-[28px] border border-line bg-white shadow-[0_30px_60px_-40px_rgba(60,45,20,.35)] sm:-mt-6">
-          <div className="relative aspect-[16/10] sm:aspect-[16/8]"><img src={a.hero.src} alt={a.hero.alt} width={a.hero.width} height={a.hero.height} fetchPriority="high" decoding="async" className="absolute inset-0 h-full w-full object-contain p-6 sm:p-12" /></div>
+          <div className={`relative aspect-[16/10] ${a.hero.cover ? 'sm:aspect-[16/9]' : 'sm:aspect-[16/8]'}`}><img src={a.hero.src} alt={a.hero.alt} width={a.hero.width} height={a.hero.height} fetchPriority="high" decoding="async" className={`absolute inset-0 h-full w-full ${a.hero.cover ? 'object-cover' : 'object-contain p-6 sm:p-12'}`} /></div>
         </figure>
 
         <div className="mx-auto mt-12 grid max-w-[1120px] gap-12 pb-24 lg:mt-16 lg:grid-cols-[250px_minmax(0,1fr)] lg:gap-16">
@@ -232,7 +232,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                   {related.map(r => (
                     <li key={r.slug}>
                       <Link href={`/blog/${r.slug}`} className="ap-lift group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white">
-                        <div className="relative aspect-[16/9] border-b border-line bg-[#F6F3EC]"><img src={r.hero.src} alt="" width={r.hero.width} height={r.hero.height} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-contain p-5" /></div>
+                        <div className="relative aspect-[16/9] border-b border-line bg-[#F6F3EC]"><img src={r.hero.src} alt="" width={r.hero.width} height={r.hero.height} loading="lazy" decoding="async" className={`absolute inset-0 h-full w-full ${r.hero.cover ? 'object-cover' : 'object-contain p-5'}`} /></div>
                         <div className="flex flex-1 flex-col p-5">
                           <p className="text-[12px] font-bold uppercase tracking-[.1em] text-[#6E685C]">{r.category} · {readMinutes(r)} min read</p>
                           <p className="mt-2 flex-1 text-[17px] font-bold leading-snug group-hover:text-[#2B43F0]">{r.title}</p>

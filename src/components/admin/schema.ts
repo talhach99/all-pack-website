@@ -98,7 +98,7 @@ export const COLLECTIONS: CollectionDef[] = [
       { k: 'takeaways', label: 'Key takeaways (one per line, shown in a box at the top)', t: 'lines' },
       { k: 'market', label: 'Which office the quote buttons go to', t: 'select', options: [['pk', 'Lahore (Pakistan buyers)'], ['us', 'Boston (US buyers)']] },
       { k: 'keywords', label: 'Keywords (one per line)', t: 'lines' },
-      { k: 'hero', label: 'Main picture', t: 'group', fields: [{ k: 'src', label: 'Picture', t: 'image', hint: imageHint }, { k: 'alt', label: 'Picture description', t: 'text' }] },
+      { k: 'hero', label: 'Main picture', t: 'group', fields: [{ k: 'src', label: 'Picture', t: 'image', hint: imageHint }, { k: 'alt', label: 'Picture description', t: 'text' }, { k: 'cover', label: 'Full photo (fills the frame, no white border)', t: 'bool' }] },
       { k: 'sections', label: 'Sections', t: 'array', item: 'section', fields: [{ k: 'heading', label: 'Section heading', t: 'text' }, { k: 'body', label: 'Content', t: 'blocks' }] },
       { k: 'faqs', label: 'Questions at the end', t: 'array', item: 'question', fields: [{ k: 'q', label: 'Question', t: 'text' }, { k: 'a', label: 'Answer', t: 'long' }] },
       { k: 'related', label: 'Related articles (one article address per line)', t: 'lines', hint: 'The address is the part after /blog/.' },

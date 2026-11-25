@@ -34,7 +34,8 @@ export type Article = {
   keywords: string[];
   publishedAt: string;
   updatedAt: string;
-  hero: { src: string; alt: string; width: number; height: number };
+  /** cover: the picture is a full photo that fills its frame (no padding). */
+  hero: { src: string; alt: string; width: number; height: number; cover?: boolean };
   sections: { heading: string; body: Block[] }[];
   faqs: { q: string; a: string }[];
   related: string[];
