@@ -154,7 +154,7 @@ export function Offices({ wa, waUS, usPhone, pkPhone }: { wa: string | null; waU
   );
 }
 
-/** Email sign-up; stored in the admin enquiries inbox as a newsletter request. */
+/** Email sign-up; stored in the admin inquiries inbox as a newsletter request. */
 export function Newsletter({ title = 'Get packaging ideas and offers first.', text = 'New structures, finishes and seasonal offers, once a month. No spam.' }: { title?: string; text?: string }) {
   const shown = useRef(Date.now());
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');

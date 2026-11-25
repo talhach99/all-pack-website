@@ -43,7 +43,7 @@ export const articles: Article[] = [
       {
         heading: 'What are custom packaging boxes?',
         body: [
-          "Custom packaging boxes are boxes cut, printed and finished to a specific brief instead of being bought from a stock catalogue. The brief fixes the internal dimensions, the board, the printed artwork and the finishing, so the box fits one product closely and carries one brand.",
+          "Custom packaging boxes are boxes cut, printed and finished to a specific brief instead of being bought from a stock catalog. The brief fixes the internal dimensions, the board, the printed artwork and the finishing, so the box fits one product closely and carries one brand.",
           "For a business in Lahore the practical benefit is control. A close fit reduces movement and damage in transit, printed branding turns every parcel or shelf into advertising, and repeat orders match the first one because the dieline and the approved proof stay on file.",
         ],
       },
@@ -57,7 +57,7 @@ export const articles: Article[] = [
               head: ['Box type', 'Best for', 'Usual board', 'Main advantage'],
               rows: [
                 ['Folding carton', 'Biscuits, cosmetics, supplements, retail goods', 'SBS or duplex board', 'Economical in volume, ships flat'],
-                ['Pharmaceutical carton', 'Tablets, syrups, leaflets and inserts', 'SBS or duplex board', 'Exact text and consistent colour'],
+                ['Pharmaceutical carton', 'Tablets, syrups, leaflets and inserts', 'SBS or duplex board', 'Exact text and consistent color'],
                 ['Rigid gift box', 'Jewellery, apparel, corporate gifts', 'Rigid board with printed wrap', 'Premium look and feel'],
                 ['Mailer box', 'E-commerce orders, subscriptions', 'E-flute corrugated or kraft', 'Prints inside and out, self-locking'],
                 ['Corrugated shipping box', 'Dispatch cartons and bulk freight', 'Single or double wall corrugated', 'Protection in transit'],
@@ -75,9 +75,9 @@ export const articles: Article[] = [
           'Board decides how the box looks, how much it protects and what it costs. Match it to the weight of the product and to the print quality you need.',
           {
             ul: [
-              'SBS (solid bleached sulphate) board has a clean white surface that prints sharp, saturated colour. It suits pharmaceutical, cosmetic and retail cartons.',
-              'Duplex board has a white printed face and a grey back. It is a cost-efficient choice for biscuits, tea, toys and other dry goods.',
-              'Kraft board has a natural brown surface that gives an honest, earthy look. Colours print slightly darker and softer than on white board.',
+              'SBS (solid bleached sulphate) board has a clean white surface that prints sharp, saturated color. It suits pharmaceutical, cosmetic and retail cartons.',
+              'Duplex board has a white printed face and a gray back. It is a cost-efficient choice for biscuits, tea, toys and other dry goods.',
+              'Kraft board has a natural brown surface that gives an honest, earthy look. Colors print slightly darker and softer than on white board.',
               'E-flute corrugated board is thin enough to print well yet stiff enough to ship, which is why it is the usual choice for mailer boxes.',
             ],
           },
@@ -87,7 +87,7 @@ export const articles: Article[] = [
       {
         heading: 'What printing and finishing options are available?',
         body: [
-          'Most custom boxes are printed by offset lithography. It reproduces fine detail and holds colour across repeat runs, using CMYK process colours with Pantone references where a brand colour must match exactly. Because offset carries a fixed setup cost per design, the unit price falls as quantity rises.',
+          'Most custom boxes are printed by offset lithography. It reproduces fine detail and holds color across repeat runs, using CMYK process colors with Pantone references where a brand color must match exactly. Because offset carries a fixed setup cost per design, the unit price falls as quantity rises.',
           'Finishing changes how the box feels and how long it lasts. The common options are gloss, matte and soft-touch lamination, varnish, spot UV, foil stamping, embossing and debossing, and window patching for food and gift boxes. A single well-chosen finish, such as foil on the logo alone, often does more for a brand than covering the whole box.',
         ],
       },
@@ -99,7 +99,7 @@ export const articles: Article[] = [
             ol: [
               'Measure the product (length, width, height) and note its weight.',
               'Pick the box format and board from the table above.',
-              'Send the dimensions, quantity, number of print colours and finishes you want, along with your logo or a photo of existing packaging.',
+              'Send the dimensions, quantity, number of print colors and finishes you want, along with your logo or a photo of existing packaging.',
               'Receive the quotation, which confirms the lead time and delivery arrangement in writing.',
               'Review the dieline and proof prepared for your artwork.',
               'Approve the proof. Nothing is printed until it is signed off.',
@@ -129,8 +129,8 @@ export const articles: Article[] = [
       { q: 'What is the minimum order quantity for custom boxes?', a: 'It depends on the format, board and print method, because offset printing carries a fixed setup cost per design. Share the quantity you have in mind and ALL PACK will confirm what is practical and how the unit price changes with volume.' },
       { q: 'Can custom boxes be made to exact dimensions?', a: 'Yes. Almost everything is made to size. Send the length, width and height of the product, and its weight if it is heavy or fragile, and the structure and board are specified around it.' },
       { q: 'How long does production take?', a: 'Lead time depends on the format, quantity and finishing, and starts once the proof is approved. It is confirmed in writing with the quotation so you know the delivery date before ordering.' },
-      { q: 'Which artwork files are needed?', a: 'Print-ready vector artwork, ideally a PDF or Adobe Illustrator file with fonts outlined and colours in CMYK or Pantone. For a quotation, a logo or a photograph of existing packaging is enough.' },
-      { q: 'Do you deliver outside Lahore?', a: 'Yes, ALL PACK delivers across Pakistan. Include your delivery city with the enquiry and the arrangement is added to the quotation.' },
+      { q: 'Which artwork files are needed?', a: 'Print-ready vector artwork, ideally a PDF or Adobe Illustrator file with fonts outlined and colors in CMYK or Pantone. For a quotation, a logo or a photograph of existing packaging is enough.' },
+      { q: 'Do you deliver outside Lahore?', a: 'Yes, ALL PACK delivers across Pakistan. Include your delivery city with the inquiry and the arrangement is added to the quotation.' },
     ],
     related: ['custom-box-printing-cost-pakistan', 'pharmaceutical-carton-printing-pakistan'],
   },
@@ -140,7 +140,7 @@ export const articles: Article[] = [
     title: 'How Much Do Custom Printed Boxes Cost in Pakistan? 8 Factors That Set the Price',
     category: 'Pricing guide',
     excerpt: 'There is no single price per box. These eight factors decide what custom printed boxes cost, and how to get an accurate quotation.',
-    summary: 'The price of custom printed boxes in Pakistan depends on eight factors: box size and structure, board, print colours and coverage, finishes, quantity, tooling, artwork changes and delivery. Quantity and board usually move the unit price most, because setup cost is shared across the run. Send exact dimensions, quantity and finishes to get an accurate quotation.',
+    summary: 'The price of custom printed boxes in Pakistan depends on eight factors: box size and structure, board, print colors and coverage, finishes, quantity, tooling, artwork changes and delivery. Quantity and board usually move the unit price most, because setup cost is shared across the run. Send exact dimensions, quantity and finishes to get an accurate quotation.',
     keywords: ['custom printed boxes price Pakistan', 'packaging printing cost Lahore', 'box printing cost', 'packaging quotation Pakistan', 'custom box minimum order', 'offset printing cost'],
     publishedAt: '2026-11-21',
     updatedAt: '2026-11-21',
@@ -162,13 +162,13 @@ export const articles: Article[] = [
       {
         heading: '2. Board type and thickness',
         body: [
-          'SBS board prints the cleanest colour and costs more than duplex board with a grey back. Kraft suits natural looks, and corrugated adds strength with extra material. Choosing a heavier grade than the product needs raises the price without improving the result, so match the board to the weight and the way the box will travel.',
+          'SBS board prints the cleanest color and costs more than duplex board with a gray back. Kraft suits natural looks, and corrugated adds strength with extra material. Choosing a heavier grade than the product needs raises the price without improving the result, so match the board to the weight and the way the box will travel.',
         ],
       },
       {
-        heading: '3. Print colours and coverage',
+        heading: '3. Print colors and coverage',
         body: [
-          'A one-colour logo on kraft is far simpler than full-colour artwork across every panel. Each additional spot colour, and each panel printed inside as well as outside, adds ink and press time. Brand colours specified as Pantone references print consistently but may add a colour to the job.',
+          'A one-color logo on kraft is far simpler than full-color artwork across every panel. Each additional spot color, and each panel printed inside as well as outside, adds ink and press time. Brand colors specified as Pantone references print consistently but may add a color to the job.',
         ],
       },
       {
@@ -180,7 +180,7 @@ export const articles: Article[] = [
       {
         heading: '5. Quantity and setup cost',
         body: [
-          'Offset printing carries a fixed setup cost per design: plates, press make-ready and colour matching. That cost is shared across the run, so unit price falls as quantity rises. Ordering a larger run of a stable design is usually cheaper per box than repeated small runs, provided you can store the stock.',
+          'Offset printing carries a fixed setup cost per design: plates, press make-ready and color matching. That cost is shared across the run, so unit price falls as quantity rises. Ordering a larger run of a stable design is usually cheaper per box than repeated small runs, provided you can store the stock.',
         ],
       },
       {
@@ -192,7 +192,7 @@ export const articles: Article[] = [
       {
         heading: '7. Artwork preparation and changes',
         body: [
-          'Print-ready artwork, with fonts outlined, colours set up correctly and bleed added, avoids correction time. Changes after the proof is approved can mean new plates, so check text, spelling and barcodes before signing off. See the [artwork requirements](/faq) for the file formats we need.',
+          'Print-ready artwork, with fonts outlined, colors set up correctly and bleed added, avoids correction time. Changes after the proof is approved can mean new plates, so check text, spelling and barcodes before signing off. See the [artwork requirements](/faq) for the file formats we need.',
         ],
       },
       {
@@ -210,7 +210,7 @@ export const articles: Article[] = [
               'Product dimensions (length × width × height) and weight.',
               'The box format you prefer, or a photo of the product so we can suggest one.',
               'Quantity, and whether you expect to reorder.',
-              'Number of colours and any special finishes such as foil, spot UV or embossing.',
+              'Number of colors and any special finishes such as foil, spot UV or embossing.',
               'Your logo or existing artwork, and the delivery city.',
             ],
           },
@@ -226,12 +226,12 @@ export const articles: Article[] = [
             ul: [
               'Guessing the product size, then discovering the box is too tight or too loose and remaking it.',
               'Choosing a premium finish for every panel instead of the one area customers notice.',
-              'Changing text, colours or barcodes after the proof is approved, which can mean new plates.',
+              'Changing text, colors or barcodes after the proof is approved, which can mean new plates.',
               'Comparing quotations that specify different boards, finishes or quantities, so the lowest figure is not like for like.',
               'Ordering a very small run of a design that will clearly be reordered, paying the setup cost again each time.',
             ],
           },
-          'A short written specification, with board, colours, finishes and quantity listed line by line, makes quotations comparable and prevents surprises on the invoice.',
+          'A short written specification, with board, colors, finishes and quantity listed line by line, makes quotations comparable and prevents surprises on the invoice.',
         ],
       },
       {
@@ -240,7 +240,7 @@ export const articles: Article[] = [
           {
             ul: [
               'Standardise sizes across products so one die and one board serve several items.',
-              'Print fewer colours, or use one strong brand colour with white space.',
+              'Print fewer colors, or use one strong brand color with white space.',
               'Choose one meaningful finish instead of several.',
               'Order the quantity you will actually use over a season, not the smallest run.',
               'Approve the proof on time and avoid late artwork changes.',
@@ -265,7 +265,7 @@ export const articles: Article[] = [
     title: 'Pharmaceutical Carton Printing in Pakistan: What Manufacturers Should Look For',
     category: 'Pharmaceutical packaging',
     excerpt: 'How to specify pharmaceutical cartons: board, structure, coding areas, leaflets and the checks that keep every batch matching the approved artwork.',
-    summary: 'A pharmaceutical carton protects the medicine, identifies it and carries the regulated text. The printer must reproduce approved artwork exactly, keep colour consistent between batches and leave clean areas for batch coding. Choose SBS or duplex board, a structure such as tuck-end or crash-lock, and a printer with a documented quality system such as ISO 9001:2015.',
+    summary: 'A pharmaceutical carton protects the medicine, identifies it and carries the regulated text. The printer must reproduce approved artwork exactly, keep color consistent between batches and leave clean areas for batch coding. Choose SBS or duplex board, a structure such as tuck-end or crash-lock, and a printer with a documented quality system such as ISO 9001:2015.',
     keywords: ['pharmaceutical carton printing Pakistan', 'medicine packaging Lahore', 'pharma packaging manufacturer', 'tablet carton printing', 'leaflet and insert printing', 'SBS board cartons', 'pharmaceutical packaging printing'],
     publishedAt: '2026-11-21',
     updatedAt: '2026-11-21',
@@ -281,7 +281,7 @@ export const articles: Article[] = [
       {
         heading: 'What information must the carton carry?',
         body: [
-          'The exact content of each carton is set by the product registration and the labelling rules that apply to it, and your regulatory affairs team confirms it. The printer reproduces approved artwork; it does not write or alter the text. Typical elements include:',
+          'The exact content of each carton is set by the product registration and the labeling rules that apply to it, and your regulatory affairs team confirms it. The printer reproduces approved artwork; it does not write or alter the text. Typical elements include:',
           {
             ul: [
               'Product name, strength and dosage form.',
@@ -298,13 +298,13 @@ export const articles: Article[] = [
       {
         heading: 'Which board and structure suit medicine cartons?',
         body: [
-          'Most medicine cartons use SBS board, whose clean white surface prints small text and fine colour tints sharply. Duplex board, with a grey back, is a lower-cost option for products where appearance is less critical. The structure then depends on how the pack is filled and opened.',
+          'Most medicine cartons use SBS board, whose clean white surface prints small text and fine color tints sharply. Duplex board, with a gray back, is a lower-cost option for products where appearance is less critical. The structure then depends on how the pack is filled and opened.',
           {
             table: {
               caption: 'Common pharmaceutical carton choices',
               head: ['Choice', 'Typical use', 'Why it is used'],
               rows: [
-                ['SBS board', 'Tablets, capsules, ointments', 'Sharp small text and consistent colour'],
+                ['SBS board', 'Tablets, capsules, ointments', 'Sharp small text and consistent color'],
                 ['Duplex board', 'Cost-sensitive generic ranges', 'Economical with a printable white face'],
                 ['Tuck-end carton', 'Blister packs, bottles, tubes', 'Simple to fill and reclose'],
                 ['Crash-lock bottom', 'Bottles and heavier packs', 'Self-assembling, holds weight'],
@@ -316,9 +316,9 @@ export const articles: Article[] = [
         ],
       },
       {
-        heading: 'How is colour and text kept consistent between batches?',
+        heading: 'How is color and text kept consistent between batches?',
         body: [
-          'Consistency comes from process, not luck. The printer prepares a dieline and a proof for approval, and every reprint is matched to the signed proof, so the carton in the third batch looks like the carton in the first. For colour-critical work a physical proof is the safest reference.',
+          'Consistency comes from process, not luck. The printer prepares a dieline and a proof for approval, and every reprint is matched to the signed proof, so the carton in the third batch looks like the carton in the first. For color-critical work a physical proof is the safest reference.',
           'Design choices help too. Keep body text large enough to stay legible after printing, keep strong contrast between text and background, and avoid fine type reversed out of a dark solid, where small errors in registration show first.',
         ],
       },
@@ -339,8 +339,8 @@ export const articles: Article[] = [
       {
         heading: 'How should you prepare pharmaceutical carton artwork?',
         body: [
-          'Good preparation shortens approval and prevents errors reaching press. Send print-ready vector artwork, ideally a PDF or Adobe Illustrator file, with fonts outlined and colours set in CMYK or as Pantone references. Add the dieline supplied for your structure and keep all text inside the safe area so nothing is lost at the fold or cut.',
-          'Barcodes need particular care. Keep them at the size and contrast your scanners require, print them in a dark colour on a light background, and never scale them to fit a panel. Finally, have the artwork checked by the people responsible for regulatory approval before it is sent for proofing.',
+          'Good preparation shortens approval and prevents errors reaching press. Send print-ready vector artwork, ideally a PDF or Adobe Illustrator file, with fonts outlined and colors set in CMYK or as Pantone references. Add the dieline supplied for your structure and keep all text inside the safe area so nothing is lost at the fold or cut.',
+          'Barcodes need particular care. Keep them at the size and contrast your scanners require, print them in a dark color on a light background, and never scale them to fit a panel. Finally, have the artwork checked by the people responsible for regulatory approval before it is sent for proofing.',
         ],
       },
       {
@@ -366,7 +366,7 @@ export const articles: Article[] = [
             ul: [
               'A documented quality system. ALL PACK is ISO 9001:2015 certified.',
               'A proof and sign-off process, so nothing goes to press without your approval.',
-              'Colour matching to the approved proof on every reprint.',
+              'Color matching to the approved proof on every reprint.',
               'In-house printing and finishing, so no step is handed to an unknown subcontractor.',
               'Experience with regulated customers. ALL PACK has printed cartons and leaflets for pharmaceutical clients for more than 25 years.',
             ],
@@ -379,7 +379,7 @@ export const articles: Article[] = [
       { q: 'Do you print pharmaceutical cartons to approved artwork?', a: 'Yes. ALL PACK prints pharmaceutical cartons and leaflets to approved artwork. A dieline and a proof are prepared for your approval, and nothing goes to press until it is signed off.' },
       { q: 'Which board is used for medicine cartons?', a: 'SBS board is the usual choice for its clean white surface and sharp print. Duplex board is an economical alternative. Your requirements and budget decide which is suitable.' },
       { q: 'Can leaflets and inserts be printed with the cartons?', a: 'Yes. Leaflets and inserts are part of the pharmaceutical range, so cartons and patient information can be produced together and kept in step.' },
-      { q: 'How do you keep colour consistent across reprints?', a: 'Every reprint is matched to the signed proof, so text and colour stay consistent from one batch to the next. For colour-critical work, a physical proof can be produced.' },
+      { q: 'How do you keep color consistent across reprints?', a: 'Every reprint is matched to the signed proof, so text and color stay consistent from one batch to the next. For color-critical work, a physical proof can be produced.' },
       { q: 'Is ALL PACK certified?', a: 'ALL PACK is ISO 9001:2015 certified for quality management and Halal certified for food-contact packaging.' },
     ],
     related: ['custom-packaging-boxes-lahore', 'custom-box-printing-cost-pakistan'],

@@ -31,10 +31,10 @@ export const COPY: CopyField[] = [
   f('Home: sections', 'home.products.sub', 'Product range: introduction', 'Each format is made to your dimensions, board and artwork, then printed, finished and inspected in our Lahore facility.', 'long'),
   f('Home: sections', 'home.mfg.kicker', 'Manufacturing: small heading', 'Manufacturing capabilities'),
   f('Home: sections', 'home.mfg.title', 'Manufacturing: heading', 'Our presses and finishing line'),
-  f('Home: sections', 'home.mfg.sub', 'Manufacturing: introduction', 'Offset printing and a complete finishing line under one roof in Lahore, so colour, cut and delivery date remain under our control.', 'long'),
+  f('Home: sections', 'home.mfg.sub', 'Manufacturing: introduction', 'Offset printing and a complete finishing line under one roof in Lahore, so color, cut and delivery date remain under our control.', 'long'),
   f('Home: sections', 'home.ind.kicker', 'Industries: small heading', 'Industries'),
   f('Home: sections', 'home.ind.title', 'Industries: heading', 'Packaging for sectors where accuracy matters'),
-  f('Home: sections', 'home.ind.sub', 'Industries: introduction', 'Each sector asks something different of its packaging: approved regulatory text, consistent colour across frequent reorders, or impact on a crowded shelf.', 'long'),
+  f('Home: sections', 'home.ind.sub', 'Industries: introduction', 'Each sector asks something different of its packaging: approved regulatory text, consistent color across frequent reorders, or impact on a crowded shelf.', 'long'),
   f('Home: sections', 'home.why.kicker', 'Why ALL PACK: small heading', 'Why ALL PACK'),
   f('Home: sections', 'home.why.title', 'Why ALL PACK: heading', 'Why brands trust ALL PACK'),
   f('Home: sections', 'home.why.sub', 'Why ALL PACK: introduction', 'Certified processes, our own presses and a client list built over more than 25 years.', 'long'),
@@ -42,14 +42,14 @@ export const COPY: CopyField[] = [
   f('Home: sections', 'home.quote.title', 'Quote block: heading', 'Tell us what you need to pack'),
   f('Home: sections', 'home.quote.lead', 'Quote block: text', 'Share the product dimensions, quantity and artwork. We reply within 24 hours with a specification and price.', 'long'),
 
-  f('Home: sections', 'home.quote.enquiry', 'Quote block: enquiry button text', 'Send an enquiry'),
+  f('Home: sections', 'home.quote.enquiry', 'Quote block: inquiry button text', 'Send an inquiry'),
 
   f('About page', 'about.title', 'Heading', 'Over 25 years of printing packaging in Lahore'),
   f('About page', 'about.lead', 'Introduction', 'ALL PACK is a packaging and printing company producing cartons, rigid boxes, corrugated packaging, paper bags and labels for brands across Pakistan. Printing, finishing and converting are carried out in our own facility, under an ISO 9001:2015 certified quality system.', 'long'),
   f('About page', 'about.stat.label', 'Large figure caption', 'Years in packaging and print'),
   f('About page', 'about.who.title', '“Who we are”: heading', 'A production partner, not a print broker'),
   f('About page', 'about.who.p1', '“Who we are”: paragraph 1', 'For more than 25 years ALL PACK has produced the packaging that Pakistani brands put in front of their customers: medicine cartons that must carry approved text without error, bakery wrappers that are reordered every week, and gift boxes that have to look right the moment they are opened.', 'long'),
-  f('About page', 'about.who.p2', '“Who we are”: paragraph 2', 'Every order is printed on our own Heidelberg offset presses and finished in the same facility. Because no step is handed to a subcontractor, we control the colour, the cut and the delivery date, and we answer for all three.', 'long'),
+  f('About page', 'about.who.p2', '“Who we are”: paragraph 2', 'Every order is printed on our own Heidelberg offset presses and finished in the same facility. Because no step is handed to a subcontractor, we control the color, the cut and the delivery date, and we answer for all three.', 'long'),
   f('About page', 'about.who.p3', '“Who we are”: paragraph 3', 'Our clients include pharmaceutical manufacturers, national bakery and confectionery brands, hospitals and restaurant groups. Many have printed with us for years, and the standard they expect is the standard we apply to every new order.', 'long'),
   f('About page', 'about.facility.title', 'Facility section: heading', 'Printing, finishing and converting under one roof'),
   f('About page', 'about.cert.title', 'Certifications section: heading', 'Certified, and trusted by the brands we print for'),
@@ -70,7 +70,7 @@ export const COPY: CopyField[] = [
 
   f('Contact page', 'contact.title', 'Heading', 'Request a packaging quotation'),
   f('Contact page', 'contact.lead', 'Introduction', 'Send your product dimensions, quantity and artwork by WhatsApp, email or the form below. We reply within 24 hours with a specification and price.', 'long'),
-  f('Contact page', 'contact.form.title', 'Enquiry form: heading', 'Send us your enquiry'),
+  f('Contact page', 'contact.form.title', 'Enquiry form: heading', 'Send us your inquiry'),
   f('Contact page', 'contact.form.text', 'Enquiry form: text', 'Leave your details and your question. We will contact you on WhatsApp or by email.', 'long'),
   f('Contact page', 'contact.visit', 'Visit note', 'Visits are welcome by appointment. Message us on WhatsApp ahead so the right person is available to meet you.', 'long'),
 

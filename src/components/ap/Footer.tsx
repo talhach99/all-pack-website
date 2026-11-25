@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getSite } from '@/lib/site';
 
 const COLS: { h: string; links: [string, string][] }[] = [
+  { h: 'Explore', links: [['Home', '/'], ['Products', '/products'], ['Industries', '/industries'], ['Get a quote', '/contact']] },
   { h: 'Products', links: [['Folding cartons', '/products#folding'], ['Mailer boxes', '/products#mailer'], ['Pouches', '/products#pouches'], ['Stationery', '/products#stationery'], ['All products', '/products']] },
   { h: 'Company', links: [['About ALL PACK', '/about'], ['Our offices', '/#offices'], ['Blog', '/blog'], ['Contact', '/contact']] },
   { h: 'Help', links: [['How it works', '/how-it-works'], ['Finishes', '/finishes'], ['Industries', '/industries'], ['FAQ', '/how-it-works#faq']] },
@@ -14,7 +15,7 @@ export async function Footer() {
   const waUS = links.whatsappUS();
   return (
     <footer className="ap bg-[#F6F7F9] pb-8 pt-16">
-      <div className="ap-wrap grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
+      <div className="ap-wrap grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr]">
         <div className="flex flex-col gap-3">
           <img src={copy['site.logoDark']} alt={company.name} width={160} height={48} className="h-10 w-auto self-start" />
           <p className="text-[14px] leading-[1.8] text-[#5C6272]">

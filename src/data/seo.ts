@@ -33,7 +33,7 @@ export const PAGE_SEO = {
   },
   why: {
     title: 'Why ALL PACK: Certified Packaging Printers',
-    description: 'ISO 9001:2015 and Halal certified, with Heidelberg offset printing and finishing in one Lahore facility. How ALL PACK keeps colour and delivery on target.',
+    description: 'ISO 9001:2015 and Halal certified, with Heidelberg offset printing and finishing in one Lahore facility. How ALL PACK keeps color and delivery on target.',
   },
   contact: {
     absolute: true,
@@ -66,7 +66,7 @@ export const PAGE_SEO = {
   },
   terms: {
     title: 'Terms of Service',
-    description: 'The terms that apply to using the ALL PACK website and ordering printed packaging: quotations, artwork and proofs, colour tolerance, quantities and delivery.',
+    description: 'The terms that apply to using the ALL PACK website and ordering printed packaging: quotations, artwork and proofs, color tolerance, quantities and delivery.',
   },
 } satisfies Record<string, Seo>;
 

@@ -19,7 +19,7 @@ export const families: Family[] = [
     name: 'Pharmaceutical cartons',
     label: 'Pharmaceutical',
     short: 'Unit cartons, leaflets and inserts',
-    description: 'Unit cartons, leaflets and inserts printed to approved artwork. Every reprint is matched to the signed proof, so text stays legible and colour stays consistent from one batch to the next, as regulated products require.',
+    description: 'Unit cartons, leaflets and inserts printed to approved artwork. Every reprint is matched to the signed proof, so text stays legible and color stays consistent from one batch to the next, as regulated products require.',
     image: '/renders/pharmaceutical-cartons-v2.webp',
     alt: 'Printed pharmaceutical tablet carton in white and navy',
     specs: [
@@ -67,7 +67,7 @@ export const families: Family[] = [
     specs: [
       { title: 'Styles', items: ['Roll-end tuck front', 'Tab-lock', 'Printed interior'] },
       { title: 'Board', items: ['E-flute corrugated', 'B-flute corrugated', 'Kraft or white liner'] },
-      { title: 'Print', items: ['One colour', 'Full colour'] },
+      { title: 'Print', items: ['One color', 'Full color'] },
     ],
   },
   {
@@ -115,9 +115,9 @@ export const families: Family[] = [
   {
     slug: 'labels-stickers',
     name: 'Labels and stickers',
-    label: 'Labelling',
+    label: 'Labeling',
     short: 'Product labels, wrappers and seals',
-    description: 'Product labels, wrappers and seals printed in sheets or rolls. Colour is matched to the rest of your packaging, so the label on the jar and the carton around it read as one brand.',
+    description: 'Product labels, wrappers and seals printed in sheets or rolls. Color is matched to the rest of your packaging, so the label on the jar and the carton around it read as one brand.',
     image: '/renders/labels-stickers-v2.webp',
     alt: 'Jar with a printed product label beside a roll of labels',
     specs: [
@@ -138,7 +138,7 @@ export const sectors: Sector[] = [
     alt: 'ALL PACK printed pharmaceutical carton',
     name: 'Pharmaceutical',
     summary: 'Cartons, leaflets and labels printed to approved artwork, batch after batch.',
-    detail: 'Regulated packaging leaves no room for drift. Artwork is checked against the approved file, proofed before production and matched on every reprint, so dosage text, batch panels and brand colours stay exactly as signed off.',
+    detail: 'Regulated packaging leaves no room for drift. Artwork is checked against the approved file, proofed before production and matched on every reprint, so dosage text, batch panels and brand colors stay exactly as signed off.',
     formats: ['Pharmaceutical cartons', 'Leaflets and inserts', 'Labels'],
     clients: ['Global Pharmaceuticals', 'Don Valley Pharmaceuticals', 'Citi Pharma', 'Bio-Labs', 'Dyson', 'McOlson Research Laboratories'],
   },
@@ -148,7 +148,7 @@ export const sectors: Sector[] = [
     alt: 'ALL PACK printed food and bakery box',
     name: 'Food and bakery',
     summary: 'Cartons, wrappers and boxes for bread, cakes, biscuits and snacks.',
-    detail: 'Bakery and snack brands reorder often and in volume. We hold colour across repeat runs and plan production around your dispatch schedule, from rusk wrappers to cake cartons.',
+    detail: 'Bakery and snack brands reorder often and in volume. We hold color across repeat runs and plan production around your dispatch schedule, from rusk wrappers to cake cartons.',
     formats: ['Folding cartons', 'Labels and wrappers', 'Food boxes'],
     clients: ['Citi Bread', 'Sun Bread', "Bunny's"],
   },
@@ -158,7 +158,7 @@ export const sectors: Sector[] = [
     alt: 'ALL PACK printed confectionery folding carton',
     name: 'Confectionery',
     summary: 'Shelf-ready cartons with foil, UV and window finishes.',
-    detail: 'Confectionery competes on the shelf. Bright four-colour print, foil and spot UV give cartons the finish they need, and display styles let retailers stock them straight from the box.',
+    detail: 'Confectionery competes on the shelf. Bright four-color print, foil and spot UV give cartons the finish they need, and display styles let retailers stock them straight from the box.',
     formats: ['Folding cartons', 'Display cartons', 'Labels'],
     clients: ['Hoest'],
   },
@@ -206,14 +206,14 @@ export const sectors: Sector[] = [
 
 /** Production steps and presses (the site never states how many presses there are). */
 export const process = [
-  { step: 'Prepress', title: 'Dielines and proofs', text: 'We prepare the dieline, check artwork and colour, and supply a proof for your approval before a single sheet is printed.' },
-  { step: 'Printing', title: 'Offset printing', text: 'Heidelberg four-colour offset gives accurate, repeatable colour, from the first run to every reorder.' },
+  { step: 'Prepress', title: 'Dielines and proofs', text: 'We prepare the dieline, check artwork and color, and supply a proof for your approval before a single sheet is printed.' },
+  { step: 'Printing', title: 'Offset printing', text: 'Heidelberg four-color offset gives accurate, repeatable color, from the first run to every reorder.' },
   { step: 'Finishing', title: 'Converting and finishing', text: 'Lamination, UV and foil, then die-cutting, creasing and gluing, all completed in the same facility.' },
   { step: 'Dispatch', title: 'Inspection and delivery', text: 'Each batch is counted, inspected and packed, then delivered on the date confirmed with your order.' },
 ];
 
 export const presses = [
-  { name: 'Heidelberg four-colour offset', use: 'Full-colour cartons and long runs' },
+  { name: 'Heidelberg four-color offset', use: 'Full-color cartons and long runs' },
   { name: 'Heidelberg GTO 52', use: 'Labels, leaflets and shorter runs' },
   { name: 'Solna 125', use: 'Additional capacity for volume orders' },
 ];
@@ -228,7 +228,7 @@ export const reasons = [
 
 export const principles = [
   { title: 'Specification before production', text: 'Board, structure, print and finish are agreed in writing before an order is scheduled, so there are no surprises at delivery.' },
-  { title: 'Colour that holds across reorders', text: 'Approved proofs become the reference for every reprint. A carton ordered next year should match the one delivered today.' },
+  { title: 'Color that holds across reorders', text: 'Approved proofs become the reference for every reprint. A carton ordered next year should match the one delivered today.' },
   { title: 'Delivery dates we can keep', text: 'Lead times are confirmed with the quotation and planned against our own press schedule, not a subcontractor’s.' },
   { title: 'Straight answers', text: 'If a format, finish or deadline will not work for your product, we say so at the quotation stage and propose an alternative.' },
 ];
@@ -240,7 +240,7 @@ export const principles = [
 const px = (ref: string) => `https://images.pexels.com/photos/${ref}?auto=compress&cs=tinysrgb&w=720&fm=webp`;
 const us = (ref: string) => `https://images.unsplash.com/${ref}?auto=format&fit=crop&w=720&q=75`;
 export const machines = [
-  { name: 'Heidelberg 4-colour offset', type: 'Four-colour sheetfed offset', text: 'All four process colours in a single pass, for sharp, consistent colour across long carton runs.', best: ['Pharmaceutical cartons', 'Food cartons', 'Retail packaging'], image: px('19316517/pexels-photo-19316517/free-photo-of-machinery-in-factory.png') },
+  { name: 'Heidelberg 4-color offset', type: 'Four-color sheetfed offset', text: 'All four process colors in a single pass, for sharp, consistent color across long carton runs.', best: ['Pharmaceutical cartons', 'Food cartons', 'Retail packaging'], image: px('19316517/pexels-photo-19316517/free-photo-of-machinery-in-factory.png') },
   { name: 'Heidelberg GTO 52', type: 'Small-format offset', text: 'A precise small-format press for labels, inserts, leaflets and shorter runs that still need offset quality.', best: ['Labels', 'Leaflets and inserts', 'Short runs'], image: us('photo-1729944950511-e9c71556cfd4') },
   { name: 'Solna 125', type: 'Offset press', text: 'Additional offset capacity for larger orders, keeping delivery dates on schedule when volumes rise.', best: ['Volume runs', 'Wrappers', 'Cartons'], image: px('19837529/pexels-photo-19837529/free-photo-of-gray-industrial-wall.jpeg') },
   { name: 'Finishing line', type: 'Post-press', text: 'Die-cutting, creasing, lamination, varnish and gluing, so every printed sheet leaves as a finished box.', best: ['Die-cutting and creasing', 'Lamination and varnish', 'Folding and gluing'], image: us('photo-1676474508989-40ddb421e426') },

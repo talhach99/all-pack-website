@@ -219,3 +219,6 @@ html.menu-open .wa-float { display: none; }
 @keyframes ap-pulse { 0% { box-shadow: 0 0 0 0 rgba(127,140,255,.55); } 100% { box-shadow: 0 0 0 22px rgba(127,140,255,0); } } .ap-pulse { animation: ap-pulse 2s ease-out infinite; }
 @supports (animation-timeline: view()) { .ap-rv { animation: ap-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; } }
 @media (prefers-reduced-motion: reduce) { .ap *, .ap { animation: none !important; transition: none !important; } }
+
+/* Hero headline accent: italic serif in logo navy (ivory hero, Nov 2026) */
+.ap .ap-accent { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 400; color: #0A208C; letter-spacing: -.02em; }

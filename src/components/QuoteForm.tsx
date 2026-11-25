@@ -74,7 +74,7 @@ export function QuoteForm({ compact = false, families, whatsapp, email }: { comp
       <fieldset className="mt-10">
         <legend className="mb-5 flex items-baseline gap-3 font-display text-[19px] font-semibold"><span className="meta tabular-nums">02</span> Specification</legend>
         <label className="block"><span className="label">Project details *</span>
-          <textarea name="notes" className="input min-h-[140px] resize-y" minLength={5} maxLength={2000} required placeholder="The product, the board or finish you have in mind, number of print colours and your required delivery date." />
+          <textarea name="notes" className="input min-h-[140px] resize-y" minLength={5} maxLength={2000} required placeholder="The product, the board or finish you have in mind, number of print colors and your required delivery date." />
         </label>
         <p className="mt-4 flex items-start gap-2 text-sm text-muted"><Paperclip size={16} strokeWidth={1.5} className="mt-0.5 shrink-0" /> Have artwork or a reference photo? Attach it in the WhatsApp chat or email once it opens.</p>
       </fieldset>

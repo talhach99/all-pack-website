@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 type Errors = Partial<Record<'name' | 'email' | 'whatsapp' | 'message', string>>;
 
-/** Stored enquiry: the visitor's name, email, WhatsApp number and question reach the admin inbox, so ALL PACK can reply. */
+/** Stored inquiry: the visitor's name, email, WhatsApp number and question reach the admin inbox, so ALL PACK can reply. */
 export function EnquiryForm({ source = 'contact' }: { source?: string }) {
   const shown = useRef(Date.now());
   const [state, setState] = useState<'idle' | 'sending' | 'done'>('idle');
@@ -34,9 +34,9 @@ export function EnquiryForm({ source = 'contact' }: { source?: string }) {
     return (
       <div role="status" className="card p-8 text-center sm:p-10">
         <CheckCircle2 size={40} strokeWidth={1.5} className="mx-auto text-brand" aria-hidden="true" />
-        <h3 className="mt-4 text-[22px]">Thank you, your enquiry has been received</h3>
+        <h3 className="mt-4 text-[22px]">Thank you, your inquiry has been received</h3>
         <p className="mx-auto mt-2 max-w-md text-[15px] leading-relaxed text-secondary">Our team will contact you on WhatsApp or by email, usually within 24 hours.</p>
-        <button type="button" onClick={() => setState('idle')} className="btn-outline mt-6">Send another enquiry</button>
+        <button type="button" onClick={() => setState('idle')} className="btn-outline mt-6">Send another inquiry</button>
       </div>
     );
   }
@@ -65,8 +65,8 @@ export function EnquiryForm({ source = 'contact' }: { source?: string }) {
       {/* Honeypot: hidden from people, filled in by simple bots. */}
       <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
       {error && <p role="alert" className="mt-5 rounded-xl bg-red-50 px-4 py-3 text-[14px] text-red-700">{error}</p>}
-      <button type="submit" disabled={state === 'sending'} className="btn-primary mt-6 w-full disabled:opacity-60 sm:w-auto">{state === 'sending' ? 'Sending…' : <>Send enquiry <ArrowRight size={16} strokeWidth={1.75} /></>}</button>
-      <p className="mt-4 text-[13px] leading-relaxed text-muted">We use these details only to reply to your enquiry. See our privacy policy.</p>
+      <button type="submit" disabled={state === 'sending'} className="btn-primary mt-6 w-full disabled:opacity-60 sm:w-auto">{state === 'sending' ? 'Sending…' : <>Send inquiry <ArrowRight size={16} strokeWidth={1.75} /></>}</button>
+      <p className="mt-4 text-[13px] leading-relaxed text-muted">We use these details only to reply to your inquiry. See our privacy policy.</p>
     </form>
   );
 }

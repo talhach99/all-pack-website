@@ -16,19 +16,19 @@ export default async function ContactPage() {
   ];
   return (
     <main className="ap">
-      <PageHero kicker="Contact" title={<>Let’s talk about <span className="text-[#7F8CFF]">your packaging.</span></>} description="Send us your specs, ask a question or request samples. Our Boston and Lahore teams reply within one business day." aside={
+      <PageHero kicker="Contact" title={<>Let’s talk about <span className="ap-accent">your packaging.</span></>} description="Send us your specs, ask a question or request samples. Our Boston and Lahore teams reply within one business day." aside={
         <HeroCard className="flex flex-col gap-3">
-          <p className="text-[12px] font-extrabold uppercase tracking-[.1em] text-[#22C3EE]">Message us on WhatsApp</p>
+          <p className="text-[12px] font-extrabold uppercase tracking-[.1em] text-[#0A208C]">Message us on WhatsApp</p>
           {lines.map(l => l.href && (
-            <a key={l.flag} href={l.href} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/[.04] p-4 transition hover:border-white/30 hover:bg-white/[.08]">
-              <span><span className="block text-[13px] font-bold text-[#A9B1C7]">{l.flag} · {l.city}</span><span className="mt-0.5 block text-[20px] font-extrabold tabular-nums">{l.phone}</span></span>
-              <span className="text-right text-[13px] text-[#A9B1C7]"><Clock tz={l.tz} /><span className="mt-1 block font-bold text-[#22C3EE] transition group-hover:translate-x-0.5">Chat →</span></span>
+            <a key={l.flag} href={l.href} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between gap-4 rounded-2xl border border-[#ECE7DB] bg-[#FBFAF6] p-4 transition hover:border-[#0B0D12]">
+              <span><span className="block text-[13px] font-bold text-[#6E685C]">{l.flag} · {l.city}</span><span className="mt-0.5 block text-[20px] font-extrabold tabular-nums">{l.phone}</span></span>
+              <span className="text-right text-[13px] text-[#6E685C]"><Clock tz={l.tz} /><span className="mt-1 block font-bold text-[#0A208C] transition group-hover:translate-x-0.5">Chat →</span></span>
             </a>
           ))}
-          <a href={links.emailLink()} className="mt-1 text-[15px] text-[#C3CAE0]">Or email <span className="ap-ul font-bold text-white [overflow-wrap:anywhere]">{company.email}</span></a>
+          <a href={links.emailLink()} className="mt-1 text-[15px] text-[#4F4A40]">Or email <span className="ap-ul font-bold text-[#0B0D12] [overflow-wrap:anywhere]">{company.email}</span></a>
         </HeroCard>
       }>
-        <a href="#quote" className="ap-btn ap-white">Request a quote</a>
+        <a href="#quote" className="ap-btn ap-dark">Request a quote</a>
       </PageHero>
       <section className="px-5 py-16 sm:py-24">
         <div className="mx-auto flex max-w-[1200px] flex-wrap items-start gap-8">

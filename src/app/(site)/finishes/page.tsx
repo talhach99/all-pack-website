@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getSite, pageMeta } from '@/lib/site';
 import { FINISHES, MATERIALS, METHODS, FINISH_GUIDE } from '@/data/home';
-import { PageHero } from '@/components/PageHero';
+import { heroChip, PageHero } from '@/components/PageHero';
 import { FinishPreview } from '@/components/ap/FinishPreview';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('finishes', '/finishes'); }
@@ -13,8 +13,8 @@ export default async function FinishesPage() {
   const wa = links.whatsappLink();
   return (
     <main className="ap">
-      <PageHero kicker="Finishes" title={<>Finishes that make your packaging <span className="text-[#7F8CFF]">feel premium.</span></>} description="Choose the coating, effect and material that suit your product, and see how each one changes the look and feel of your box." images={[{ src: '/renders/rigid-gift-boxes-sm.webp', alt: 'Rigid gift boxes', label: 'Rigid gift box' }, { src: '/photos/off-rigid-sm.webp', alt: 'Printed rigid box', label: 'Printed finish' }, { src: '/renders/labels-stickers-v2-sm.webp', alt: 'Printed labels and stickers', label: 'Labels' }]}>
-        <a href="#finishes" className="rounded-full border border-white/15 bg-white/[.06] px-4 py-2.5 text-[14px] font-bold text-white transition hover:bg-white hover:text-[#0B0D12]">Coatings &amp; effects</a><a href="#materials" className="rounded-full border border-white/15 bg-white/[.06] px-4 py-2.5 text-[14px] font-bold text-white transition hover:bg-white hover:text-[#0B0D12]">Materials</a>
+      <PageHero kicker="Finishes" title={<>Finishes that make your packaging <span className="ap-accent">feel premium.</span></>} description="Choose the coating, effect and material that suit your product, and see how each one changes the look and feel of your box." images={[{ src: '/renders/rigid-gift-boxes-sm.webp', alt: 'Rigid gift boxes', label: 'Rigid gift box' }, { src: '/photos/off-rigid-sm.webp', alt: 'Printed rigid box', label: 'Printed finish' }, { src: '/renders/labels-stickers-v2-sm.webp', alt: 'Printed labels and stickers', label: 'Labels' }]}>
+        <a href="#finishes" className={heroChip}>Coatings &amp; effects</a><a href="#materials" className={heroChip}>Materials</a>
       </PageHero>
       <FinishPreview />
 

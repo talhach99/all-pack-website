@@ -16,7 +16,7 @@ export default async function ShippingPage() {
   ];
   return (
     <main className="ap">
-      <PageHero tone="light" kicker="Shipping" title="Shipping policy" description="How we deliver custom packaging to customers in the USA and Pakistan." aside={<PolicyCard email={company.email} />} />
+      <PageHero kicker="Shipping" title="Shipping policy" description="How we deliver custom packaging to customers in the USA and Pakistan." aside={<PolicyCard email={company.email} />} />
       <section className="px-5 py-20">
         <div className="mx-auto flex max-w-[760px] flex-col gap-10 text-[17px] leading-[1.75] text-[#2E3340]">
           {sections.map(([h, p]) => <div key={h}><h2 className="mb-2 text-[26px]">{h}</h2><p>{p}</p></div>)}

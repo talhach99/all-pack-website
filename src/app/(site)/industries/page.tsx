@@ -3,15 +3,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { pageMeta } from '@/lib/site';
 import { INDUSTRIES } from '@/data/home';
-import { PageHero } from '@/components/PageHero';
+import { heroChip, PageHero } from '@/components/PageHero';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('industries', '/industries'); }
 
 export default function IndustriesPage() {
   return (
     <main className="ap">
-      <PageHero kicker="Industries" title={<>Packaging for every industry <span className="text-[#7F8CFF]">we serve.</span></>} description="From regulated pharmaceutical lines to e-commerce brands, we build each category's requirements into your packaging, from the first sample to the full run." images={[{ src: '/photos/off-pharma-sm.webp', alt: 'Printed pharmaceutical cartons', label: 'Pharmaceutical' }, { src: '/photos/off-food-sm.webp', alt: 'Printed food boxes', label: 'Food & beverage' }, { src: '/photos/pouch1-sm.webp', alt: 'Printed stand-up pouch', label: 'Retail' }]}>
-        {INDUSTRIES.map(i => <a key={i.id} href={`#${i.id}`} className="rounded-full border border-white/15 bg-white/[.06] px-4 py-2.5 text-[14px] font-bold text-white transition hover:bg-white hover:text-[#0B0D12]">{i.name}</a>)}
+      <PageHero kicker="Industries" title={<>Packaging for every industry <span className="ap-accent">we serve.</span></>} description="From regulated pharmaceutical lines to e-commerce brands, we build each category's requirements into your packaging, from the first sample to the full run." images={[{ src: '/photos/off-pharma-sm.webp', alt: 'Printed pharmaceutical cartons', label: 'Pharmaceutical' }, { src: '/photos/off-food-sm.webp', alt: 'Printed food boxes', label: 'Food & beverage' }, { src: '/photos/pouch1-sm.webp', alt: 'Printed stand-up pouch', label: 'Retail' }]}>
+        {INDUSTRIES.map((i, k) => <a key={i.id} href={`#${i.id}`} className={k === 0 ? `${heroChip} !border-[#0B0D12] bg-[#0B0D12] text-white` : heroChip}>{i.name}</a>)}
       </PageHero>
 
       <section className="px-5 pb-10 pt-16 sm:pt-24">
