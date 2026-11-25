@@ -10,7 +10,7 @@ import { FaqAccordion } from '@/components/FaqAccordion';
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('home', '/'); }
 
 export default async function Home() {
-  const { clients, links } = await getSite();
+  const { clients, links, company } = await getSite();
   const logos = clients.filter(c => c.logo);
   const wa = links.whatsappLink();
   preload(HERO_SLIDES[0].image, { as: 'image', fetchPriority: 'high', imageSrcSet: HERO_SLIDES[0].srcSet, imageSizes: '(max-width: 1024px) 100vw, 800px' });
@@ -117,7 +117,7 @@ export default async function Home() {
 
       <section className="px-4 py-20 sm:px-5 sm:py-28"><div className="mx-auto max-w-[1200px]"><Newsletter /></div></section>
 
-      <Offices wa={wa} />
+      <Offices wa={wa} waUS={links.whatsappUS()} usPhone={company.usPhone} pkPhone={company.phone} />
 
       {/* FAQ */}
       <section className="px-5 pt-20 sm:pt-28">

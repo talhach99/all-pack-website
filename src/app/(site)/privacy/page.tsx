@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getSite, pageMeta } from '@/lib/site';
 import { PageHero } from '@/components/PageHero';
+import { PolicyCard } from '@/components/PolicyCard';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('privacy', '/privacy'); }
 
@@ -17,7 +18,7 @@ export default async function PrivacyPage() {
   const sections = sectionsFor(COMPANY);
   return (
     <main>
-      <PageHero kicker="Privacy" title="Privacy policy" description="A plain-language account of the information we receive through this website and how it is used." />
+      <PageHero tone="light" kicker="Privacy" title="Privacy policy" description="A plain-language account of the information we receive through this website and how it is used." aside={<PolicyCard email={COMPANY.email} />} />
       <section className="container-x pb-20 sm:pb-28 pt-16">
         <div className="mx-auto max-w-3xl divide-y divide-line border-y border-line">
           {sections.map(([h, b]) => (

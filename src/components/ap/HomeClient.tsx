@@ -97,11 +97,11 @@ const SUN = 'M12 4V2M12 22v-2M4 12H2M22 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4
 const MOON = 'M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z';
 
 /** Boston and Lahore offices with live local time, day/night icon and open status. */
-export function Offices({ wa }: { wa: string | null }) {
+export function Offices({ wa, waUS, usPhone, pkPhone }: { wa: string | null; waUS: string | null; usPhone: string; pkPhone: string }) {
   const now = useNow();
   const offices = [
-    { city: 'Boston', region: 'USA · Massachusetts', tz: 'America/New_York', dot: '#22C3EE', text: 'Quotes, artwork support and delivery for American brands, in your time zone and priced in US dollars.', tags: ['US orders', 'Quotes in USD', 'Eastern Time'], cta: 'Contact Boston' },
-    { city: 'Lahore', region: 'Pakistan · Punjab', tz: 'Asia/Karachi', dot: '#7F8CFF', text: 'Our production home, handling quotes, printing and delivery for brands across Pakistan.', tags: ['Production', 'Quotes in PKR', 'Pakistan Time'], cta: 'Contact Lahore' },
+    { city: 'Boston', region: 'USA · Massachusetts', tz: 'America/New_York', dot: '#22C3EE', text: 'Quotes, artwork support and delivery for American brands, in your time zone and priced in US dollars.', tags: ['US orders', 'Quotes in USD', 'Eastern Time'], cta: 'Contact Boston', phone: usPhone, wa: waUS },
+    { city: 'Lahore', region: 'Pakistan · Punjab', tz: 'Asia/Karachi', dot: '#7F8CFF', text: 'Our production home, handling quotes, printing and delivery for brands across Pakistan.', tags: ['Production', 'Quotes in PKR', 'Pakistan Time'], cta: 'Contact Lahore', phone: pkPhone, wa },
   ];
   let apart = 10;
   if (now) { try { const f = (tz: string) => new Date(new Date(now).toLocaleString('en-US', { timeZone: tz })).getTime(); apart = Math.round(Math.abs(f('Asia/Karachi') - f('America/New_York')) / 3600000); } catch { /* keep default */ } }
@@ -143,7 +143,7 @@ export function Offices({ wa }: { wa: string | null }) {
                 <div className="flex flex-wrap gap-2">{o.tags.map(t => <span key={t} className="rounded-full border border-white/15 px-3 py-1.5 text-[13px] font-semibold text-[#DDE3F5]">{t}</span>)}</div>
                 <div className="flex flex-wrap gap-2.5">
                   <Link href="/contact" className="ap-btn ap-white !min-h-[44px] text-[14px]">{o.cta}</Link>
-                  {wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="ap-btn ap-ghost-light !min-h-[44px] text-[14px]">WhatsApp</a>}
+                  {o.wa && <a href={o.wa} target="_blank" rel="noopener noreferrer" className="ap-btn ap-ghost-light !min-h-[44px] text-[14px]">WhatsApp {o.phone}</a>}
                 </div>
               </div>
             );

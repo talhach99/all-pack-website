@@ -18,7 +18,7 @@ export default async function AboutPage() {
   const logos = clients.filter(c => c.logo);
   return (
     <main className="ap">
-      <PageHero kicker="About" title="Packaging made with care, from Lahore to Boston." description="ALL PACK designs and prints custom packaging for pharmaceutical, food and consumer brands, with teams in the USA and Pakistan." />
+      <PageHero kicker="About" title={<>Packaging made with care, <span className="text-[#7F8CFF]">from Lahore to Boston.</span></>} description="ALL PACK designs and prints custom packaging for pharmaceutical, food and consumer brands, with teams in the USA and Pakistan." stats={[['25+', 'Years in printing'], ['ISO 9001', 'Certified quality'], ['2', 'Offices, USA and Pakistan']]} images={[{ src: '/photos/hero2-sm.webp', alt: 'Custom printed packaging', label: 'Our work', cover: true }, { src: '/photos/off-corr-sm.webp', alt: 'Printed corrugated boxes', label: 'Shipping boxes' }, { src: '/photos/tees-sm.webp', alt: 'Printed tees', label: 'DTF apparel', cover: true }]} />
 
       <section className="px-5 py-20 sm:py-28">
         <div className="ap-rv mx-auto flex max-w-[1200px] flex-wrap items-center gap-14">

@@ -12,7 +12,7 @@ export default async function InsightsPage() {
   const { articles, copy: t } = await getSite();
   return (
     <main>
-      <PageHero kicker="Guides" title={t['insights.title']} description={t['insights.lead']} />
+      <PageHero kicker="Blog" crumbs={[{ text: 'Blog' }]} title={t['insights.title']} description={t['insights.lead']} images={[{ src: '/photos/notebook-sm.webp', alt: 'Custom printed notebook', label: 'Guides' }, { src: '/renders/folding-cartons-v2-sm.webp', alt: 'Printed folding cartons', label: 'Box styles' }, { src: '/photos/pouch2-sm.webp', alt: 'Printed pouch', label: 'Ideas' }]} />
       <section className="container-x pb-20 sm:pb-28 pt-16">
         <div className="grid gap-6 md:grid-cols-3">
           {articles.map((a, i) => (

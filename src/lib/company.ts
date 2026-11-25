@@ -16,6 +16,10 @@ export const COMPANY = {
   country: 'Pakistan',
   phone: formatPhonePK(process.env.NEXT_PUBLIC_PHONE || '0321-8444590'),
   whatsapp: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '923218444590').replace(/\D/g, ''),
+  /** Boston office (USA): shown as +1 313 729 1534, WhatsApp link uses the digits. */
+  usPhone: '+1 313 729 1534',
+  usWhatsapp: '13137291534',
+  usAddress: 'Boston, Massachusetts',
   instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || '',
   facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || '',
   linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || '',
@@ -52,6 +56,8 @@ export type Company = typeof COMPANY;
 export function makeLinks(company: Company) {
   const whatsappLink = (message: string = QUOTE_MESSAGE): string | null =>
     company.whatsapp ? `https://wa.me/${company.whatsapp}?text=${encodeURIComponent(message)}` : null;
+  const whatsappUS = (message: string = QUOTE_MESSAGE): string | null =>
+    company.usWhatsapp ? `https://wa.me/${company.usWhatsapp}?text=${encodeURIComponent(message)}` : null;
   const phoneLink = (): string | null => {
     if (!company.phone) return null;
     const raw = company.phone.trim();
@@ -66,6 +72,6 @@ export function makeLinks(company: Company) {
   const quoteLink = (message?: string): string => whatsappLink(message) || emailLink();
   const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(company.address)}`;
   const mapsEmbed = `https://www.google.com/maps?q=${encodeURIComponent(company.address)}&output=embed`;
-  return { whatsappLink, phoneLink, emailLink, quoteLink, mapsLink, mapsEmbed };
+  return { whatsappLink, whatsappUS, phoneLink, emailLink, quoteLink, mapsLink, mapsEmbed };
 }
 export type Links = ReturnType<typeof makeLinks>;

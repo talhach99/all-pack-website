@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getSite, pageMeta } from '@/lib/site';
 import { PageHero } from '@/components/PageHero';
+import { PolicyCard } from '@/components/PolicyCard';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('terms', '/terms'); }
 
@@ -24,7 +25,7 @@ export default async function TermsPage() {
   const sections = sectionsFor(COMPANY);
   return (
     <main>
-      <PageHero kicker="Terms" title="Terms of service" description="The terms that apply to this website and to packaging orders placed with ALL PACK." />
+      <PageHero tone="light" kicker="Terms" title="Terms of service" description="The terms that apply to this website and to packaging orders placed with ALL PACK." aside={<PolicyCard email={COMPANY.email} />} />
       <section className="container-x pb-20 sm:pb-28 pt-16">
         <div className="mx-auto max-w-3xl divide-y divide-line border-y border-line">
           {sections.map(([h, b]) => (

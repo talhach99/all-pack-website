@@ -8,7 +8,7 @@
 - Do not commit secrets. Runtime variables (e.g. `RESEND_API_KEY`) live in Cloudflare → Workers → all-pack-website → Settings.
 
 ## Site conventions
-- Phone numbers shown in +92 format; WhatsApp and email only (no "Call" option). Offices: Boston, Massachusetts, USA and Lahore, Pakistan (address shown only as "Lahore, Pakistan").
+- Phone numbers: Lahore +92 321 8444590, Boston +1 313 729 1534 (`usPhone`/`usWhatsapp` in company.ts, editable in admin); WhatsApp and email only (no "Call" option). Boston address shown only as "Boston, Massachusetts". Offices: Boston, Massachusetts, USA and Lahore, Pakistan (address shown only as "Lahore, Pakistan").
 - Quote CTAs go to /contact (enquiry form, stored in the admin inbox) plus WhatsApp and email.
 - Keep the homepage lean; guides, industries and box styles live on their own pages.
 - Images: studio renders in `public/renders/` and owner-supplied photos in `public/photos/` (Nov 2026 redesign). Do not use stock photos (Unsplash, Pexels) or images taken from other companies' websites.

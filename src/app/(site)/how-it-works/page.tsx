@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getSite, pageMeta } from '@/lib/site';
 import { STEPS, ARTWORK, REGIONS, HOW_FAQ } from '@/data/home';
-import { PageHero } from '@/components/PageHero';
+import { PageHero, HeroCard } from '@/components/PageHero';
 import { FaqAccordion } from '@/components/FaqAccordion';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('how', '/how-it-works'); }
@@ -14,7 +14,21 @@ export default async function HowItWorksPage() {
   return (
     <main className="ap">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c') }} />
-      <PageHero kicker="How it works" title="How ordering with ALL PACK works." description="From your first message to boxes at your door: here is exactly what happens, what we need from you and how long it takes." />
+      <PageHero kicker="How it works" title={<>How ordering with ALL PACK <span className="text-[#7F8CFF]">works.</span></>} description="From your first message to boxes at your door: here is exactly what happens, what we need from you and how long it takes." aside={
+        <HeroCard>
+          <p className="text-[12px] font-extrabold uppercase tracking-[.1em] text-[#22C3EE]">Your order, step by step</p>
+          <ol className="relative mt-5 flex flex-col gap-5 before:absolute before:bottom-4 before:left-[19px] before:top-4 before:w-px before:bg-gradient-to-b before:from-[#22C3EE] before:to-[#7F8CFF]">
+            {STEPS.map(s => (
+              <li key={s.n} className="relative flex items-center gap-4">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/20 bg-[#0A208C] text-[14px] font-extrabold">{s.n}</span>
+                <span className="flex flex-1 flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5"><span className="text-[17px] font-extrabold">{s.title}</span><span className="text-[13px] text-[#A9B1C7]">{s.time}</span></span>
+              </li>
+            ))}
+          </ol>
+        </HeroCard>
+      }>
+        <Link href="/contact" className="ap-btn ap-white">Get a quote</Link><a href="#artwork" className="ap-btn ap-ghost-light">Artwork guide</a>
+      </PageHero>
 
       <section className="px-5 py-20 sm:py-28">
         <div className="mx-auto max-w-[1200px]">

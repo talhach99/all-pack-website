@@ -131,17 +131,17 @@ export const FINISH_GUIDE = [
 export const STEPS = [
   { n: '01', title: 'Share your specs', time: 'Same day', send: ['Product size and quantity', 'Box style, if you know it', 'Ship-to address (USA or Pakistan)'], get: ['A reply from your dedicated contact', 'Questions to confirm the details'] },
   { n: '02', title: 'Get your quote', time: 'Within one business day', send: ['Any preferred finish or material', 'Target budget, if you have one'], get: ['Recommended structure and material', 'Itemized quote in USD or PKR', 'Price breaks for larger quantities'] },
-  { n: '03', title: 'Approve your proof', time: '[X] to [X] business days', send: ['Print-ready artwork, or your logo and brand colours'], get: ['A digital proof on your dieline', 'A physical sample, if requested'] },
+  { n: '03', title: 'Approve your proof', time: '1 to 2 business days', send: ['Print-ready artwork, or your logo and brand colours'], get: ['A digital proof on your dieline', 'A physical sample, if requested'] },
   { n: '04', title: 'Receive your order', time: 'Production + shipping', send: ['Your approval and payment'], get: ['Printed, inspected packaging', 'Tracking details', 'Delivery to your door, warehouse or 3PL'] },
 ];
 export const ARTWORK = [['File type', 'PDF or AI (vector)'], ['Image resolution', '300 dpi or higher'], ['Bleed', '0.125 in (3 mm)'], ['Colour mode', 'CMYK, plus Pantone if needed'], ['Fonts', 'Outlined or embedded']];
 export const REGIONS = [
-  { name: 'USA', office: 'Boston office', dark: true, rows: [['Minimum order', '[X] units'], ['Production time', '[X] to [X] business days'], ['Shipping to the US', '[X] to [X] business days'], ['Quotes in', 'US dollars (USD)']], pay: ['Visa', 'Mastercard', 'American Express', 'PayPal', 'Stripe'] },
-  { name: 'Pakistan', office: 'Lahore office', dark: false, rows: [['Minimum order', '[X] units'], ['Production time', '[X] to [X] business days'], ['Delivery in Pakistan', '[X] to [X] business days'], ['Quotes in', 'Pakistani rupees (PKR)']], pay: ['Bank transfer'] },
+  { name: 'USA', office: 'Boston office', dark: true, rows: [['Minimum order', 'From 500 units'], ['Production time', '12 to 15 business days'], ['Shipping to the US', '5 to 8 business days'], ['Quotes in', 'US dollars (USD)']], pay: ['Visa', 'Mastercard', 'American Express', 'PayPal', 'Stripe'] },
+  { name: 'Pakistan', office: 'Lahore office', dark: false, rows: [['Minimum order', 'From 1,000 units'], ['Production time', '10 to 12 business days'], ['Delivery in Pakistan', '2 to 4 business days'], ['Quotes in', 'Pakistani rupees (PKR)']], pay: ['Bank transfer'] },
 ];
 export const HOW_FAQ = [
-  { q: 'What is the minimum order?', a: 'Minimums depend on the box style and print method. Tell us your quantity and we will suggest the most cost-effective option.' },
-  { q: 'How long does an order take?', a: 'Production starts once you approve your proof and payment. We confirm production and shipping times with your quote.' },
+  { q: 'What is the minimum order?', a: 'Most orders start from 500 units in the USA and 1,000 units in Pakistan. Minimums vary with the box style and print method, so tell us your quantity and we will suggest the most cost-effective option.' },
+  { q: 'How long does an order take?', a: 'Production takes 12 to 15 business days for US orders and 10 to 12 for Pakistan, starting once you approve your proof and payment. Shipping to the US takes 5 to 8 business days, and delivery in Pakistan 2 to 4. We confirm the exact dates with your quote.' },
   { q: 'Which payment methods do you accept?', a: 'In the USA we accept Visa, Mastercard, American Express, PayPal and Stripe. In Pakistan we accept bank transfer.' },
   { q: 'Can I get a sample first?', a: 'Yes. Every order includes a free digital proof, and we can send a physical sample before your full run.' },
   { q: 'Do you help with design?', a: 'Yes. If you do not have print-ready artwork, our team can place your logo and brand colours on the dieline for you.' },

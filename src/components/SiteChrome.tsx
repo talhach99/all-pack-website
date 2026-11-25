@@ -16,7 +16,7 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
     description: copy['site.description'],
     areaServed: ['United States', 'Pakistan'],
     email: company.email,
-    telephone: links.phoneLink()?.slice(4),
+    telephone: [links.phoneLink()?.slice(4), company.usPhone.replace(/\s/g, '')].filter(Boolean),
     url: company.siteUrl,
     image: `${company.siteUrl}${copy['site.ogImage']}`,
     logo: `${company.siteUrl}/brand/allpack-logo.png`,

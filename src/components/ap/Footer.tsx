@@ -11,15 +11,18 @@ const COLS: { h: string; links: [string, string][] }[] = [
 export async function Footer() {
   const { company, links, copy } = await getSite();
   const wa = links.whatsappLink();
+  const waUS = links.whatsappUS();
   return (
     <footer className="ap bg-[#F6F7F9] pb-8 pt-16">
       <div className="ap-wrap grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
         <div className="flex flex-col gap-3">
           <img src={copy['site.logoDark']} alt={company.name} width={160} height={48} className="h-10 w-auto self-start" />
           <p className="text-[14px] leading-[1.8] text-[#5C6272]">
-            Boston, Massachusetts, USA<br />Lahore, Pakistan<br />
-            <a href={links.emailLink()} className="ap-ul">{company.email}</a><br />
-            {wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="ap-ul">WhatsApp {company.phone}</a>}
+            <span className="font-bold text-[#0B0D12]">{company.usAddress}, USA</span><br />
+            {waUS && <><a href={waUS} target="_blank" rel="noopener noreferrer" className="ap-ul">WhatsApp {company.usPhone}</a><br /></>}
+            <span className="mt-2 inline-block font-bold text-[#0B0D12]">Lahore, Pakistan</span><br />
+            {wa && <><a href={wa} target="_blank" rel="noopener noreferrer" className="ap-ul">WhatsApp {company.phone}</a><br /></>}
+            <a href={links.emailLink()} className="ap-ul">{company.email}</a>
           </p>
         </div>
         {COLS.map(c => (

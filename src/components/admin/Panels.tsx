@@ -8,6 +8,9 @@ type Obj = Record<string, string>;
 const COMPANY_FIELDS: { k: string; label: string; hint?: string }[] = [
   { k: 'phone', label: 'Phone number shown on the site', hint: 'For example 0321-8444590. It is shown as +92 321 8444590.' },
   { k: 'whatsapp', label: 'WhatsApp number', hint: 'Digits with country code and no plus sign, for example 923218444590. All WhatsApp buttons use this.' },
+  { k: 'usPhone', label: 'Boston (USA) number shown on the site', hint: 'For example +1 313 729 1534.' },
+  { k: 'usWhatsapp', label: 'Boston (USA) WhatsApp number', hint: 'Digits with country code and no plus sign, for example 13137291534.' },
+  { k: 'usAddress', label: 'Boston office address (one line)', hint: 'For example Boston, Massachusetts' },
   { k: 'email', label: 'Email address' },
   { k: 'address', label: 'Address (one line, as shown on the site)' },
   { k: 'street', label: 'Street line (for Google)', hint: 'For example Royal Park, Lakshmi Chowk' },

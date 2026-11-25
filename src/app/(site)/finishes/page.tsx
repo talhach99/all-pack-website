@@ -13,10 +13,12 @@ export default async function FinishesPage() {
   const wa = links.whatsappLink();
   return (
     <main className="ap">
-      <PageHero kicker="Finishes" title="Finishes that make your packaging feel premium." description="Choose the coating, effect and material that suit your product, and see how each one changes the look and feel of your box." />
+      <PageHero kicker="Finishes" title={<>Finishes that make your packaging <span className="text-[#7F8CFF]">feel premium.</span></>} description="Choose the coating, effect and material that suit your product, and see how each one changes the look and feel of your box." images={[{ src: '/renders/rigid-gift-boxes-sm.webp', alt: 'Rigid gift boxes', label: 'Rigid gift box' }, { src: '/photos/off-rigid-sm.webp', alt: 'Printed rigid box', label: 'Printed finish' }, { src: '/renders/labels-stickers-v2-sm.webp', alt: 'Printed labels and stickers', label: 'Labels' }]}>
+        <a href="#finishes" className="rounded-full border border-white/15 bg-white/[.06] px-4 py-2.5 text-[14px] font-bold text-white transition hover:bg-white hover:text-[#0B0D12]">Coatings &amp; effects</a><a href="#materials" className="rounded-full border border-white/15 bg-white/[.06] px-4 py-2.5 text-[14px] font-bold text-white transition hover:bg-white hover:text-[#0B0D12]">Materials</a>
+      </PageHero>
       <FinishPreview />
 
-      <section className="px-5 py-20 sm:py-28">
+      <section id="finishes" className="scroll-mt-24 px-5 py-20 sm:py-28">
         <div className="ap-rv mx-auto max-w-[1200px]">
           <div className="mb-10 max-w-[720px]"><span className="ap-kicker">All finishes</span><h2 className="mt-3 text-[36px] leading-[1.05] sm:text-[44px]">Coatings and effects</h2><p className="mt-3.5 text-[17px] leading-[1.6] text-[#5C6272]">Every finish is applied in-house and checked against your approved proof.</p></div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -30,7 +32,7 @@ export default async function FinishesPage() {
         </div>
       </section>
 
-      <section className="bg-[#F4F5F8] px-5 py-20 sm:py-28">
+      <section id="materials" className="scroll-mt-24 bg-[#F4F5F8] px-5 py-20 sm:py-28">
         <div className="ap-rv mx-auto max-w-[1200px]">
           <div className="mb-10 max-w-[720px]"><span className="ap-kicker">Materials</span><h2 className="mt-3 text-[36px] leading-[1.05] sm:text-[44px]">Choose your board and film</h2><p className="mt-3.5 text-[17px] leading-[1.6] text-[#5C6272]">The right material protects your product and sets the tone for your brand.</p></div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">

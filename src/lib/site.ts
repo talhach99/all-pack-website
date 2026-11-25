@@ -13,7 +13,7 @@ export type Reason = { badge: 'iso' | 'halal' | '25+' | 'factory'; title: string
 export type Step = { step: string; title: string; text: string };
 export type Principle = { title: string; text: string };
 
-export const COMPANY_KEYS = ['name', 'tagline', 'email', 'phone', 'whatsapp', 'address', 'street', 'city', 'instagram', 'facebook', 'linkedin'] as const;
+export const COMPANY_KEYS = ['name', 'tagline', 'email', 'phone', 'whatsapp', 'usPhone', 'usWhatsapp', 'usAddress', 'address', 'street', 'city', 'instagram', 'facebook', 'linkedin'] as const;
 export type CompanyKey = (typeof COMPANY_KEYS)[number];
 
 export type Collections = {
@@ -49,6 +49,7 @@ export function buildSite(o: Overrides): Site {
   for (const k of COMPANY_KEYS) { const v = o.company?.[k]; if (typeof v === 'string' && v.trim() !== '') (company as Record<string, string>)[k] = v.trim(); }
   company.phone = formatPhonePK(company.phone);
   company.whatsapp = company.whatsapp.replace(/\D/g, '');
+  company.usWhatsapp = company.usWhatsapp.replace(/\D/g, '');
   const d = defaultCollections(), c = o.collections ?? {};
   const copy: Record<string, string> = { ...COPY_DEFAULTS };
   for (const [k, v] of Object.entries(o.copy ?? {})) if (k in copy && typeof v === 'string' && v.trim() !== '') copy[k] = v;
