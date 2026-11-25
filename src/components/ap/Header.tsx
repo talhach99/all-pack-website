@@ -32,7 +32,7 @@ export function Header({ logo }: { logo: string }) {
       </div>
       <header className="ap sticky top-0 z-40 border-b border-[#EDEEF1] bg-white/[.88] backdrop-blur-xl">
         <div className="ap-wrap flex h-[76px] items-center gap-8">
-          <Link href="/" aria-label="ALL PACK home" className="shrink-0"><img src={logo} alt="ALL PACK — The Packaging Experts" width={150} height={46} className="h-9 w-auto" /></Link>
+          <Link href="/" aria-label="ALL PACK home" className="shrink-0"><img src={logo} alt="ALL PACK — The Packaging Experts" width={150} height={46} className="h-10 w-auto" /></Link>
           <nav aria-label="Main" className="hidden flex-1 items-center gap-7 lg:flex">
             {NAV.map(n => (
               <Link key={n.href} href={n.href} className={`ap-ul text-[15px] font-semibold ${active(n.href) ? 'text-[#2B43F0]' : ''}`}>{n.text}</Link>

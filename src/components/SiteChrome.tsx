@@ -33,7 +33,7 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
           {noteHref ? <Link href={noteHref} className="underline-offset-4 hover:underline">{note}</Link> : note}
         </div>
       )}
-      <Header logo={copy['site.logo']} />
+      <Header logo={copy['site.logoDark']} />
       <div id="main">{children}</div>
       <Footer />
       <FloatingContact href={links.whatsappLink()} />

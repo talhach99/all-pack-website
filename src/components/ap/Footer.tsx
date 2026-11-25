@@ -15,7 +15,7 @@ export async function Footer() {
     <footer className="ap bg-[#F6F7F9] pb-8 pt-16">
       <div className="ap-wrap grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
         <div className="flex flex-col gap-3">
-          <img src={copy['site.logo']} alt={company.name} width={150} height={46} className="h-9 w-auto self-start" />
+          <img src={copy['site.logoDark']} alt={company.name} width={160} height={48} className="h-10 w-auto self-start" />
           <p className="text-[14px] leading-[1.8] text-[#5C6272]">
             Boston, Massachusetts, USA<br />Lahore, Pakistan<br />
             <a href={links.emailLink()} className="ap-ul">{company.email}</a><br />
