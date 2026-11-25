@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { pageMeta } from '@/lib/site';
-import { CATALOG, NEW_ARRIVALS, type CatalogItem } from '@/data/home';
+import { getSite, pageMeta } from '@/lib/site';
+import { type CatalogItem } from '@/data/home';
 import { Arrivals } from '@/components/ap/Arrivals';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('products', '/products'); }
@@ -17,7 +17,8 @@ function Thumb({ item, eager }: { item: CatalogItem; eager?: boolean }) {
   );
 }
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const { catalog: CATALOG, newArrivals: NEW_ARRIVALS } = await getSite();
   return (
     <main className="ap px-5 pb-20 sm:pb-28 pt-12">
       <div className="mx-auto flex max-w-[1320px] flex-wrap items-start gap-14">

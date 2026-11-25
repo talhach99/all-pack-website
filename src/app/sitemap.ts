@@ -1,11 +1,10 @@
 import type { MetadataRoute } from 'next';
 import { getSite } from '@/lib/site';
-import { CATALOG, HERO_SLIDES } from '@/data/home';
 
 export const dynamic = 'force-dynamic';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const { company, articles } = await getSite();
+  const { company, articles, catalog: CATALOG, heroSlides: HERO_SLIDES } = await getSite();
   const base = company.siteUrl;
   const pages: [string, number][] = [['', 1], ['/products', .9], ['/industries', .8], ['/finishes', .8], ['/how-it-works', .8], ['/blog', .7], ['/about', .7], ['/contact', .7], ['/privacy', .2], ['/terms', .2], ['/shipping', .2]];
   return [

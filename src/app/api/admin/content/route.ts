@@ -2,7 +2,7 @@ import { guard } from '@/lib/auth';
 import { getDb, kvSet } from '@/lib/db';
 import { COMPANY } from '@/lib/company';
 import { COPY } from '@/data/copy';
-import { COMPANY_KEYS, defaultCollections, defaultSeo, loadOverrides, type Collections, type Overrides } from '@/lib/site';
+import { COMPANY_KEYS, COLLECTION_KEYS, defaultCollections, defaultSeo, loadOverrides, type Collections, type Overrides } from '@/lib/site';
 
 export const dynamic = 'force-dynamic';
 const noStore = { 'cache-control': 'no-store' };
@@ -25,7 +25,6 @@ function clean(v: unknown, depth = 0): unknown {
   return undefined;
 }
 
-const COLLECTION_KEYS: (keyof Collections)[] = ['families', 'sectors', 'faqs', 'machines', 'reasons', 'process', 'principles', 'clients', 'articles'];
 const slugify = (s: string) => s.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80);
 
 /** Replaces whole sections. Sending null for a section (or a key) puts it back to the built-in default. */
@@ -68,12 +67,14 @@ export async function PUT(req: Request) {
         if (inc[k] === null) { delete cur[k]; continue; }
         if (!Array.isArray(inc[k])) throw new Error(`${k} must be a list`);
         let list = clean(inc[k]) as Record<string, unknown>[];
-        if (k === 'families' || k === 'sectors' || k === 'articles') {
+        // Guides get a web address (slug); product sections and industries get a link name (id, as in /products#mailer). Existing ones are kept.
+        if (k === 'articles' || k === 'catalog' || k === 'industries') {
+          const key = k === 'articles' ? 'slug' : 'id';
           const seen = new Set<string>();
           list = list.map(x => {
-            let s = slugify(String(x.slug || x.name || x.title || '')) || `item-${seen.size + 1}`; const base = s; let n = 2;
+            let s = slugify(String(x[key] || x.name || x.title || '')) || `item-${seen.size + 1}`; const base = s; let n = 2;
             while (seen.has(s)) s = `${base}-${n++}`;
-            seen.add(s); return { ...x, slug: s };
+            seen.add(s); return { ...x, [key]: s };
           });
         }
         if (k === 'articles') {

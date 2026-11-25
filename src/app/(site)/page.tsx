@@ -3,20 +3,20 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { preload } from 'react-dom';
 import { getSite, pageMeta } from '@/lib/site';
-import { MOSAIC, PRINT_ROWS, HOME_FAQ, HERO_SLIDES, P } from '@/data/home';
+import { MOSAIC, PRINT_ROWS, P } from '@/data/home';
 import { HeroSlider, MarketSection, Offices, Newsletter } from '@/components/ap/HomeClient';
 import { FaqAccordion } from '@/components/FaqAccordion';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('home', '/'); }
 
 export default async function Home() {
-  const { clients, links, company } = await getSite();
+  const { clients, links, company, heroSlides: HERO_SLIDES, homeFaqs } = await getSite();
   const logos = clients.filter(c => c.logo);
   const wa = links.whatsappLink();
-  preload(HERO_SLIDES[0].image, { as: 'image', fetchPriority: 'high', imageSrcSet: HERO_SLIDES[0].srcSet, imageSizes: '(max-width: 1024px) 100vw, 800px' });
+  if (HERO_SLIDES[0]) preload(HERO_SLIDES[0].image, { as: 'image', fetchPriority: 'high', ...(HERO_SLIDES[0].srcSet ? { imageSrcSet: HERO_SLIDES[0].srcSet, imageSizes: '(max-width: 1024px) 100vw, 800px' } : {}) });
   return (
     <main className="ap">
-      <HeroSlider />
+      {HERO_SLIDES.length > 0 && <HeroSlider slides={HERO_SLIDES} />}
 
       {/* Client logos */}
       <section className="border-b border-[#EDEEF1] bg-white px-5 py-7">
@@ -123,7 +123,7 @@ export default async function Home() {
       <section className="px-5 pt-20 sm:pt-28">
         <div className="ap-rv mx-auto max-w-[860px]">
           <div className="mb-10 text-center"><span className="ap-kicker">FAQ</span><h2 className="mt-2.5 text-[36px] leading-none sm:text-[48px]">Questions, answered</h2></div>
-          <FaqAccordion faqs={HOME_FAQ} />
+          <FaqAccordion faqs={homeFaqs} />
         </div>
       </section>
 

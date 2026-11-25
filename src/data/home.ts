@@ -90,7 +90,8 @@ export const CATALOG: CatalogSection[] = [
 export const NEW_ARRIVALS: CatalogItem[] = [w('Stand-up pouch', 'pouch1'), w('Spout pouch with cap', 'pouch4'), w('Lift-off lid gift box', 'off-rigid'), c('Thank-you cards', 'thankyou'), w('Hang tags', 'hangtags'), c('Notebooks and journals', 'notebook'), w('Flat-bottom pouch', 'pouch3'), w('Takeaway boxes', 'off-food')];
 
 /* ---------- Industries ---------- */
-export const INDUSTRIES = [
+export type Industry = { id: string; name: string; kicker: string; short: string; desc: string; long: string; points: string[]; products: string[]; src: string; fit: 'cover' | 'contain'; bg: string };
+export const INDUSTRIES: Industry[] = [
   { id: 'pharma', name: 'Pharmaceutical & Health', kicker: 'Pharmaceutical & health', short: 'pharma packaging', desc: 'Compliant cartons, inserts and labels with room for batch and expiry data.', long: 'Pharmaceutical and healthcare packaging has to be precise, legible and consistent on every run. We print cartons, inserts and labels to your approved artwork, with space for batch numbers, expiry dates and dosage information.', points: ['Batch, expiry and dosage panels on every carton', 'Inserts and leaflets matched to your cartons', 'Consistent color from run to run'], products: ['Medicine cartons', 'Inserts and leaflets', 'Product labels'], src: P('off-pharma'), fit: 'cover' as const, bg: '#FFFFFF' },
   { id: 'food', name: 'Food & Beverage', kicker: 'Food & beverage', short: 'food packaging', desc: 'Food-grade board and inks for bakery, snack and takeaway brands.', long: 'From bakeries to takeaway brands, food packaging has to be safe, sturdy and good-looking. We use food-grade board and inks, and design boxes that hold their shape from kitchen to customer.', points: ['Food-grade board and inks', 'Grease-resistant options for baked and fried foods', 'Easy-lock structures for fast packing'], products: ['Takeaway boxes', 'Bakery and cake boxes', 'Pouches'], src: P('off-food'), fit: 'cover' as const, bg: '#FFFFFF' },
   { id: 'beauty', name: 'Beauty & Personal Care', kicker: 'Beauty & personal care', short: 'beauty packaging', desc: 'Premium finishes like foil, embossing and soft-touch lamination.', long: 'Beauty customers judge the product by its box. We produce premium cartons and sets with finishes that look and feel special on the shelf and in the unboxing.', points: ['Foil stamping, embossing and spot UV', 'Soft-touch and matte laminations', 'Inserts that hold bottles and jars securely'], products: ['Cosmetic cartons', 'Gift sets', 'Sleeves'], src: R('packaging-range-800'), fit: 'contain' as const, bg: '#EEEAFB' },
@@ -128,7 +129,8 @@ export const FINISH_GUIDE = [
 ];
 
 /* ---------- How it works ---------- */
-export const STEPS = [
+export type OrderStep = { n: string; title: string; time: string; send: string[]; get: string[] };
+export const STEPS: OrderStep[] = [
   { n: '01', title: 'Share your specs', time: 'Same day', send: ['Product size and quantity', 'Box style, if you know it', 'Ship-to address (USA or Pakistan)'], get: ['A reply from your dedicated contact', 'Questions to confirm the details'] },
   { n: '02', title: 'Get your quote', time: 'Within one business day', send: ['Any preferred finish or material', 'Target budget, if you have one'], get: ['Recommended structure and material', 'Itemized quote in USD or PKR', 'Price breaks for larger quantities'] },
   { n: '03', title: 'Approve your proof', time: '1 to 2 business days', send: ['Print-ready artwork, or your logo and brand colors'], get: ['A digital proof on your dieline', 'A physical sample, if requested'] },

@@ -1,20 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getSite, pageMeta } from '@/lib/site';
-import { STEPS, ARTWORK, REGIONS, HOW_FAQ } from '@/data/home';
-import { PageHero, HeroCard } from '@/components/PageHero';
+import { ARTWORK, REGIONS } from '@/data/home';
+import { PageHero, HeroCard, heroTitle } from '@/components/PageHero';
 import { FaqAccordion } from '@/components/FaqAccordion';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('how', '/how-it-works'); }
 
 export default async function HowItWorksPage() {
-  const { links } = await getSite();
+  const { links, steps: STEPS, howFaqs: HOW_FAQ, copy: t } = await getSite();
+  const figures: Record<string, string> = { 'USA:Minimum order': t['how.usa.min'], 'USA:Production time': t['how.usa.production'], 'USA:Shipping to the US': t['how.usa.shipping'], 'Pakistan:Minimum order': t['how.pk.min'], 'Pakistan:Production time': t['how.pk.production'], 'Pakistan:Delivery in Pakistan': t['how.pk.delivery'] };
+  const regions = REGIONS.map(r => ({ ...r, rows: r.rows.map(([k, v]) => [k, figures[`${r.name}:${k}`] ?? v]) }));
   const wa = links.whatsappLink();
   const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: HOW_FAQ.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
   return (
     <main className="ap">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c') }} />
-      <PageHero kicker="How it works" title={<>How ordering with ALL PACK <span className="ap-accent">works.</span></>} description="From your first message to boxes at your door: here is exactly what happens, what we need from you and how long it takes." aside={
+      <PageHero kicker="How it works" title={heroTitle(t, 'how')} description={t['hero.how.lead']} aside={
         <HeroCard>
           <p className="text-[12px] font-extrabold uppercase tracking-[.1em] text-[#0A208C]">Your order, step by step</p>
           <ol className="relative mt-5 flex flex-col gap-5 before:absolute before:bottom-4 before:left-[19px] before:top-4 before:w-px before:bg-[#D9D3C5]">
@@ -67,7 +69,7 @@ export default async function HowItWorksPage() {
         <div className="ap-rv mx-auto max-w-[1200px]">
           <span className="ap-kicker">Ordering details</span><h2 className="mb-10 mt-3 text-[36px] leading-[1.05] sm:text-[44px]">Lead times, minimums and payment</h2>
           <div className="grid gap-5 md:grid-cols-2">
-            {REGIONS.map(r => (
+            {regions.map(r => (
               <div key={r.name} className={`flex flex-col gap-5 rounded-3xl p-8 sm:p-10 ${r.dark ? 'bg-[#0A208C] text-white' : 'bg-[#F4F5F8]'}`}>
                 <div className="flex flex-wrap items-baseline justify-between gap-2"><h3 className={`text-[32px] ${r.dark ? '!text-white' : ''}`}>{r.name}</h3><span className="text-[14px] opacity-80">{r.office}</span></div>
                 <dl className={`border-t ${r.dark ? 'border-white/20' : 'border-[#DADDE4]'}`}>{r.rows.map(([k, v]) => <div key={k} className={`flex justify-between gap-4 border-b py-3.5 text-[15px] ${r.dark ? 'border-white/20' : 'border-[#DADDE4]'}`}><dt className="opacity-80">{k}</dt><dd className="text-right font-extrabold">{v}</dd></div>)}</dl>

@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import { getSite, pageMeta } from '@/lib/site';
-import { PageHero, HeroCard } from '@/components/PageHero';
+import { PageHero, HeroCard, heroTitle } from '@/components/PageHero';
 import { EnquiryForm } from '@/components/EnquiryForm';
 import { Clock } from '@/components/ap/Clock';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('contact', '/contact'); }
 
 export default async function ContactPage() {
-  const { company, links } = await getSite();
+  const { company, links, copy: t } = await getSite();
   const wa = links.whatsappLink();
   const waUS = links.whatsappUS();
   const lines = [
@@ -16,7 +16,7 @@ export default async function ContactPage() {
   ];
   return (
     <main className="ap">
-      <PageHero kicker="Contact" title={<>Let’s talk about <span className="ap-accent">your packaging.</span></>} description="Send us your specs, ask a question or request samples. Our Boston and Lahore teams reply within one business day." aside={
+      <PageHero kicker="Contact" title={heroTitle(t, 'contact')} description={t['hero.contact.lead']} aside={
         <HeroCard className="flex flex-col gap-3">
           <p className="text-[12px] font-extrabold uppercase tracking-[.1em] text-[#0A208C]">Message us on WhatsApp</p>
           {lines.map(l => l.href && (

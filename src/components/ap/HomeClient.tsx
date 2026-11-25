@@ -2,16 +2,16 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { HERO_SLIDES, STRIP, BENEFITS } from '@/data/home';
+import { STRIP, BENEFITS, type HeroSlide } from '@/data/home';
 import { useNow, formatTime, hourIn } from './Clock';
 
 /** Three different hero slides that change every 6 seconds, with labelled progress bars. */
-export function HeroSlider() {
+export function HeroSlider({ slides: HERO_SLIDES }: { slides: HeroSlide[] }) {
   const [i, setI] = useState(0);
   const t = useRef<ReturnType<typeof setInterval> | null>(null);
-  const start = useCallback(() => { if (t.current) clearInterval(t.current); t.current = setInterval(() => setI(v => (v + 1) % HERO_SLIDES.length), 6000); }, []);
+  const start = useCallback(() => { if (t.current) clearInterval(t.current); t.current = setInterval(() => setI(v => (v + 1) % HERO_SLIDES.length), 6000); }, [HERO_SLIDES.length]);
   useEffect(() => { start(); return () => { if (t.current) clearInterval(t.current); }; }, [start]);
-  const s = HERO_SLIDES[i];
+  const s = HERO_SLIDES[i % HERO_SLIDES.length];
   return (
     <section aria-roledescription="carousel" aria-label="Highlights" className="px-5 transition-colors duration-[900ms] sm:px-6" style={{ background: s.bg }}>
       <div className="relative mx-auto flex max-w-[1392px] flex-wrap items-center gap-8 pb-24 pt-8 sm:gap-12 sm:pb-28 sm:pt-12 lg:min-h-[640px]">
@@ -25,7 +25,7 @@ export function HeroSlider() {
           </div>
         </div>
         <div className="relative h-[280px] w-full flex-[1.4_1_520px] overflow-hidden rounded-[22px] shadow-[0_40px_80px_-40px_rgba(11,13,18,.45)] sm:h-[440px] sm:rounded-[28px] lg:h-[540px]">
-          <img key={`i${i}`} src={s.image} srcSet={s.srcSet} sizes="(max-width: 1024px) 100vw, 800px" alt={s.alt} width={1600} height={1100} fetchPriority={i === 0 ? 'high' : 'auto'} decoding="async" className="ap-heroimg absolute inset-0 h-full w-full object-cover" />
+          <img key={`i${i}`} src={s.image} srcSet={s.srcSet || undefined} sizes="(max-width: 1024px) 100vw, 800px" alt={s.alt} width={1600} height={1100} fetchPriority={i === 0 ? 'high' : 'auto'} decoding="async" className="ap-heroimg absolute inset-0 h-full w-full object-cover" />
         </div>
         <div className="absolute inset-x-0 bottom-6 grid grid-cols-3 gap-3 sm:bottom-8 sm:gap-5">
           {HERO_SLIDES.map((h, k) => (

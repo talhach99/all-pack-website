@@ -31,18 +31,10 @@ export const PAGE_SEO = {
     title: 'About ALL PACK | Packaging in Boston and Lahore',
     description: 'For 25+ years ALL PACK has printed packaging for leading brands, with offices in Boston and Lahore serving the USA and Pakistan. ISO 9001 and Halal certified.',
   },
-  why: {
-    title: 'Why ALL PACK: Certified Packaging Printers',
-    description: 'ISO 9001:2015 and Halal certified, with Heidelberg offset printing and finishing in one Lahore facility. How ALL PACK keeps color and delivery on target.',
-  },
   contact: {
     absolute: true,
     title: 'Get a Custom Packaging Quote | Contact ALL PACK',
     description: 'Send your product size, quantity and artwork by form, WhatsApp or email, and our Boston or Lahore team will reply with a clear quote within one business day.',
-  },
-  faq: {
-    title: 'Packaging FAQ: Quantities, Lead Times, Artwork',
-    description: 'How ALL PACK quotes, proofs and produces custom packaging: order quantities, custom sizes, artwork files, lead times, food-grade board and delivery in Pakistan.',
   },
   insights: {
     title: 'Packaging Blog: Guides, Costs and Ideas',

@@ -71,3 +71,9 @@ function Collage({ images }: { images: HeroImage[] }) {
 export function HeroCard({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return <div className={`rounded-[24px] bg-white p-6 shadow-[0_30px_60px_-35px_rgba(60,45,20,.35)] sm:p-8 ${className}`}>{children}</div>;
 }
+
+/** Banner heading from the admin Page text fields: heading plus navy accent words. */
+export function heroTitle(copy: Record<string, string>, page: string): React.ReactNode {
+  const accent = copy[`hero.${page}.accent`];
+  return <>{copy[`hero.${page}.title`]}{accent && <> <span className="ap-accent">{accent}</span></>}</>;
+}

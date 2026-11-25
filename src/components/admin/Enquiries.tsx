@@ -28,7 +28,7 @@ export function Enquiries({ onCount }: { onCount: (n: number) => void }) {
     try { await api('/api/admin/enquiries', { method: 'PATCH', body: { id, ...body } }); if (body.status) load(); } catch (e) { setErr((e as Error).message); }
   };
 
-  if (!db) return <p className="rounded-xl bg-amber-50 p-5 text-[15px] text-amber-900">The database is not connected yet, so enquiries cannot be stored. See the setup note on the Help tab.</p>;
+  if (!db) return <p className="rounded-xl bg-amber-50 p-5 text-[15px] text-amber-900">The database is not connected yet, so inquiries cannot be stored. See the setup note on the Help tab.</p>;
   if (!items) return <p className="text-muted">{err || 'Loading…'}</p>;
   const shown = items.filter(i => filter === 'all' || i.status === filter);
   const count = (s: string) => items.filter(i => i.status === s).length;
@@ -41,7 +41,7 @@ export function Enquiries({ onCount }: { onCount: (n: number) => void }) {
         <button type="button" onClick={load} className={`${btnLine} ml-auto !py-1.5`}>Refresh</button>
       </div>
       {err && <p className="mb-4 rounded-lg bg-red-50 px-3 py-2 text-[14px] text-red-700">{err}</p>}
-      {shown.length === 0 && <p className="rounded-xl border border-dashed border-line p-10 text-center text-[15px] text-muted">{items.length ? 'No enquiries in this view.' : 'No enquiries yet. They appear here as soon as a visitor sends the form on your Contact page.'}</p>}
+      {shown.length === 0 && <p className="rounded-xl border border-dashed border-line p-10 text-center text-[15px] text-muted">{items.length ? 'No inquiries in this view.' : 'No inquiries yet. They appear here as soon as a visitor sends the form on your Contact page.'}</p>}
       <ul className="grid gap-4">
         {shown.map(q => {
           const wa = waDigits(q.whatsapp);
@@ -55,7 +55,7 @@ export function Enquiries({ onCount }: { onCount: (n: number) => void }) {
               <p className="mt-3 whitespace-pre-wrap rounded-xl bg-mist p-4 text-[15px] leading-relaxed [overflow-wrap:anywhere]">{q.message}</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 <a className={btnLine} href={`https://wa.me/${wa}?text=${encodeURIComponent(reply)}`} target="_blank" rel="noopener noreferrer" onClick={() => q.status === 'new' && patch(q.id, { status: 'contacted' })}><MessageCircle size={16} /> WhatsApp {q.whatsapp}</a>
-                <a className={btnLine} href={`mailto:${q.email}?subject=${encodeURIComponent('Your enquiry to ALL PACK')}`} onClick={() => q.status === 'new' && patch(q.id, { status: 'contacted' })}><Mail size={16} /> {q.email}</a>
+                <a className={btnLine} href={`mailto:${q.email}?subject=${encodeURIComponent('Your inquiry to ALL PACK')}`} onClick={() => q.status === 'new' && patch(q.id, { status: 'contacted' })}><Mail size={16} /> {q.email}</a>
                 <a className={btnLine} href={`tel:+${wa}`}><Phone size={16} /> Call</a>
               </div>
               <div className="mt-4 grid gap-3 sm:grid-cols-[180px_1fr]">

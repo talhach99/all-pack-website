@@ -66,7 +66,7 @@ export function PagesPanel({ fields, saved, saving, onSave, onReset }: { fields:
   );
 }
 
-const PAGE_NAMES: Record<string, string> = { home: 'Home', products: 'Products', industries: 'Industries', about: 'About', why: 'Why ALL PACK', contact: 'Contact', faq: 'FAQ', insights: 'Guides list', privacy: 'Privacy', terms: 'Terms' };
+const PAGE_NAMES: Record<string, string> = { home: 'Home', products: 'Products', industries: 'Industries', finishes: 'Finishes', how: 'How it works', insights: 'Blog', about: 'About', contact: 'Contact', shipping: 'Shipping policy', privacy: 'Privacy policy', terms: 'Terms of service' };
 
 /** Titles and descriptions that appear in Google results and link previews. */
 export function SeoPanel({ defaults, saved, articles, saving, onSave, onReset }: { defaults: Record<string, { title: string; description: string }>; saved: Record<string, { title: string; description: string }>; articles: { slug: string; title: string; excerpt: string }[]; saving: boolean; onSave: (v: Record<string, { title: string; description: string }>) => Promise<boolean>; onReset: () => void }) {
@@ -82,7 +82,7 @@ export function SeoPanel({ defaults, saved, articles, saving, onSave, onReset }:
       <div className="grid gap-3">
         {keys.map(k => {
           const isArticle = k.startsWith('article:');
-          const name = isArticle ? `Guide: ${articles.find(a => `article:${a.slug}` === k)?.title ?? k}` : PAGE_NAMES[k.slice(5)] ?? k;
+          const name = isArticle ? `Blog: ${articles.find(a => `article:${a.slug}` === k)?.title ?? k}` : PAGE_NAMES[k.slice(5)] ?? k;
           const e = v[k];
           return (
             <details key={k} className="rounded-xl border border-line bg-white">

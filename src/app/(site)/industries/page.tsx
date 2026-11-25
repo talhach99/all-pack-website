@@ -1,16 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { pageMeta } from '@/lib/site';
-import { INDUSTRIES } from '@/data/home';
-import { heroChip, PageHero } from '@/components/PageHero';
+import { getSite, pageMeta } from '@/lib/site';
+import { heroChip, heroTitle, PageHero } from '@/components/PageHero';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('industries', '/industries'); }
 
-export default function IndustriesPage() {
+export default async function IndustriesPage() {
+  const { industries: INDUSTRIES, copy: t } = await getSite();
   return (
     <main className="ap">
-      <PageHero kicker="Industries" title={<>Packaging for every industry <span className="ap-accent">we serve.</span></>} description="From regulated pharmaceutical lines to e-commerce brands, we build each category's requirements into your packaging, from the first sample to the full run." images={[{ src: '/photos/off-pharma-sm.webp', alt: 'Printed pharmaceutical cartons', label: 'Pharmaceutical' }, { src: '/photos/off-food-sm.webp', alt: 'Printed food boxes', label: 'Food & beverage' }, { src: '/photos/pouch1-sm.webp', alt: 'Printed stand-up pouch', label: 'Retail' }]}>
+      <PageHero kicker="Industries" title={heroTitle(t, 'industries')} description={t['hero.industries.lead']} images={[{ src: '/photos/off-pharma-sm.webp', alt: 'Printed pharmaceutical cartons', label: 'Pharmaceutical' }, { src: '/photos/off-food-sm.webp', alt: 'Printed food boxes', label: 'Food & beverage' }, { src: '/photos/pouch1-sm.webp', alt: 'Printed stand-up pouch', label: 'Retail' }]}>
         {INDUSTRIES.map((i, k) => <a key={i.id} href={`#${i.id}`} className={k === 0 ? `${heroChip} !border-[#0B0D12] bg-[#0B0D12] text-white` : heroChip}>{i.name}</a>)}
       </PageHero>
 

@@ -18,7 +18,7 @@ type Content = {
 };
 
 const TABS = [
-  { id: 'enquiries', label: 'Enquiries' },
+  { id: 'enquiries', label: 'Inquiries' },
   { id: 'settings', label: 'Contact details' },
   { id: 'pages', label: 'Page text' },
   ...COLLECTIONS.map(c => ({ id: c.key, label: c.title })),
@@ -96,10 +96,12 @@ function Help() {
     <div className="max-w-3xl space-y-8 text-[15px] text-secondary">
       <section><h2 className="text-[18px] font-semibold text-ink">How this works</h2>
         <ul className={`${li} list-disc space-y-1.5 pl-5`}>
-          <li><b>Enquiries</b>: everything visitors send through the Contact page form. Use the WhatsApp, email and call buttons to reply, then mark the enquiry as Contacted or Closed.</li>
-          <li><b>Contact details</b>: phone, WhatsApp, email and address. They update everywhere at once.</li>
-          <li><b>Page text</b>: headings, paragraphs and pictures of each page, including the homepage hero.</li>
-          <li><b>Products, Industries, Clients, FAQs, Machines, Guides</b>: add, edit, reorder or remove items.</li>
+          <li><b>Inquiries</b>: everything visitors send through the Contact page form and the newsletter sign-up. Use the WhatsApp and email buttons to reply, then mark the inquiry as Contacted or Closed.</li>
+          <li><b>Contact details</b>: the Lahore and Boston WhatsApp numbers, email and addresses. They update everywhere at once.</li>
+          <li><b>Page text</b>: the banner heading, navy words and text at the top of each page, the How it works minimums and lead times, the About story and the logos.</li>
+          <li><b>Homepage slides</b>: the three large slides at the top of the homepage (text, button and picture).</li>
+          <li><b>Products</b> and <b>New arrivals</b>: the sections and products on the Products page. A product without a picture stays hidden until you add one.</li>
+          <li><b>Industries, Ordering steps, FAQs, Clients, Blog</b>: add, edit, reorder or remove items.</li>
           <li><b>Images</b>: upload pictures once, then pick them in any picture field. Large pictures are reduced automatically.</li>
           <li>Changes go live as soon as you press <b>Save changes</b>. “Restore original” returns a section to the wording the site shipped with.</li>
         </ul></section>

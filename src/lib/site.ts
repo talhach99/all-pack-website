@@ -1,31 +1,30 @@
 import { cache } from 'react';
 import { COMPANY, CLIENTS, makeLinks, formatPhonePK, type Client, type Company } from './company';
 import { kvGet } from './db';
-import { families as defFamilies, sectors as defSectors, machines as defMachines, reasons as defReasons, process as defProcess, principles as defPrinciples, type Family, type Sector } from '@/data/catalog';
-import { faqs as defFaqs } from '@/data/faqs';
 import { articles as defArticles, type Article } from '@/data/articles';
 import { PAGE_SEO, ARTICLE_SEO, type Seo } from '@/data/seo';
 import { COPY_DEFAULTS } from '@/data/copy';
+import { HERO_SLIDES, CATALOG, NEW_ARRIVALS, INDUSTRIES, STEPS, HOME_FAQ, HOW_FAQ, type HeroSlide, type CatalogSection, type CatalogItem, type Industry, type OrderStep } from '@/data/home';
 
 export type Faq = { q: string; a: string };
-export type Machine = { name: string; type: string; text: string; best: string[]; image: string };
-export type Reason = { badge: 'iso' | 'halal' | '25+' | 'factory'; title: string; text: string };
-export type Step = { step: string; title: string; text: string };
-export type Principle = { title: string; text: string };
 
 export const COMPANY_KEYS = ['name', 'tagline', 'email', 'phone', 'whatsapp', 'usPhone', 'usWhatsapp', 'usAddress', 'address', 'street', 'city', 'instagram', 'facebook', 'linkedin'] as const;
 export type CompanyKey = (typeof COMPANY_KEYS)[number];
 
+/** Lists the owner edits in the admin panel (one tab each). Defaults come from src/data/home.ts and friends. */
 export type Collections = {
-  families: Family[]; sectors: Sector[]; faqs: Faq[]; machines: Machine[]; reasons: Reason[]; process: Step[]; principles: Principle[]; clients: Client[]; articles: Article[];
+  heroSlides: HeroSlide[]; catalog: CatalogSection[]; newArrivals: CatalogItem[]; industries: Industry[]; steps: OrderStep[];
+  homeFaqs: Faq[]; howFaqs: Faq[]; clients: Client[]; articles: Article[];
 };
+export const COLLECTION_KEYS: (keyof Collections)[] = ['heroSlides', 'catalog', 'newArrivals', 'industries', 'steps', 'homeFaqs', 'howFaqs', 'clients', 'articles'];
 export type SeoMap = Record<string, { title: string; description: string }>;
 
 /** What the owner has changed in the admin panel. Anything missing falls back to the built-in default. */
 export type Overrides = { company?: Partial<Record<CompanyKey, string>>; copy?: Record<string, string>; collections?: Partial<Collections>; seo?: SeoMap };
 
 export const defaultCollections = (): Collections => ({
-  families: defFamilies, sectors: defSectors, faqs: defFaqs, machines: defMachines as Machine[], reasons: defReasons, process: defProcess, principles: defPrinciples, clients: CLIENTS, articles: defArticles,
+  heroSlides: HERO_SLIDES, catalog: CATALOG, newArrivals: NEW_ARRIVALS, industries: INDUSTRIES, steps: STEPS,
+  homeFaqs: HOME_FAQ, howFaqs: HOW_FAQ, clients: CLIENTS, articles: defArticles,
 });
 export const defaultSeo = (): SeoMap => {
   const m: SeoMap = {};
@@ -44,6 +43,11 @@ export type Site = Collections & {
   seoFor: (key: string) => Seo;
 };
 
+/** A slide keeps its phone-sized picture only while it uses one of the built-in hero photos. */
+function fixSlides(list: HeroSlide[]): HeroSlide[] {
+  return list.map(sl => ({ ...sl, srcSet: HERO_SLIDES.find(h => h.image === sl.image)?.srcSet ?? '', bg: sl.bg || '#EDE6DC', tab: sl.tab || sl.kicker }));
+}
+
 export function buildSite(o: Overrides): Site {
   const company: Company = { ...COMPANY };
   for (const k of COMPANY_KEYS) { const v = o.company?.[k]; if (typeof v === 'string' && v.trim() !== '') (company as Record<string, string>)[k] = v.trim(); }
@@ -57,8 +61,9 @@ export function buildSite(o: Overrides): Site {
   const absolute = new Set(Object.entries(PAGE_SEO as Record<string, Seo>).filter(([, v]) => v.absolute).map(([k]) => k));
   return {
     company, links: makeLinks(company), copy, seo,
-    families: c.families ?? d.families, sectors: c.sectors ?? d.sectors, faqs: c.faqs ?? d.faqs, machines: c.machines ?? d.machines,
-    reasons: c.reasons ?? d.reasons, process: c.process ?? d.process, principles: c.principles ?? d.principles, clients: c.clients ?? d.clients, articles: c.articles ?? d.articles,
+    heroSlides: fixSlides(c.heroSlides ?? d.heroSlides), catalog: c.catalog ?? d.catalog, newArrivals: c.newArrivals ?? d.newArrivals,
+    industries: c.industries ?? d.industries, steps: c.steps ?? d.steps, homeFaqs: c.homeFaqs ?? d.homeFaqs, howFaqs: c.howFaqs ?? d.howFaqs,
+    clients: c.clients ?? d.clients, articles: c.articles ?? d.articles,
     seoFor: key => {
       const s = seo[key.startsWith('article:') ? key : `page:${key}`] ?? { title: '', description: '' };
       return { title: s.title, description: s.description, ...(absolute.has(key) ? { absolute: true } : {}) };

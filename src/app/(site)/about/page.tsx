@@ -2,7 +2,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getSite, pageMeta } from '@/lib/site';
-import { PageHero } from '@/components/PageHero';
+import { PageHero, heroTitle } from '@/components/PageHero';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('about', '/about'); }
 
@@ -18,16 +18,16 @@ export default async function AboutPage() {
   const logos = clients.filter(c => c.logo);
   return (
     <main className="ap">
-      <PageHero kicker="About" title={<>Packaging made with care, <span className="ap-accent">from Lahore to Boston.</span></>} description="ALL PACK designs and prints custom packaging for pharmaceutical, food and consumer brands, with teams in the USA and Pakistan." stats={[['25+', 'Years in printing'], ['ISO 9001', 'Certified quality'], ['2', 'Offices, USA and Pakistan']]} images={[{ src: '/photos/hero2-sm.webp', alt: 'Custom printed packaging', label: 'Our work', cover: true }, { src: '/photos/off-corr-sm.webp', alt: 'Printed corrugated boxes', label: 'Shipping boxes' }, { src: '/photos/tees-sm.webp', alt: 'Printed tees', label: 'DTF apparel', cover: true }]} />
+      <PageHero kicker="About" title={heroTitle(t, 'about')} description={t['hero.about.lead']} stats={[['25+', 'Years in printing'], ['ISO 9001', 'Certified quality'], ['2', 'Offices, USA and Pakistan']]} images={[{ src: '/photos/hero2-sm.webp', alt: 'Custom printed packaging', label: 'Our work', cover: true }, { src: '/photos/off-corr-sm.webp', alt: 'Printed corrugated boxes', label: 'Shipping boxes' }, { src: '/photos/tees-sm.webp', alt: 'Printed tees', label: 'DTF apparel', cover: true }]} />
 
       <section className="px-5 py-20 sm:py-28">
         <div className="ap-rv mx-auto flex max-w-[1200px] flex-wrap items-center gap-14">
-          <div className="h-[460px] flex-[1_1_440px] overflow-hidden rounded-[28px]"><img src="/photos/hero2-md.webp" alt="ALL PACK printed products in a studio" width={1200} height={800} className="h-full w-full object-cover" /></div>
+          <div className="h-[460px] flex-[1_1_440px] overflow-hidden rounded-[28px]"><img src={t['about.story.image']} alt="ALL PACK printed products in a studio" width={1200} height={800} className="h-full w-full object-cover" /></div>
           <div className="flex flex-[1_1_440px] flex-col gap-4">
             <span className="ap-kicker">Our story</span>
-            <h2 className="text-[36px] leading-[1.05] sm:text-[44px]">Built on more than 25 years of printing and packaging.</h2>
+            <h2 className="text-[36px] leading-[1.05] sm:text-[44px]">{t['about.story.title']}</h2>
             <p className="text-[17px] leading-[1.7] text-[#4A5060]">{t['about.lead']}</p>
-            <p className="text-[17px] leading-[1.7] text-[#4A5060]">Today our Lahore team handles production while our Boston office supports brands across the United States, so every customer gets local service and the same quality standard.</p>
+            <p className="text-[17px] leading-[1.7] text-[#4A5060]">{t['about.story.p2']}</p>
           </div>
         </div>
       </section>
