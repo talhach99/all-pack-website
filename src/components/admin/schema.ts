@@ -95,6 +95,8 @@ export const COLLECTIONS: CollectionDef[] = [
       { k: 'category', label: 'Category', t: 'text' },
       { k: 'excerpt', label: 'Short excerpt (shown on the blog list)', t: 'long' },
       { k: 'summary', label: 'Summary (the direct answer shown first)', t: 'long' },
+      { k: 'takeaways', label: 'Key takeaways (one per line, shown in a box at the top)', t: 'lines' },
+      { k: 'market', label: 'Which office the quote buttons go to', t: 'select', options: [['pk', 'Lahore (Pakistan buyers)'], ['us', 'Boston (US buyers)']] },
       { k: 'keywords', label: 'Keywords (one per line)', t: 'lines' },
       { k: 'hero', label: 'Main picture', t: 'group', fields: [{ k: 'src', label: 'Picture', t: 'image', hint: imageHint }, { k: 'alt', label: 'Picture description', t: 'text' }] },
       { k: 'sections', label: 'Sections', t: 'array', item: 'section', fields: [{ k: 'heading', label: 'Section heading', t: 'text' }, { k: 'body', label: 'Content', t: 'blocks' }] },

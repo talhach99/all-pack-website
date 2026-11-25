@@ -64,16 +64,21 @@ function ArrayEditor({ f, value, onChange }: { f: Field; value: Obj[]; onChange:
   );
 }
 
-export type Block = string | { ul: string[] } | { ol: string[] } | { table: { head: string[]; rows: string[][]; caption?: string } } | { img: { src: string; alt: string; width: number; height: number; caption: string } };
+export type Block = string | { ul: string[] } | { ol: string[] } | { table: { head: string[]; rows: string[][]; caption?: string } } | { img: { src: string; alt: string; width: number; height: number; caption: string } }
+  | { tip: { title: string; text: string } } | { quote: string } | { steps: { title: string; text: string }[] };
+
+/** Steps are edited as one line each: "Title | explanation". */
+const stepsToLines = (v: { title: string; text: string }[]) => v.map(s => `${s.title} | ${s.text}`);
+const linesToSteps = (v: string[]) => v.map(l => { const [title, ...rest] = l.split('|'); return { title: (title ?? '').trim(), text: rest.join('|').trim() }; });
 
 function BlocksEditor({ value, onChange }: { value: Block[]; onChange: (v: Block[]) => void }) {
   const set = (i: number, b: Block) => onChange(value.map((x, j) => (j === i ? b : x)));
   return (
     <div>
-      <Label hint="Links: write [text](/page) or [text](https://…)">Content</Label>
+      <Label hint="Links: write [text](/page) or [text](https://…). Bold: **text**">Content</Label>
       <div className="grid gap-3">
         {value.map((b, i) => {
-          const kind = typeof b === 'string' ? 'Paragraph' : 'ul' in b ? 'Bullet list' : 'ol' in b ? 'Numbered list' : 'table' in b ? 'Table' : 'Picture';
+          const kind = typeof b === 'string' ? 'Paragraph' : 'ul' in b ? 'Bullet list' : 'ol' in b ? 'Numbered list' : 'table' in b ? 'Table' : 'tip' in b ? 'Tip box' : 'quote' in b ? 'Highlighted quote' : 'steps' in b ? 'Process steps' : 'Picture';
           return (
             <div key={i} className="rounded-xl border border-line bg-white p-3">
               <div className="mb-2 flex items-center justify-between gap-2"><span className="text-[12px] font-semibold uppercase tracking-wide text-muted">{kind}</span><Move i={i} n={value.length} onMove={d => onChange(move(value, i, d))} onDelete={() => onChange(value.filter((_, j) => j !== i))} /></div>
@@ -81,6 +86,12 @@ function BlocksEditor({ value, onChange }: { value: Block[]; onChange: (v: Block
                 : 'ul' in b ? <Lines value={b.ul} onChange={v => set(i, { ul: v })} />
                 : 'ol' in b ? <Lines value={b.ol} onChange={v => set(i, { ol: v })} />
                 : 'table' in b ? <TableJson value={b.table} onChange={t => set(i, { table: t })} />
+                : 'tip' in b ? (<div className="grid gap-3">
+                    <label className="block"><Label>Tip title</Label><input className={inputCls} value={b.tip.title} onChange={e => set(i, { tip: { ...b.tip, title: e.target.value } })} /></label>
+                    <label className="block"><Label>Tip text</Label><textarea className={inputCls} rows={3} value={b.tip.text} onChange={e => set(i, { tip: { ...b.tip, text: e.target.value } })} /></label>
+                  </div>)
+                : 'quote' in b ? <textarea className={inputCls} rows={2} value={b.quote} onChange={e => set(i, { quote: e.target.value })} />
+                : 'steps' in b ? (<div><Label hint="One step per line: Title | short explanation">Steps</Label><Lines value={stepsToLines(b.steps)} onChange={v => set(i, { steps: linesToSteps(v) })} /></div>)
                 : (<div className="grid gap-3">
                     <ImageField value={b.img.src} onChange={v => set(i, { img: { ...b.img, src: v } })} />
                     <label className="block"><Label>Picture description</Label><input className={inputCls} value={b.img.alt} onChange={e => set(i, { img: { ...b.img, alt: e.target.value } })} /></label>
@@ -94,6 +105,9 @@ function BlocksEditor({ value, onChange }: { value: Block[]; onChange: (v: Block
         <button type="button" className={btnLine} onClick={() => onChange([...value, ''])}><Plus size={14} /> Paragraph</button>
         <button type="button" className={btnLine} onClick={() => onChange([...value, { ul: [] }])}><Plus size={14} /> Bullet list</button>
         <button type="button" className={btnLine} onClick={() => onChange([...value, { ol: [] }])}><Plus size={14} /> Numbered list</button>
+        <button type="button" className={btnLine} onClick={() => onChange([...value, { tip: { title: '', text: '' } }])}><Plus size={14} /> Tip box</button>
+        <button type="button" className={btnLine} onClick={() => onChange([...value, { quote: '' }])}><Plus size={14} /> Quote</button>
+        <button type="button" className={btnLine} onClick={() => onChange([...value, { steps: [] }])}><Plus size={14} /> Steps</button>
         <button type="button" className={btnLine} onClick={() => onChange([...value, { img: { src: '', alt: '', width: 1600, height: 1000, caption: '' } }])}><Plus size={14} /> Picture</button>
       </div>
     </div>

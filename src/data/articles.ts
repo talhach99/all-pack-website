@@ -6,12 +6,20 @@
  * - Inline links use [text](/path). Images are the studio renders in public/renders/ (no stock photos).
  * Keep facts consistent with the rest of the site: no invented figures, no counts of presses.
  */
+import { US_ARTICLES } from './articles-us';
+
 export type Block =
   | string
   | { ul: string[] }
   | { ol: string[] }
   | { table: { head: string[]; rows: string[][]; caption?: string } }
-  | { img: { src: string; alt: string; width: number; height: number; caption: string } };
+  | { img: { src: string; alt: string; width: number; height: number; caption: string } }
+  /** Highlighted advice box. */
+  | { tip: { title: string; text: string } }
+  /** Large pull statement. */
+  | { quote: string }
+  /** Numbered process strip (title + one-line explanation per step). */
+  | { steps: { title: string; text: string }[] };
 
 export type Article = {
   slug: string;
@@ -19,6 +27,10 @@ export type Article = {
   category: string;
   excerpt: string;
   summary: string;
+  /** Four or five bullet points shown in the "Key takeaways" box at the top. */
+  takeaways?: string[];
+  /** Which office the article's quote buttons go to: 'us' (Boston) or 'pk' (Lahore). */
+  market?: 'us' | 'pk';
   keywords: string[];
   publishedAt: string;
   updatedAt: string;
@@ -28,7 +40,7 @@ export type Article = {
   related: string[];
 };
 
-export const articles: Article[] = [
+const PK_ARTICLES: Article[] = [
   {
     slug: 'custom-packaging-boxes-lahore',
     title: 'Custom Packaging Boxes in Lahore: Types, Materials and How to Order',
@@ -386,12 +398,15 @@ export const articles: Article[] = [
   },
 ];
 
+/** Newest first: the US-market guides, then the Pakistan guides. */
+export const articles: Article[] = [...US_ARTICLES, ...PK_ARTICLES];
+
 export const getArticle = (slug: string) => articles.find(a => a.slug === slug);
 
 /** Words in the visible article text (sections and FAQs), used for reading time and structured data. */
 export function wordCount(a: Article): number {
   const t = (s: string) => s.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').split(/\s+/).filter(Boolean).length;
-  let n = t(a.summary);
+  let n = t(a.summary) + (a.takeaways ?? []).reduce((x, i) => x + t(i), 0);
   for (const s of a.sections) {
     n += t(s.heading);
     for (const b of s.body) {
@@ -399,6 +414,9 @@ export function wordCount(a: Article): number {
       else if ('ul' in b) n += b.ul.reduce((x, i) => x + t(i), 0);
       else if ('ol' in b) n += b.ol.reduce((x, i) => x + t(i), 0);
       else if ('table' in b) n += [...b.table.head, ...b.table.rows.flat()].reduce((x, i) => x + t(i), 0);
+      else if ('tip' in b) n += t(b.tip.title) + t(b.tip.text);
+      else if ('quote' in b) n += t(b.quote);
+      else if ('steps' in b) n += b.steps.reduce((x, i) => x + t(i.title) + t(i.text), 0);
     }
   }
   for (const f of a.faqs) n += t(f.q) + t(f.a);

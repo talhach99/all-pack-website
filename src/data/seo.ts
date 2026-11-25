@@ -63,6 +63,14 @@ export const PAGE_SEO = {
 } satisfies Record<string, Seo>;
 
 export const ARTICLE_SEO: Record<string, Seo> = {
+  'custom-packaging-manufacturer-for-us-brands': {
+    title: 'Custom Packaging Manufacturer for US Brands',
+    description: 'Why US brands source custom packaging overseas: landed cost, quality checks, lead times, tariffs and de minimis rules, and the value of a US office.',
+  },
+  'custom-mailer-boxes-shopify-dtc-brands': {
+    title: 'Custom Mailer Boxes for Shopify & DTC Brands',
+    description: 'Mailer box styles, E-flute vs B-flute, sizing to cut dimensional weight, printing, finishes and pricing factors for Shopify and DTC brands in the USA.',
+  },
   'custom-packaging-boxes-lahore': {
     title: "Custom Packaging Boxes in Lahore: Buyer's Guide",
     description: 'Compare folding cartons, rigid, mailer and corrugated boxes, choose the right board and finish, and learn how to order custom packaging in Lahore.',
