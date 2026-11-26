@@ -24,16 +24,16 @@ export function Header({ logo }: { logo: string }) {
   const active = (href: string) => href === '/' ? path === '/' : (path === href || path.startsWith(href + '/'));
   return (
     <>
-      <header className="ap sticky top-0 z-40 border-b border-[#EDEEF1] bg-white/[.88] backdrop-blur-xl">
+      <header className="ap sticky top-0 z-40 border-b border-[#EDEEF1] bg-white lg:bg-white/[.88] lg:backdrop-blur-xl">
         <div className="ap-wrap flex h-[76px] items-center gap-8">
           <Link href="/" aria-label="ALL PACK home" className="shrink-0"><img src={logo} alt="ALL PACK — The Packaging Experts" width={150} height={46} className="h-10 w-auto" /></Link>
           <nav aria-label="Main" className="hidden flex-1 items-center gap-7 lg:flex">
             {NAV.map(n => (
-              <Link key={n.href} href={n.href} className={`ap-ul text-[15px] font-semibold ${active(n.href) ? 'text-[#2B43F0]' : ''}`}>{n.text}</Link>
+              <Link key={n.href} href={n.href} prefetch className={`ap-ul text-[15px] font-semibold ${active(n.href) ? 'text-[#2B43F0]' : ''}`}>{n.text}</Link>
             ))}
           </nav>
           <div className="ml-auto hidden items-center gap-6 lg:flex">
-            <Link href="/contact" className={`ap-ul text-[15px] font-semibold ${active('/contact') ? 'text-[#2B43F0]' : ''}`}>Contact</Link>
+            <Link href="/contact" prefetch className={`ap-ul text-[15px] font-semibold ${active('/contact') ? 'text-[#2B43F0]' : ''}`}>Contact</Link>
             <Link href="/contact" className="ap-btn ap-dark !min-h-[44px] !rounded-full !px-5 text-[14px]">Get a quote</Link>
           </div>
           <button type="button" onClick={() => setOpen(v => !v)} aria-expanded={open} aria-controls="mobile-nav" aria-label={open ? 'Close menu' : 'Open menu'} className="ml-auto grid h-11 w-11 place-items-center rounded-full border border-[#E0E3EA] lg:hidden">

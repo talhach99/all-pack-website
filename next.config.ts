@@ -33,7 +33,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   // Images are pre-optimised WebP renders; skip the runtime optimiser (not available on Cloudflare Workers by default).
   images: { unoptimized: true },
-  experimental: { optimizePackageImports: ['lucide-react', 'framer-motion'] },
+  experimental: { optimizePackageImports: ['lucide-react'] },
   async redirects() {
     const to = (from: string, dest: string) => ({ source: from, destination: dest, permanent: true });
     return [

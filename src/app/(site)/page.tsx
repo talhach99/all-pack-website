@@ -58,7 +58,7 @@ export default async function Home() {
       </section>
 
       {/* What we print */}
-      <section className="px-4 pb-20 sm:px-5 sm:pb-28">
+      <section className="ap-defer px-4 pb-20 sm:px-5 sm:pb-28">
         <div className="mx-auto max-w-[1100px]">
           <div className="ap-rv mb-10 text-center"><span className="ap-kicker">What we print</span><h2 className="mt-2.5 text-[36px] leading-none sm:text-[48px]">Three ways to print your brand</h2><p className="mx-auto mt-3.5 max-w-[560px] text-[17px] leading-[1.6] text-[#4A5060]">Flexible pouches, DTF transfers for apparel and offset printing for boxes and labels, all from one team.</p></div>
           <div className="flex flex-col gap-5">
@@ -85,7 +85,7 @@ export default async function Home() {
       </section>
 
       {/* How it works */}
-      <section className="bg-[#F4F5F8] px-5 py-20 sm:py-28">
+      <section className="ap-defer bg-[#F4F5F8] px-5 py-20 sm:py-28">
         <div className="ap-rv mx-auto max-w-[1200px]">
           <div className="mx-auto mb-14 max-w-[640px] text-center"><span className="ap-kicker">How it works</span><h2 className="mt-3 text-[36px] leading-[1.05] sm:text-[48px]">From brief to doorstep in four steps</h2><p className="mt-4 text-[17px] leading-[1.6] text-[#5C6272]">One dedicated contact, clear pricing and a proof before anything prints.</p></div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

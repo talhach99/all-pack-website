@@ -42,16 +42,51 @@ export function envVar(name: string): string {
   try { return String((getCloudflareContext().env as unknown as Record<string, unknown>)[name] ?? process.env[name] ?? ''); } catch { return process.env[name] ?? ''; }
 }
 
-export async function kvGet<T>(key: string): Promise<T | null> {
-  const db = await getDb();
-  if (!db) return null;
-  const row = await db.prepare('SELECT value FROM kv WHERE key = ?').bind(key).first<{ value: string }>();
+function rawDb(): D1 | null {
+  try { return (getCloudflareContext().env as unknown as { DB?: D1 }).DB ?? null; } catch { return null; }
+}
+
+async function readKv<T>(key: string): Promise<T | null> {
+  const sql = 'SELECT value FROM kv WHERE key = ?';
+  const raw = rawDb();
+  if (!raw) return null;
+  let row: { value: string } | null;
+  // Read straight away; only set the tables up (one extra round trip) if they don't exist yet.
+  try { row = await raw.prepare(sql).bind(key).first<{ value: string }>(); }
+  catch { const db = await getDb(); if (!db) return null; row = await db.prepare(sql).bind(key).first<{ value: string }>(); }
   if (!row) return null;
   try { return JSON.parse(row.value) as T; } catch { return null; }
+}
+
+/* Per-worker memory cache so visitors don't wait on the database for every page.
+   Fresh for FRESH_MS; after that the cached copy is served while a refresh runs in the background.
+   Saving in the admin clears it straight away on that worker. */
+const FRESH_MS = 15_000, MAX_STALE_MS = 5 * 60_000;
+const memo = new Map<string, { at: number; value: unknown; refreshing?: Promise<unknown> }>();
+
+function refresh<T>(key: string): Promise<T | null> {
+  const p = readKv<T>(key).then(value => { memo.set(key, { at: Date.now(), value }); return value; }, e => { const m = memo.get(key); if (m) m.refreshing = undefined; throw e; });
+  const m = memo.get(key);
+  if (m) m.refreshing = p;
+  return p;
+}
+
+export async function kvGet<T>(key: string): Promise<T | null> {
+  const m = memo.get(key), age = m ? Date.now() - m.at : Infinity;
+  if (m && age < FRESH_MS) return m.value as T | null;
+  if (m && age < MAX_STALE_MS) {
+    if (!m.refreshing) {
+      const p = refresh<T>(key).catch(() => null);
+      try { getCloudflareContext().ctx.waitUntil(p); } catch { /* not on Workers */ }
+    }
+    return m.value as T | null;
+  }
+  return refresh<T>(key);
 }
 
 export async function kvSet(key: string, value: unknown): Promise<void> {
   const db = await getDb();
   if (!db) throw new Error('Database is not connected');
   await db.prepare('INSERT INTO kv (key, value, updated_at) VALUES (?1, ?2, ?3) ON CONFLICT(key) DO UPDATE SET value = ?2, updated_at = ?3').bind(key, JSON.stringify(value), Date.now()).run();
+  memo.set(key, { at: Date.now(), value: JSON.parse(JSON.stringify(value)) });
 }

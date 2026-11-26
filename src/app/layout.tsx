@@ -1,7 +1,16 @@
 import type { Metadata, Viewport } from 'next';
+import localFont from 'next/font/local';
 import '@fontsource-variable/plus-jakarta-sans/wght.css';
 import './globals.css';
 import { getSite } from '@/lib/site';
+
+// Latin Plus Jakarta Sans, preloaded with a size-matched fallback so text appears at once without a layout shift.
+// The fontsource CSS above still covers rarer characters (latin-ext etc.), downloaded only when a page needs them.
+const jakarta = localFont({
+  src: '../../node_modules/@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2',
+  weight: '200 800', style: 'normal', display: 'swap', variable: '--font-jakarta', preload: true,
+  fallback: ['ui-sans-serif', 'system-ui', 'sans-serif'], adjustFontFallback: 'Arial',
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const { company, copy, seoFor } = await getSite();
@@ -26,7 +35,7 @@ export const viewport: Viewport = { width: 'device-width', initialScale: 1, them
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={jakarta.variable}>
       <body>{children}</body>
     </html>
   );

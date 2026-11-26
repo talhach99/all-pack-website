@@ -9,7 +9,13 @@ export function HeroSlider({ slides: HERO_SLIDES }: { slides: HeroSlide[] }) {
   const [i, setI] = useState(0);
   const t = useRef<ReturnType<typeof setInterval> | null>(null);
   const start = useCallback(() => { if (t.current) clearInterval(t.current); t.current = setInterval(() => setI(v => (v + 1) % HERO_SLIDES.length), 6000); }, [HERO_SLIDES.length]);
-  useEffect(() => { start(); return () => { if (t.current) clearInterval(t.current); }; }, [start]);
+  useEffect(() => {
+    // Autoplay only while the tab is visible, so background tabs don't keep re-rendering.
+    const stop = () => { if (t.current) clearInterval(t.current); t.current = null; };
+    const onVis = () => (document.hidden ? stop() : start());
+    start(); document.addEventListener('visibilitychange', onVis);
+    return () => { stop(); document.removeEventListener('visibilitychange', onVis); };
+  }, [start]);
   const s = HERO_SLIDES[i % HERO_SLIDES.length];
   return (
     <section aria-roledescription="carousel" aria-label="Highlights" className="px-5 transition-colors duration-[900ms] sm:px-6" style={{ background: s.bg }}>
