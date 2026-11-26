@@ -2,7 +2,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getSite, pageMeta } from '@/lib/site';
-import { PageHero, heroTitle } from '@/components/PageHero';
+import { PageHero, heroImages, heroTitle } from '@/components/PageHero';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('about', '/about'); }
 
@@ -18,7 +18,7 @@ export default async function AboutPage() {
   const logos = clients.filter(c => c.logo);
   return (
     <main className="ap">
-      <PageHero kicker="About" title={heroTitle(t, 'about')} description={t['hero.about.lead']} stats={[['25+', 'Years in printing'], ['ISO 9001', 'Certified quality'], ['2', 'Offices, USA and Pakistan']]} images={[{ src: '/photos/hero2-sm.webp', alt: 'Custom printed packaging', label: 'Our work', cover: true }, { src: '/photos/off-corr-sm.webp', alt: 'Printed corrugated boxes', label: 'Shipping boxes' }, { src: '/photos/tees-sm.webp', alt: 'Printed tees', label: 'DTF apparel', cover: true }]} />
+      <PageHero kicker="About" title={heroTitle(t, 'about')} description={t['hero.about.lead']} stats={[1, 2, 3].map(n => [t[`about.stat${n}.value`], t[`about.stat${n}.label`]] as [string, string]).filter(([v]) => v)} images={heroImages(t, 'about', [true, false, true])} />
 
       <section className="px-5 py-20 sm:py-28">
         <div className="ap-rv mx-auto flex max-w-[1200px] flex-wrap items-center gap-14">

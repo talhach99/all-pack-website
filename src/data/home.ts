@@ -18,17 +18,19 @@ export const HERO_SLIDES: HeroSlide[] = [
   { kicker: 'From sample to scale', title: 'Start with one. Scale to thousands.', text: 'Approve a sample first, then grow your run with the same quality, supported from Boston and Lahore.', cta: 'Start your order', href: '/contact', image: HERO('hero3').src, srcSet: HERO('hero3').srcSet, alt: 'Man in a printed tee beside a rack of custom shirts', bg: '#EDCBB2', tab: 'Sample to scale' },
 ];
 
-export const STRIP = [
+export type StripItem = { label: string; src: string };
+export const STRIP: StripItem[] = [
   { label: 'T-shirt', src: P('tshirt') }, { label: 'Ceramic mug', src: P('mug-leaves') }, { label: 'Tote bag', src: P('tote') },
   { label: 'Cushion', src: P('pillow') }, { label: 'Stand-up pouch', src: P('pouch1') }, { label: 'Phone case', src: P('phonecase') },
   { label: 'Cosmetic boxes', src: '/photos/cosmetic-boxes-tall-sm.webp' }, { label: 'Sweatshirt', src: P('sweat') }, { label: 'Color mug', src: P('mug-waves') }, { label: 'Poster', src: P('poster') },
 ];
 
-export const BENEFITS = [
+export type Benefit = { title: string; text: string; icon: 'box' | 'tag' | 'truck' | string };
+export const BENEFITS: Benefit[] = [
   { title: 'Made to your spec', text: 'Any size, board and finish. Every structure starts from your product, so it fits and protects.', icon: 'box' },
   { title: 'Better prices at volume', text: 'Unit prices drop as your order grows. Ask for tiered pricing with your quote.', icon: 'tag' },
   { title: 'Delivered on schedule', text: 'Clear lead times agreed up front, with delivery to your door in the USA or Pakistan.', icon: 'truck' },
-] as const;
+];
 
 export type Tile = { name: string; src: string; fit?: 'cover' | 'contain'; white?: boolean };
 export const MOSAIC: Tile[] = [
@@ -40,7 +42,8 @@ export const MOSAIC: Tile[] = [
 ];
 
 export type PrintCard = { name: string; src: string; desc?: string; fit: 'cover' | 'contain' };
-export const PRINT_ROWS: { kicker: string; title: string; text: string; link: string; bg: string; cards: PrintCard[] }[] = [
+export type PrintRow = { kicker: string; title: string; text: string; link: string; bg: string; cards: PrintCard[] };
+export const PRINT_ROWS: PrintRow[] = [
   { kicker: '01 · Flexible packaging', title: 'Printed pouches, four ways', text: 'Food, snacks, powders and liquids, sealed, branded and ready for the shelf.', link: 'Get pouch pricing', bg: '#F4F5F8', cards: [
     { name: 'Stand-up pouch', src: P('pouch1'), fit: 'contain' }, { name: 'Four-side seal pouch with handle', src: P('pouch2'), fit: 'contain' },
     { name: 'Flat-bottom pouch', src: P('pouch3'), fit: 'contain' }, { name: 'Spout pouch with cap', src: P('pouch4'), fit: 'contain' },
@@ -111,7 +114,8 @@ export const FINISHES = [
   { name: 'Debossing', short: 'Debossing', desc: 'Pressed-in detail for a subtle, crafted look.', best: 'Kraft boxes, sleeves', cost: '$$', face: '#C9A77C', ink: '#B08A5E', shadow: '1px 1px 0 rgba(255,255,255,.35), -1px -1px 1px rgba(59,42,23,.35)' },
   { name: 'Window cut-out', short: 'Window', desc: 'Die-cut window with clear film to show the product inside.', best: 'Food, toys, retail', cost: '$$', face: 'linear-gradient(#FFFFFF 0 30%, #DDEBF7 30% 70%, #FFFFFF 70%)', ink: '#0A208C', shadow: 'none' },
 ];
-export const MATERIALS = [
+export type Material = { name: string; desc: string; src: string; fit: 'cover' | 'contain'; bg: string };
+export const MATERIALS: Material[] = [
   { name: 'White board (SBS)', desc: 'Bright, smooth board for crisp full-color print on retail and pharma cartons.', src: P('off-pharma'), fit: 'cover' as const, bg: '#FFFFFF' },
   { name: 'Kraft board', desc: 'Natural, uncoated brown board with an earthy, eco-friendly look.', src: R('mailer-boxes'), fit: 'contain' as const, bg: '#F3EEE6' },
   { name: 'Corrugated (3- and 5-ply)', desc: 'Fluted board for strength in shipping, storage and heavy goods.', src: P('off-corr'), fit: 'cover' as const, bg: '#FFFFFF' },

@@ -2,18 +2,18 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getSite, pageMeta } from '@/lib/site';
-import { FINISHES, MATERIALS, METHODS, FINISH_GUIDE } from '@/data/home';
-import { heroChip, heroTitle, PageHero } from '@/components/PageHero';
+import { FINISHES, METHODS, FINISH_GUIDE } from '@/data/home';
+import { heroChip, heroImages, heroTitle, PageHero } from '@/components/PageHero';
 import { FinishPreview } from '@/components/ap/FinishPreview';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('finishes', '/finishes'); }
 
 export default async function FinishesPage() {
-  const { links, copy: t } = await getSite();
+  const { links, copy: t, materials: MATERIALS } = await getSite();
   const wa = links.whatsappLink();
   return (
     <main className="ap">
-      <PageHero kicker="Finishes" title={heroTitle(t, 'finishes')} description={t['hero.finishes.lead']} images={[{ src: '/renders/rigid-gift-boxes-sm.webp', alt: 'Rigid gift boxes', label: 'Rigid gift box' }, { src: '/photos/off-rigid-sm.webp', alt: 'Printed rigid box', label: 'Printed finish' }, { src: '/renders/labels-stickers-v2-sm.webp', alt: 'Printed labels and stickers', label: 'Labels' }]}>
+      <PageHero kicker="Finishes" title={heroTitle(t, 'finishes')} description={t['hero.finishes.lead']} images={heroImages(t, 'finishes')}>
         <a href="#finishes" className={heroChip}>Coatings &amp; effects</a><a href="#materials" className={heroChip}>Materials</a>
       </PageHero>
       <FinishPreview />
@@ -36,8 +36,8 @@ export default async function FinishesPage() {
         <div className="ap-rv mx-auto max-w-[1200px]">
           <div className="mb-10 max-w-[720px]"><span className="ap-kicker">Materials</span><h2 className="mt-3 text-[36px] leading-[1.05] sm:text-[44px]">Choose your board and film</h2><p className="mt-3.5 text-[17px] leading-[1.6] text-[#5C6272]">The right material protects your product and sets the tone for your brand.</p></div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {MATERIALS.map(m => (
-              <div key={m.name} className="ap-card ap-lift flex flex-col overflow-hidden rounded-[20px] bg-white">
+            {MATERIALS.filter(m => m.src).map((m, mi) => (
+              <div key={`${m.name}-${mi}`} className="ap-card ap-lift flex flex-col overflow-hidden rounded-[20px] bg-white">
                 <div className="h-[170px] overflow-hidden" style={{ background: m.bg }}><img src={m.src} alt={m.name} width={400} height={340} loading="lazy" className={`ap-img h-full w-full ${m.fit === 'contain' ? 'object-contain p-4' : 'object-cover'}`} /></div>
                 <div className="flex flex-col gap-1.5 p-5"><h3 className="text-[17px]">{m.name}</h3><p className="text-[14px] leading-[1.55] text-[#5C6272]">{m.desc}</p></div>
               </div>

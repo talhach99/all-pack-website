@@ -40,6 +40,14 @@ export function PageHero({ kicker, title, description, children, crumbs, images,
   );
 }
 
+/** The three banner pictures for a page, from the admin's Page text tab (hero.<page>.img1…3 and their labels). */
+export function heroImages(t: Record<string, string>, page: string, cover: boolean[] = []): HeroImage[] {
+  return [1, 2, 3].map((n, i) => {
+    const label = t[`hero.${page}.img${n}.label`] ?? '';
+    return { src: t[`hero.${page}.img${n}`] ?? '', alt: label ? `ALL PACK ${label.toLowerCase()}` : 'ALL PACK packaging', label: label || undefined, cover: cover[i] ?? false };
+  }).filter(im => im.src);
+}
+
 /** Chip link for hero rows on the ivory background. */
 export const heroChip = 'rounded-full border border-[#D9D3C5] px-4 py-2.5 text-[14px] font-bold transition hover:border-[#0B0D12] hover:bg-[#0B0D12] hover:text-white';
 

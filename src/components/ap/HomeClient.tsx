@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { STRIP, BENEFITS, type HeroSlide } from '@/data/home';
+import type { HeroSlide, StripItem, Benefit } from '@/data/home';
 
 /** Three different hero slides that change every 6 seconds, with labelled progress bars. */
 export function HeroSlider({ slides: HERO_SLIDES }: { slides: HeroSlide[] }) {
@@ -52,27 +52,29 @@ const ICONS: Record<string, string> = {
 };
 
 /** "Order in the USA / Pakistan" switch, product strip and three benefits. */
-export function MarketSection() {
+export type MarketText = { us: string; pk: string; title: string; accent: string; usText: string; pkText: string; check1: string; check3: string };
+export function MarketSection({ strip, benefits, t }: { strip: StripItem[]; benefits: Benefit[]; t: MarketText }) {
+  const STRIP = strip.filter(p => p.src);
   const [m, setM] = useState(0);
   return (
     <section className="overflow-hidden bg-[#F4F5F8] pt-16 sm:pt-24">
       <div className="ap-wrap flex max-w-[900px] flex-col items-center gap-6 text-center">
         <div role="tablist" aria-label="Where you order" className="relative flex rounded-full border-[1.5px] border-[#0B0D12] bg-white p-1">
           <span aria-hidden="true" className="absolute bottom-1 top-1 w-[calc(50%-4px)] rounded-full bg-[#0B0D12] transition-[left] duration-500 ease-out" style={{ left: m === 0 ? 4 : '50%' }} />
-          {['Order in the USA', 'Order in Pakistan'].map((l, k) => (
+          {[t.us, t.pk].map((l, k) => (
             <button key={l} role="tab" aria-selected={m === k} onClick={() => setM(k)} className={`relative min-h-11 min-w-[136px] flex-1 rounded-full px-3 text-[13px] font-bold sm:min-w-[170px] sm:px-5 sm:text-[14px] transition-colors duration-300 ${m === k ? 'text-white' : 'text-[#0B0D12]'}`}>{l}</button>
           ))}
         </div>
-        <h2 className="text-[36px] leading-[1.02] sm:text-[64px]">Custom packaging that fits your <span className="text-[#2B43F0]">brand</span>.</h2>
-        <p className="max-w-[640px] text-[17px] leading-[1.55] text-[#4A5060] sm:text-[19px]">{m === 0 ? 'Branded boxes for your products, quoted and supported by our Boston team and delivered across the US.' : 'Branded boxes for your products, made and delivered by our Lahore team across Pakistan.'}</p>
+        <h2 className="text-[36px] leading-[1.02] sm:text-[64px]">{t.title} <span className="text-[#2B43F0]">{t.accent}</span></h2>
+        <p className="max-w-[640px] text-[17px] leading-[1.55] text-[#4A5060] sm:text-[19px]">{m === 0 ? t.usText : t.pkText}</p>
         <div className="flex flex-wrap justify-center gap-3">
           <Link href="/products" className="ap-btn ap-blue">Explore products <span className="ap-go">›</span></Link>
           <Link href="/contact" className="ap-btn ap-ghost">Get a quote</Link>
         </div>
         <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[14px] font-semibold text-[#4A5060]">
-          <span><span className="text-[#2B43F0]">✓</span> Free digital proof</span>
+          <span><span className="text-[#2B43F0]">✓</span> {t.check1}</span>
           <span><span className="text-[#2B43F0]">✓</span> {m === 0 ? 'Quotes in USD' : 'Quotes in PKR'}</span>
-          <span><span className="text-[#2B43F0]">✓</span> Any size, any quantity</span>
+          <span><span className="text-[#2B43F0]">✓</span> {t.check3}</span>
         </div>
       </div>
       <div className="ap-loopwrap ap-fade mt-14 overflow-hidden [--fade:#F4F5F8]">
@@ -86,9 +88,9 @@ export function MarketSection() {
         </div>
       </div>
       <div className="ap-wrap grid max-w-[1100px] gap-4 pb-16 pt-12 sm:gap-5 sm:pb-20 sm:pt-16 md:grid-cols-3">
-        {BENEFITS.map(b => (
-          <div key={b.title} className="ap-lift ap-rv flex flex-col gap-3 rounded-xl bg-white p-6 sm:p-8">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0B0D12" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={ICONS[b.icon]} /></svg>
+        {benefits.map((b, bi) => (
+          <div key={`${b.title}-${bi}`} className="ap-lift ap-rv flex flex-col gap-3 rounded-xl bg-white p-6 sm:p-8">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0B0D12" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={ICONS[b.icon] ?? ICONS.box} /></svg>
             <h3 className="text-[20px] !text-[#0A208C]">{b.title}</h3>
             <p className="text-[15px] leading-[1.6] text-[#4A5060]">{b.text}</p>
           </div>

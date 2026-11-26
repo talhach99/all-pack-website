@@ -98,8 +98,10 @@ function Help() {
         <ul className={`${li} list-disc space-y-1.5 pl-5`}>
           <li><b>Inquiries</b>: everything visitors send through the Contact page form and the newsletter sign-up. Use the WhatsApp and email buttons to reply, then mark the inquiry as Contacted or Closed.</li>
           <li><b>Contact details</b>: the Lahore and Boston WhatsApp numbers, email and addresses. They update everywhere at once.</li>
-          <li><b>Page text</b>: the banner heading, navy words and text at the top of each page, the How it works minimums and lead times, the About story and the logos.</li>
+          <li><b>Page text</b>: all homepage wording, the banner heading, text and pictures at the top of each page, the How it works minimums and lead times, the About story and figures, and the logos.</li>
           <li><b>Homepage slides</b>: the three large slides at the top of the homepage (text, button and picture).</li>
+          <li><b>Homepage: sliding row, product tiles, pouches/DTF/offset and benefits</b>: every picture and label in those homepage sections. Homepage headings and texts, and the How it works step picture, are under <b>Page text → Homepage</b>.</li>
+          <li><b>Finishes: materials</b>: the material cards and pictures on the Finishes page. The three banner pictures at the top of the Industries, Finishes, About and Blog pages are in <b>Page text</b> under each page.</li>
           <li><b>Products</b> and <b>New arrivals</b>: the sections and products on the Products page. A product without a picture stays hidden until you add one.</li>
           <li><b>Industries, Ordering steps, FAQs, Clients, Blog</b>: add, edit, reorder or remove items.</li>
           <li><b>Images</b>: upload pictures once, then pick them in any picture field. Large pictures are reduced automatically.</li>

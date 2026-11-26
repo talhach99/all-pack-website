@@ -6,6 +6,7 @@ export type Field = {
 export type CollectionDef = { key: string; title: string; intro: string; itemName: string; titleOf: string; fields: Field[] };
 
 const imageHint = 'Pick from the Images library or upload a new picture.';
+const FIT: Field = { k: 'fit', label: 'How the picture sits in its tile', t: 'select', options: [['contain', 'Whole product on white (product photos)'], ['cover', 'Photo fills the tile (lifestyle photos)']] };
 
 export const COLLECTIONS: CollectionDef[] = [
   {
@@ -25,11 +26,53 @@ export const COLLECTIONS: CollectionDef[] = [
     ],
   },
   {
+    key: 'strip', title: 'Homepage: sliding row', itemName: 'picture', titleOf: 'label',
+    intro: 'The row of product pictures that slides across the homepage, under “Custom packaging that fits your brand”. Tall pictures (about 4:5) look best.',
+    fields: [{ k: 'label', label: 'Label on the picture', t: 'text' }, { k: 'src', label: 'Picture', t: 'image', hint: imageHint }],
+  },
+  {
+    key: 'mosaic', title: 'Homepage: product tiles', itemName: 'tile', titleOf: 'name',
+    intro: 'The grid of product tiles in the “Packaging for every product” section of the homepage. Each tile links to the Products page.',
+    fields: [
+      { k: 'name', label: 'Product name (label on the tile)', t: 'text' },
+      { k: 'src', label: 'Picture', t: 'image', hint: imageHint },
+      FIT,
+      { k: 'white', label: 'White tile with a thin border (instead of light grey)', t: 'bool' },
+    ],
+  },
+  {
+    key: 'printRows', title: 'Homepage: pouches, DTF and offset', itemName: 'section', titleOf: 'title',
+    intro: 'The “Three ways to print your brand” sections on the homepage: Pouches, DTF printing and Offset printing, each with its own pictures.',
+    fields: [
+      { k: 'kicker', label: 'Small label (for example 01 · Flexible packaging)', t: 'text' },
+      { k: 'title', label: 'Heading', t: 'text' },
+      { k: 'text', label: 'Text under the heading', t: 'long' },
+      { k: 'link', label: 'Link text (goes to the contact page)', t: 'text', hint: 'For example Get pouch pricing' },
+      { k: 'bg', label: 'Background color', t: 'text', hint: 'A color code such as #F4F5F8.' },
+      { k: 'cards', label: 'Cards with pictures', t: 'array', item: 'card', fields: [
+        { k: 'name', label: 'Card title', t: 'text' },
+        { k: 'src', label: 'Picture', t: 'image', hint: imageHint },
+        { k: 'desc', label: 'Short description (optional, shown on larger screens)', t: 'long' },
+        FIT,
+      ] },
+    ],
+  },
+  {
+    key: 'benefits', title: 'Homepage: benefits', itemName: 'benefit', titleOf: 'title',
+    intro: 'The three white cards (Made to your spec, Better prices at volume, Delivered on schedule) under the sliding row on the homepage.',
+    fields: [
+      { k: 'title', label: 'Title', t: 'text' },
+      { k: 'text', label: 'Text', t: 'long' },
+      { k: 'icon', label: 'Icon', t: 'select', options: [['box', 'Box'], ['tag', 'Price tag'], ['truck', 'Delivery truck']] },
+    ],
+  },
+  {
     key: 'catalog', title: 'Products', itemName: 'product section', titleOf: 'title',
     intro: 'The sections of the Products page (Folding cartons, Mailer boxes …) and the products inside each. A product without a picture stays hidden until you add one, so you can prepare it in advance.',
     fields: [
       { k: 'title', label: 'Section name', t: 'text' },
       { k: 'desc', label: 'One-line description', t: 'text' },
+      { k: 'banner', label: 'Wide banner picture above the products (optional)', t: 'image', hint: 'Leave empty for no banner. A wide photo, at least 1400 pixels across.' },
       { k: 'items', label: 'Products in this section', t: 'array', item: 'product', fields: [
         { k: 'name', label: 'Product name', t: 'text' },
         { k: 'src', label: 'Picture', t: 'image', hint: imageHint },
@@ -55,6 +98,17 @@ export const COLLECTIONS: CollectionDef[] = [
       { k: 'short', label: 'Short name used in buttons (for example pharma packaging)', t: 'text' },
       { k: 'src', label: 'Picture', t: 'image', hint: imageHint },
       { k: 'fit', label: 'How the picture sits in its tile', t: 'select', options: [['contain', 'Whole product on white (product photos)'], ['cover', 'Photo fills the tile (lifestyle photos)']] },
+    ],
+  },
+  {
+    key: 'materials', title: 'Finishes: materials', itemName: 'material', titleOf: 'name',
+    intro: 'The “Choose your board and film” cards on the Finishes page.',
+    fields: [
+      { k: 'name', label: 'Material name', t: 'text' },
+      { k: 'desc', label: 'Description', t: 'long' },
+      { k: 'src', label: 'Picture', t: 'image', hint: imageHint },
+      FIT,
+      { k: 'bg', label: 'Background color behind the picture', t: 'text', hint: 'A color code such as #FFFFFF.' },
     ],
   },
   {

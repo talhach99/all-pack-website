@@ -2,7 +2,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getSite, pageMeta } from '@/lib/site';
-import { heroChip, heroTitle, PageHero } from '@/components/PageHero';
+import { heroChip, heroImages, heroTitle, PageHero } from '@/components/PageHero';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('industries', '/industries'); }
 
@@ -10,7 +10,7 @@ export default async function IndustriesPage() {
   const { industries: INDUSTRIES, copy: t } = await getSite();
   return (
     <main className="ap">
-      <PageHero kicker="Industries" title={heroTitle(t, 'industries')} description={t['hero.industries.lead']} images={[{ src: '/photos/off-pharma-sm.webp', alt: 'Printed pharmaceutical cartons', label: 'Pharmaceutical' }, { src: '/photos/off-food-sm.webp', alt: 'Printed food boxes', label: 'Food & beverage' }, { src: '/photos/pouch1-sm.webp', alt: 'Printed stand-up pouch', label: 'Retail' }]}>
+      <PageHero kicker="Industries" title={heroTitle(t, 'industries')} description={t['hero.industries.lead']} images={heroImages(t, 'industries')}>
         {INDUSTRIES.map((i, k) => <a key={i.id} href={`#${i.id}`} className={k === 0 ? `${heroChip} !border-[#0B0D12] bg-[#0B0D12] text-white` : heroChip}>{i.name}</a>)}
       </PageHero>
 

@@ -4,7 +4,7 @@ import { kvGet } from './db';
 import { articles as defArticles, type Article } from '@/data/articles';
 import { PAGE_SEO, ARTICLE_SEO, type Seo } from '@/data/seo';
 import { COPY_DEFAULTS } from '@/data/copy';
-import { HERO_SLIDES, CATALOG, NEW_ARRIVALS, INDUSTRIES, STEPS, HOME_FAQ, HOW_FAQ, type HeroSlide, type CatalogSection, type CatalogItem, type Industry, type OrderStep } from '@/data/home';
+import { HERO_SLIDES, CATALOG, NEW_ARRIVALS, INDUSTRIES, STEPS, HOME_FAQ, HOW_FAQ, STRIP, MOSAIC, PRINT_ROWS, BENEFITS, MATERIALS, type HeroSlide, type CatalogSection, type CatalogItem, type Industry, type OrderStep, type StripItem, type Tile, type PrintRow, type Benefit, type Material } from '@/data/home';
 
 export type Faq = { q: string; a: string };
 
@@ -13,17 +13,18 @@ export type CompanyKey = (typeof COMPANY_KEYS)[number];
 
 /** Lists the owner edits in the admin panel (one tab each). Defaults come from src/data/home.ts and friends. */
 export type Collections = {
-  heroSlides: HeroSlide[]; catalog: CatalogSection[]; newArrivals: CatalogItem[]; industries: Industry[]; steps: OrderStep[];
+  heroSlides: HeroSlide[]; strip: StripItem[]; mosaic: Tile[]; printRows: PrintRow[]; benefits: Benefit[];
+  catalog: CatalogSection[]; newArrivals: CatalogItem[]; industries: Industry[]; materials: Material[]; steps: OrderStep[];
   homeFaqs: Faq[]; howFaqs: Faq[]; clients: Client[]; articles: Article[];
 };
-export const COLLECTION_KEYS: (keyof Collections)[] = ['heroSlides', 'catalog', 'newArrivals', 'industries', 'steps', 'homeFaqs', 'howFaqs', 'clients', 'articles'];
+export const COLLECTION_KEYS: (keyof Collections)[] = ['heroSlides', 'strip', 'mosaic', 'printRows', 'benefits', 'catalog', 'newArrivals', 'industries', 'materials', 'steps', 'homeFaqs', 'howFaqs', 'clients', 'articles'];
 export type SeoMap = Record<string, { title: string; description: string }>;
 
 /** What the owner has changed in the admin panel. Anything missing falls back to the built-in default. */
 export type Overrides = { company?: Partial<Record<CompanyKey, string>>; copy?: Record<string, string>; collections?: Partial<Collections>; seo?: SeoMap };
 
 export const defaultCollections = (): Collections => ({
-  heroSlides: HERO_SLIDES, catalog: CATALOG, newArrivals: NEW_ARRIVALS, industries: INDUSTRIES, steps: STEPS,
+  heroSlides: HERO_SLIDES, strip: STRIP, mosaic: MOSAIC, printRows: PRINT_ROWS, benefits: BENEFITS, materials: MATERIALS, catalog: CATALOG, newArrivals: NEW_ARRIVALS, industries: INDUSTRIES, steps: STEPS,
   homeFaqs: HOME_FAQ, howFaqs: HOW_FAQ, clients: CLIENTS, articles: defArticles,
 });
 export const defaultSeo = (): SeoMap => {
@@ -61,7 +62,8 @@ export function buildSite(o: Overrides): Site {
   const absolute = new Set(Object.entries(PAGE_SEO as Record<string, Seo>).filter(([, v]) => v.absolute).map(([k]) => k));
   return {
     company, links: makeLinks(company), copy, seo,
-    heroSlides: fixSlides(c.heroSlides ?? d.heroSlides), catalog: c.catalog ?? d.catalog, newArrivals: c.newArrivals ?? d.newArrivals,
+    heroSlides: fixSlides(c.heroSlides ?? d.heroSlides), strip: c.strip ?? d.strip, mosaic: c.mosaic ?? d.mosaic, printRows: c.printRows ?? d.printRows,
+    benefits: c.benefits ?? d.benefits, materials: c.materials ?? d.materials, catalog: c.catalog ?? d.catalog, newArrivals: c.newArrivals ?? d.newArrivals,
     industries: c.industries ?? d.industries, steps: c.steps ?? d.steps, homeFaqs: c.homeFaqs ?? d.homeFaqs, howFaqs: c.howFaqs ?? d.howFaqs,
     clients: c.clients ?? d.clients, articles: c.articles ?? d.articles,
     seoFor: key => {
