@@ -3,6 +3,7 @@ import { Header } from './ap/Header';
 import { Footer } from './ap/Footer';
 import { FloatingContact } from './FloatingContact';
 import { Analytics } from './Analytics';
+import { ScrollReveal } from './ScrollReveal';
 import { getSite } from '@/lib/site';
 
 /** Header, announcement bar, footer and floating WhatsApp button around every public page. */
@@ -36,6 +37,7 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
       <div id="main">{children}</div>
       <Footer />
       <FloatingContact href={links.whatsappLink()} />
+      <ScrollReveal />
       <Analytics />
     </>
   );

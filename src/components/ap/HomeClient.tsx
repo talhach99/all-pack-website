@@ -75,12 +75,12 @@ export function MarketSection() {
           <span><span className="text-[#2B43F0]">✓</span> Any size, any quantity</span>
         </div>
       </div>
-      <div className="ap-loopwrap ap-fade mt-14 overflow-hidden">
+      <div className="ap-loopwrap ap-fade mt-14 overflow-hidden [--fade:#F4F5F8]">
         <div className="ap-loop gap-5 py-2" style={{ animationDuration: '70s' }}>
           {[...STRIP, ...STRIP].map((p, k) => (
             <div key={k} className="ap-card relative h-[250px] w-[200px] shrink-0 sm:h-[300px] sm:w-[240px] overflow-hidden rounded-[20px] bg-white shadow-[0_1px_2px_rgba(11,13,18,.06),0_12px_28px_-18px_rgba(11,13,18,.35)]">
               <img src={p.src} alt={k < STRIP.length ? p.label : ''} width={480} height={600} loading="lazy" className="ap-img h-full w-full object-cover" />
-              <span className="ap-chip absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1.5 text-[12px] font-extrabold backdrop-blur">{p.label}</span>
+              <span className="ap-chip absolute bottom-3 left-3 rounded-full bg-white/95 px-3 py-1.5 text-[12px] font-extrabold">{p.label}</span>
             </div>
           ))}
         </div>

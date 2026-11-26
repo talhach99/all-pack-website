@@ -35,7 +35,11 @@ export const viewport: Viewport = { width: 'device-width', initialScale: 1, them
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={jakarta.variable}>
+    <html lang="en" className={jakarta.variable} suppressHydrationWarning>
+      <head>
+        {/* Hide reveal-on-scroll content only when JS runs; un-hide after 4s if the reveal script never starts. */}
+        <script dangerouslySetInnerHTML={{ __html: "(function(d){d.classList.add('rv-js');setTimeout(function(){if(!window.__rv)d.classList.remove('rv-js')},4000)})(document.documentElement)" }} />
+      </head>
       <body>{children}</body>
     </html>
   );
