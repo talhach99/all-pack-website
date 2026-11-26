@@ -21,7 +21,7 @@ export const HERO_SLIDES: HeroSlide[] = [
 export const STRIP = [
   { label: 'T-shirt', src: P('tshirt') }, { label: 'Ceramic mug', src: P('mug-leaves') }, { label: 'Tote bag', src: P('tote') },
   { label: 'Cushion', src: P('pillow') }, { label: 'Stand-up pouch', src: P('pouch1') }, { label: 'Phone case', src: P('phonecase') },
-  { label: 'Blanket', src: P('blanket') }, { label: 'Sweatshirt', src: P('sweat') }, { label: 'Color mug', src: P('mug-waves') }, { label: 'Poster', src: P('poster') },
+  { label: 'Cosmetic boxes', src: '/photos/cosmetic-boxes-tall-sm.webp' }, { label: 'Sweatshirt', src: P('sweat') }, { label: 'Color mug', src: P('mug-waves') }, { label: 'Poster', src: P('poster') },
 ];
 
 export const BENEFITS = [
@@ -33,7 +33,7 @@ export const BENEFITS = [
 export type Tile = { name: string; src: string; fit?: 'cover' | 'contain'; white?: boolean };
 export const MOSAIC: Tile[] = [
   { name: 'T-shirts', src: P('tshirt') }, { name: 'Ceramic mugs', src: P('mug-leaves') }, { name: 'Cushions', src: P('pillow') }, { name: 'Tote bags', src: P('tote') },
-  { name: 'Phone cases', src: P('phonecase') }, { name: 'Blankets', src: P('blanket') }, { name: 'Color mugs', src: P('mug-waves') }, { name: 'Posters and wall art', src: P('poster') },
+  { name: 'Phone cases', src: P('phonecase') }, { name: 'Cosmetic boxes', src: '/photos/cosmetic-boxes-sq-sm.webp' }, { name: 'Color mugs', src: P('mug-waves') }, { name: 'Posters and wall art', src: P('poster') },
   { name: 'Sweatshirts', src: P('sweat') }, { name: 'Custom apparel', src: P('tees') },
   { name: 'Pouches', src: P('pouch1'), fit: 'contain', white: true }, { name: 'Food boxes', src: R('food-boxes-v2'), fit: 'contain' },
   { name: 'Corrugated shipping boxes', src: R('corrugated-shipping-boxes'), fit: 'contain' }, { name: 'E-commerce and mailer boxes', src: R('mailer-boxes'), fit: 'contain' },
@@ -85,7 +85,7 @@ export const CATALOG: CatalogSection[] = [
   { id: 'bags', title: 'Paper bags', desc: 'Branded retail and gift bags.', items: [r('Retail paper bags', 'paper-bags')] },
   { id: 'stationery', title: 'Stationery and brand print', desc: 'The finishing touches that travel with your packaging.', items: [c('Notebooks and journals', 'notebook'), c('Business cards', 'bizcards'), w('Hang tags', 'hangtags'), c('Thank-you cards', 'thankyou')] },
   { id: 'apparel', title: 'DTF apparel', desc: 'Full-color DTF prints on tees, fleece and bags.', banner: HERO('hero3').src, items: [c('T-shirts', 'tshirt'), c('Sweatshirts', 'sweat'), c('Tote bags', 'tote'), c('Team and brand apparel', 'tees'), { name: 'Hoodies' }, { name: 'Caps' }] },
-  { id: 'home', title: 'Home and gifts', desc: 'Printed homeware and gifts for your brand or store.', banner: HERO('hero1').src, items: [c('Posters and wall art', 'poster'), c('Ceramic mugs', 'mug-leaves'), c('Color mugs', 'mug-waves'), c('Cushions', 'pillow'), c('Blankets', 'blanket'), c('Phone cases', 'phonecase')] },
+  { id: 'home', title: 'Home and gifts', desc: 'Printed homeware and gifts for your brand or store.', banner: HERO('hero1').src, items: [c('Posters and wall art', 'poster'), c('Ceramic mugs', 'mug-leaves'), c('Color mugs', 'mug-waves'), c('Cushions', 'pillow'), { name: 'Cosmetic gift boxes', src: '/photos/cosmetic-boxes-sq-sm.webp', fit: 'cover' }, c('Phone cases', 'phonecase')] },
 ];
 export const NEW_ARRIVALS: CatalogItem[] = [w('Stand-up pouch', 'pouch1'), w('Spout pouch with cap', 'pouch4'), w('Lift-off lid gift box', 'off-rigid'), c('Thank-you cards', 'thankyou'), w('Hang tags', 'hangtags'), c('Notebooks and journals', 'notebook'), w('Flat-bottom pouch', 'pouch3'), w('Takeaway boxes', 'off-food')];
 

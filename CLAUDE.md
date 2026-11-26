@@ -12,7 +12,7 @@
 - Quote CTAs go to /contact (enquiry form, stored in the admin inbox) plus WhatsApp and email.
 - Keep the homepage lean; guides, industries and box styles live on their own pages.
 - Images: studio renders in `public/renders/` and owner-supplied photos in `public/photos/` (Nov 2026 redesign). Do not use stock photos (Unsplash, Pexels) or images taken from other companies' websites.
-- Redesign (Nov 2026, Printful-inspired but original): Plus Jakarta Sans, logo navy #0A208C / blue #2B43F0 / cyan #22C3EE. Components in `src/components/ap/`, page content in `src/data/home.ts`, styles under the `.ap` classes at the end of `globals.css`. Pages: /, /products, /industries, /finishes, /how-it-works, /blog, /about, /contact, /privacy, /terms, /shipping. Do not mention machinery/presses. No Printful/merch content until the owner adds affiliate material.
+- Redesign (Nov 2026, Printful-inspired but original): Plus Jakarta Sans, logo navy #0A208C / blue #2B43F0 / cyan #22C3EE. Components in `src/components/ap/`, page content in `src/data/home.ts`, styles under the `.ap` classes at the end of `globals.css`. Pages: /, /products, /industries, /finishes, /how-it-works, /blog, /about, /offices, /contact, /privacy, /terms, /shipping. Do not mention machinery/presses. No Printful/merch content until the owner adds affiliate material.
 - One Products page (`/products#section-id`) and one Industries page; no per-product or per-industry pages. Product sections live in `CATALOG` in `src/data/home.ts`; items without a photo are hidden until one is added.
 - Meta titles and descriptions live in `src/data/seo.ts`; run `npm run seo:check` after editing them.
 - Copy must be formal and specific: no invented figures, no counts of presses.

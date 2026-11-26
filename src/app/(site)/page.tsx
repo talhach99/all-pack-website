@@ -4,13 +4,14 @@ import Link from 'next/link';
 import { preload } from 'react-dom';
 import { getSite, pageMeta } from '@/lib/site';
 import { MOSAIC, PRINT_ROWS, P } from '@/data/home';
-import { HeroSlider, MarketSection, Offices, Newsletter } from '@/components/ap/HomeClient';
+import { HeroSlider, MarketSection, Newsletter } from '@/components/ap/HomeClient';
+import { OfficesSection } from '@/components/ap/Offices';
 import { FaqAccordion } from '@/components/FaqAccordion';
 
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('home', '/'); }
 
 export default async function Home() {
-  const { clients, links, company, heroSlides: HERO_SLIDES, homeFaqs } = await getSite();
+  const { clients, links, company, copy, heroSlides: HERO_SLIDES, homeFaqs } = await getSite();
   const logos = clients.filter(c => c.logo);
   const wa = links.whatsappLink();
   if (HERO_SLIDES[0]) preload(HERO_SLIDES[0].image, { as: 'image', fetchPriority: 'high', ...(HERO_SLIDES[0].srcSet ? { imageSrcSet: HERO_SLIDES[0].srcSet, imageSizes: '(max-width: 1024px) 100vw, 800px' } : {}) });
@@ -42,10 +43,10 @@ export default async function Home() {
           <Link href="/products" className="ap-ul font-bold">View the full catalog</Link>
         </div>
         <div className="mx-auto grid max-w-[1100px] auto-rows-[170px] grid-cols-2 gap-3 sm:auto-rows-[240px] sm:gap-4 lg:auto-rows-[260px] lg:grid-cols-4 lg:gap-5">
-          <div className="ap-rv relative col-span-2 row-span-2 flex flex-col justify-between gap-6 overflow-hidden rounded-xl bg-[#0A208C] p-7 text-white sm:row-span-1 sm:p-11">
-            <svg width="220" height="220" viewBox="0 0 46 46" aria-hidden="true" className="absolute -bottom-12 -right-10 opacity-20"><path d="M23 6 40 38H6Z" fill="#22C3EE" /></svg>
-            <div><h3 className="text-[28px] !text-white sm:text-[36px]">Turn every box into your brand</h3><p className="mt-3 text-[17px] text-[#C8D0F5]">Choose from our full range of packaging styles, printed to order.</p></div>
-            <Link href="/products" className="ap-btn relative self-start bg-[#22C3EE] font-extrabold text-[#0A208C]">Explore all products <span className="ap-go">›</span></Link>
+          <div className="ap-rv relative col-span-2 row-span-2 flex flex-col justify-center gap-4 overflow-hidden rounded-xl bg-[#0A208C] p-7 text-white sm:row-span-1 sm:p-8">
+            <svg width="220" height="220" viewBox="0 0 46 46" aria-hidden="true" className="pointer-events-none absolute -bottom-12 -right-10 opacity-20"><path d="M23 6 40 38H6Z" fill="#22C3EE" /></svg>
+            <div className="relative"><h3 className="text-[28px] leading-[1.08] !text-white sm:text-[30px] lg:text-[32px]">Turn every box into your brand</h3><p className="mt-2.5 text-[16px] leading-[1.5] text-[#C8D0F5]">Choose from our full range of packaging styles, printed to order.</p></div>
+            <Link href="/products" className="ap-btn relative z-10 !min-h-[46px] shrink-0 self-start bg-[#22C3EE] font-extrabold text-[#0A208C]">Explore all products <span className="ap-go">›</span></Link>
           </div>
           {MOSAIC.map(t => (
             <Link key={t.name} href="/products" className={`ap-card ap-rv relative overflow-hidden rounded-xl border ${t.white ? 'border-[#E6E8EE] bg-white' : 'border-transparent bg-[#F2F3F5]'}`}>
@@ -117,7 +118,7 @@ export default async function Home() {
 
       <section className="px-4 py-20 sm:px-5 sm:py-28"><div className="mx-auto max-w-[1200px]"><Newsletter /></div></section>
 
-      <Offices wa={wa} waUS={links.whatsappUS()} usPhone={company.usPhone} pkPhone={company.phone} />
+      <OfficesSection t={copy} c={{ wa, waUS: links.whatsappUS(), usPhone: company.usPhone, pkPhone: company.phone, email: company.email }} />
 
       {/* FAQ */}
       <section className="px-5 pt-20 sm:pt-28">

@@ -66,7 +66,7 @@ export function PagesPanel({ fields, saved, saving, onSave, onReset }: { fields:
   );
 }
 
-const PAGE_NAMES: Record<string, string> = { home: 'Home', products: 'Products', industries: 'Industries', finishes: 'Finishes', how: 'How it works', insights: 'Blog', about: 'About', contact: 'Contact', shipping: 'Shipping policy', privacy: 'Privacy policy', terms: 'Terms of service' };
+const PAGE_NAMES: Record<string, string> = { home: 'Home', products: 'Products', industries: 'Industries', finishes: 'Finishes', how: 'How it works', insights: 'Blog', about: 'About', offices: 'Offices', contact: 'Contact', shipping: 'Shipping policy', privacy: 'Privacy policy', terms: 'Terms of service' };
 
 /** Titles and descriptions that appear in Google results and link previews. */
 export function SeoPanel({ defaults, saved, articles, saving, onSave, onReset }: { defaults: Record<string, { title: string; description: string }>; saved: Record<string, { title: string; description: string }>; articles: { slug: string; title: string; excerpt: string }[]; saving: boolean; onSave: (v: Record<string, { title: string; description: string }>) => Promise<boolean>; onReset: () => void }) {

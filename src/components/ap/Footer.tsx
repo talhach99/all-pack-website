@@ -5,7 +5,7 @@ import { getSite } from '@/lib/site';
 const COLS: { h: string; links: [string, string][] }[] = [
   { h: 'Explore', links: [['Home', '/'], ['Products', '/products'], ['Industries', '/industries'], ['Get a quote', '/contact']] },
   { h: 'Products', links: [['Folding cartons', '/products#folding'], ['Mailer boxes', '/products#mailer'], ['Pouches', '/products#pouches'], ['Stationery', '/products#stationery'], ['All products', '/products']] },
-  { h: 'Company', links: [['About ALL PACK', '/about'], ['Our offices', '/#offices'], ['Blog', '/blog'], ['Contact', '/contact']] },
+  { h: 'Company', links: [['About ALL PACK', '/about'], ['Our offices', '/offices'], ['Blog', '/blog'], ['Contact', '/contact']] },
   { h: 'Help', links: [['How it works', '/how-it-works'], ['Finishes', '/finishes'], ['FAQ', '/how-it-works#faq'], ['Shipping', '/shipping']] },
 ];
 

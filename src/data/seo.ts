@@ -31,6 +31,11 @@ export const PAGE_SEO = {
     title: 'About ALL PACK | Packaging in Boston and Lahore',
     description: 'For 25+ years ALL PACK has printed packaging for leading brands, with offices in Boston and Lahore serving the USA and Pakistan. ISO 9001 and Halal certified.',
   },
+  offices: {
+    absolute: true,
+    title: 'Our Offices | ALL PACK Lahore HQ and Boston, USA',
+    description: 'ALL PACK is headquartered in Lahore, Pakistan, with a US office in Boston, Massachusetts. Local quotes in USD or PKR and one ISO 9001 quality standard.',
+  },
   contact: {
     absolute: true,
     title: 'Get a Custom Packaging Quote | Contact ALL PACK',

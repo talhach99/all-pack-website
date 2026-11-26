@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { STRIP, BENEFITS, type HeroSlide } from '@/data/home';
-import { useNow, formatTime, hourIn } from './Clock';
 
 /** Three different hero slides that change every 6 seconds, with labelled progress bars. */
 export function HeroSlider({ slides: HERO_SLIDES }: { slides: HeroSlide[] }) {
@@ -88,67 +87,6 @@ export function MarketSection() {
             <p className="text-[15px] leading-[1.6] text-[#4A5060]">{b.text}</p>
           </div>
         ))}
-      </div>
-    </section>
-  );
-}
-
-const SUN = 'M12 4V2M12 22v-2M4 12H2M22 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4M5.6 18.4l-1.4 1.4M19.8 4.2l-1.4 1.4M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z';
-const MOON = 'M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z';
-
-/** Boston and Lahore offices with live local time, day/night icon and open status. */
-export function Offices({ wa, waUS, usPhone, pkPhone }: { wa: string | null; waUS: string | null; usPhone: string; pkPhone: string }) {
-  const now = useNow();
-  const offices = [
-    { city: 'Boston', region: 'USA · Massachusetts', tz: 'America/New_York', dot: '#22C3EE', text: 'Quotes, artwork support and delivery for American brands, in your time zone and priced in US dollars.', tags: ['US orders', 'Quotes in USD', 'Eastern Time'], cta: 'Contact Boston', phone: usPhone, wa: waUS },
-    { city: 'Lahore', region: 'Pakistan · Punjab', tz: 'Asia/Karachi', dot: '#7F8CFF', text: 'Our production home, handling quotes, printing and delivery for brands across Pakistan.', tags: ['Production', 'Quotes in PKR', 'Pakistan Time'], cta: 'Contact Lahore', phone: pkPhone, wa },
-  ];
-  let apart = 10;
-  if (now) { try { const f = (tz: string) => new Date(new Date(now).toLocaleString('en-US', { timeZone: tz })).getTime(); apart = Math.round(Math.abs(f('Asia/Karachi') - f('America/New_York')) / 3600000); } catch { /* keep default */ } }
-  return (
-    <section id="offices" className="relative scroll-mt-24 overflow-hidden bg-[#070B1F] px-5 py-20 text-white sm:py-28">
-      <div aria-hidden="true" className="absolute inset-0 [background-image:radial-gradient(rgba(255,255,255,.09)_1.2px,transparent_1.2px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_45%,#000_30%,transparent_75%)]" />
-      <div className="ap-rv relative mx-auto max-w-[1200px]">
-        <div className="mx-auto max-w-[760px] text-center">
-          <span className="ap-kicker !text-[#22C3EE]">Two offices · One standard</span>
-          <h2 className="mt-3.5 text-[34px] leading-[1.02] !text-white sm:text-[60px]">Close to your customers.<br /><span className="text-[#7F8CFF]">Close to every order.</span></h2>
-          <p className="mx-auto mt-4 max-w-[560px] text-[17px] leading-[1.6] text-[#A9B1C7]">Our teams in Boston and Lahore work as one, so there is always someone moving your order forward.</p>
-        </div>
-        <div className="relative my-6 h-[140px] sm:my-8 sm:h-[200px]">
-          <svg viewBox="0 0 1000 200" preserveAspectRatio="none" className="absolute inset-0 h-full w-full" aria-hidden="true">
-            <defs><linearGradient id="apRoute" x1="0" x2="1"><stop offset="0" stopColor="#22C3EE" /><stop offset="1" stopColor="#7F8CFF" /></linearGradient></defs>
-            <path d="M160 160 C 360 0, 640 0, 840 160" fill="none" stroke="rgba(255,255,255,.12)" strokeWidth="2" />
-            <path className="ap-flow" d="M160 160 C 360 0, 640 0, 840 160" fill="none" stroke="url(#apRoute)" strokeWidth="3" strokeLinecap="round" strokeDasharray="10 14" />
-          </svg>
-          <span className="ap-pulse absolute left-[16%] top-[112px] sm:top-[160px] h-[18px] w-[18px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#22C3EE]" />
-          <span className="ap-pulse absolute left-[84%] top-[112px] sm:top-[160px] h-[18px] w-[18px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7F8CFF]" />
-          <span className="absolute left-1/2 top-[30px] -translate-x-1/2 whitespace-nowrap rounded-full text-[12px] sm:top-[52px] border border-white/15 bg-white/10 px-3.5 py-2 text-[13px] font-bold text-[#DDE3F5] backdrop-blur">{apart} hours apart · always in touch</span>
-        </div>
-        <div className="grid gap-5 md:grid-cols-2">
-          {offices.map(o => {
-            const h = now ? hourIn(o.tz, now) : 12, day = h >= 7 && h < 19, open = h >= 9 && h < 18;
-            return (
-              <div key={o.city} className="ap-lift flex flex-col gap-5 rounded-3xl border border-white/10 bg-gradient-to-b from-white/[.07] to-white/[.02] p-6 backdrop-blur sm:p-9">
-                <div className="flex flex-wrap items-start justify-between gap-4">
-                  <div>
-                    <div className="flex items-center gap-2.5"><span className="h-2.5 w-2.5 rounded-full" style={{ background: o.dot }} /><span className="text-[13px] font-bold uppercase tracking-[.08em] text-[#A9B1C7]">{o.region}</span></div>
-                    <h3 className="mt-2 text-[38px] !text-white sm:text-[48px]">{o.city}</h3>
-                  </div>
-                  <div className="text-right">
-                    <div className="flex items-center justify-end gap-2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={o.dot} strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d={day ? SUN : MOON} /></svg><span suppressHydrationWarning className="text-[26px] font-extrabold tabular-nums tracking-tight sm:text-[34px]">{now ? formatTime(o.tz, now) : ''}</span></div>
-                    {now && <span className={`mt-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[12px] font-extrabold ${open ? 'bg-green-500/15 text-[#4ADE80]' : 'bg-white/10 text-[#A9B1C7]'}`}><span className="h-1.5 w-1.5 rounded-full bg-current" />{open ? 'Open now' : 'Replies next business day'}</span>}
-                  </div>
-                </div>
-                <p className="text-[16px] leading-[1.65] text-[#C9D0E3]">{o.text}</p>
-                <div className="flex flex-wrap gap-2">{o.tags.map(t => <span key={t} className="rounded-full border border-white/15 px-3 py-1.5 text-[13px] font-semibold text-[#DDE3F5]">{t}</span>)}</div>
-                <div className="flex flex-wrap gap-2.5">
-                  <Link href="/contact" className="ap-btn ap-white !min-h-[44px] text-[14px]">{o.cta}</Link>
-                  {o.wa && <a href={o.wa} target="_blank" rel="noopener noreferrer" className="ap-btn ap-ghost-light !min-h-[44px] text-[14px]">WhatsApp {o.phone}</a>}
-                </div>
-              </div>
-            );
-          })}
-        </div>
       </div>
     </section>
   );

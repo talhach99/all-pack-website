@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Clock } from './Clock';
 
 export const NAV = [
   { text: 'Home', href: '/' },
@@ -13,24 +12,18 @@ export const NAV = [
   { text: 'Finishes', href: '/finishes' },
   { text: 'How it works', href: '/how-it-works' },
   { text: 'Blog', href: '/blog' },
-  { text: 'Offices', href: '/#offices' },
+  { text: 'Offices', href: '/offices' },
 ];
 
-/** Top line with both offices' local times, then a frosted header that stays at the top. */
+/** Frosted header that stays at the top. */
 export function Header({ logo }: { logo: string }) {
   const path = usePathname();
   const [open, setOpen] = useState(false);
   useEffect(() => { setOpen(false); }, [path]);
   useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; return () => { document.body.style.overflow = ''; }; }, [open]);
-  const active = (href: string) => href !== '/#offices' && (path === href || path.startsWith(href + '/'));
+  const active = (href: string) => href === '/' ? path === '/' : (path === href || path.startsWith(href + '/'));
   return (
     <>
-      <div className="ap border-b border-[#EDEEF1] bg-white px-5 py-2 text-[13px] text-[#5C6272]">
-        <div className="ap-wrap flex flex-wrap justify-between gap-2 !px-0">
-          <span>Offices in Boston, USA and Lahore, Pakistan</span>
-          <span className="hidden sm:inline">Boston <Clock tz="America/New_York" /> · Lahore <Clock tz="Asia/Karachi" /></span>
-        </div>
-      </div>
       <header className="ap sticky top-0 z-40 border-b border-[#EDEEF1] bg-white/[.88] backdrop-blur-xl">
         <div className="ap-wrap flex h-[76px] items-center gap-8">
           <Link href="/" aria-label="ALL PACK home" className="shrink-0"><img src={logo} alt="ALL PACK — The Packaging Experts" width={150} height={46} className="h-10 w-auto" /></Link>
