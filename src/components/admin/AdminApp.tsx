@@ -8,7 +8,7 @@ import { CollectionEditor } from './Editors';
 import { Enquiries } from './Enquiries';
 import { MediaLibrary } from './Media';
 import { PagesPanel, SeoPanel, SettingsPanel } from './Panels';
-import { btnLine, Toast } from './ui';
+import { btnDark, btnLine, inputCls, Label, Toast } from './ui';
 
 type Obj = Record<string, unknown>;
 type Content = {
@@ -79,6 +79,8 @@ export function AdminApp() {
         {tab === 'enquiries' && <Enquiries onCount={setNewCount} />}
         {tab === 'settings' && <SettingsPanel key={rev} defaults={data.defaults.company} saved={data.overrides.company ?? {}} saving={saving} onSave={v => save({ company: v })} onReset={() => save({ company: null }, 'Original details restored.')} />}
         {tab === 'pages' && <PagesPanel key={rev} fields={data.defaults.copy} saved={data.overrides.copy ?? {}} saving={saving} onSave={v => save({ copy: v })} onReset={() => save({ copy: null }, 'Original wording restored.')} />}
+        {tab === 'heroSlides' && <HeroTiming key={`ht-${rev}`} saved={data.overrides.copy?.['home.hero.seconds'] ?? ''} def={data.defaults.copy.find(c => c.key === 'home.hero.seconds')?.def ?? '6'} saving={saving}
+          onSave={v => save({ copy: { ...(data.overrides.copy ?? {}), 'home.hero.seconds': v } }, 'Slide timing saved. The homepage is updated.')} />}
         {col && <CollectionEditor key={`${col.key}-${rev}`} def={col} items={eff(col.key)} isCustom={!!data.overrides.collections?.[col.key]} saving={saving}
           onSave={list => save({ collections: { [col.key]: list } })} onReset={() => save({ collections: { [col.key]: null } }, 'Original list restored.')} />}
         {tab === 'seo' && <SeoPanel key={rev} defaults={data.defaults.seo} saved={data.overrides.seo ?? {}} articles={eff('articles') as unknown as { slug: string; title: string; excerpt: string }[]} saving={saving} onSave={v => save({ seo: v })} onReset={() => save({ seo: null }, 'Original titles restored.')} />}
@@ -86,6 +88,20 @@ export function AdminApp() {
         {tab === 'help' && <Help />}
       </main>
       <Toast {...toast} />
+    </div>
+  );
+}
+
+/** Seconds each homepage slide stays on screen (stored as the Page text field home.hero.seconds). */
+function HeroTiming({ saved, def, saving, onSave }: { saved: string; def: string; saving: boolean; onSave: (v: string) => Promise<boolean> }) {
+  const [v, setV] = useState(saved || def);
+  const n = Number.parseFloat(v);
+  const ok = Number.isFinite(n) && n >= 2 && n <= 60;
+  return (
+    <div className="mb-6 flex flex-wrap items-end gap-3 rounded-xl border border-line bg-white p-4 sm:p-5">
+      <label className="block w-48"><Label>Seconds per slide (2 to 60)</Label><input type="number" min={2} max={60} step={1} className={inputCls} value={v} onChange={e => setV(e.target.value)} /></label>
+      <button type="button" className={btnDark} disabled={saving || !ok || v === (saved || def)} onClick={() => onSave(String(Math.round(n)))}>Save timing</button>
+      <p className="w-full text-[13px] text-muted sm:w-auto sm:flex-1">How long each slide stays before the next one appears. Use the arrows on the slides below to choose the order (first, second, third).</p>
     </div>
   );
 }
@@ -99,7 +115,7 @@ function Help() {
           <li><b>Inquiries</b>: everything visitors send through the Contact page form and the newsletter sign-up. Use the WhatsApp and email buttons to reply, then mark the inquiry as Contacted or Closed.</li>
           <li><b>Contact details</b>: the Lahore and Boston WhatsApp numbers, email and addresses. They update everywhere at once.</li>
           <li><b>Page text</b>: all homepage wording, the banner heading, text and pictures at the top of each page, the How it works minimums and lead times, the About story and figures, and the logos.</li>
-          <li><b>Homepage slides</b>: the three large slides at the top of the homepage (text, button and picture).</li>
+          <li><b>Homepage slides</b>: the large slides at the top of the homepage: their order (arrows), pictures, text and buttons, how many seconds each one stays, and a switch to hide a slide without deleting it.</li>
           <li><b>Homepage: sliding row, product tiles, pouches/DTF/offset and benefits</b>: every picture and label in those homepage sections. Homepage headings and texts, and the How it works step picture, are under <b>Page text → Homepage</b>.</li>
           <li><b>Finishes: materials</b>: the material cards and pictures on the Finishes page. The three banner pictures at the top of the Industries, Finishes, About and Blog pages are in <b>Page text</b> under each page.</li>
           <li><b>Products</b> and <b>New arrivals</b>: the sections and products on the Products page. A product without a picture stays hidden until you add one.</li>

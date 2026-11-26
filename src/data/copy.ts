@@ -11,6 +11,7 @@ export const COPY: CopyField[] = [
   f('Announcement bar', 'site.announcement', 'Announcement text', '', 'text', 'Leave empty to hide the bar. Shown at the very top of every page.'),
   f('Announcement bar', 'site.announcement.link', 'Announcement link (optional)', '', 'text', 'For example /contact or https://wa.me/…'),
 
+  f('Homepage', 'home.hero.seconds', 'Slides: seconds before the next slide', '6', 'text', 'A number from 2 to 60. Slide order, pictures and text are in the Homepage slides tab.'),
   f('Homepage', 'home.clients.title', 'Client logos: first line (the number of logos is added automatically)', 'Trusted by {n}+ brands', 'text', 'Write {n} where the number of client logos should appear.'),
   f('Homepage', 'home.clients.text', 'Client logos: second line', 'across the USA and Pakistan'),
   f('Homepage', 'home.market.us', 'Switch: first button', 'Order in the USA'),

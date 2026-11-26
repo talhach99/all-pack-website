@@ -10,14 +10,16 @@ import { FaqAccordion } from '@/components/FaqAccordion';
 export async function generateMetadata(): Promise<Metadata> { return pageMeta('home', '/'); }
 
 export default async function Home() {
-  const { clients, links, company, copy, heroSlides: HERO_SLIDES, homeFaqs, strip, mosaic: MOSAIC, printRows: PRINT_ROWS, benefits } = await getSite();
+  const { clients, links, company, copy, heroSlides: allSlides, homeFaqs, strip, mosaic: MOSAIC, printRows: PRINT_ROWS, benefits } = await getSite();
   const t = copy;
+  const HERO_SLIDES = allSlides.filter(s => !s.hidden && s.image);
+  const heroSeconds = Math.min(60, Math.max(2, Number.parseFloat(t['home.hero.seconds']) || 6));
   const logos = clients.filter(c => c.logo);
   const wa = links.whatsappLink();
   if (HERO_SLIDES[0]) preload(HERO_SLIDES[0].image, { as: 'image', fetchPriority: 'high', ...(HERO_SLIDES[0].srcSet ? { imageSrcSet: HERO_SLIDES[0].srcSet, imageSizes: '(max-width: 1024px) 100vw, 800px' } : {}) });
   return (
     <main className="ap">
-      {HERO_SLIDES.length > 0 && <HeroSlider slides={HERO_SLIDES} />}
+      {HERO_SLIDES.length > 0 && <HeroSlider slides={HERO_SLIDES} seconds={heroSeconds} />}
 
       {/* Client logos */}
       <section className="border-b border-[#EDEEF1] bg-white px-5 py-7">

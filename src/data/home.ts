@@ -11,7 +11,7 @@ export const R = (f: string) => `/renders/${f}${SM_RENDERS.has(f) ? '-sm' : ''}.
 /** Hero photo: full size plus a 900px version for phones. */
 export const HERO = (f: string) => ({ src: `/photos/${f}.webp`, srcSet: `/photos/${f}-md.webp 900w, /photos/${f}.webp 1600w` });
 
-export type HeroSlide = { kicker: string; title: string; text: string; cta: string; href: string; image: string; srcSet: string; alt: string; bg: string; tab: string; cutout?: boolean };
+export type HeroSlide = { kicker: string; title: string; text: string; cta: string; href: string; image: string; srcSet: string; alt: string; bg: string; tab: string; cutout?: boolean; hidden?: boolean };
 export const HERO_SLIDES: HeroSlide[] = [
   { kicker: 'Custom packaging · USA and Pakistan', title: 'Packaging as premium as what’s inside.', text: 'Cosmetic cartons, drawer boxes and rigid gift boxes, made to your size and finished with foil, embossing or soft-touch.', cta: 'Shop packaging', href: '/products', image: '/photos/hero-cosmetic-v2.webp', srcSet: '/photos/hero-cosmetic-v2-sm.webp 800w, /photos/hero-cosmetic-v2.webp 1600w', alt: 'ALL PACK cosmetic packaging: navy lipstick and serum cartons, a drawer box with ribbon pull, a white organic care box and a teal rigid gift box with gold foil', bg: '#EFE6DC', tab: 'Premium packaging' },
   { kicker: 'One design, every product', title: 'Make it once. Wear it, carry it, frame it.', text: 'Put your artwork on tees, sweatshirts, totes and prints, then ship it all in boxes made by ALL PACK.', cta: 'Explore products', href: '/products', image: HERO('hero2').src, srcSet: HERO('hero2').srcSet, alt: 'Model with a printed tote beside a matching hoodie, tee, cap and poster', bg: '#CDBFEA', tab: 'Apparel and bags' },

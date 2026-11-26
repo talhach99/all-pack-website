@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { HeroSlide, StripItem, Benefit } from '@/data/home';
 
-/** Three different hero slides that change every 6 seconds, with labelled progress bars. */
-export function HeroSlider({ slides: HERO_SLIDES }: { slides: HeroSlide[] }) {
+/** Homepage hero slides that change every `seconds` (set in the admin), with labelled progress bars. */
+export function HeroSlider({ slides: HERO_SLIDES, seconds = 6 }: { slides: HeroSlide[]; seconds?: number }) {
   const [i, setI] = useState(0);
   const t = useRef<ReturnType<typeof setInterval> | null>(null);
-  const start = useCallback(() => { if (t.current) clearInterval(t.current); t.current = setInterval(() => setI(v => (v + 1) % HERO_SLIDES.length), 6000); }, [HERO_SLIDES.length]);
+  const start = useCallback(() => { if (t.current) clearInterval(t.current); if (HERO_SLIDES.length < 2) return; t.current = setInterval(() => setI(v => (v + 1) % HERO_SLIDES.length), seconds * 1000); }, [HERO_SLIDES.length, seconds]);
   useEffect(() => {
     // Autoplay only while the tab is visible, so background tabs don't keep re-rendering.
     const stop = () => { if (t.current) clearInterval(t.current); t.current = null; };
@@ -35,7 +35,7 @@ export function HeroSlider({ slides: HERO_SLIDES }: { slides: HeroSlide[] }) {
         <div className="absolute inset-x-0 bottom-6 grid grid-cols-3 gap-3 sm:bottom-8 sm:gap-5">
           {HERO_SLIDES.map((h, k) => (
             <button key={h.tab} type="button" onClick={() => { setI(k); start(); }} aria-label={`Show slide ${k + 1}: ${h.tab}`} aria-current={k === i} className="flex min-h-[44px] flex-col justify-end gap-2.5 text-left">
-              <span className="block h-[3px] overflow-hidden rounded bg-[rgba(11,13,18,.15)]">{k === i && <span key={`p${i}`} className="ap-prog block h-full bg-[#0B0D12]" />}</span>
+              <span className="block h-[3px] overflow-hidden rounded bg-[rgba(11,13,18,.15)]">{k === i && <span key={`p${i}`} className="ap-prog block h-full bg-[#0B0D12]" style={{ animationDuration: `${seconds}s` }} />}</span>
               <span className={`text-[12px] font-bold leading-tight sm:text-[14px] ${k === i ? 'text-[#0B0D12]' : 'text-[rgba(11,13,18,.5)]'}`}>0{k + 1}<span className="hidden sm:inline">&nbsp; {h.tab}</span></span>
             </button>
           ))}

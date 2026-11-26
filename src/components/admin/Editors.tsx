@@ -143,7 +143,7 @@ export function CollectionEditor({ def, items, isCustom, onSave, onReset, saving
         {list.map((it, i) => (
           <details key={i} className="rounded-xl border border-line bg-white">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3.5">
-              <span className="flex min-w-0 items-center gap-2"><ChevronDown size={16} className="shrink-0 text-muted" /><span className="truncate text-[15px] font-semibold">{i + 1}. {String(it[def.titleOf] || `New ${def.itemName}`)}</span></span>
+              <span className="flex min-w-0 items-center gap-2"><ChevronDown size={16} className="shrink-0 text-muted" /><span className="truncate text-[15px] font-semibold">{i + 1}. {String(it[def.titleOf] || `New ${def.itemName}`)}{it.hidden ? <span className="ml-2 font-normal text-muted">(hidden)</span> : null}</span></span>
               <Move i={i} n={list.length} onMove={d => upd(move(list, i, d))} onDelete={() => upd(list.filter((_, j) => j !== i))} />
             </summary>
             <div className="grid gap-5 border-t border-line p-4 sm:p-5">{def.fields.map(f => <FieldEditor key={f.k} f={f} value={it[f.k]} onChange={v => upd(list.map((x, j) => (j === i ? { ...x, [f.k]: v } : x)))} />)}</div>

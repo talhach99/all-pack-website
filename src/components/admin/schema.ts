@@ -11,8 +11,9 @@ const FIT: Field = { k: 'fit', label: 'How the picture sits in its tile', t: 'se
 export const COLLECTIONS: CollectionDef[] = [
   {
     key: 'heroSlides', title: 'Homepage slides', itemName: 'slide', titleOf: 'title',
-    intro: 'The three large slides at the top of the homepage. They change every 6 seconds; the order here is the order on the site.',
+    intro: 'The large slides at the top of the homepage. Use the arrows to choose which slide shows first, second and third; the order here is the order on the site. Change a slide’s picture with its Picture field. Tick “Hide this slide” to take a slide off the website without deleting it.',
     fields: [
+      { k: 'hidden', label: 'Hide this slide (keep it here but don’t show it on the website)', t: 'bool' },
       { k: 'kicker', label: 'Small line above the heading', t: 'text' },
       { k: 'title', label: 'Heading', t: 'text' },
       { k: 'text', label: 'Text under the heading', t: 'long' },
